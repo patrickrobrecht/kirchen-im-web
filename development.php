@@ -23,7 +23,8 @@
 				<li><a href="http://joerg-lohrer.de/">Jörg Lohrer</a></li>
 				<li><a href="https://patrick-robrecht.de">Patrick Robrecht</a></li>
 			</ul>
-			<p>Möchtest du bei der Weiterentwicklung mithelfen? Dann melde dich doch bei uns (Kontakt siehe Webseiten).</p>
+			<p>Möchtest du bei der Weiterentwicklung mithelfen? Dann melde dich doch bei uns (Kontakt siehe <a href="legal.php">Impressum</a>).</p>
+			<p>Der Quelltext dieser Webanwendung ist auf <a href="https://github.com/patrickrobrecht/kirchen-im-web">Github</a> frei verfügbar.</p>
 		</article>
 		
 		<article>
@@ -81,10 +82,13 @@
 			<ul>
 				<li><a href="https://www.w3.org/standards/webdesign/htmlcss">HTML5 und CSS 3.0</a></li>
 				<li><a href="https://secure.php.net/">PHP</a></li>
-				<li>JavaScript, besonders die Bibliotheken <a href="https://jquery.com/">jQuery</a>, 
-					<a href="http://leafletjs.com/">Leaflet</a> (für die Karte),
-					<a href="http://tablesorter.com/">Tablesorter</a> (für die Sortierung der Tabellen),
-					<a href="http://www.highcharts.com/">Highcharts</a> (für die Diagramme)</li>
+				<li>JavaScript, besonders die Bibliotheken 
+					<ul>
+						<li><a href="https://jquery.com/">jQuery</a>,</li>
+						<li><a href="http://leafletjs.com/">Leaflet</a> (für die Karte),</li>
+						<li><a href="http://tablesorter.com/">Tablesorter</a> (für die Sortierung der Tabellen),</li>
+						<li><a href="http://www.highcharts.com/">Highcharts</a> (für die Diagramme)</li>
+					</ul></li>
 			</ul>
 		</article>
 	</main>

@@ -48,6 +48,7 @@
 				<li>Die Daten werden automatisch validiert - das hilft bei der Suche nach Fehlern in den Daten. 
 					Außerdem prüfen wir regelmäßig, ob unter den verlinkten URLs noch eine Seite erreichbar ist.
 					So sind unsere Karte und Tabelle immer aktuell.</li>
+				<li>Auch der Quelltext dieser Webanwendung ist <a href="development.php">frei verfügbar</a>.</li>
 			</ul>
 			
 			<h3>Sie haben eine Frage, die hier nicht beantwortet wird?</h3>
