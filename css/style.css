@@ -1,0 +1,74 @@
+﻿@charset "UTF-8";
+*{padding:0;margin:0;}
+body{padding:1%;font:1em/1.5 Helvetica,Arial,sans-serif;color:#333;}
+h1{font-size:2em;}
+h2{font-size:1.5em;}
+h3{font-size:1em;}
+h1,h2,h3,p{margin:.3em 0;}
+li{margin:.5em 2em;}
+ol ol{margin-left:3em;}
+h1,h2,h3,p,li{max-width:60em;}
+a{color:#1982d1;text-decoration:none;}
+a:focus,a:active,a:hover{text-decoration:underline;}
+a[href^="http"]:after{content:" " url(../images/external.png);}
+a[href*="facebook.com/"]:after{content:" "url(../images/icons/10/Facebook.png);}
+a[href*="flickr.com/"]:after{content:" "url(../images/icons/10/Flickr.png);}
+a[href*="github.com/"]:after{content:" "url(../images/icons/10/Github.png);}
+a[href*="plus.google.com/"]:after{content:" "url(../images/icons/10//Google-plus.png);}
+a[href*="instagram.com/"]:after{content:" "url(../images/icons/10/Instagram.png);}
+a[href*="twitter.com/"]:after{content:" "url(../images/icons/10/Twitter.png);}
+a[href*="youtube.com/"]:after{content:" "url(../images/icons/10/Youtube.png);}
+figure{margin:1em;float:right;}
+figcaption{max-width:300px;}
+img{border:0;}
+
+table{border-collapse:collapse;clear:both;}
+thead tr, tbody tr:nth-child(2n){background:#ddd;}
+th{text-align:left;}
+th,td{padding:.5em;vertical-align:top;}
+.websites tr>:nth-child(1),.details tr>:nth-child(1){width:220px;}
+.details tr>:nth-child(2){min-width:500px;}
+td li{margin:0;}
+.number{text-align:right;}
+
+fieldset{width:30em;position:relative;margin:1em;border:none;float:left;}
+legend{font-weight:bold;margin-bottom:.4em;}
+input[type=text],input[type=url],select{margin:0 0 0.5em 32%;padding:.2em;width:60%;background-color:#fffbf0;border:1px solid #e7c157;}
+#hasChildren{margin:0 0 0.5em 32%;padding:.2em;}
+input[type=text]+label,input[type=url]+label,select+label{position:absolute;left:0;width:30%;line-height:1.5;text-align:right;}
+input[type=text]+label::after,input[type=url]+label::after,select+label::after{content: ": ";}
+button{padding:0.5em;}
+input:required+label::before,select:required+label::before{position:absolute;left:320%;content:"★";color:red;}
+input:required:valid+label::before{content:"✔";color:green;}
+input[type=url]+label::before{position:absolute;left:320%;top:-20%;}
+input[name=facebookURL]+label::before{content:url(../images/icons/32/Facebook.png);}
+input[name=flickrURL]+label::before{content:url(../images/icons/32/Flickr.png);}
+input[name=googlePlusURL]+label::before{content:url(../images/icons/32/Google-plus.png);}
+input[name=instagramURL]+label::before{content:url(../images/icons/32/Instagram.png);}
+input[name=twitterURL]+label::before{content:url(../images/icons/32/Twitter.png);}
+input[name=youtubeURL]+label::before{content:url(../images/icons/32/Youtube.png);}
+
+header nav, footer nav{float:left;width:100%;background:#222;margin:.5em 0;}
+nav ul{font-size:.9em;list-style:none;}
+nav li{float:left;position:relative;margin:0;}
+nav a,nav strong{display:block;padding:.8em;}
+header nav a, footer nav a{color:#eee;}
+nav strong{color:#1982d1;}
+footer{margin:1em 0;font-size:.8em;clear:both;}
+
+/* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
+#map{height:1024px;width:1024px;}
+
+/* Statistics */
+.stats{float:left;width:300px;}
+.chart{width:500px;height:400px;float:left;margin-left:2em;}
+#statistics article{clear:both;}
+
+@media screen and (max-width:700px){ /* small screens */
+	body{padding:0;font-size:.8em;}
+}
+
+@media print{ /* print version */
+	body{background:none;font-size:10pt;color:#fff;}
+	header,footer,nav{display:none;}
+}

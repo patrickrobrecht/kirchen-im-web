@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+	<url>
+  		<loc>http://kirchen-im-web.de/</loc>
+  		<changefreq>monthly</changefreq>
+  	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/add.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/data.php</loc>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/development.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/legal.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/map.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/table.php?compare=true</loc>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/table.php</loc>
+		<changefreq>daily</changefreq>
+	</url>
+</urlset>

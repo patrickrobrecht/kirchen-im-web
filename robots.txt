@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /404.php
+Disallow: /data/
+Disallow: /includes/
+
+Sitemap: http://kirchen-im-web.de/sitemap.xml
