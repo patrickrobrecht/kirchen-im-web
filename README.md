@@ -3,6 +3,7 @@ Wir realisieren hiermit eine Übersicht über kirchliche Web- und Social-Media-A
 
 Gemeinden können gerne über unser [Webformular](http://kirchen-im-web.de/add.php) hinzugefügt werden.
 
+Den aktuellsten Stand aus diesem Github-Repository (Beta-Version) gibt es unter [beta.kirchen-im-web.de](http://beta.kirchen-im-web.de).
 
 ## Funktionen
 
@@ -15,4 +16,4 @@ Aktuelle Änderungen gibt es im [Changelog](http://kirchen-im-web.de/development
 
 ## Screenshot
 
-![Screenshot](http://kirchen-im-web.de/screenshot.png)
+![Screenshot](http://kirchen-im-web.de/images/screenshot.png)
