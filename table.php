@@ -235,7 +235,9 @@
 				
 				$statement->execute();
 				
+				$counter = 0;
 				while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+					$counter++;
 			?>
 				<tr>
 					<td><?php echo getLinkToDetailsPage($row['id'], $row['name']); ?></td>
@@ -271,6 +273,15 @@
 			?>
 			</tbody>
 		</table>
+		<p><output>
+		<?php if ($counter == 0) {
+			echo 'Leider keine Gemeinde ';
+		} else if ($counter == 1) {
+			echo 'Eine Gemeinde ';
+		} else {
+			echo $counter . ' Gemeinden ';
+		} ?>
+			mit den ausgewählten Eigenschaften gefunden!</output></p>
 	</main>
 	
 	<script src="js/jquery.min.js"></script>

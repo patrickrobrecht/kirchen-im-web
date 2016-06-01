@@ -37,7 +37,6 @@ $types = array(
 		'Citykirche',
 		'Dekanat',
 		'Jugend',
-		'Jugendverband',
 		'Hilfswerk',
 		'Internetportal',
 		'Kirchengemeinde',
