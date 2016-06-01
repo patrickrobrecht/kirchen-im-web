@@ -174,6 +174,16 @@
 		<h1>Statistik</h1>
 		<p>Auf kirchen-im-web.de sind aktuell <?php echo $totalCount['count']; ?> Gemeinden erfasst.</p>
 		
+		<nav>
+			<h2>Inhalt</h2>
+			<ul>
+				<li><a href="#statistics-denominations">Einträge nach Konfessionen</a></li>
+				<li><a href="#statistics-countries">Einträge nach Ländern</a>
+				<li><a href="#statistics-types">Einträge nach Gemeindetypen</a></li>
+				<li><a href="#statistics-networks">Einträge nach Webseiten/Social-Media-Auftritten</a></li>
+			</ul>
+		</nav>
+		
 		<script src="./js/highcharts.js"></script>
 		<script src="./js/exporting.js"></script>
 		
@@ -188,7 +198,7 @@
 			</div>
 			<div id="denominations" class="chart"></div>
 		</article>
-		<article id="statistics-denominations">
+		<article id="statistics-countries">
 			<h2>Einträge nach Ländern</h2>
 			<div class="stats">
 				<ul>
@@ -210,7 +220,7 @@
 			</div>
 			<div id="types" class="chart"></div>
 		</article>
-		<article id="statistics-denominations">
+		<article id="statistics-networks">
 			<h2>Einträge nach Webseiten/Social-Media-Auftritten</h2>
 			<div class="stats">	
 				<p>(hier sind die Gemeinden mit mehreren Webseiten/Social-Media-Auftritten natürlich mehrfach erfasst)</p>

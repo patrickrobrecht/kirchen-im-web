@@ -49,9 +49,9 @@ input[name=twitterURL]+label::before{content:url(../images/icons/32/Twitter.png)
 input[name=youtubeURL]+label::before{content:url(../images/icons/32/Youtube.png);}
 
 header nav, footer nav{float:left;width:100%;background:#222;margin:.5em 0;}
-nav ul{font-size:.9em;list-style:none;}
-nav li{float:left;position:relative;margin:0;}
-nav a,nav strong{display:block;padding:.8em;}
+header ul{font-size:.9em;list-style:none;}
+header li{float:left;position:relative;margin:0;}
+header a,header strong{display:block;padding:.8em;}
 header nav a, footer nav a{color:#eee;}
 nav strong{color:#1982d1;}
 footer{margin:1em 0;font-size:.8em;clear:both;}

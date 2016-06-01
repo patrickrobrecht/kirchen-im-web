@@ -17,7 +17,23 @@
 		<h1>Tipps und Tricks</h1>
 		<p>Diese Unterseite ist noch im Aufbau! Vorschläge für Links zu weiteren hilfreichen Onlineressourcen sind immer willkommen!</p>
 		
-		<article id="webseite">
+		<nav>
+			<h2>Inhalt</h2>
+			<ul>
+				<li><a href="#webauftritte">Kirchliche Webauftritte</a></li>
+				<li><a href="#social-media">Kirche und Social Media</a>
+					<ul>
+						<li><a href="#facebook">Facebook</a></li>
+						<li><a href="#twitter">Twitter</a></li>
+					</ul></li>
+				<li><a href="#rechtliches">Rechtliches</a></li>
+				<li><a href="#oefflichkeitsarbeit">Kirchliche Öffentlichkeitsarbeit allgemein</a></li>
+				<li><a href="#veranstaltungen">Veranstaltungen</a></li>
+				<li><a href="#weitere">Weitere Links</a></li>
+			</ul>
+		</nav>
+		
+		<article id="webauftritte">
 			<h2>Kirchliche Webauftritte</h2>
 			<ul>
 				<li><a href="https://de.wordpress.org/">WordPress</a> - kostenloses OpenSource Content Management System, das über sog. Themes in Layout und Design angepasst werden kann. Über Plugins können viele weitere Funktionen installiert werden.
@@ -33,7 +49,7 @@
 			</ul>
 		</article>
 		
-		<article id="social-media-allgemein">
+		<article id="social-media">
 			<h2>Kirche und Social Media</h2>
 			<ul>
 				<li><a href="http://www.smg-rwl.de/">Social Media Guidelines</a> der Evangelischen Kirche im Rheinland, der Evangelischen Kirche von Westfalen oder der Lippischen Landeskirche</li>
@@ -53,10 +69,12 @@
 			</section>
 		</article>
 		
-		<article>
+		<article id="rechtliches">
 			<h2>Rechtliches</h2>
 			<ul>
-				<li><a href="http://nordbild.com/kirchliche-presse-fotos/">Kirchliche Presse und die Personenfotos – Was ist auf Tagungen erlaubt</a> | <a href="http://nordbild.com/bildrechte-check/">Checkliste Bildrechte</a></li>
+				<li><a href="http://nordbild.com/kirchliche-presse-fotos/">Kirchliche Presse und die Personenfotos</a> – Was ist auf Tagungen erlaubt | <a href="http://nordbild.com/bildrechte-check/">Checkliste Bildrechte</a></li>
+				<li><a href="http://www.pfarrbriefservice.de/faq/kostenlose-bilder-aus-dem-internet">Kostenlose Bilder aus dem Internet</a> - Was Sie beachten sollten</li>
+				<li><a href="http://www.pfarrbriefservice.de/page/antworten-auf-rechtliche-fragen-rund-um-die-pfarrbriefarbeit">Antworten auf rechtliche Fragen rund um die Pfarrbriefarbeit</a></li>
 				<li><a href="https://rechtsbelehrung.com/hatespeech-rechtsbelehrung-folge-35-jura-podcast/">rechtliche Aspekte von Hatespeech</a></li>
 			</ul>
 		</article>
@@ -64,15 +82,23 @@
 		<article id="oefflichkeitsarbeit">
 			<h2>Kirchliche Öffentlichkeitsarbeit allgemein</h2>
 			<ul>
-				<li><a href="http://barcamp-kirche-online.de/">Barcamp Kirche online</a>, 23.-25. September 2016, Köln</li>
-				<li><a href="http://www.pfarrbriefservice.de/">Pfarrbriefservice</a> (katholisch)</li>
+				<li><a href="http://www.pfarrbriefservice.de/">Pfarrbriefservice</a> (katholisch) | <a href="http://www.pfarrbriefservice.de/page/kurs-pfarrbrief">Online-Kurs Pfarrbrief</a></li>
 			</ul>
 		</article>
 		
-		<article id="medienkompetenz">
-			<h2>Kirchliche Medienkompetenz</h2>
+		<article id="veranstaltungen">
+			<h2>Veranstaltungen</h2>
+			<ul>
+				<li><a href="http://barcamp-kirche-online.de/">Barcamp Kirche online</a>, 23.-25. September 2016, Köln</li>
+				<li><a href="http://www.pfarrbriefservice.de/workshop/events">Veranstaltungen von pfarrbriefservice.de</a></li>
+			</ul>
+		</article>		
+		
+		<article id="weitere">
+			<h2>Weitere interessante Links</h2>
 			<ul>
 				<li><a href="http://medienkompetenz.katholisch.de/">Clearingstelle Medienkompetenz</a></li>
+				<li><a href="https://luki.org/">Linux User im Bereich der Kirchen e. V.</a></li>
 			</ul>
 		</article>
 	</main>
