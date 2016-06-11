@@ -45,6 +45,8 @@ function isPostalCode($postalCode, $countryCode) {
 			break;
 		case 'AT':
 		case 'CH':
+		case 'LI':
+		case 'LU':
 			return preg_match('/[0-9]{4}/', $postalCode);
 			break;
 	}

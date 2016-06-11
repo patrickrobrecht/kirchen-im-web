@@ -204,10 +204,11 @@
 					}
 					$whereclause = preg_replace('/ AND/', ' WHERE', $whereclause, 1);
 					$query .= $whereclause;
+					$query .= 'ORDER BY country, postalCode';
+				} else {
+					$query .= 'ORDER BY id DESC LIMIT 25';
 				}
 				
-				$query .= 'ORDER BY country, postalCode';
-			
 				$statement = $connection->prepare($query);
 				if ($name != '') {
 					$name = '%' . $name . '%';
@@ -281,7 +282,7 @@
 		} else {
 			echo $counter . ' Gemeinden ';
 		} ?>
-			mit den ausgewählten Eigenschaften gefunden!</output></p>
+			gefunden!</output></p>
 	</main>
 	
 	<script src="js/jquery.min.js"></script>

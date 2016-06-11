@@ -14,8 +14,10 @@ try {
 // Countries.
 $countries = array(
 		'DE' => 'Deutschland',
+		'LI' => 'Liechtenstein',
+		'LU' => 'Luxemburg',
 		'AT' => 'Österreich',
-		'CH' => 'Schweiz',
+		'CH' => 'Schweiz'
 );
 
 // Denominations.
