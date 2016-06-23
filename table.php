@@ -206,7 +206,7 @@
 					$query .= $whereclause;
 					$query .= 'ORDER BY country, postalCode';
 				} else {
-					$query .= 'ORDER BY id DESC LIMIT 25';
+					$query .= 'ORDER BY churches.timestamp DESC, id DESC LIMIT 25';
 				}
 				
 				$statement = $connection->prepare($query);

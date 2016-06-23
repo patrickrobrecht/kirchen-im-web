@@ -149,8 +149,8 @@ function addChurchToDatabase($data, $urls) {
 	// Add church to the database.
 	global $connection;
 	$statement = $connection->prepare('
-			INSERT INTO churches (name, street, postalCode, city, country, lat, lon, denomination, type, hasChildren)
-			VALUES (:name, :street, :postalCode, :city, :countryCode, :lat, :lon, :denomination, :type, :hasChildren)
+			INSERT INTO churches (name, street, postalCode, city, country, lat, lon, denomination, type, hasChildren, timestamp)
+			VALUES (:name, :street, :postalCode, :city, :countryCode, :lat, :lon, :denomination, :type, :hasChildren, NOW())
 	');
 	
 	$geolocation = getGeolocation($data['street'], $data['city'], $data['countryCode']);
