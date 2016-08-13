@@ -2,32 +2,29 @@
 	include_once 'includes/functions.php';
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="<?php echo_language(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Impressum von kirchen-im-web.de</title>
-	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Das Projekt kirchen-im-web.de macht diese sichtbar.">
+	<title><?php echo _('Impressum'); ?> - kirchen-im-web.de</title>
+	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-	<?php displayHeader('legal.php'); ?>
-	
+	<?php include_once 'includes/header.php'; ?>
 	<main>
-		<h1>Impressum</h1>
+		<h1><?php echo _('Impressum'); ?></h1>
 	
-		<p>kirchen-im-web.de ist ein Projekt von</p>
+		<p><?php echo _('kirchen-im-web.de ist ein Gemeinschaftsprojekt von'); ?></p>
 		<ul>
 			<li><a href="http://joerg-lohrer.de/">Jörg Lohrer</a></li>
 			<li><a href="https://patrick-robrecht.de/">Patrick Robrecht</a></li>
 		</ul>
 		
-		<p>Idee: Jörg Lohrer</p>
-		<p>Technische Umsetzung: Patrick Robrecht</p>
+		<p><?php echo _('Idee'); ?>: Jörg Lohrer</p>
+		<p><?php echo _('Technische Umsetzung'); ?>: Patrick Robrecht</p>
 		<p>Daten: viele Leute, die Daten über unser <a href="add.php">Formular</a> hinzugefügt haben
 			<br>Für die Korrektur falscher Daten wende dich bitte an Patrick Robrecht unter kontakt [ät-Zeichen] kirchen [minus] im [minus] web de.</p>
-		<p>Möchtest du bei der Weiterentwicklung mithelfen? Dann melde dich doch bei uns (Kontakt siehe Webseiten).
-			Näheres zur Entwicklung kannst du unter <a href="development.php">Entwicklung</a> erfahren.</p>
 		
 		<article>
 			<h2>Lizenzen</h2>
@@ -35,14 +32,13 @@
 		</article>
 				
 		<article>
-			<h2>Impressum</h2>
+			<h2><?php echo _('Impressum'); ?></h2>
 			<p>Verantwortlich für diesen Webauftritt ist: 
 				<br>Patrick Robrecht, Dr.-Rörig-Damm 99, 33102 Paderborn,
 				<br>E-Mail: kontakt [ät-Zeichen] kirchen [minus] im [minus] web de
 				<br>Twitter: <a href="https://twitter.com/kirchenimweb/">@kirchenimweb</a></p>
 		</article>
 	</main>
-	
-	<?php displayFooter('legal.php'); ?>
+	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

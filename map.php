@@ -2,25 +2,23 @@
 	include_once 'includes/functions.php';
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="<?php echo_language(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Karte: Kirchliche Web- und Social-Media-Auftritte</title>
-	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Das Projekt kirchen-im-web.de macht diese sichtbar.">
+	<title><?php echo _('Karte'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
+	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>
+		<?php echo _('kirchen-im-web.de macht diese auf einer Karte sichtbar.'); ?>">
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="./css/leaflet.css">
 </head>
 <body>
-	<?php displayHeader('map.php'); ?>
-	
+	<?php include_once 'includes/header.php'; ?>	
 	<main>
-		<h1>Karte kirchlicher Web- und Social-Media-Auftritte</h1>
-		<p>Die Karte zeigt Kirchen mit ihren Webauftritten und Social-Media-Profilen. 
-			Dabei sind alt-katholische orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.</p>
-		<p>Wenn Ihre Gemeinde noch fehlt, können Sie diese über <a href="add.php">dieses Formular</a> eintragen lassen.</p>
-		
-		<div id="map">Bitte warten. Die Karte wird geladen.</div>
+		<h1><?php echo _('Karte kirchlicher Web- und Social-Media-Auftritte'); ?></h1>
+		<p><?php echo sprintf( _('In der %s sind alt-katholische Kirchen orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.'), _('Karte') ); ?></p>
+		<p><?php echo sprintf( _('Wenn Ihre Gemeinde noch fehlt, können Sie diese über %s eintragen.'), '<a href="add.php">' . _('dieses Formular') . '</a>'); ?></p>
+		<div id="map"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
 	</main>
 	
 	<script src="js/jquery.min.js"></script>
@@ -108,7 +106,7 @@
 							youtube = val.youtube;
 							content = '<strong><a href="details.php?id=' + val.id + '">' + title + '</a></strong><br>' + val.street + ', ' + val.postalCode + ' ' + val.city + '<br><ul>';
 							if (web) {
-								content = content + '<li><a href="' + web + '">Webauftritt</a></li>';
+								content = content + '<li><a href="' + web + '"><?php echo _('Webauftritt'); ?></a></li>';
 							}
 							if (facebook) {
 								content = content + '<li><a href="' + facebook + '">Facebook</a></li>';
@@ -166,14 +164,14 @@
 						});
 						// add control for the layers
 						var layers = {
-							"alle": allLayer,
-							"alt-katholisch": oldCatholicLayer,
-							"anglikanisch": anglicanLayer,
-							"evangelisch": protestantLayer,
-							"evangelisch-freikirchlich": freeChurchesLayer,
-							"katholisch": catholicLayer,
-							"andere Konfession": othersLayer,
-							"Webseiten": webLayer,
+							"<?php echo _('alle'); ?>": allLayer,
+							"<?php echo _('alt-katholisch'); ?>": oldCatholicLayer,
+							"<?php echo _('anglikanisch'); ?>": anglicanLayer,
+							"<?php echo _('evangelisch'); ?>": protestantLayer,
+							"<?php echo _('evangelisch-freikirchlich'); ?>": freeChurchesLayer,
+							"<?php echo _('katholisch'); ?>": catholicLayer,
+							"<?php echo _('andere Konfession'); ?>": othersLayer,
+							"<?php echo _('Webauftritte'); ?>": webLayer,
 							"Facebook": facebookLayer,
 							"Flickr": flickrLayer,
 							"Google+": googleLayer,
@@ -189,6 +187,6 @@
 		};
 	</script>
 	
-	<?php displayFooter('map.php') ?>
+	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

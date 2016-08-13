@@ -37,27 +37,27 @@
 	}
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="<?php echo_language(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Kirchen im Web: <?php echo $data['name']; ?></title>
-	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.">
+	<title><?php echo $data['name']; ?> - kirchen-im-web.de</title>
+	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-	<?php displayHeader('details.php'); ?>
+	<?php include_once 'includes/header.php'; ?>
 	
 	<main>
-		<h1>Details: <?php echo $data['name']; ?></h1>
+		<h1><?php echo _('Details'); ?>: <?php echo $data['name']; ?></h1>
 
 		<section>
-			<h2>Webseiten</h2>
+			<h2><?php echo _('Webauftritte und soziale Netzwerke'); ?></h2>
 			<table class="websites">
 				<thead>
 					<tr>
-						<th>Link</th>
-						<th>Follower</th>
+						<th><?php echo _('Link'); ?></th>
+						<th><?php echo _('Follower'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,41 +73,40 @@
 		</section>		
 		
 		<section>
-			<h2>Adresse, Konfession und Hierarchie</h2>
+			<h2><?php echo _('Adresse, Konfession und Hierarchie'); ?></h2>
 			<table class="details">
 				<tbody>
 					<tr>
-						<th>Adresse</th>
+						<th><?php echo _('Adresse'); ?></th>
 						<td><?php echo $data['street']; ?>, 
 							<a href="table.php?postalCode=<?php echo postalCodeString($data['postalCode'], $data['country']); ?>"><?php echo postalCodeString($data['postalCode'], $data['country']);?></a>
 							<a href="table.php?city=<?php echo $data['city']; ?>"><?php echo $data['city']; ?></a>,
 							<a href="table.php?countryCode=<?php echo $data['country']; ?>"><?php echo $countries[$data['country']]; ?></a></td>
 					</tr>
 					<tr>
-						<th>Geopositon</th>
+						<th><?php echo _('Geopositon'); ?></th>
 						<td><?php echo geoPositionString($data['lat'], $data['lon']); ?>
 					<tr>					
-						<th>Konfession</th>
+						<th><?php echo _('Konfession'); ?></th>
 						<td><a href="table.php?countryCode=<?php echo $data['denomination']; ?>"><?php echo $data['denomination']; ?></a></td>
 					</tr>
 					<tr>					
-						<th>Typ</th>
+						<th><?php echo _('Gemeindetyp'); ?></th>
 						<td><a href="table.php?type=<?php echo $data['type']; ?>"><?php echo $data['type']; ?></a></td>
 					</tr>
 					<tr>
-						<th>nächsthöhere Ebene</th>
+						<th><?php echo _('nächsthöhere Ebene'); ?></th>
 						<td><?php echo getLinkToDetailsPage($data['parentId'], $data['parentName']) ?></td>
 					</tr>
 					<tr>
-						<th>nächsttiefere Ebene</th>
+						<th><?php echo _('nächsttiefere Ebene'); ?></th>
 						<td><?php if (count($children) > 0) {
 								echoChurchesHierarchy($children);
 							} else {	
-								echo 'Bisher wurden keine untergeordneten Ebenen hinzugefügt!';
+								echo _('Bisher wurden keine untergeordneten Ebenen hinzugefügt!');
 							}
 							if ($data['hasChildren'] == '1') {
-								echo '<p><a href="add.php?parentId=' . $data['id'] . '">Jetzt eine Gemeinde unterhalb von '
-									. $data['name'] . ' hinzufügen!</a></p>';
+								echo '<p><a href="add.php?parentId=' . $data['id'] . '">' . sprintf( _('Jetzt eine Gemeinde unterhalb von %s hinzufügen!'), $data['name'] ) . '</a></p>';
 							}
 							?></td>
 					</tr>
@@ -115,7 +114,6 @@
 			</table>
 		</section>
 	</main>
-
-	<?php displayFooter('details.php') ?>
+	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

@@ -1,6 +1,11 @@
 <?php
 	require_once 'includes/config.php';
 	
+function echo_language() {
+	global $current_language;
+	echo $current_language;
+}
+	
 /**
  * Tests whether the given variable is null or the empty string.
  * 
@@ -220,37 +225,19 @@ function getGeolocation($street, $city, $countryCode) {
 	);
 }
 
-function displayHeader($self) {
-	global $headerLinks;
-	?>
-	<header>
-		<nav>
-			<ul><?php foreach ($headerLinks as $text => $url) { 
-					echoLinkOrText($text, $url, $url == $self);
-				} ?></ul>
-		</nav>
-	</header>
-<?php }
-
-function displayFooter($self) {
-	global $footerLinks;
-?>
-	<footer>
-		<nav>
-			<ul><?php foreach ($footerLinks as $text => $url) { 
-					echoLinkOrText($text, $url, $url == $self);
-				} ?></ul>
-		</nav>
-	</footer>
-<?php }
-
-function echoLinkOrText($text, $url, $showLink) {
+function echoLinkOrText($text, $url, $active) {
 	echo '<li>';
-	if ($showLink) {
+	if ($active) {
 		echo '<strong>' . $text . '</strong>';
 	} else {
 		echo '<a href="' . $url . '">' . $text . '</a>';
 	}
+	echo '</li>';
+}
+
+function echoLanguageLink($linkTitle, $slug, $self) {
+	echo '<li>';
+	echo '<a class="lang_' . $slug . '" href="/' . $slug . '/' . $self . '">' . $linkTitle . '</a>';
 	echo '</li>';
 }
 

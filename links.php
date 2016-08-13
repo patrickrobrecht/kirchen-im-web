@@ -2,7 +2,7 @@
 	include_once 'includes/functions.php';
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="<?php echo_language(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-	<?php displayHeader('links.php'); ?>
+	<?php include_once 'includes/header.php'; ?>
 	
 	<main>
 		<h1>Tipps und Tricks</h1>
@@ -103,6 +103,6 @@
 		</article>
 	</main>
 	
-	<?php displayFooter('links.php') ?>
+	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

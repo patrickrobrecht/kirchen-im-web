@@ -2,6 +2,10 @@ User-agent: *
 Allow: /
 
 Disallow: /404.php
+Disallow: /de/404.php
+Disallow: /en/404.php
+
+Disallow: /data/
 Disallow: /data/
 Disallow: /includes/
 

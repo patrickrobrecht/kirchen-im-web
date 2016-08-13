@@ -22,12 +22,12 @@
 	$totalByWebsite = $statementByWebsite->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="<?php echo_language(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Statistik: Kirchliche Web- und Social-Media-Auftritte</title>
-	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Das Projekt kirchen-im-web.de macht diese sichtbar.">
+	<title><?php echo _('Statistik'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
+	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<link rel="stylesheet" href="./css/style.css">
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -37,7 +37,7 @@
 				type: 'pie'
 			},
 			title: {
-				text: 'Einträge nach Konfessionen'
+				text: '<?php echo _('Einträge nach Konfessionen'); ?>'
 			},
 			subtitle: {
 				text: 'kirchen-im-web.de'
@@ -46,7 +46,7 @@
 				enabled: true,
 			},
 			series: [ {
-				name: 'Anzahl der Einträge',
+				name: '<?php echo _('Anzahl der Einträge'); ?>',
 				data: [<?php foreach ($totalByDenomination as $row) { 
 					echo "{name: '" . $row['denomination'] . "', y:"; echo $row['count'] . '},'; 
 				} ?> ]
@@ -73,13 +73,13 @@
 				type: 'pie'
 			},
 			title: {
-				text: 'Einträge nach Ländern'
+				text: '<?php echo _('Einträge nach Ländern'); ?>'
 			},
 			subtitle: {
 				text: 'kirchen-im-web.de'
 			},
 			series: [ {
-				name: 'Anzahl der Einträge',
+				name: '<?php echo _('Anzahl der Einträge'); ?>',
 				data: [<?php foreach ($totalByCountry as $row) { 
 							echo "{name: '" . $countries[$row['countryCode']] . "', y:"; echo $row['count'] . '},'; 
 						} ?> ]
@@ -98,13 +98,13 @@
 				type: 'pie'
 			},
 			title: {
-				text: 'Einträge nach Gemeindetyp'
+				text: '<?php echo _('Einträge nach Gemeindetypen'); ?>'
 			},
 			subtitle: {
 				text: 'kirchen-im-web.de'
 			},
 			series: [ {
-				name: 'Anzahl der Einträge',
+				name: '<?php echo _('Anzahl der Einträge'); ?>',
 				data: [<?php foreach ($totalByType as $row) { 
 							echo "{name: '" . $row['type'] . "', y:"; echo $row['count'] . '},'; 
 						} ?> ]
@@ -123,10 +123,10 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Gemeinden mit Webseite/Social-Media-Profilen'
+				text: '<?php echo _('Gemeinden mit Webauftritt/Social-Media-Profilen'); ?>'
 			},
 			subtitle: {
-				text: 'Gemeinden mit mehreren Auftritten mehrfach erfasst'
+				text: '<?php echo _('Gemeinden mit mehreren Auftritten mehrfach erfasst'); ?>'
 			},
 			xAxis: {
 				categories: [ 
@@ -139,7 +139,7 @@
 			},
 			yAxis: {
 				title: {
-					text: 'Anzahl der Einträge'
+					text: '<?php echo _('Anzahl der Einträge'); ?>'
 				}
 			},
 			legend: {
@@ -154,7 +154,7 @@
 	            }
 	        },
 			series: [ {
-				name: 'Anzahl der Einträge',
+				name: '<?php echo _('Anzahl der Einträge'); ?>',
 				data: [<?php foreach ($totalByWebsite as $row) { 
 							echo $row['count'] . ','; 
 						} ?> ]
@@ -168,19 +168,18 @@
 	</script>	
 </head>
 <body id="statistics">
-	<?php displayHeader('statistics.php'); ?>
-	
+	<?php include_once 'includes/header.php'; ?>
 	<main>
-		<h1>Statistik</h1>
+		<h1><?php echo _('Statistik'); ?></h1>
 		<p>Auf kirchen-im-web.de sind aktuell <?php echo $totalCount['count']; ?> Gemeinden erfasst.</p>
 		
 		<nav>
-			<h2>Inhalt</h2>
+			<h2><?php echo _('Inhalt'); ?></h2>
 			<ul>
-				<li><a href="#statistics-denominations">Einträge nach Konfessionen</a></li>
-				<li><a href="#statistics-countries">Einträge nach Ländern</a>
-				<li><a href="#statistics-types">Einträge nach Gemeindetypen</a></li>
-				<li><a href="#statistics-networks">Einträge nach Webseiten/Social-Media-Auftritten</a></li>
+				<li><a href="#statistics-denominations"><?php echo _('Einträge nach Konfessionen'); ?></a></li>
+				<li><a href="#statistics-countries"><?php echo _('Einträge nach Ländern'); ?></a>
+				<li><a href="#statistics-types"><?php echo _('Einträge nach Gemeindetypen'); ?></a></li>
+				<li><a href="#statistics-networks"><?php echo _('Einträge nach Webauftritten/Social-Media-Auftritten'); ?></a></li>
 			</ul>
 		</nav>
 		
@@ -188,7 +187,7 @@
 		<script src="./js/exporting.js"></script>
 		
 		<article id="statistics-denominations">
-			<h2>Einträge nach Konfessionen</h2>
+			<h2><?php echo _('Einträge nach Konfessionen'); ?></h2>
 			<div class="stats">	
 				<ul>
 					<?php foreach ($totalByDenomination as $row) { ?>
@@ -199,7 +198,7 @@
 			<div id="denominations" class="chart"></div>
 		</article>
 		<article id="statistics-countries">
-			<h2>Einträge nach Ländern</h2>
+			<h2><?php echo _('Einträge nach Ländern'); ?></h2>
 			<div class="stats">
 				<ul>
 					<?php foreach ($totalByCountry as $row) { ?>
@@ -210,7 +209,7 @@
 			<div id="countries" class="chart"></div>
 		</article>
 		<article id="statistics-types">
-			<h2>Einträge nach Gemeindetypen</h2>
+			<h2><?php echo _('Einträge nach Gemeindetypen'); ?></h2>
 			<div class="stats">
 				<ul>
 					<?php foreach ($totalByType as $row) { ?>
@@ -221,9 +220,9 @@
 			<div id="types" class="chart"></div>
 		</article>
 		<article id="statistics-networks">
-			<h2>Einträge nach Webseiten/Social-Media-Auftritten</h2>
+			<h2><?php echo _('Einträge nach Webauftritten/Social-Media-Auftritten'); ?></h2>
 			<div class="stats">	
-				<p>(hier sind die Gemeinden mit mehreren Webseiten/Social-Media-Auftritten natürlich mehrfach erfasst)</p>
+				<p><?php echo _('In dieser Statistik sind Gemeinden mit mehreren Webauftritten/Social-Media-Auftritten natürlich mehrfach erfasst.'); ?></p>
 				<ul>
 					<?php foreach ($totalByWebsite as $row) { ?>
 					<li><a href="table.php?hasWebsiteType=<?php echo $row['type']; ?>&<?php echo $row['type']; ?>=show"><?php echo $websites[$row['type']]; ?></a>: <?php echo $row['count']; ?></li>
@@ -232,8 +231,7 @@
 			</div>
 			<div id="websites" class="chart"></div>
 		</article>
-	</main>
-	
-	<?php displayFooter('statistics.php') ?>
+	</main>	
+	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

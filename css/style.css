@@ -48,13 +48,16 @@ input[name=instagramURL]+label::before{content:url(../images/icons/32/Instagram.
 input[name=twitterURL]+label::before{content:url(../images/icons/32/Twitter.png);}
 input[name=youtubeURL]+label::before{content:url(../images/icons/32/Youtube.png);}
 
-header nav, footer nav{float:left;width:100%;background:#222;margin:.5em 0;}
+header nav,footer nav{float:left;width:100%;background:#222;margin:.5em 0;}
 header ul,footer ul{font-size:.9em;list-style:none;}
-header li, footer li{float:left;position:relative;margin:0;}
+header li,footer li{float:left;position:relative;margin:0;}
 header a,header strong, footer a, footer strong{display:block;padding:.8em;}
-header nav a, footer nav a{color:#eee;}
+header nav a,footer nav a{color:#eee;}
 nav strong{color:#1982d1;}
 footer{margin:1em 0;font-size:.8em;clear:both;}
+
+.lang_de::before{content:url(../images/flags/de.gif) " ";}
+.lang_en::before{content:url(../images/flags/en.gif) " ";}
 
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
 #map{height:1024px;width:1024px;}

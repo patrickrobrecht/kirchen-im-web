@@ -30,45 +30,41 @@
 	}
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="<?php echo_language(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<?php if ($compare) { ?>
-	<title>Vergleich kirchlicher Social-Media-Auftritte</title>
-	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Hier werden viele Profile deutschsprachiger Gemeinden verglichen.">
+	<title><?php echo _('Vergleich kirchlicher Social-Media-Auftritte');?></title>
+	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<?php } else { ?>
-	<title>Tabelle: Kirchliche Web- und Social-Media-Auftritte (tabellarisch)</title>
-	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Hier eine tabellarische, überkonfessionelle Übersicht für den deutsprachigen Raum.">
+	<title><?php echo _('Tabelle'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
+	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<?php } ?>	
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="./css/theme.default.css">
 </head>
 <body>
-	<?php if ($compare) {
-		displayHeader('table.php?compare=true'); 
-	} else {
-		displayHeader('table.php');
-	} ?>
-	
+	<?php include_once 'includes/header.php'; ?>
 	<main>
 		<?php if ($compare) {?>
-		<h1>Vergleich kirchlicher Social-Media-Auftritte</h1>
-		<p>Hier gibt's einen Vergleich der Like-Zahlen für Facebook-Seiten, der Follower bei Twitter sowie der Abonnenten der YouTube-Kanäle. Mit einem Klick auf die jeweilige Spalte kann man nach dieser sortieren.</p>
-		<p>Wenn für einen Social-Media-Auftritt kein Ergebnis ermittelt werden konnte (z. B. weil die Facebook-Seite nicht öffentlich zugänglich ist), wird dieser in diesem Vergleich nicht aufgeführt.</p>
+		<h1><?php echo _('Vergleich kirchlicher Social-Media-Auftritte'); ?></h1>
+		<p><?php echo _('Die Like-Zahlen für Facebook-Seiten, der Follower bei Twitter sowie der Abonnenten der YouTube-Kanäle werden hier verglichen.'); ?>
+			<?php echo _('Mit einem Klick auf die jeweilige Spalte kann man nach dieser sortieren.'); ?></p>
+		<p><?php echo _('Wenn für einen Social-Media-Auftritt keine Zahl ermittelt werden konnte (z. B. weil die Facebook-Seite nicht öffentlich zugänglich ist), wird dieser in diesem Vergleich nicht aufgeführt.'); ?></p>
 		<?php } else { ?>
-		<h1>Kirchliche Web- und Social-Media-Auftritte</h1>
+		<h1><?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></h1>
 		<?php } ?>
 		<form method="get">
 			<input type="hidden" name="compare" id="compare" value="<?php if ($compare) echo 'true'; else echo 'false'; ?>">
 			<fieldset>
-				<legend>Filter</legend>
+				<legend><?php echo _('Filter'); ?></legend>
 				<input id="name" name="name" type="text" value="<?php echo $name; ?>">
-				<label for="name">Name</label>
+				<label for="name"><?php echo _('Name'); ?></label>
 				<input id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" value="<?php if ($postalCode != 0) echo postalCodeString($postalCode, $country); ?>">
-				<label for="postalCode"><abbr title="Postleitzahl">PLZ</abbr></label>
+				<label for="postalCode"><?php echo _('PLZ'); ?></label>
 				<input id="city" name="city" type="text" value="<?php echo $city; ?>">
-				<label for="city">Ort</label>
+				<label for="city"><?php echo _('Ort'); ?></label>
 				<select id="countryCode" name="countryCode">
 					<option></option>
 				<?php 
@@ -77,7 +73,7 @@
 					} 
 				?>
 				</select>
-				<label for="countryCode">Land</label>
+				<label for="countryCode"><?php echo _('Land'); ?></label>
 				<select id="denomination" name="denomination">
 					<option></option>
 					<?php 
@@ -86,7 +82,7 @@
 					} 
 					?>
 				</select>
-				<label for="denomination">Konfession</label>
+				<label for="denomination"><?php echo _('Konfession'); ?></label>
 				<select id="type" name="type">
 					<option></option>
 				<?php 
@@ -95,7 +91,7 @@
 					}
 				?>
 				</select>
-				<label for="type">Gemeindetyp</label>
+				<label for="type"><?php echo _('Gemeindetyp'); ?></label>
 				<select id="hasWebsiteType" name="hasWebsiteType">
 					<option></option>
 				<?php
@@ -104,11 +100,11 @@
 					} 
 				?>
 				</select>
-				<label for="hasWebsiteType">Nur Gemeinden mit</label>
+				<label for="hasWebsiteType"><?php echo _('Nur Gemeinden mit'); ?></label>
 			</fieldset>
 			<fieldset style="width:10em;">
 				<?php if (!$compare) {?>
-				<legend>Anzeige</legend>
+				<legend><?php echo _('Anzeige'); ?></legend>
 				<?php
 					foreach($websites as $websiteId => $websiteName) {
 				?>
@@ -121,19 +117,19 @@
 					}
 				}
 				?>
-				<button type="submit">Filtern</button>
+				<button type="submit"><?php echo _('Filtern'); ?></button>
 			</fieldset>
 		</form>
 		
 		<table id="churchTable" class="tablesorter">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>PLZ</th>
-					<th>Ort</th>
-					<th>Land</th>
-					<th>Konfession</th>
-					<th>Typ</th>					
+					<th><?php echo _('Name'); ?></th>
+					<th><?php echo _('PLZ'); ?></th>
+					<th><?php echo _('Ort'); ?></th>
+					<th><?php echo _('Land'); ?></th>
+					<th><?php echo _('Konfession'); ?></th>
+					<th><?php echo _('Gemeindetyp'); ?></th>					
 				<?php 
 					foreach ($showWebsites as $websiteName) {
 				?>
@@ -275,16 +271,12 @@
 			</tbody>
 		</table>
 		<p><output>
-		<?php if ($counter == 0) {
-			echo 'Leider keine Gemeinde ';
-		} else if ($counter == 1) {
-			echo 'Eine Gemeinde ';
-		} else {
-			echo $counter . ' Gemeinden ';
-		} ?>
-			gefunden!</output></p>
+			<?php if ($counter == 0) {
+				echo _('Leider keine Gemeinde gefunden!');
+			} else {
+				echo sprintf( ngettext("Eine Gemeinde gefunden!", "%d Gemeinden gefunden!", $counter), $counter);
+			} ?></output></p>
 	</main>
-	
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.tablesorter.js"></script>
 	<script>$("#churchTable").tablesorter({
@@ -311,8 +303,7 @@
 		} 
 ?>
 		usNumberFormat: false,
-	});</script>
-	
-	<?php displayFooter('table.php') ?>
+	});</script>	
+	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

@@ -1,6 +1,21 @@
 <?php
 	include_once 'constants.php';
 
+// Load language files.
+if (isset($_GET["lang"])) {
+	$current_language = $_GET["lang"];
+} else {
+	$current_language = "de_DE";
+}
+
+$domain = "kirchen-im-web10";
+bindtextdomain($domain, "lang");
+bind_textdomain_codeset($domain, 'UTF-8');
+textdomain($domain);
+
+putenv("LANG=" . $current_language);
+$result = setlocale(LC_ALL, $current_language);
+	
 // Create database connection.
 $options  = array(
 		PDO::ATTR_PERSISTENT => true,
@@ -13,11 +28,11 @@ try {
 
 // Countries.
 $countries = array(
-		'DE' => 'Deutschland',
-		'LI' => 'Liechtenstein',
-		'LU' => 'Luxemburg',
-		'AT' => 'Österreich',
-		'CH' => 'Schweiz'
+		'DE' => _('Deutschland'),
+		'LI' => _('Liechtenstein'),
+		'LU' => _('Luxemburg'),
+		'AT' => _('Österreich'),
+		'CH' => _('Schweiz')
 );
 
 // Denominations.
@@ -55,8 +70,8 @@ $defaultType = 'Kirchengemeinde';
 
 // which websites URLs can be saved
 $websites = array(
-		'web' => 'Webseite',
-		'blog' => 'Blog',
+		'web' => _('Webauftritt'),
+		'blog' => _('Blog'),
 		'facebook' => 'Facebook',
 		'flickr' => 'Flickr',
 		'googlePlus' => 'Google+',
@@ -67,7 +82,7 @@ $websites = array(
 
 // Must be a subset of $websites.
 $preselected = array(
-		'web' => 'Webseite',
+		'web' => _('Webauftritt'),
 		'facebook' => 'Facebook',
 		'twitter' => 'Twitter',
 		'youtube' => 'YouTube',
@@ -92,17 +107,26 @@ $networksToCompare = array(
 );
 
 $headerLinks = array(
-		'Das Projekt' => 'index.php',
-		'Gemeinde hinzufügen' => 'add.php',
-		'Karte' => 'map.php',
-		'Tabelle' => 'table.php',
-		'Social-Media-Vergleich' => 'table.php?compare=true',
-		'Statistik' => 'statistics.php',
-		'Offene Daten' => 'data.php',
-		'Tipps und Tricks' => 'links.php'
+		_('Über das Projekt') => 'index.php',
+		_('Gemeinde hinzufügen') => 'add.php',
+		_('Karte') => 'map.php',
+		_('Tabelle') => 'table.php',
+		_('Social-Media-Vergleich') => 'table.php?compare=true',
+		_('Statistik') => 'statistics.php',
+		_('Offene Daten') => 'data.php',
+		_('Tipps und Tricks') => 'links.php'
 );
 
 $footerLinks = array(
-		'Impressum' => 'legal.php',
-		'Entwicklung' => 'development.php'
+		_('Impressum') => 'legal.php',
+		_('Entwicklung') => 'development.php'
+);
+
+$languages_slugs = array(
+		'de_DE' => 'de',
+		'en_US' => 'en'
+);
+$languages_names = array(
+		'de_DE' => 'Deutsch',
+		'en_US' => 'English'
 );

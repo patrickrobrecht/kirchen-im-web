@@ -5,35 +5,84 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 	<url>
-  		<loc>http://kirchen-im-web.de/</loc>
+  		<loc>http://kirchen-im-web.de/de/index.php</loc>
   		<changefreq>monthly</changefreq>
   	</url>
 	<url>
-		<loc>http://kirchen-im-web.de/add.php</loc>
+		<loc>http://kirchen-im-web.de/de/add.php</loc>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-		<loc>http://kirchen-im-web.de/data.php</loc>
+		<loc>http://kirchen-im-web.de/de/map.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/de/table.php</loc>
+		<changefreq>daily</changefreq>
+	</url>	
+	<url>
+		<loc>http://kirchen-im-web.de/de/table.php?compare=true</loc>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/de/statistics.php</loc>
+		<changefreq>weekly</changefreq>
+	</url>	
+	<url>
+		<loc>http://kirchen-im-web.de/de/data.php</loc>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
-		<loc>http://kirchen-im-web.de/development.php</loc>
+		<loc>http://kirchen-im-web.de/de/links.php</loc>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/de/legal.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>	
+	<url>
+		<loc>http://kirchen-im-web.de/de/development.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>
+	
+	<url>
+  		<loc>http://kirchen-im-web.de/en/index.php</loc>
+  		<changefreq>monthly</changefreq>
+  	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/en/add.php</loc>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-		<loc>http://kirchen-im-web.de/legal.php</loc>
+		<loc>http://kirchen-im-web.de/en/map.php</loc>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-		<loc>http://kirchen-im-web.de/map.php</loc>
-		<changefreq>monthly</changefreq>
-	</url>
+		<loc>http://kirchen-im-web.de/en/table.php</loc>
+		<changefreq>daily</changefreq>
+	</url>	
 	<url>
-		<loc>http://kirchen-im-web.de/table.php?compare=true</loc>
+		<loc>http://kirchen-im-web.de/en/table.php?compare=true</loc>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-		<loc>http://kirchen-im-web.de/table.php</loc>
-		<changefreq>daily</changefreq>
+		<loc>http://kirchen-im-web.de/en/statistics.php</loc>
+		<changefreq>weekly</changefreq>
+	</url>	
+	<url>
+		<loc>http://kirchen-im-web.de/en/data.php</loc>
+		<changefreq>weekly</changefreq>
 	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/en/links.php</loc>
+		<changefreq>weekly</changefreq>
+	</url>
+	<url>
+		<loc>http://kirchen-im-web.de/en/legal.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>	
+	<url>
+		<loc>http://kirchen-im-web.de/en/development.php</loc>
+		<changefreq>monthly</changefreq>
+	</url>	
 </urlset>

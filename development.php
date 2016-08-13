@@ -2,49 +2,53 @@
 	include_once 'includes/functions.php';
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="<?php echo_language(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Entwicklung von kirchen-im-web.de</title>
-	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Das Projekt kirchen-im-web.de macht diese sichtbar.">
+	<title><?php echo _('Entwicklung'); ?> - kirchen-im-web.de</title>
+	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.">
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-	<?php displayHeader('development.php'); ?>
-	
+	<?php include_once 'includes/header.php'; ?>
 	<main>
-		<h1>Entwicklung</h1>
+		<h1><?php echo _('Entwicklung'); ?></h1>
 	
 		<article>
-			<h2>Entwickler</h2>
-			<p>kirchen-im-web.de ist ein Projekt von</p>
+			<h2><?php echo _('Entwickler'); ?></h2>
+			<p><?php echo _('kirchen-im-web.de ist ein Gemeinschaftsprojekt von'); ?></p>
 			<ul>
 				<li><a href="http://joerg-lohrer.de/">Jörg Lohrer</a></li>
 				<li><a href="https://patrick-robrecht.de">Patrick Robrecht</a></li>
 			</ul>
-			<p>Möchtest du bei der Weiterentwicklung mithelfen? Dann melde dich doch bei uns (Kontakt siehe <a href="legal.php">Impressum</a>).</p>
-			<p>Der Quelltext dieser Webanwendung ist auf <a href="https://github.com/patrickrobrecht/kirchen-im-web">Github</a> frei verfügbar.</p>
+			<p><?php echo _('Möchten Sie bei der Weiterentwicklung mithelfen?'); ?> <a href="legal.php"><?php echo _('Dann schreiben Sie uns!'); ?></a></p>
+			<p><?php echo sprintf( _('Der Quelltext dieser Webanwendung ist auf %s frei verfügbar.'), '<a href="https://github.com/patrickrobrecht/kirchen-im-web">Github</a>' ); ?></p>
 		</article>
 		
 		<article>
-			<h2>Changelog</h2>
-			<p>In diesem Changelog sind alle Änderungen im Funktionsumfang erfasst.</p>
+			<h2><?php echo _('Änderungshistorie'); ?></h2>
 			<section>
-				<h3>Version 1.3 (2016-04-11)</h3>
+				<h3><?php echo sprintf( _('Version %s'), '2.0 (2016-08-13)'); ?></h3>
+				<ul>
+					<li><?php echo _e('Übersetzung ins Englische'); ?></li>
+				</ul>
+			</section>
+			<section>
+				<h3><?php echo sprintf( _('Version %s'), '1.3 (2016-04-11)'); ?></h3>
 				<ul>
 					<li>Unterscheidung aller Konfessionen durch verschiedene Farben in der <a href="map.php">Karte</a></li>
 				</ul>
 			</section>
 			<section>
-				<h3>Version 1.2 (2016-03-20)</h3>
+				<h3><?php echo sprintf( _('Version %s'), '1.2 (2016-03-20)'); ?></h3>
 				<ul>
 					<li>Filter nach Name und Co. auch für <a href="table.php?compare=true">Social-Media-Vergleich</a></li>
 					<li>erweiterte <a href="statistics.php">Statistiken</a> mit Diagrammen</li>
 				</ul>
 			</section>
 			<section>
-				<h3>Version 1.1 (2016-01-30)</h3>
+				<h3><?php echo sprintf( _('Version %s'), '1.1 (2016-01-30)'); ?></h3>
 				<ul>
 					<li>Speicherung der Daten in einer Datenbank</li>
 					<li>Eintragung über eigenes <a href="add.php">Formular</a></li>
@@ -55,7 +59,7 @@
 				</ul>
 			</section>
 			<section>
-				<h3>Version 1.0 (2015-05-29)</h3>
+				<h3><?php echo sprintf( _('Version %s'), '1.0 (2015-05-29)'); ?></h3>
 				<ul>
 					<li>Visualisierung der eingetragenden Gemeinden als <a href="map.php">Karte</a>
 						<ul>
@@ -77,22 +81,22 @@
 		</article>
 			
 		<article>
-			<h2>Verwendete Programmiersprachen und Bibliotheken</h2>
-			<p>Bei der Erstellung dieses Verzeichnisses wurden unter anderem verwendet:</p>
+			<h2><?php echo _('Verwendete Programmiersprachen und Bibliotheken'); ?></h2>
+			<p><?php echo _('Bei der Erstellung dieses Verzeichnisses wurden unter anderem verwendet:'); ?></p>
 			<ul>
-				<li><a href="https://www.w3.org/standards/webdesign/htmlcss">HTML5 und CSS 3.0</a></li>
+				<li><a href="https://www.w3.org/standards/webdesign/htmlcss">HTML5, CSS 3.0</a></li>
 				<li><a href="https://secure.php.net/">PHP</a></li>
-				<li>JavaScript, besonders die Bibliotheken 
+				<li>JavaScript, <?php echo _('besonders die Bibliotheken'); ?>
 					<ul>
 						<li><a href="https://jquery.com/">jQuery</a>,</li>
-						<li><a href="http://leafletjs.com/">Leaflet</a> (für die Karte),</li>
-						<li><a href="http://tablesorter.com/">Tablesorter</a> (für die Sortierung der Tabellen),</li>
-						<li><a href="http://www.highcharts.com/">Highcharts</a> (für die Diagramme)</li>
+						<li><a href="http://leafletjs.com/">Leaflet</a>,</li>
+						<li><a href="http://tablesorter.com/">Tablesorter</a>,</li>
+						<li><a href="http://www.highcharts.com/">Highcharts</a></li>
 					</ul></li>
 			</ul>
 		</article>
 	</main>
 	
-	<?php displayFooter('development.php'); ?>
+	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

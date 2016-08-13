@@ -2,44 +2,41 @@
 	include_once 'includes/functions.php';
 ?>
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="<?php echo_language(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Offene Daten: Kirchliche Web- und Social-Media-Auftritte</title>
-	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Das Projekt kirchen-im-web.de macht diese sichtbar.">
+	<title><?php echo _('Offene Daten'); ?> - <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
+	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-	<?php displayHeader('data.php'); ?>
-	
+	<?php include_once 'includes/header.php'; ?>
 	<main>
-		<h1>Offene Daten</h1>
+		<h1><?php echo _('Offene Daten'); ?></h1>
 		
 		<article id="download">
-			<h2>Download</h2>	
-	
-			<p>Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden.</p>
+			<h2><?php echo _('Download');?></h2>	
+			<p><?php echo _('Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden.'); ?></p>
 			<ul>
-				<li><a href="data/data.json">Download JSON</a></li>
-				<li><a href="data/data.csv">Download csv</a> (Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten)</li>
+				<li><a href="data/data.json"><?php echo _('Download JSON'); ?></a></li>
+				<li><a href="data/data.csv"><?php echo _('Download csv'); ?></a> (<?php echo _('Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten'); ?>)</li>
 			</ul>
-			
-			<p>Hinweis: Die Daten werden jeden Tag über Nacht neu in die beiden Formate exportiert.</p>
+			<p><?php echo _('Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert.'); ?></p>
 		</article>
 		
-		<article id="last-added">
-			<h2>Zuletzt hinzugefügt</h2>
+		<article id="recently-added">
+			<h2><?php echo _('Zuletzt hinzugefügt'); ?></h2>
 			<?php $showWebsites = $preselected; ?>
 			<table>
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>PLZ</th>
-						<th>Ort</th>
-						<th>Land</th>
-						<th>Konfession</th>
-						<th>Typ</th>					
+						<th><?php echo _('Name'); ?></th>
+						<th><?php echo _('PLZ'); ?></th>
+						<th><?php echo _('Ort'); ?></th>
+						<th><?php echo _('Land'); ?></th>
+						<th><?php echo _('Konfession'); ?></th>
+						<th><?php echo _('Gemeindetyp'); ?></th>
 					<?php 
 						foreach ($showWebsites as $websiteName) {
 					?>
@@ -101,6 +98,6 @@
 		</article>	
 	</main>
 	
-	<?php displayFooter('data.php') ?>
+	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

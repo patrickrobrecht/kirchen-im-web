@@ -1,0 +1,189 @@
+# Redirects
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	
+	# Redirect according to language, adding lang parameter
+	RewriteRule ^de(/.*)?$ ./$1?lang=de_DE&%{QUERY_STRING} [NC,L]
+	RewriteRule ^en(/.*)?$ ./$1?lang=en_US&%{QUERY_STRING} [NC,L]
+</IfModule>
+
+# Redirect to German if URL doesn't start with a language slug
+RedirectMatch 301 ^/$					/de/index.php
+RedirectMatch 301 ^/index.php$			/de/index.php
+RedirectMatch 301 ^/add.php$			/de/add.php
+RedirectMatch 301 ^/map.php$			/de/map.php
+RedirectMatch 301 ^/table.php$			/de/table.php
+RedirectMatch 301 ^/table.php?compare=true$	/de/table.php?compare=true
+RedirectMatch 301 ^/data.php$			/de/data.php
+RedirectMatch 301 ^/legal.php$			/de/legal.php
+RedirectMatch 301 ^/development.php$	/de/development.php
+
+# Redirect old URLs
+Redirect 301 /index.html 				/de/index.php
+
+Redirect 301 /tabelle/ 					/de/table.php
+Redirect 301 /tabelle/index.php 		/de/table.php
+Redirect 301 /validierung/ 				/de/table.php
+Redirect 301 /validierung/index.php 	/de/table.php
+
+Redirect 301 /vergleich/ 				/de/table.php?compare=true
+Redirect 301 /vergleich/index.html 		/de/table.php?compare=true
+Redirect 301 /social-media.php 			/de/table.php?compare=true
+
+Redirect 301 /karte/ 					/de/map.php
+Redirect 301 /karte/index.html			/de/map.php
+
+Redirect 301 /impressum.html 			/de/legal.php
+
+Redirect 301 /entwicklung/ 				/de/development.php
+Redirect 301 /entwicklung/index.html 	/de/development.php
+
+# Forbid unauthorized direct access for included php files
+	<files config.php>
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+    </files>
+	<files constants.php>
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+    </files>    
+    <files footer.php>
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+    </files>
+	<files functions.php>
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+    </files>    
+    <files header.php>
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+    </files>
+    <files TwitterAPIExchange.php>
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+    </files>    
+
+# Disable Directory Browsing
+Options -Indexes
+
+# SET MIME TYPES according to file extension
+<IfModule mod_mime.c>
+	AddType application/json .json
+	AddType application/pdf .pdf 
+	AddType image/jpeg .jpeg .jpg .jpe .JPG	
+	AddType image/gif .gif .GIF
+	AddType image/png .png
+	AddType text/csv .csv
+	AddType text/html .html .htm .php
+	AddType text/javascript	.js
+</IfModule>
+	
+# SET EXPIRES HEADERS
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault "access plus 1 week"
+	
+	# Images
+	ExpiresByType image/png "access plus 1 year"
+
+	# CSS and Javascript
+	ExpiresByType text/css "access plus 1 year"	
+	ExpiresByType text/javascript "access plus 1 year"
+	
+	# PDFs
+	ExpiresByType application/pdf "access plus 1 year"
+	
+	# HTML documents, Feeds
+	ExpiresByType text/html "access plus 2 seconds"
+	ExpiresByType application/atom+xml "access plus 1 hour"
+	ExpiresByType application/rss+xml "access plus 1 hour"
+	
+	# Data
+	ExpiresByType application/json "access plus 1 hour"
+	ExpiresByType text/csv "access plus 1 hour"
+	
+	# Other file types
+	ExpiresByType text/cache-manifest "access plus 0 seconds"
+</IfModule>
+
+# SET HEADERS FOR CACHING / SECURITY
+<IfModule mod_headers.c>
+	# SET HEADERS FOR CACHING
+	Header always unset ETag
+	FileETag None
+	Header append Vary Accept-Encoding
+	Header always unset Cache-Control
+	Header merge Cache-Control "public, must-revalidate, proxy-revalidate"
+	
+	# SET HEADERS FOR SECURITY
+	# enforce browsers to use HTTPS
+#	Header always set Strict-Transport-Security "max-age=63072000; preload"
+	
+	# disallow the website to be framed
+	Header always set X-Frame-Options "deny"
+	
+	# enable XSS protection filters
+	Header always set X-XSS-Protection "1; mode=block"
+	
+	# whitelist sources of approve content which prevents the browser from loading malicious assets
+#	Header set Content-Security-Policy "default-src https:; script-src https: 'unsafe-inline'; style-src https: 'unsafe-inline'; img-src 'self'"
+	
+	# force browsers to stick to the declared content-type
+	Header always set X-Content-Type-Options "nosniff"
+	
+	# public key pins
+#	Header always set Public-Key-Pins "pin-sha256=; max-age=86400;"
+	
+	# Remove sever information (this does not always work)
+	Header set Server ""
+	Header always unset Server
+	
+	# Remove PHP version etc.
+	Header set X-Powered-By ""
+	Header always unset X-Powered-By
+</IfModule>
+
+# ENABLE GZIP COMPRESSION
+<IfModule mod_deflate.c>
+	SetOutputFilter DEFLATE
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+
+# DISABLE THE SERVER SIGNATURE
+	ServerSignature Off
+
+# Error documents
+ErrorDocument 404 /de/404.php
