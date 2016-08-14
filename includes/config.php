@@ -8,7 +8,7 @@ if (isset($_GET["lang"])) {
 	$current_language = "de_DE";
 }
 
-$domain = "kirchen-im-web10";
+$domain = "kirchen-im-web16";
 bindtextdomain($domain, "lang");
 bind_textdomain_codeset($domain, 'UTF-8');
 textdomain($domain);
@@ -37,34 +37,34 @@ $countries = array(
 
 // Denominations.
 $denominations = array(
-		'alt-katholisch',
-		'anglikanisch',
-		'evangelisch',
-		'freikirchlich',
-		'katholisch',
-		'ökumenisch',
-		'andere'
+		'alt-katholisch' => _('alt-katholisch'),
+		'anglikanisch' => _('anglikanisch'),
+		'evangelisch' => _('evangelisch'),
+		'freikirchlich' => _('freikirchlich'),
+		'katholisch' => _('katholisch'),
+		'ökumenisch' => _('ökumenisch'),
+		'andere' => _('andere'),
 );
 
 // Types.
 $types = array(
-		'Bildungseinrichtung',
-		'Bischofskonferenz',
-		'Bistum',
-		'Citykirche',
-		'Dekanat',
-		'Jugend',
-		'Hilfswerk',
-		'Internetportal',
-		'Kirchengemeinde',
-		'Kirchenkreis',
-		'Kloster',
-		'Laienorganisation',
-		'Landeskirche',
-		'Pastoraler Raum',
-		'Pfarrei',
-		'Pfarrvikarie',
-		'andere'
+		'Bildungseinrichtung' => _('Bildungseinrichtung'),
+		'Bischofskonferenz' => _('Bischofskonferenz'),
+		'Bistum' => _('Bistum'),
+		'Citykirche' => _('Citykirche'),
+		'Dekanat' => _('Dekanat'),
+		'Jugend' => _('Jugend'),
+		'Hilfswerk' => _('Hilfswerk'),
+		'Internetportal' => _('Internetportal'),
+		'Kirchengemeinde' => _('Kirchengemeinde'),
+		'Kirchenkreis' => _('Kirchenkreis'),
+		'Kloster' => _('Kloster'),
+		'Laienorganisation' => _('Laienorganisation'),
+		'Landeskirche' => _('Landeskirche'),
+		'Pastoraler Raum' => _('Pastoraler Raum'),
+		'Pfarrei' => _('Pfarrei'),
+		'Pfarrvikarie' => _('Pfarrvikarie'),
+		'andere' => _('andere')
 );
 $defaultType = 'Kirchengemeinde';
 

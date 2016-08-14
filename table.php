@@ -77,8 +77,8 @@
 				<select id="denomination" name="denomination">
 					<option></option>
 					<?php 
-					foreach($denominations as $value) {
-						showOption($value, $value, $value == $denomination);
+					foreach($denominations as $value => $denominationName) {
+						showOption($value, $denominationName, $value == $denomination);
 					} 
 					?>
 				</select>
@@ -86,8 +86,8 @@
 				<select id="type" name="type">
 					<option></option>
 				<?php 
-					foreach($types as $value) {
-						showOption($value, $value, $value == $type);
+					foreach($types as $value => $typeName) {
+						showOption($value, $typeName, $value == $type);
 					}
 				?>
 				</select>
@@ -241,8 +241,8 @@
 					<td><?php echo postalCodeString($row['postalCode'], $row['country']); ?></td>
 					<td><?php echo $row['city']; ?></td>
 					<td><?php echo $countries[$row['country']]; ?></td>
-					<td><?php echo $row['denomination']; ?></td>
-					<td><?php echo $row['type']; ?></td>
+					<td><?php echo $denominations[$row['denomination']]; ?></td>
+					<td><?php echo $types[$row['type']]; ?></td>
 				<?php
 					foreach ($showWebsites as $websiteId => $websiteName) { 
 						$url = $row[$websiteId];

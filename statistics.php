@@ -9,7 +9,7 @@
 	$statementByDenomination = $connection->query($queryByDenomination);
 	$totalByDenomination = $statementByDenomination->fetchAll(PDO::FETCH_ASSOC);
 	
-	$queryByType = 'SELECT count(*) AS count, type FROM churches GROUP BY type';
+	$queryByType = 'SELECT count(*) AS count, type FROM churches GROUP BY type ORDER BY count DESC';
 	$statementByType= $connection->query($queryByType);
 	$totalByType = $statementByType->fetchAll(PDO::FETCH_ASSOC);
 	
@@ -48,7 +48,7 @@
 			series: [ {
 				name: '<?php echo _('Anzahl der Einträge'); ?>',
 				data: [<?php foreach ($totalByDenomination as $row) { 
-					echo "{name: '" . $row['denomination'] . "', y:"; echo $row['count'] . '},'; 
+					echo "{name: '" . $denominations[$row['denomination']] . "', y:"; echo $row['count'] . '},'; 
 				} ?> ]
 			} ],
 			colors: [
@@ -106,7 +106,7 @@
 			series: [ {
 				name: '<?php echo _('Anzahl der Einträge'); ?>',
 				data: [<?php foreach ($totalByType as $row) { 
-							echo "{name: '" . $row['type'] . "', y:"; echo $row['count'] . '},'; 
+							echo "{name: '" . $types[$row['type']] . "', y:"; echo $row['count'] . '},'; 
 						} ?> ]
 			} ],
 			credits: {
@@ -191,7 +191,7 @@
 			<div class="stats">	
 				<ul>
 					<?php foreach ($totalByDenomination as $row) { ?>
-					<li><a href="table.php?denomination=<?php echo $row['denomination']; ?>"><?php echo $row['denomination']; ?></a>: <?php echo $row['count']; ?></li>
+					<li><a href="table.php?denomination=<?php echo $row['denomination']; ?>"><?php echo $denominations[$row['denomination']]; ?></a>: <?php echo $row['count']; ?></li>
 					<?php } ?>
 				</ul>
 			</div>
@@ -213,7 +213,7 @@
 			<div class="stats">
 				<ul>
 					<?php foreach ($totalByType as $row) { ?>
-					<li><a href="table.php?type=<?php echo $row['type']; ?>"><?php echo $row['type']; ?></a>: <?php echo $row['count']; ?></li>
+					<li><a href="table.php?type=<?php echo $row['type']; ?>"><?php echo $types[$row['type']]; ?></a>: <?php echo $row['count']; ?></li>
 					<?php } ?>
 				</ul>
 			</div>
@@ -231,7 +231,7 @@
 			</div>
 			<div id="websites" class="chart"></div>
 		</article>
-	</main>	
+	</main>
 	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

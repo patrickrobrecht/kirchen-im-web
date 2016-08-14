@@ -23,35 +23,35 @@
 	$message = '';
 	if ( !isName($data['name']) ) {
 		$dataCorrect = false;
-		$message .= 'Bitte einen gültigen Namen angeben! ';
+		$message .= _('Bitte einen gültigen Namen angeben!') . ' ';
 	}
 	if ( !isStreet($data['street']) ) {
 		$dataCorrect = false;
-		$message .= 'Bitte die Straße angeben! ';
+		$message .= _('Bitte die Straße angeben!') . ' ';
 	}
 	if ( !isCity($data['city']) ) {
 		$dataCorrect = false;
-		$message .= 'Bitte einen Ort angeben! ';
+		$message .= _('Bitte einen Ort angeben!') . ' ';
 	}
 	if ( !isCountryCode($data['countryCode']) ) {
 		$dataCorrect = false;
-		$message .= 'Bitte ein Land auswählen! ';
+		$message .= _('Bitte ein Land auswählen!') . ' ';
 	}
 	if ( !isPostalCode($data['postalCode'], $data['countryCode']) ) {
 		$dataCorrect = false;
-		$message .= 'Bitte eine Postleitzahl angeben! ';
+		$message .= _('Bitte eine Postleitzahl angeben!') . ' ';
 	}
 	if ( !isDenomination($data['denomination']) ) {
 		$dataCorrect = false;
-		$message .= 'Bitte eine Konfession angeben! ';
+		$message .= _('Bitte eine Konfession auswählen!') . ' ';
 	}
 	if ( !isType($data['type']) ) {
 		$dataCorrect = false;
-		$message .= 'Bitte einen Gemeindetyp auswählen! ';
+		$message .= _('Bitte einen Gemeindetyp auswählen!') . ' ';
 	}
 	if ( !isParentId($data['parentId']) ) {
 		$dataCorrect = false;
-		$message .= 'Bitte keine oder eine gültige nächsthöhere Ebene auswählen! ';
+		$message .= _('Bitte keine oder eine gültige nächsthöhere Ebene auswählen!') . ' ';
 	}
 	
 	if ( $data['hasChildren'] == 'on' ) {
@@ -71,7 +71,7 @@
 					$urls[$website_id] = $url;
 				} else {
 					// a submitted URL is invalid.
-					$message .= 'Bitte eine gültige oder keine URL für ' . $websites[$website_id] . ' angeben, diese muss mit ' . $websitesStartOfURL[$website_id] . ' beginnen.';
+					$message .= sprintf( _('Bitte eine gültige oder keine URL für %s angeben, diese muss mit %s beginnen.'), $websites[$website_id], $websitesStartOfURL[$website_id] );
 					$urlsCorrect = false;
 				}
 			} // else no url submitted which is fine.		
@@ -82,7 +82,7 @@
 	if ($dataCorrect && $urlsCorrect) {
 		// Write data into the database
 		$id = addChurchToDatabase($data, $urls);
-		$message = getLinkToDetailsPage($id, $data['name']) . ' wurde hinzugefügt. Vielen Dank!';
+		$message = sprintf( _('%s wurde hinzugefügt. Vielen Dank!'), getLinkToDetailsPage($id, $data['name']) );
 		$errors = false;
 	}
 ?>
@@ -129,16 +129,16 @@
 				<label for="countryCode"><?php echo _('Land'); ?></label>
 				<select id="denomination" name="denomination">
 					<?php 
-					foreach($denominations as $value) {
-						showOption($value, $value, $value == $data['denomination'] && $errors);
+					foreach($denominations as $value => $denominationName) {
+						showOption($value, $denominationName, $value == $data['denomination'] && $errors);
 					} 
 					?>
 				</select>
 				<label for="denomination"><?php echo _('Konfession'); ?></label>
 				<select id="type" name="type">
 				<?php 
-					foreach($types as $value) {
-						showOption($value, $value, ($value == $data['type'] && $errors) || $value == $defaultType);
+					foreach($types as $value => $typeName) {
+						showOption($value, $typeName, ($value == $data['type'] && $errors) || $value == $defaultType);
 					}
 				?>
 				</select>
@@ -155,12 +155,12 @@
 					}
 				?>
 				</select>
-				<label for="parent"><?php echo _('gehört zu'); ?></label>
+				<label for="parent"><?php echo _('nächsthöhere Ebene'); ?></label>
 				<input id="hasChildren" name="hasChildren" type="checkbox">
 				<label for="hasChildren"><?php echo _('hat untergeordnete Ebene'); ?></label>
 				<p><?php echo _('Bei "Gemeindetyp" ist eine passende Auswahl zu treffen. "Pastoraler Raum" beschreibt dabei Zusammenschlüsse von mehreren katholischen Pfarreien/Pfarrvikarien (unterschiedliche Bezeichnungen in den Bistümern: Pastoralverbund, Pfarreiengemeinschaft, Seelsorgeeinheit etc.).'); ?>
-				<p><?php echo _('Unter "gehört zu" ist die nächsthöhere Ebene - bei katholischen Pfarreien und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen Kirchengemeinden entsprechend der Kirchenkreis bzw. die Landeskirche - anzugeben.');
-						echo _('Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor angelegt werden (hierbei ein Häkchen bei "hat übergeordnete Ebenen" nicht vergessen).'); ?></p>
+				<p><?php echo _('Die nächsthöhere Ebene ist bei katholischen Pfarreien und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen Kirchengemeinden entsprechend der Kirchenkreis bzw. die Landeskirche.'); ?>
+					<?php echo _('Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor angelegt werden (hierbei ein Häkchen bei "hat übergeordnete Ebene" nicht vergessen).'); ?></p>
 				<p><?php echo _('Der Haken bei "hat untergeordnete Ebene" ist zu setzen, wenn die Gemeinde selbst unter "gehört zu" aufgeführt werden soll (also bei Dekanate und bei Kirchenkreisen). Bei Kirchengemeinden darf der Haken nicht gesetzt werden!'); ?></p>
 			</fieldset>
 			<fieldset>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: kirchen-im-web10\n"
-"POT-Creation-Date: 2016-08-13 16:10+0200\n"
-"PO-Revision-Date: 2016-08-13 16:10+0200\n"
+"Project-Id-Version: kirchen-im-web\n"
+"POT-Creation-Date: 2016-08-14 15:10+0200\n"
+"PO-Revision-Date: 2016-08-14 15:11+0200\n"
 "Last-Translator: Patrick Robrecht\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -35,6 +35,49 @@ msgid ""
 "wurde dieser Eintrag gelöscht."
 msgstr "Sadly the page could not be found. Maybe the entry was deleted."
 
+#: add.php:26
+msgid "Bitte einen gültigen Namen angeben!"
+msgstr "Please enter a valid name!"
+
+#: add.php:30
+msgid "Bitte die Straße angeben!"
+msgstr "Please enter the street!"
+
+#: add.php:34
+msgid "Bitte einen Ort angeben!"
+msgstr "Please enter a city!"
+
+#: add.php:38
+msgid "Bitte ein Land auswählen!"
+msgstr "Please select a country!"
+
+#: add.php:42
+msgid "Bitte eine Postleitzahl angeben!"
+msgstr "Please enter a postal code!"
+
+#: add.php:46
+msgid "Bitte eine Konfession auswählen!"
+msgstr "Please select a denomination!"
+
+#: add.php:50
+msgid "Bitte einen Gemeindetyp auswählen!"
+msgstr "Please select a type!"
+
+#: add.php:54
+msgid "Bitte keine oder eine gültige nächsthöhere Ebene auswählen!"
+msgstr "Please select no or a valid superior level!"
+
+#: add.php:74
+#, php-format
+msgid ""
+"Bitte eine gültige oder keine URL für %s angeben, diese muss mit %s beginnen."
+msgstr "Please enter a valid or no URL for %s  which has to start with %s."
+
+#: add.php:85
+#, php-format
+msgid "%s wurde hinzugefügt. Vielen Dank!"
+msgstr "%s was added. Thank you!"
+
 #: add.php:94 add.php:102 add.php:178 includes/config.php:111
 msgid "Gemeinde hinzufügen"
 msgstr "Add Church"
@@ -54,7 +97,7 @@ msgid ""
 "Ausfüllen, ob die Gemeinde bereits aufgeführt ist"
 msgstr ""
 "To avoid duplicates please check up whether the church is already in the "
-"directory before you submit this form."
+"directory before you submit this form"
 
 #: add.php:105
 msgid "in der Karte"
@@ -83,7 +126,7 @@ msgstr "Social Media Comparison"
 
 #: add.php:113 add.php:115 data.php:34 table.php:63 table.php:127
 msgid "Name"
-msgstr "Name"
+msgstr "name"
 
 #: add.php:113 details.php:80
 msgid "Adresse"
@@ -92,43 +135,43 @@ msgstr "Address"
 #: add.php:113 add.php:137 data.php:38 details.php:90 table.php:85
 #: table.php:131
 msgid "Konfession"
-msgstr "Denomination"
+msgstr "denomination"
 
 #: add.php:117
 msgid "Straße"
-msgstr "Street"
+msgstr "street"
 
 #: add.php:117
 msgid "Hausnummer"
-msgstr "House number"
+msgstr "house number"
 
 #: add.php:117
 msgid "Nr."
-msgstr "No."
+msgstr "no."
 
 #: add.php:119 data.php:35 table.php:65 table.php:128
 msgid "PLZ"
-msgstr "Postal code"
+msgstr "postal code"
 
 #: add.php:121 data.php:36 table.php:67 table.php:129
 msgid "Ort"
-msgstr "City"
+msgstr "city"
 
 #: add.php:129 data.php:37 table.php:76 table.php:130
 msgid "Land"
-msgstr "Country"
+msgstr "country"
 
 #: add.php:145 data.php:39 details.php:94 table.php:94 table.php:132
 msgid "Gemeindetyp"
-msgstr "Type"
+msgstr "type"
 
 #: add.php:147
 msgid "keine"
 msgstr "none"
 
-#: add.php:158
-msgid "gehört zu"
-msgstr "belongs to"
+#: add.php:158 details.php:98
+msgid "nächsthöhere Ebene"
+msgstr "superior level"
 
 #: add.php:160
 msgid "hat untergeordnete Ebene"
@@ -147,22 +190,22 @@ msgstr ""
 
 #: add.php:162
 msgid ""
-"Unter \"gehört zu\" ist die nächsthöhere Ebene - bei katholischen Pfarreien "
-"und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei "
-"evangelischen Kirchengemeinden entsprechend der Kirchenkreis bzw. die "
-"Landeskirche - anzugeben."
+"Die nächsthöhere Ebene ist bei katholischen Pfarreien und Pfarrvikarien das "
+"Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen "
+"Kirchengemeinden entsprechend der Kirchenkreis bzw. die Landeskirche."
 msgstr ""
-"\"belongs to\" refers to the superior authority - for Catholic parishes this "
-"is the deanery, for deaneries the diocese."
+"The superior level for Catholic parishes is the deanery, for deaneries the "
+"diocese respectively for other churches the church district, for church "
+"districts the regional church."
 
 #: add.php:163
 msgid ""
 "Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor "
-"angelegt werden (hierbei ein Häkchen bei \"hat übergeordnete Ebenen\" nicht "
+"angelegt werden (hierbei ein Häkchen bei \"hat übergeordnete Ebene\" nicht "
 "vergessen)."
 msgstr ""
 "If an entry for the superior authority does not exist yet, please create one "
-"before (do not forget to check \"has subordinate levels\")."
+"before (do not forget to check \"has subordinate level\")."
 
 #: add.php:164
 msgid ""
@@ -209,7 +252,8 @@ msgstr "otherwise you create multiple identical entries"
 msgid "Bei Fehlern in Einträgen wenden Sie sich bitte an "
 msgstr "In the case of errors in entries please contact"
 
-#: data.php:9 data.php:16 includes/config.php:116 index.php:50
+#: data.php:9 data.php:16 development.php:65 includes/config.php:116
+#: index.php:50
 msgid "Offene Daten"
 msgstr "Open Data"
 
@@ -267,11 +311,7 @@ msgstr "Address, Denomination and Hierarchy"
 
 #: details.php:87
 msgid "Geopositon"
-msgstr "Geo position"
-
-#: details.php:98
-msgid "nächsthöhere Ebene"
-msgstr "superior level"
+msgstr "geo position"
 
 #: details.php:102
 msgid "nächsttiefere Ebene"
@@ -317,21 +357,90 @@ msgid "Änderungshistorie"
 msgstr "Changelog"
 
 #: development.php:32 development.php:38 development.php:44 development.php:51
-#: development.php:62
+#: development.php:61
 #, php-format
 msgid "Version %s"
 msgstr "Version %s"
 
-#: development.php:84
+#: development.php:34
+msgid "Übersetzung ins Englische"
+msgstr "translation into English"
+
+#: development.php:40
+msgid "verschiedene Farben für alle Konfessionen in der Karte"
+msgstr "different colors for all denominations at the map"
+
+#: development.php:46
+msgid "Filter auch für Social-Media-Vergleich"
+msgstr "filtering for the social media comparison, too"
+
+#: development.php:47
+msgid "Statistik mit Diagrammen"
+msgstr "Statistics with diagrams"
+
+#: development.php:53
+msgid "Formular für Neueintragungen"
+msgstr "form for adding new churches"
+
+#: development.php:54
+msgid ""
+"Tabelle mit Filter nach Name, PLZ, Ort, Land, Konfession und Gemeindetyp"
+msgstr ""
+"table with filtering according to name, postal code, country, denomination "
+"and type"
+
+#: development.php:55
+msgid "Detailseite für jede Gemeinde"
+msgstr "details page for every church"
+
+#: development.php:56
+msgid "Statistik zur Anzahl der vorhandenen Daten"
+msgstr "Statistics on the number of entries"
+
+#: development.php:57
+msgid ""
+"Social-Media-Vergleich mit Facebook-Likes, Twitter-Follower und YouTube-"
+"Abonnenten"
+msgstr ""
+"social media comparison with Facebook likes, Twitter followers and YouTube "
+"subscribers"
+
+#: development.php:63
+#, php-format
+msgid ""
+"Visualisierung der eingetragenden Gemeinden als Karte, realisiert mit %s"
+msgstr "Visualization of the churches as a map, realized with %s"
+
+#: development.php:64
+msgid ""
+"Tabelle mit Filter nach Konfession und Netzwerk und Sortierung nach "
+"beliebiger Spalte"
+msgstr ""
+"table with filtering according to denomination and Network and sorting to "
+"arbitrary column"
+
+#: development.php:66
+msgid ""
+"Name, Konfession, Landeskirche bzw. Bistum, Adresse, Web-/Facebook-/Google+-/"
+"Twitter-/YouTube-URL"
+msgstr ""
+"name, denomination, regional church or diocese, address, web/Facebook/Google"
+"+/Twitter/YouTube URL"
+
+#: development.php:67
+msgid "automatische Berechnung von Längen- und Breitengrad"
+msgstr "automatic calculation of longitude and latitude"
+
+#: development.php:73
 msgid "Verwendete Programmiersprachen und Bibliotheken"
 msgstr "Used programming languages and libraries"
 
-#: development.php:85
+#: development.php:74
 msgid ""
 "Bei der Erstellung dieses Verzeichnisses wurden unter anderem verwendet:"
 msgstr "For creating this directory we used:"
 
-#: development.php:89
+#: development.php:78
 msgid "besonders die Bibliotheken"
 msgstr "especially the libraries"
 
@@ -355,6 +464,98 @@ msgstr "Austria"
 msgid "Schweiz"
 msgstr "Switzerland"
 
+#: includes/config.php:40 map.php:168
+msgid "alt-katholisch"
+msgstr "Old Catholic"
+
+#: includes/config.php:41 map.php:169
+msgid "anglikanisch"
+msgstr "Anglican"
+
+#: includes/config.php:42 map.php:170
+msgid "evangelisch"
+msgstr "Protestant"
+
+#: includes/config.php:43
+msgid "freikirchlich"
+msgstr "free churches"
+
+#: includes/config.php:44 map.php:172
+msgid "katholisch"
+msgstr "Catholic"
+
+#: includes/config.php:45
+msgid "ökumenisch"
+msgstr "oecumenic"
+
+#: includes/config.php:46 includes/config.php:67
+msgid "andere"
+msgstr "others"
+
+#: includes/config.php:51
+msgid "Bildungseinrichtung"
+msgstr "institution of education"
+
+#: includes/config.php:52
+msgid "Bischofskonferenz"
+msgstr "conference of bishops"
+
+#: includes/config.php:53
+msgid "Bistum"
+msgstr "diocese"
+
+#: includes/config.php:54
+msgid "Citykirche"
+msgstr "city church"
+
+#: includes/config.php:55
+msgid "Dekanat"
+msgstr "deanery"
+
+#: includes/config.php:56
+msgid "Jugend"
+msgstr "youth organisation"
+
+#: includes/config.php:57
+msgid "Hilfswerk"
+msgstr "public social aid"
+
+#: includes/config.php:58
+msgid "Internetportal"
+msgstr "web portal"
+
+#: includes/config.php:59
+msgid "Kirchengemeinde"
+msgstr "church"
+
+#: includes/config.php:60
+msgid "Kirchenkreis"
+msgstr "church district"
+
+#: includes/config.php:61
+msgid "Kloster"
+msgstr "monastery"
+
+#: includes/config.php:62
+msgid "Laienorganisation"
+msgstr "lay movement"
+
+#: includes/config.php:63
+msgid "Landeskirche"
+msgstr "regional church"
+
+#: includes/config.php:64
+msgid "Pastoraler Raum"
+msgstr "church union"
+
+#: includes/config.php:65
+msgid "Pfarrei"
+msgstr "parish"
+
+#: includes/config.php:66
+msgid "Pfarrvikarie"
+msgstr "quasi-parish"
+
 #: includes/config.php:73 includes/config.php:85 map.php:109
 msgid "Webauftritt"
 msgstr "Website"
@@ -367,12 +568,11 @@ msgstr "Blog"
 msgid "Über das Projekt"
 msgstr "About the project"
 
-#: includes/config.php:112 index.php:21 index.php:22 index.php:43 map.php:9
-#: map.php:19
+#: includes/config.php:112 index.php:21 index.php:22 map.php:9 map.php:19
 msgid "Karte"
 msgstr "Map"
 
-#: includes/config.php:113 index.php:43 table.php:41
+#: includes/config.php:113 table.php:41
 msgid "Tabelle"
 msgstr "Table"
 
@@ -384,7 +584,7 @@ msgstr "Statistics"
 msgid "Tipps und Tricks"
 msgstr "Tips and tricks"
 
-#: includes/config.php:121 legal.php:9 legal.php:16 legal.php:35
+#: includes/config.php:121 legal.php:9 legal.php:16 legal.php:36
 msgid "Impressum"
 msgstr "Legal notice"
 
@@ -400,8 +600,8 @@ msgid ""
 "ökumenische rot dargestellt."
 msgstr ""
 "In the %s Old Catholic churches are shown in orange, Anglican ones in green, "
-"Protestant ones in purple, free ones in blue, Catholic ones in yellow and "
-"others/oecumenic in ones red."
+"Protestant ones in purple, free churches in blue, Catholic ones in yellow "
+"and others/oecumenic ones in red."
 
 #: index.php:24
 msgid ""
@@ -492,12 +692,12 @@ msgid "Das geht über dieses Formular."
 msgstr "That's possible using this form."
 
 #: index.php:43
-#, php-format
 msgid ""
-"In der %s oder der %s können Sie vorher nachschauen, ob die Gemeinde bereits "
-"gelistet ist."
+"In der Karte oder der Tabelle können Sie vorher nachschauen, ob die Gemeinde "
+"bereits gelistet ist."
 msgstr ""
-"In the %s or the %s you can check up whether your church is already listed."
+"In the map or the table you can check up whether the church is already "
+"listed."
 
 #: index.php:44
 msgid ""
@@ -549,6 +749,26 @@ msgstr "Idea"
 msgid "Technische Umsetzung"
 msgstr "Implementation"
 
+#: legal.php:26
+msgid ""
+"Daten: viele Leute, die Daten über unser <a href=\"add.php\">Formular</a> "
+"hinzugefügt haben"
+msgstr ""
+"Data: many people who added churches using our <a href=\"add.php\">form</a>"
+
+#: legal.php:27
+msgid ""
+"Für die Korrektur falscher Daten wenden Sie sich bitte an Patrick Robrecht:"
+msgstr "For the correction of wrong data please contact Patrick Robrecht."
+
+#: legal.php:31
+msgid "Lizenzen"
+msgstr "Licences"
+
+#: legal.php:32
+msgid "Social Media Icons"
+msgstr "Social media icons"
+
 #: map.php:11
 msgid "kirchen-im-web.de macht diese auf einer Karte sichtbar."
 msgstr "kirchen-im-web.de shows them at a map."
@@ -574,25 +794,9 @@ msgstr "Please wait. The map is loaded."
 msgid "alle"
 msgstr "all"
 
-#: map.php:168
-msgid "alt-katholisch"
-msgstr "Old Catholic"
-
-#: map.php:169
-msgid "anglikanisch"
-msgstr "Anglican"
-
-#: map.php:170
-msgid "evangelisch"
-msgstr "Protestant"
-
 #: map.php:171
 msgid "evangelisch-freikirchlich"
 msgstr "Protestant (free)"
-
-#: map.php:172
-msgid "katholisch"
-msgstr "Catholic"
 
 #: map.php:173
 msgid "andere Konfession"
@@ -696,6 +900,32 @@ msgid "Eine Gemeinde gefunden!"
 msgid_plural "%d Gemeinden gefunden!"
 msgstr[0] "One church found!"
 msgstr[1] "%d churches found!"
+
+#~ msgid "Filter nach Name und Co. auch für Social-Media-Vergleich"
+#~ msgstr "filtering according to "
+
+#~ msgid ""
+#~ "Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser "
+#~ "zuvor angelegt werden (hierbei ein Häkchen bei \"hat übergeordnete Ebenen"
+#~ "\" nicht vergessen)."
+#~ msgstr ""
+#~ "If an entry for the superior authority does not exist yet, please create "
+#~ "one before (do not forget to check \"has subordinate level\")."
+
+#~ msgid ""
+#~ "Unter \"gehört zu\" ist die nächsthöhere Ebene - bei katholischen "
+#~ "Pfarreien und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige "
+#~ "Bistum bzw. bei evangelischen Kirchengemeinden entsprechend der "
+#~ "Kirchenkreis bzw. die Landeskirche - anzugeben."
+#~ msgstr ""
+#~ "\"belongs to\" refers to the superior authority - for Catholic parishes "
+#~ "this is the deanery, for deaneries the diocese."
+
+#~ msgid "gehört zu"
+#~ msgstr "belongs to"
+
+#~ msgid "Bitte eine Konfession angeben!"
+#~ msgstr "P"
 
 #~ msgid "Möchtest du bei der Weiterentwicklung mithelfen?"
 #~ msgstr "You want to join us for further development?"

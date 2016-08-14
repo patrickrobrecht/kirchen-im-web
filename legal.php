@@ -23,18 +23,19 @@
 		
 		<p><?php echo _('Idee'); ?>: Jörg Lohrer</p>
 		<p><?php echo _('Technische Umsetzung'); ?>: Patrick Robrecht</p>
-		<p>Daten: viele Leute, die Daten über unser <a href="add.php">Formular</a> hinzugefügt haben
-			<br>Für die Korrektur falscher Daten wende dich bitte an Patrick Robrecht unter kontakt [ät-Zeichen] kirchen [minus] im [minus] web de.</p>
+		<p><?php echo _('Daten: viele Leute, die Daten über unser <a href="add.php">Formular</a> hinzugefügt haben'); ?>
+			<br><?php echo _('Für die Korrektur falscher Daten wenden Sie sich bitte an Patrick Robrecht:'); ?>
+			kontakt [ät-Zeichen] kirchen [minus] im [minus] web de.</p>
 		
 		<article>
-			<h2>Lizenzen</h2>
-			<p>Social Media Icons: CC BY-NC-ND 3.0, <a href="http://www.designbolts.com/2013/06/27/new-flat-free-social-media-icons-2013/">DesignBolts.com</a>
+			<h2><?php _('Lizenzen'); ?></h2>
+			<p><?php _('Social Media Icons'); ?>: CC BY-NC-ND 3.0, <a href="http://www.designbolts.com/2013/06/27/new-flat-free-social-media-icons-2013/">DesignBolts.com</a>
 		</article>
 				
 		<article>
 			<h2><?php echo _('Impressum'); ?></h2>
 			<p>Verantwortlich für diesen Webauftritt ist: 
-				<br>Patrick Robrecht, Dr.-Rörig-Damm 99, 33102 Paderborn,
+				<br>Patrick Robrecht, Dr.-Rörig-Damm 99, 33102 Paderborn
 				<br>E-Mail: kontakt [ät-Zeichen] kirchen [minus] im [minus] web de
 				<br>Twitter: <a href="https://twitter.com/kirchenimweb/">@kirchenimweb</a></p>
 		</article>

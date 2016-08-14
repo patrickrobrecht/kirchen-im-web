@@ -88,11 +88,11 @@
 						<td><?php echo geoPositionString($data['lat'], $data['lon']); ?>
 					<tr>					
 						<th><?php echo _('Konfession'); ?></th>
-						<td><a href="table.php?countryCode=<?php echo $data['denomination']; ?>"><?php echo $data['denomination']; ?></a></td>
+						<td><a href="table.php?denomination=<?php echo $data['denomination']; ?>"><?php echo $denominations[$data['denomination']]; ?></a></td>
 					</tr>
 					<tr>					
 						<th><?php echo _('Gemeindetyp'); ?></th>
-						<td><a href="table.php?type=<?php echo $data['type']; ?>"><?php echo $data['type']; ?></a></td>
+						<td><a href="table.php?type=<?php echo $data['type']; ?>"><?php echo $types[$data['type']]; ?></a></td>
 					</tr>
 					<tr>
 						<th><?php echo _('nächsthöhere Ebene'); ?></th>

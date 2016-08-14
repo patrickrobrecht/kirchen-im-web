@@ -31,51 +31,40 @@
 			<section>
 				<h3><?php echo sprintf( _('Version %s'), '2.0 (2016-08-13)'); ?></h3>
 				<ul>
-					<li><?php echo _e('Übersetzung ins Englische'); ?></li>
+					<li><?php echo _('Übersetzung ins Englische'); ?></li>
 				</ul>
 			</section>
 			<section>
 				<h3><?php echo sprintf( _('Version %s'), '1.3 (2016-04-11)'); ?></h3>
 				<ul>
-					<li>Unterscheidung aller Konfessionen durch verschiedene Farben in der <a href="map.php">Karte</a></li>
+					<li><?php echo _('verschiedene Farben für alle Konfessionen in der Karte'); ?></a></li>
 				</ul>
 			</section>
 			<section>
 				<h3><?php echo sprintf( _('Version %s'), '1.2 (2016-03-20)'); ?></h3>
 				<ul>
-					<li>Filter nach Name und Co. auch für <a href="table.php?compare=true">Social-Media-Vergleich</a></li>
-					<li>erweiterte <a href="statistics.php">Statistiken</a> mit Diagrammen</li>
+					<li><?php echo _('Filter auch für Social-Media-Vergleich'); ?></li>
+					<li><?php echo _('Statistik mit Diagrammen'); ?></li>
 				</ul>
 			</section>
 			<section>
 				<h3><?php echo sprintf( _('Version %s'), '1.1 (2016-01-30)'); ?></h3>
 				<ul>
-					<li>Speicherung der Daten in einer Datenbank</li>
-					<li>Eintragung über eigenes <a href="add.php">Formular</a></li>
-					<li><a href="table.php">Filter (in Tabellenansicht)</a> nach Name, PLZ, Ort, Land, Konfession und Gemeindetyp</li>
-					<li>Detail-Anzeige für <a href="details.php?id=1">jede eingetragene Gemeinde</a></li>
-					<li>Statistik zur <a href="statistics.php">Anzahl der vorhandenen Daten</a></li>
-					<li><a href="table.php?compare=true">Social-Media-Vergleich</a> (Likes bei Facebook, Follower bei Twitter und Abonnenten bei YouTube)</li>
+					<li><?php echo _('Formular für Neueintragungen'); ?></li>
+					<li><?php echo _('Tabelle mit Filter nach Name, PLZ, Ort, Land, Konfession und Gemeindetyp'); ?></li>
+					<li><?php echo _('Detailseite für jede Gemeinde'); ?></li>
+					<li><?php echo _('Statistik zur Anzahl der vorhandenen Daten'); ?></li>
+					<li><?php echo _('Social-Media-Vergleich mit Facebook-Likes, Twitter-Follower und YouTube-Abonnenten'); ?>)</li>
 				</ul>
 			</section>
 			<section>
 				<h3><?php echo sprintf( _('Version %s'), '1.0 (2015-05-29)'); ?></h3>
 				<ul>
-					<li>Visualisierung der eingetragenden Gemeinden als <a href="map.php">Karte</a>
-						<ul>
-							<li>realisiert mit Kartenmaterial von <a href="https://www.openstreetmap.org">OpenStreetMap</a> und leaflet.js</li>
-							<li>Marker auf der Karte in verschiedene Farben für evangelische und katholische Kirchen sowie Kirchen anderer Konfessionen</li>
-						</ul></li>
-					<li>Daten als HTML-<a href="table.php">Tabelle</a>
-						<ul>
-							<li>Filter-Möglichkeit nach Konfession und Netzwerk (über Anker und Klassen im HTML und CSS 3.0)</li>
-							<li>Sortierung nach beliebiger Spalte mit tablesorter.js</li>
-						</ul></li>
-					<li><a href="data.php">Offene Daten</a>: Name, Konfession, Landeskirche bzw. Bistum, Adresse, Web-/Facebook-/Google+-/Twitter-/YouTube-URL
-						<ul>
-							<li>Eintragung über GoogleDocs-Formular</li>
-							<li>automatische Berechnung von Längen- und Breitengrad</li>
-						</ul></li>
+					<li><?php echo sprintf( _('Visualisierung der eingetragenden Gemeinden als Karte, realisiert mit %s'), '<a href="https://www.openstreetmap.org">OpenStreetMap</a>'); ?></li>
+					<li><?php echo _('Tabelle mit Filter nach Konfession und Netzwerk und Sortierung nach beliebiger Spalte'); ?></li>
+					<li><?php echo _('Offene Daten'); ?>:
+						<?php echo _('Name, Konfession, Landeskirche bzw. Bistum, Adresse, Web-/Facebook-/Google+-/Twitter-/YouTube-URL'); ?></li>
+					<li><?php echo _('automatische Berechnung von Längen- und Breitengrad'); ?></li>
 				</ul>
 			</section>
 		</article>
@@ -87,12 +76,10 @@
 				<li><a href="https://www.w3.org/standards/webdesign/htmlcss">HTML5, CSS 3.0</a></li>
 				<li><a href="https://secure.php.net/">PHP</a></li>
 				<li>JavaScript, <?php echo _('besonders die Bibliotheken'); ?>
-					<ul>
-						<li><a href="https://jquery.com/">jQuery</a>,</li>
-						<li><a href="http://leafletjs.com/">Leaflet</a>,</li>
-						<li><a href="http://tablesorter.com/">Tablesorter</a>,</li>
-						<li><a href="http://www.highcharts.com/">Highcharts</a></li>
-					</ul></li>
+					<a href="https://jquery.com/">jQuery</a>,
+					<a href="http://leafletjs.com/">Leaflet</a>,
+					<a href="http://tablesorter.com/">Tablesorter</a>,
+					<a href="http://www.highcharts.com/">Highcharts</a></li>
 			</ul>
 		</article>
 	</main>

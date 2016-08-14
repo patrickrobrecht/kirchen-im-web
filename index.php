@@ -40,7 +40,7 @@
 				echo _('Dabei kann jeder mithelfen, der ein wenig Zeit und Lust mitbringt:'); ?></p>
 			<ul>
 				<li><?php echo _('Sie möchten Ihre (oder auch eine andere) Gemeinde ergänzen?'); ?> <a href="add.php"><?php echo _('Das geht über dieses Formular.'); ?></a>
-					<?php echo sprintf( _('In der %s oder der %s können Sie vorher nachschauen, ob die Gemeinde bereits gelistet ist.'), '<a href="map.php">' . _('Karte') . '</a>', '<a href="table.php">' . _('Tabelle') . '</a>' ); ?></li>
+					<?php echo _('In der Karte oder der Tabelle können Sie vorher nachschauen, ob die Gemeinde bereits gelistet ist.'); ?></li>
 				<li><?php echo _('Sie haben selber einen Datensatz und möchten uns diesen zur Verfügung stellen? Dann kontaktieren Sie bitte einen der Entwickler.'); ?></li>
 			</ul>
 
