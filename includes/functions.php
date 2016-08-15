@@ -86,7 +86,7 @@ function isCountryCode($countryCode) {
  */
 function isDenomination($denomination) {
 	global $denominations;
-	return !isNullOrEmptyString($denomination) && in_array($denomination, $denominations);
+	return !isNullOrEmptyString($denomination) && array_key_exists($denomination, $denominations);
 }
 
 /**
@@ -97,7 +97,7 @@ function isDenomination($denomination) {
  */
 function isType($type) {
 	global $types;
-	return !isNullOrEmptyString($type) && in_array($type, $types);
+	return !isNullOrEmptyString($type) && array_key_exists($type, $types);
 }
 
 /**

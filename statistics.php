@@ -171,7 +171,7 @@
 	<?php include_once 'includes/header.php'; ?>
 	<main>
 		<h1><?php echo _('Statistik'); ?></h1>
-		<p>Auf kirchen-im-web.de sind aktuell <?php echo $totalCount['count']; ?> Gemeinden erfasst.</p>
+		<p><?php echo sprintf( _('Auf kirchen-im-web.de sind aktuell %s Gemeinden erfasst.'), $totalCount['count'] ); ?></p>
 		
 		<nav>
 			<h2><?php echo _('Inhalt'); ?></h2>

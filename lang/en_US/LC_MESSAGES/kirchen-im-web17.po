@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kirchen-im-web\n"
-"POT-Creation-Date: 2016-08-14 15:10+0200\n"
-"PO-Revision-Date: 2016-08-14 15:11+0200\n"
+"POT-Creation-Date: 2016-08-15 20:38+0200\n"
+"PO-Revision-Date: 2016-08-15 20:59+0200\n"
 "Last-Translator: Patrick Robrecht\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -830,6 +830,11 @@ msgstr "Churches with Website/Social Networks"
 #: statistics.php:129
 msgid "Gemeinden mit mehreren Auftritten mehrfach erfasst"
 msgstr "Churches with multiple pages counted multiple times"
+
+#: statistics.php:174
+#, php-format
+msgid "Auf kirchen-im-web.de sind aktuell %s Gemeinden erfasst."
+msgstr "At kirchen-im-web.de currently %s churches are registered."
 
 #: statistics.php:177
 msgid "Inhalt"
