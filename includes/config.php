@@ -72,10 +72,12 @@ $defaultType = 'Kirchengemeinde';
 $websites = array(
 		'web' => _('Webauftritt'),
 		'blog' => _('Blog'),
+		'rss' => 'RSS',
 		'facebook' => 'Facebook',
 		'flickr' => 'Flickr',
 		'googlePlus' => 'Google+',
 		'instagram' => 'Instagram',
+		'soundcloud' => 'Soundcloud',
 		'twitter' => 'Twitter',
 		'youtube' => 'YouTube',
 );
@@ -92,10 +94,12 @@ $preselected = array(
 $websitesStartOfURL = array(
 		'web' => '',
 		'blog' => '',
+		'rss' => '',
 		'facebook' => 'https://www.facebook.com/',
 		'flickr' => 'https://www.flickr.com/',
 		'googlePlus' => 'https://plus.google.com/',
 		'instagram' => 'https://www.instagram.com/',
+		'soundcloud' => 'https://soundcloud.com',
 		'twitter' => 'https://twitter.com/',
 		'youtube' => 'https://www.youtube.com/',
 );
