@@ -19,8 +19,6 @@ table{border-collapse:collapse;clear:both;}
 thead tr, tbody tr:nth-child(2n){background:#ddd;}
 th{text-align:left;}
 th,td{padding:.5em;vertical-align:top;}
-.websites tr>:nth-child(1),.details tr>:nth-child(1){width:220px;}
-.details tr>:nth-child(2){min-width:500px;}
 td li{margin:0;}
 .number{text-align:right;}
 
@@ -65,6 +63,9 @@ a[href^="https://"]:after{content:" " url(../images/secure.png);}
 
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
 #map{height:1024px;width:1024px;}
+
+/* Details */
+.websites tr>:nth-child(1),.details tr>:nth-child(1){width:170px;}
 
 /* Statistics */
 .stats{float:left;width:300px;}
