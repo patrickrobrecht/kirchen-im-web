@@ -61,6 +61,7 @@ $types = array(
 		'Kloster' => _('Kloster'),
 		'Laienorganisation' => _('Laienorganisation'),
 		'Landeskirche' => _('Landeskirche'),
+		'Museum' => _('Museum'),
 		'Pastoraler Raum' => _('Pastoraler Raum'),
 		'Pfarrei' => _('Pfarrei'),
 		'Pfarrvikarie' => _('Pfarrvikarie'),
@@ -79,6 +80,7 @@ $websites = array(
 		'instagram' => 'Instagram',
 		'soundcloud' => 'Soundcloud',
 		'twitter' => 'Twitter',
+		'vimeo' => 'Vimeo',
 		'youtube' => 'YouTube',
 );
 

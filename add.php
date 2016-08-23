@@ -171,7 +171,7 @@
 					foreach ($websites as $website_id => $website) {
 				?>
 				<input id="<?php echo $website_id; ?>URL" name="<?php echo $website_id; ?>URL" type="url" oninput="checkURL(this)" value="<?php if ($errors && array_key_exists($website_id, $urls)) echo $urls[$website_id]; ?>">
-				<label for="<?php echo $website_id; ?>URL"><?php echo $website; ?></label>
+				<label class="<?php echo $website_id; ?>" for="<?php echo $website_id; ?>URL"><?php echo $website; ?></label>
 				<?php 
 					}
 				?>

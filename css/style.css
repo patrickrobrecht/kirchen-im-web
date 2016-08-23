@@ -10,16 +10,7 @@ ol ol{margin-left:3em;}
 h1,h2,h3,p,li{max-width:60em;}
 a{color:#1982d1;text-decoration:none;}
 a:focus,a:active,a:hover{text-decoration:underline;}
-a[href^="http://"]:after{content:" " url(../images/non-secure.png);}
-a[href^="https://"]:after{content:" " url(../images/secure.png);}
-a[href*="facebook.com/"]:after{content:" "url(../images/icons/10/Facebook.png);}
-a[href*="flickr.com/"]:after{content:" "url(../images/icons/10/Flickr.png);}
-a[href*="github.com/"]:after{content:" "url(../images/icons/10/Github.png);}
-a[href*="plus.google.com/"]:after{content:" "url(../images/icons/10//Google-plus.png);}
-a[href*="instagram.com/"]:after{content:" "url(../images/icons/10/Instagram.png);}
-a[href*="soundcloud.com/"]:after{content:" "url(../images/icons/10/Soundcloud.png);}
-a[href*="twitter.com/"]:after{content:" "url(../images/icons/10/Twitter.png);}
-a[href*="youtube.com/"]:after{content:" "url(../images/icons/10/Youtube.png);}
+
 figure{margin:1em;float:right;}
 figcaption{max-width:300px;}
 img{border:0;}
@@ -43,14 +34,6 @@ button{padding:0.5em;}
 input:required+label::before,select:required+label::before{position:absolute;left:320%;content:"★";color:red;}
 input:required:valid+label::before{content:"✔";color:green;}
 input[type=url]+label::before{position:absolute;left:320%;top:-20%;}
-input[name=rssURL]+label::before{content:url(../images/icons/32/RSS.png);}
-input[name=facebookURL]+label::before{content:url(../images/icons/32/Facebook.png);}
-input[name=flickrURL]+label::before{content:url(../images/icons/32/Flickr.png);}
-input[name=googlePlusURL]+label::before{content:url(../images/icons/32/Google-plus.png);}
-input[name=instagramURL]+label::before{content:url(../images/icons/32/Instagram.png);}
-input[name=soundcloudURL]+label::before{content:url(../images/icons/32/Soundcloud.png);}
-input[name=twitterURL]+label::before{content:url(../images/icons/32/Twitter.png);}
-input[name=youtubeURL]+label::before{content:url(../images/icons/32/Youtube.png);}
 
 header nav,footer nav{float:left;width:100%;background:#222;margin:.5em 0;}
 header ul,footer ul{font-size:.9em;list-style:none;}
@@ -60,8 +43,25 @@ header nav a,footer nav a{color:#eee;}
 nav strong{color:#1982d1;}
 footer{margin:1em 0;font-size:.8em;clear:both;}
 
-.lang_de::before{content:url(../images/flags/de.gif) " ";}
-.lang_en::before{content:url(../images/flags/en.gif) " ";}
+/* Icons */
+.lang_de:before{content:url(../images/flags/de.gif) " ";}
+.lang_en:before{content:url(../images/flags/en.gif) " ";}
+
+a[href^="http://"]:after{content:" " url(../images/non-secure.png);}
+a[href^="https://"]:after{content:" " url(../images/secure.png);}
+
+.web:before{content:url(../images/icons/Web.png) " ";}
+.blog:before{content:url(../images/icons/Wordpress.png) " ";}
+.rss:before{content:url(../images/icons/RSS.png) " ";}
+.facebook:before{content:url(../images/icons/Facebook.png) " ";}
+.flickr:before{content:url(../images/icons/Flickr.png) " ";}
+.github::before{content:url(../images/icons/Github.png) " ";}
+.googlePlus:before{content:url(../images/icons/Google-plus.png) " ";}
+.instagram:before{content:url(../images/icons/Instagram.png) " ";}
+.soundcloud:before{content:url(../images/icons/Soundcloud.png) " ";}
+.twitter:before{content:url(../images/icons/Twitter.png) " ";}
+.vimeo:before{content:url(../images/icons/Vimeo.png) " ";}
+.youtube:before{content:url(../images/icons/Youtube.png) " ";}
 
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
 #map{height:1024px;width:1024px;}

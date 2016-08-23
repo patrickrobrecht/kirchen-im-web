@@ -225,7 +225,7 @@
 				<p><?php echo _('In dieser Statistik sind Gemeinden mit mehreren Webauftritten/Social-Media-Auftritten natürlich mehrfach erfasst.'); ?></p>
 				<ul>
 					<?php foreach ($totalByWebsite as $row) { ?>
-					<li><a href="table.php?hasWebsiteType=<?php echo $row['type']; ?>&<?php echo $row['type']; ?>=show"><?php echo $websites[$row['type']]; ?></a>: <?php echo $row['count']; ?></li>
+					<li><a class="<?php echo $row['type']; ?>" href="table.php?hasWebsiteType=<?php echo $row['type']; ?>&<?php echo $row['type']; ?>=show"><?php echo $websites[$row['type']]; ?></a>: <?php echo $row['count']; ?></li>
 					<?php } ?>
 				</ul>
 			</div>

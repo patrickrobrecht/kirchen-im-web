@@ -131,9 +131,9 @@
 					<th><?php echo _('Konfession'); ?></th>
 					<th><?php echo _('Gemeindetyp'); ?></th>					
 				<?php 
-					foreach ($showWebsites as $websiteName) {
+					foreach ($showWebsites as $websiteValue => $websiteName) {
 				?>
-					<th><?php echo $websiteName; ?></th>
+					<th class="<?php echo $websiteValue; ?>"><?php echo $websiteName; ?></th>
 				<?php 
 					}
 				?>

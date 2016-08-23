@@ -63,7 +63,7 @@
 				<tbody>
 					<?php foreach ($theWebsites as $website) { ?>
 					<tr>
-						<td><a href="<?php echo $website['url']; ?>"><?php echo $websites[$website['type']]; ?></a></td>
+						<td><a class="<?php echo $website['type']; ?>" href="<?php echo $website['url']; ?>"><?php echo $websites[$website['type']]; ?></a></td>
 						<td class="number"><?php if (!is_null($website['followers']))					
 							echo GermanNumberFormat($website['followers']);
 						}?></td>
