@@ -191,7 +191,7 @@
 			<div class="stats">	
 				<ul>
 					<?php foreach ($totalByDenomination as $row) { ?>
-					<li><a href="table.php?denomination=<?php echo $row['denomination']; ?>"><?php echo $denominations[$row['denomination']]; ?></a>: <?php echo $row['count']; ?></li>
+					<li><a class="<?php echo $row['denomination']; ?>" href="table.php?denomination=<?php echo $row['denomination']; ?>"><?php echo $denominations[$row['denomination']]; ?></a>: <?php echo $row['count']; ?></li>
 					<?php } ?>
 				</ul>
 			</div>
@@ -202,7 +202,7 @@
 			<div class="stats">
 				<ul>
 					<?php foreach ($totalByCountry as $row) { ?>
-					<li><a href="table.php?countryCode=<?php echo $row['countryCode']; ?>"><?php echo $countries[$row['countryCode']]; ?></a>: <?php echo $row['count']; ?></li>
+					<li><a class="<?php echo strtolower($row['countryCode']); ?>" href="table.php?countryCode=<?php echo $row['countryCode']; ?>"><?php echo $countries[$row['countryCode']]; ?></a>: <?php echo $row['count']; ?></li>
 					<?php } ?>
 				</ul>
 			</div>

@@ -61,6 +61,19 @@ a[href^="https://"]:after{content:" " url(../images/secure.png);}
 .vimeo:before{content:url(../images/icons/Vimeo.png) " ";}
 .youtube:before{content:url(../images/icons/Youtube.png) " ";}
 
+.at:before{content:url(../images/flags/Austria.png) " ";}
+.ch:before{content:url(../images/flags/Switzerland.png) " ";}
+.de:before{content:url(../images/flags/Germany.png) " ";}
+.li:before{content:url(../images/flags/Liechtenstein.png) " ";}
+.lu:before{content:url(../images/flags/Luxembourg.png) " ";}
+
+.alt-katholisch:before{content:url(../images/markers/orange.png) " ";}
+.anglikanisch:before{content:url(../images/markers/green.png) " ";}
+.evangelisch:before{content:url(../images/markers/purple.png) " ";}
+.freikirchlich:before{content:url(../images/markers/blue.png) " ";}
+.katholisch:before{content:url(../images/markers/yellow.png) " ";}
+.ökumenisch:before{content:url(../images/markers/red.png) " ";}
+
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
 #map{height:1024px;width:1024px;}
 
