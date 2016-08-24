@@ -106,7 +106,8 @@
 								echo _('Bisher wurden keine untergeordneten Ebenen hinzugefügt!');
 							}
 							if ($data['hasChildren'] == '1') {
-								echo '<p><a href="add.php?parentId=' . $data['id'] . '">' . sprintf( _('Jetzt eine Gemeinde unterhalb von %s hinzufügen!'), $data['name'] ) . '</a></p>';
+								echo '<p><a href="add.php?parentId=' . $data['id'] . '&denomination=' . $data['denomination'] .'&countryCode=' . $data['country'] . '">' 
+									. sprintf( _('Jetzt eine Gemeinde unterhalb von %s hinzufügen!'), $data['name'] ) . '</a></p>';
 							}
 							?></td>
 					</tr>

@@ -14,10 +14,6 @@
 		}
 	}
 	
-	if ( !isset($_POST['parentId']) && isset($_GET['parentId']) ) {
-		$data['parentId'] = trim($_GET['parentId']);
-	}
-	
 	// Check the data.
 	$dataCorrect = true;
 	$message = '';
@@ -85,6 +81,17 @@
 		$message = sprintf( _('%s wurde hinzugefügt. Vielen Dank!'), getLinkToDetailsPage($id, $data['name']) );
 		$errors = false;
 	}
+	
+	// Get parameters for pre-selection.
+	if ( !isset($_POST['parentId']) && isset($_GET['parentId']) ) {
+		$data['parentId'] = trim($_GET['parentId']);
+	}
+	if ( !isset($_POST['denomination']) && isset($_GET['denomination']) ) {
+		$data['denomination'] = trim($_GET['denomination']);
+	}
+	if ( !isset($_POST['countryCode']) && isset($_GET['countryCode']) ) {
+		$data['countryCode'] = trim($_GET['countryCode']);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo_language(); ?>">
@@ -115,7 +122,7 @@
 				<label for="name"><?php echo _('Name'); ?></label>
 				<input id="street" name="street" type="text" required value="<?php if ($errors) echo $data['street']; ?>">
 				<label for="street"><?php echo _('Straße'); ?>, <abbr title="<?php echo _('Hausnummer'); ?>"><?php echo _('Nr.'); ?></abbr></label>
-				<input id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" required value="<?php if ($errors) echo postalCodeString($data['postalCode'], $data['countryCode']); ?>">
+				<input id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" required value="<?php if ($errors && $data['postalCode'] != '') echo postalCodeString($data['postalCode'], $data['countryCode']); ?>">
 				<label for="postalCode"><?php echo _('PLZ'); ?></label>
 				<input id="city" name="city" type="text" required value="<?php if ($errors) echo $data['city']; ?>">
 				<label for="city"><?php echo _('Ort'); ?></label>
