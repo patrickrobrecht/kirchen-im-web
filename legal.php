@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo _('Impressum'); ?> - kirchen-im-web.de</title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
@@ -28,8 +28,8 @@
 			kontakt [ät-Zeichen] kirchen [minus] im [minus] web de.</p>
 		
 		<article>
-			<h2><?php _('Lizenzen'); ?></h2>
-			<p><?php _('Social Media Icons'); ?>: CC BY-NC-ND 3.0, <a href="http://www.designbolts.com/2013/06/27/new-flat-free-social-media-icons-2013/">DesignBolts.com</a>
+			<h2><?php echo _('Lizenzen'); ?></h2>
+			<p><?php echo _('Social Media Icons'); ?>: CC BY-NC-ND 3.0, <a href="http://www.designbolts.com/2013/06/27/new-flat-free-social-media-icons-2013/">DesignBolts.com</a>
 		</article>
 				
 		<article>

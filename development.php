@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo _('Entwicklung'); ?> - kirchen-im-web.de</title>
 	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.">
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>

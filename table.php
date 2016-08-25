@@ -41,8 +41,8 @@
 	<title><?php echo _('Tabelle'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<?php } ?>	
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/theme.default.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/theme.default.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
@@ -277,8 +277,8 @@
 				echo sprintf( ngettext("Eine Gemeinde gefunden!", "%d Gemeinden gefunden!", $counter), $counter);
 			} ?></output></p>
 	</main>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.tablesorter.js"></script>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.tablesorter.js"></script>
 	<script>$("#churchTable").tablesorter({
 <?php 
 		if ($compare) {

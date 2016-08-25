@@ -42,8 +42,8 @@
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo _('Statistik'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
-	<link rel="stylesheet" href="./css/style.css">
-	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(function() {
 		$('#denominations').highcharts({
@@ -251,8 +251,8 @@
 			</ul>
 		</nav>
 		
-		<script src="./js/highcharts.js"></script>
-		<script src="./js/exporting.js"></script>
+		<script src="/js/highcharts.js"></script>
+		<script src="/js/exporting.js"></script>
 		
 		<article id="statistics-denominations">
 			<h2><?php echo _('Einträge nach Konfessionen'); ?></h2>

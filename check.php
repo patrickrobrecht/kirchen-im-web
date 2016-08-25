@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>

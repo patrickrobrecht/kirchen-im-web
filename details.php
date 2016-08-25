@@ -43,8 +43,8 @@
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo $data['name']; ?> - kirchen-im-web.de</title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/leaflet.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/leaflet.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
@@ -77,8 +77,8 @@
 			<h2><?php echo _('Adresse, Konfession und Hierarchie'); ?></h2>
 
 		<div id="detailsmap"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/leaflet.js"></script>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/leaflet.js"></script>
 		<script type="text/javascript">
 			var map;
 			var markerArray = [];

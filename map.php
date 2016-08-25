@@ -9,8 +9,8 @@
 	<title><?php echo _('Karte'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>
 		<?php echo _('kirchen-im-web.de macht diese auf einer Karte sichtbar.'); ?>">
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/leaflet.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/leaflet.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>	
@@ -21,8 +21,8 @@
 		<div id="map"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
 	</main>
 	
-	<script src="js/jquery.min.js"></script>
-	<script src="js/leaflet.js"></script>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/leaflet.js"></script>
 	<script type="text/javascript">
 		var map;
 		var markerArray = [];
@@ -46,12 +46,12 @@
 		var vimeoLayer = new L.LayerGroup;
 		var youtubeLayer = new L.LayerGroup;
 		// the icons
-		var oldCatholicIcon = L.icon({iconUrl: './images/markers/orange.png'});
-		var anglicanIcon = L.icon({iconUrl: './images/markers/green.png'});
-		var protestantIcon = L.icon({iconUrl: './images/markers/purple.png'});
-		var freeChurchesIcon = L.icon({iconUrl: './images/markers/blue.png'});
-		var catholicIcon = L.icon({iconUrl: './images/markers/yellow.png'});
-		var othersIcon = L.icon({iconUrl: './images/markers/red.png'});
+		var oldCatholicIcon = L.icon({iconUrl: '/images/markers/orange.png'});
+		var anglicanIcon = L.icon({iconUrl: '/images/markers/green.png'});
+		var protestantIcon = L.icon({iconUrl: '/images/markers/purple.png'});
+		var freeChurchesIcon = L.icon({iconUrl: '/images/markers/blue.png'});
+		var catholicIcon = L.icon({iconUrl: '/images/markers/yellow.png'});
+		var othersIcon = L.icon({iconUrl: '/images/markers/red.png'});
 		
 		loadMap();
 		
@@ -68,7 +68,7 @@
 
 		function getData() {
 			'use strict';
-			var url = 'data/data.json';
+			var url = '/data/data.json';
 			console.log(url);
 			$.getJSON(url,
 				function(data) {

@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
@@ -18,7 +18,7 @@
 		<article id="info">
 			<h2><?php echo _('Über das Projekt'); ?></h2>
 			<figure>
-				<a href="map.php"><img alt="<?php echo _('Karte'); ?>" src="images/screenshot.png"></a>
+				<a href="map.php"><img alt="<?php echo _('Karte'); ?>" src="/images/screenshot.png"></a>
 				<figcaption><?php echo sprintf( _('In der %s sind alt-katholische Kirchen orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.'), '<a href="map.php">' . _('Karte') . '</a>'); ?></figcaption>
 			</figure>
 			<p><?php echo _('Wir wollen zeigen, dass viele Kirchengemeinden, Landeskirchen und Bistümer auch im Web gute Öffentlichtkeitsarbeit machen.'); ?>
