@@ -35,11 +35,15 @@
 		var catholicLayer = new L.LayerGroup;
 		var othersLayer = new L.LayerGroup;
 		var webLayer = new L.LayerGroup;
+		var blogLayer = new L.LayerGroup;
+		var rssLayer = new L.LayerGroup;
 		var facebookLayer = new L.LayerGroup;
 		var flickrLayer = new L.LayerGroup;
 		var googleLayer = new L.LayerGroup;
 		var instagramLayer = new L.LayerGroup;
+		var soundcloudLayer = new L.LayerGroup;
 		var twitterLayer = new L.LayerGroup;
+		var vimeoLayer = new L.LayerGroup;
 		var youtubeLayer = new L.LayerGroup;
 		// the icons
 		var oldCatholicIcon = L.icon({iconUrl: './images/markers/orange.png'});
@@ -69,7 +73,7 @@
 			$.getJSON(url,
 				function(data) {
 					var lat, lng, title, denomination, icon, denominationLayer,
-						web, facebook, flickr, google, instagram, twitter, youtube, 
+						web, blog, rss, facebook, flickr, googlePlus, instagram, soundcloud, twitter, vimeo, youtube, 
 						content, thisMarker;
 					$.each(data,
 						function(i, val) {
@@ -87,7 +91,7 @@
 							} else if (denomination == 'evangelisch') {
 								denominationLayer = protestantLayer;
 								icon = protestantIcon;
-							} else if (denomination == 'evangelisch-freikirchlich') {
+							} else if (denomination == 'freikirchlich') {
 								denominationLayer = freeChurchesLayer;
 								icon = freeChurchesIcon;
 							} else if (denomination == 'katholisch') {
@@ -98,15 +102,25 @@
 								icon = othersIcon;
 							}
 							web = val.web;
+							blog = val.blog;
+							rss = val.rss;
 							facebook = val.facebook;
 							flickr = val.flickr;
-							google = val.google;
+							googlePlus = val.googlePlus;
 							instagram = val.instagram;
+							soundcloud = val.soundcloud;
 							twitter = val.twitter;
+							vimeo = val.vimeo;
 							youtube = val.youtube;
 							content = '<strong><a href="details.php?id=' + val.id + '">' + title + '</a></strong><br>' + val.street + ', ' + val.postalCode + ' ' + val.city + '<br><ul>';
 							if (web) {
-								content = content + '<li><a href="' + web + '"><?php echo _('Webauftritt'); ?></a></li>';
+								content = content + '<li><a href="' + web + '"><?php echo $websites['web']; ?></a></li>';
+							}
+							if (blog) {
+								content = content + '<li><a href="' + blog + '"><?php echo $websites['blog']; ?></a></li>';
+							}
+							if (rss) {
+								content = content + '<li><a href="' + rss + '">RSS</a></li>';
 							}
 							if (facebook) {
 								content = content + '<li><a href="' + facebook + '">Facebook</a></li>';
@@ -114,14 +128,20 @@
 							if (flickr) {
 								content = content + '<li><a href="' + flickr + '">Flickr</a></li>';
 							}
-							if (google) {
-								content = content + '<li><a href="' + google + '">Google+</a></li>';
+							if (googlePlus) {
+								content = content + '<li><a href="' + googlePlus + '">Google+</a></li>';
 							}
 							if (instagram) {
 								content = content + '<li><a href="' + instagram + '">Instagram</a></li>';
 							}
+							if (soundcloud) {
+								content = content + '<li><a href="' + soundcloud + '">Soundcloud</a></li>';
+							}
 							if (twitter) {
 								content = content + '<li><a href="' + twitter + '">Twitter</a></li>';
+							}
+							if (vimeo) {
+								content = content + '<li><a href="' + vimeo + '">Vimeo</a></li>';
 							}
 							if (youtube) {
 								content = content + '<li><a href="' + youtube + '">YouTube</a></li>';
@@ -140,20 +160,32 @@
 								if (web) {
 									thisMarker.addTo(webLayer);
 								}
+								if (blog) {
+									thisMarker.addTo(blogLayer);
+								}
+								if (rss) {
+									thisMarker.addTo(rssLayer);
+								}
 								if (facebook) {
 									thisMarker.addTo(facebookLayer);
 								}
 								if (flickr) {
 									thisMarker.addTo(flickrLayer);
 								}
-								if (google) {
+								if (googlePlus) {
 									thisMarker.addTo(googleLayer);
 								}
 								if (instagram) {
 									thisMarker.addTo(instagramLayer);
 								}
+								if (soundcloud) {
+									thisMarker.addTo(soundcloudLayer);
+								}
 								if (twitter) {
 									thisMarker.addTo(twitterLayer);
+								}
+								if (vimeo) {
+									thisMarker.addTo(vimeoLayer);
 								}
 								if (youtube) {
 									thisMarker.addTo(youtubeLayer);
@@ -171,12 +203,16 @@
 							"<?php echo _('freikirchlich'); ?>": freeChurchesLayer,
 							"<?php echo _('katholisch'); ?>": catholicLayer,
 							"<?php echo _('andere Konfession'); ?>": othersLayer,
-							"<?php echo _('Webauftritte'); ?>": webLayer,
+							"<?php echo $websites['web']; ?>": webLayer,
+							"<?php echo $websites['blog']; ?>": blogLayer,
+							"RSS": rssLayer,
 							"Facebook": facebookLayer,
 							"Flickr": flickrLayer,
 							"Google+": googleLayer,
 							"Instagram": instagramLayer,
+							"Soundcloud": soundcloudLayer,
 							"Twitter": twitterLayer,
+							"Vimeo": vimeoLayer,
 							"YouTube": youtubeLayer,
 						}
 						L.control.layers(layers).addTo(map);
