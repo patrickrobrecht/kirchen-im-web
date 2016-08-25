@@ -65,7 +65,7 @@
 					<tr>
 						<td><a class="<?php echo $website['type']; ?>" href="<?php echo $website['url']; ?>"><?php echo $websites[$website['type']]; ?></a></td>
 						<td class="number"><?php if (!is_null($website['followers']))					
-							echo GermanNumberFormat($website['followers']);
+							echo getNumberFormat($website['followers']);
 						}?></td>
 					</tr>
 				</tbody>

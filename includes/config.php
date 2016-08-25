@@ -8,7 +8,7 @@ if (isset($_GET["lang"])) {
 	$current_language = "de_DE";
 }
 
-$domain = "kirchen-im-web17";
+$domain = "kirchen-im-web18";
 bindtextdomain($domain, "lang");
 bind_textdomain_codeset($domain, 'UTF-8');
 textdomain($domain);

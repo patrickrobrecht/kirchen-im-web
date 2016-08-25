@@ -254,7 +254,7 @@
 						} else {
 							if ($followers) {
 				?>
-					<td class="number"><a href="<?php echo $url; ?>"><?php echo GermanNumberFormat($followers); ?></td>
+					<td class="number"><a href="<?php echo $url; ?>"><?php echo getNumberFormat($followers); ?></td>
 				<?php 		
 							} else { 
 				?>

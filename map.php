@@ -168,7 +168,7 @@
 							"<?php echo _('alt-katholisch'); ?>": oldCatholicLayer,
 							"<?php echo _('anglikanisch'); ?>": anglicanLayer,
 							"<?php echo _('evangelisch'); ?>": protestantLayer,
-							"<?php echo _('evangelisch-freikirchlich'); ?>": freeChurchesLayer,
+							"<?php echo _('freikirchlich'); ?>": freeChurchesLayer,
 							"<?php echo _('katholisch'); ?>": catholicLayer,
 							"<?php echo _('andere Konfession'); ?>": othersLayer,
 							"<?php echo _('Webauftritte'); ?>": webLayer,

@@ -249,8 +249,13 @@ function getLinkToDetailsPage($id, $text) {
 	}	
 }
 
-function GermanNumberFormat($number, $decimals = 0) {
-	return number_format($number, $decimals, ',', '.');
+function getNumberFormat($number, $decimals = 0) {
+	global $current_language;
+	if ($current_language == 'de_DE') {
+		return number_format($number, $decimals, ',', '.');
+	} else {
+		return number_format($number, $decimals);
+	}
 }
 
 function postalCodeString($postalCodeNumber, $countryCode) {

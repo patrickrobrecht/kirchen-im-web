@@ -17,8 +17,9 @@ img{border:0;}
 
 table{border-collapse:collapse;clear:both;}
 thead tr, tbody tr:nth-child(2n){background:#ddd;}
-th{text-align:left;}
-th,td{padding:.5em;vertical-align:top;}
+td,th{padding:.5em;}
+th{text-align:center;vertical-align:middle;}
+td{vertical-align:top;}
 td li{margin:0;}
 .number{text-align:right;}
 
@@ -81,8 +82,8 @@ a[href^="https://"]:after{content:" " url(../images/secure.png);}
 .websites tr>:nth-child(1),.details tr>:nth-child(1){width:170px;}
 
 /* Statistics */
-.stats{float:left;width:300px;}
-.chart{width:500px;height:400px;float:left;margin-left:2em;}
+.stats{float:left;margin-left:2em;}
+.chart{width:500px;height:400px;float:left;}
 #statistics article{clear:both;}
 
 @media screen and (max-width:700px){ /* small screens */
