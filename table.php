@@ -302,7 +302,11 @@
 <?php 
 		} 
 ?>
+		<?php if ($current_language == 'de_DE') { ?>
 		usNumberFormat: false,
+		<?php } else { ?>
+		usNumberFormat: true,
+		<?php } ?>
 	});</script>	
 	<?php include_once 'includes/footer.php'; ?>
 </body>
