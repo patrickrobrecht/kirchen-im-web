@@ -44,13 +44,14 @@
 	<title><?php echo $data['name']; ?> - kirchen-im-web.de</title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/leaflet.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
 	
 	<main>
 		<h1><?php echo _('Details'); ?>: <?php echo $data['name']; ?></h1>
-
+						
 		<section>
 			<h2><?php echo _('Webauftritte und soziale Netzwerke'); ?></h2>
 			<table class="websites">
@@ -70,10 +71,42 @@
 					</tr>
 				</tbody>
 			</table>
-		</section>		
+		</section>
 		
 		<section>
 			<h2><?php echo _('Adresse, Konfession und Hierarchie'); ?></h2>
+
+		<div id="detailsmap"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/leaflet.js"></script>
+		<script type="text/javascript">
+			var map;
+			var markerArray = [];
+			
+			loadMap();
+			
+			function loadMap() {
+				'use strict'; // Strict mode makes the browse mourn, if bad practise is used
+				// create a map in the "map" div, set the view to a given place and zoom
+				map = L.map('detailsmap').setView([<?php echo $data['lat']; ?>, <?php echo $data['lon']; ?>], 13);
+				// add an OpenStreetMap tile layer
+				L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+							attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
+					}).addTo(map);
+
+				// add the marker
+				var icon = L.icon({iconUrl: '/images/markers/<?php echo $denominations_colors[$data['denomination']]; ?>.png'});
+				var thisMarker = L.marker([<?php echo $data['lat']; ?>, <?php echo $data['lon']; ?>], {title: "<?php echo $data['name']; ?>", icon: icon});
+				thisMarker.addTo(map).bindPopup('<strong><?php echo $data['name']; ?></strong>');
+
+				// Push the marker to the Array which shall be displayed on the map
+				markerArray.push(thisMarker);
+				
+				var group = L.featureGroup(markerArray).addTo(map);
+				map.fitBounds(group.getBounds());
+			};
+		</script>			
+			
 			<table class="details">
 				<tbody>
 					<tr>

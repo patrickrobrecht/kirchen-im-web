@@ -46,6 +46,16 @@ $denominations = array(
 		'andere' => _('andere'),
 );
 
+$denominations_colors = array(
+		'alt-katholisch' => 'orange',
+		'anglikanisch' => 'green',
+		'evangelisch' => 'purple',
+		'freikirchlich' => 'blue',
+		'katholisch' => 'yellow',
+		'ökumenisch' => 'red',
+		'andere' => 'red',
+);
+
 // Types.
 $types = array(
 		'Bildungseinrichtung' => _('Bildungseinrichtung'),
