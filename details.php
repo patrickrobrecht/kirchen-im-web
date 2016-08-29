@@ -97,7 +97,7 @@
 				// add the marker
 				var icon = L.icon({iconUrl: '/images/markers/<?php echo $denominations_colors[$data['denomination']]; ?>.png'});
 				var thisMarker = L.marker([<?php echo $data['lat']; ?>, <?php echo $data['lon']; ?>], {title: "<?php echo $data['name']; ?>", icon: icon});
-				thisMarker.addTo(map).bindPopup('<strong><?php echo $data['name']; ?></strong>');
+				thisMarker.addTo(map).bindPopup("<strong><?php echo $data['name']; ?></strong>");
 
 				// Push the marker to the Array which shall be displayed on the map
 				markerArray.push(thisMarker);

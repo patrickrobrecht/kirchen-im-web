@@ -15,6 +15,7 @@
 		<h1>Consistency checks</h1>
 		<ul>
 			<li><a href="check.php?check=space">Space Characters</a></li>
+			<li><a href="check.php?check=geo">Missing geopositions</a></li>
 			<li><a href="check.php?check=rss">RSS</a>:
 				<?php for ($i = 1; $i < 1000; $i += 10) { ?>
 				<a href="check.php?check=rss&min=<?php echo $i; ?>&max=<?php echo ($i+9); ?>"><?php echo $i . '-' . ($i+9); ?></a> |
@@ -59,6 +60,21 @@
 			if ($row['city'] != trim($row['city'])) {
 				echo $row['id'] . ', ';
 			}
+		}
+		echo '</p>';
+	}
+	
+	if ('geo' == $check) {
+		echo '<p>Check for missing geolocation data</p>';
+		
+		$statement = $connection->prepare('SELECT * FROM `churches` WHERE lat is null or lon is null AND id >= :min AND id <= :max');
+		$statement->bindParam(':min', $min);
+		$statement->bindParam(':max', $max);
+		$statement->execute();
+		
+		echo '<p>lat or lon missing: ';
+		while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+			echo $row['id'] . ', ';
 		}
 		echo '</p>';
 	}
