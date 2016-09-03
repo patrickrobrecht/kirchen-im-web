@@ -6,6 +6,8 @@
 	# Redirect according to language, adding lang parameter
 	RewriteRule ^de(/.*)?$ ./$1?lang=de_DE&%{QUERY_STRING} [NC,L]
 	RewriteRule ^en(/.*)?$ ./$1?lang=en_US&%{QUERY_STRING} [NC,L]
+	
+	RewriteRule ^sitemap.xml$ ./sitemap.php [NC,L]
 </IfModule>
 
 # Redirect to German if URL doesn't start with a language slug
