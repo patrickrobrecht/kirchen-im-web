@@ -16,7 +16,7 @@
 	<?php include_once 'includes/header.php'; ?>	
 	<main>
 		<h1><?php echo _('Karte kirchlicher Web- und Social-Media-Auftritte'); ?></h1>
-		<p><?php echo sprintf( _('In der %s sind alt-katholische Kirchen orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.'), _('Karte') ); ?></p>
+		<p><?php echo _('Alt-katholische Kirchen werden orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.'); ?></p>
 		<p><?php echo sprintf( _('Wenn Ihre Gemeinde noch fehlt, können Sie diese über %s eintragen.'), '<a href="add.php">' . _('dieses Formular') . '</a>'); ?></p>
 		<div id="map"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
 	</main>

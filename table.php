@@ -100,7 +100,7 @@
 					} 
 				?>
 				</select>
-				<label for="hasWebsiteType"><?php echo _('Nur Gemeinden mit'); ?></label>
+				<label for="hasWebsiteType"><?php echo _('nur Gemeinden mit'); ?></label>
 			</fieldset>
 			<fieldset style="width:10em;">
 				<?php if (!$compare) {?>

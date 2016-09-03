@@ -108,16 +108,16 @@
 	<main>
 		<h1><?php echo _('Gemeinde hinzufügen'); ?></h1>
 		<p><?php echo _('Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.'); ?> 
-			<strong><?php echo _('Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem Ausfüllen, ob die Gemeinde bereits aufgeführt ist'); ?> 
-				(<a href="map.php"><?php echo _('in der Karte'); ?></a> <?php echo _('oder'); ?> <a href="table.php"><?php echo _('in der Tabelle mit Filter-Möglichkeiten'); ?></a>).</strong></p>
-		<p><?php echo sprintf( _('In der Tabelle erscheint eine neu eingetragene Gemeinde sofort, in Karte bzw. im %s erst bis zu einen Tag später.'), '<a href="table.php?compare=true">' . _('Social-Media-Vergleich') . '</a> ')?></p>
+			<strong><?php echo _('Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem Ausfüllen, ob die Gemeinde bereits aufgeführt ist'); ?></strong>
+				(<a href="map.php"><?php echo _('in der Karte'); ?></a> <?php echo _('oder'); ?> <a href="table.php"><?php echo _('in der Tabelle mit Filter-Möglichkeiten'); ?></a>).</p>
+		<p><?php echo sprintf( _('In der Tabelle erscheint eine neu eingetragene Gemeinde sofort, in Karte bzw. im %s erst bis zu einen Tag später.'), '<a href="table.php?compare=true">' . _('Vergleich der Social-Media-Auftritte') . '</a> ')?></p>
 		<p><output>
 			<?php if ($somethingSubmitted) {
 				echo $message; 
 			} ?></output></p>
 		<form method="post">
 			<fieldset>
-				<legend><?php echo _('Name') . ', ' . _('Adresse') . ', ' . _('Konfession');?></legend>
+				<legend><?php echo _('Adresse, Konfession und Hierarchie');?></legend>
 				<input id="name" name="name" type="text" required value="<?php if ($errors) echo $data['name']; ?>">
 				<label for="name"><?php echo _('Name'); ?></label>
 				<input id="street" name="street" type="text" required value="<?php if ($errors) echo $data['street']; ?>">
@@ -168,7 +168,7 @@
 				<p><?php echo _('Bei "Gemeindetyp" ist eine passende Auswahl zu treffen. "Pastoraler Raum" beschreibt dabei Zusammenschlüsse von mehreren katholischen Pfarreien/Pfarrvikarien (unterschiedliche Bezeichnungen in den Bistümern: Pastoralverbund, Pfarreiengemeinschaft, Seelsorgeeinheit etc.).'); ?>
 				<p><?php echo _('Die nächsthöhere Ebene ist bei katholischen Pfarreien und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen Kirchengemeinden entsprechend der Kirchenkreis bzw. die Landeskirche.'); ?>
 					<?php echo _('Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor angelegt werden (hierbei ein Häkchen bei "hat übergeordnete Ebene" nicht vergessen).'); ?></p>
-				<p><?php echo _('Der Haken bei "hat untergeordnete Ebene" ist zu setzen, wenn die Gemeinde selbst unter "gehört zu" aufgeführt werden soll (also bei Dekanate und bei Kirchenkreisen). Bei Kirchengemeinden darf der Haken nicht gesetzt werden!'); ?></p>
+				<p><?php echo _('Der Haken bei "hat untergeordnete Ebene" ist zu setzen, wenn die Gemeinde selbst unter "nächsthöhere Ebene" aufgeführt werden soll (also bei Dekanate und bei Kirchenkreisen). Bei Kirchengemeinden darf der Haken nicht gesetzt werden!'); ?></p>
 			</fieldset>
 			<fieldset>
 				<legend><?php echo _('URLs des Webauftritts und der Social-Media-Profile'); ?></legend>

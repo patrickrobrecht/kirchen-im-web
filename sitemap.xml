@@ -39,10 +39,6 @@
 	<url>
 		<loc>http://kirchen-im-web.de/de/legal.php</loc>
 		<changefreq>monthly</changefreq>
-	</url>	
-	<url>
-		<loc>http://kirchen-im-web.de/de/development.php</loc>
-		<changefreq>monthly</changefreq>
 	</url>
 	
 	<url>
@@ -80,9 +76,5 @@
 	<url>
 		<loc>http://kirchen-im-web.de/en/legal.php</loc>
 		<changefreq>monthly</changefreq>
-	</url>	
-	<url>
-		<loc>http://kirchen-im-web.de/en/development.php</loc>
-		<changefreq>monthly</changefreq>
-	</url>	
+	</url>
 </urlset>

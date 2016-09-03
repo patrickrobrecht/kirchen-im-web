@@ -140,7 +140,7 @@
 				text: '<?php echo _('Gemeinden mit Webauftritt/Social-Media-Profilen'); ?>'
 			},
 			subtitle: {
-				text: '<?php echo _('Gemeinden mit mehreren Auftritten mehrfach erfasst'); ?>'
+				text: 'kirchen-im-web.de'
 			},
 			xAxis: {
 				categories: [ 
@@ -325,13 +325,12 @@
 		</article>
 		<article id="statistics-networks">
 			<h2><?php echo _('Einträge nach Webauftritten/Social-Media-Auftritten'); ?></h2>
-			<p><?php echo _('In dieser Statistik sind Gemeinden mit mehreren Webauftritten/Social-Media-Auftritten natürlich mehrfach erfasst.'); ?></p>
 			<div id="websites" class="chart"></div>
 			<div class="stats">
 				<table>
 					<thead>
 						<tr>
-							<th><?php echo _('Webauftritt/Social-Media-Auftritt'); ?></th>
+							<th><?php echo _('Webauftritt/Netzwerk'); ?></th>
 							<th colspan="2"><?php echo _('Anzahl der Einträge'); ?></th>
 						</tr>
 					</thead>

@@ -17,27 +17,6 @@ RedirectMatch 301 ^/table.php$			/de/table.php
 RedirectMatch 301 ^/table.php?compare=true$	/de/table.php?compare=true
 RedirectMatch 301 ^/data.php$			/de/data.php
 RedirectMatch 301 ^/legal.php$			/de/legal.php
-RedirectMatch 301 ^/development.php$	/de/development.php
-
-# Redirect old URLs
-Redirect 301 /index.html 				/de/index.php
-
-Redirect 301 /tabelle/ 					/de/table.php
-Redirect 301 /tabelle/index.php 		/de/table.php
-Redirect 301 /validierung/ 				/de/table.php
-Redirect 301 /validierung/index.php 	/de/table.php
-
-Redirect 301 /vergleich/ 				/de/table.php?compare=true
-Redirect 301 /vergleich/index.html 		/de/table.php?compare=true
-Redirect 301 /social-media.php 			/de/table.php?compare=true
-
-Redirect 301 /karte/ 					/de/map.php
-Redirect 301 /karte/index.html			/de/map.php
-
-Redirect 301 /impressum.html 			/de/legal.php
-
-Redirect 301 /entwicklung/ 				/de/development.php
-Redirect 301 /entwicklung/index.html 	/de/development.php
 
 # Forbid unauthorized direct access for included php files
 	<files config.php>

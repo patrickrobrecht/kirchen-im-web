@@ -42,7 +42,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo $data['name']; ?> - kirchen-im-web.de</title>
-	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
+	<meta name="description" content="<?php echo $data['name'] . ' - ' . _('Webauftritte und soziale Netzwerke'); ?>">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/leaflet.css">
 </head>

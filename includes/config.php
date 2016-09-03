@@ -8,7 +8,7 @@ if (isset($_GET["lang"])) {
 	$current_language = "de_DE";
 }
 
-$domain = "kirchen-im-web18";
+$domain = "kirchen-im-web22";
 bindtextdomain($domain, "lang");
 bind_textdomain_codeset($domain, 'UTF-8');
 textdomain($domain);
@@ -135,7 +135,6 @@ $headerLinks = array(
 
 $footerLinks = array(
 		_('Impressum') => 'legal.php',
-		_('Entwicklung') => 'development.php'
 );
 
 $languages_slugs = array(
