@@ -60,7 +60,7 @@
 			// create a map in the "map" div, set the view to a given place and zoom
 			map = L.map('map', {layers: [allLayer]}).setView([25, 8], 11);
 			// add an OpenStreetMap tile layer
-			L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+			L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
 				}).addTo(map);
 			getData();

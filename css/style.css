@@ -82,6 +82,9 @@ a[href^="https://"]:after{content:" " url(/images/secure.png);}
 /* Details */
 .websites tr>:nth-child(1),.details tr>:nth-child(1){width:170px;}
 
+/* table */
+.small-fieldset{width:10em;}
+
 /* Statistics */
 .stats{float:left;margin-left:2em;}
 .chart{width:500px;height:400px;float:left;}

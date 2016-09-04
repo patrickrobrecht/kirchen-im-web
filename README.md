@@ -1,19 +1,19 @@
-﻿![Screenshot](http://kirchen-im-web.de/images/screenshot.png)
+﻿![Screenshot](https://kirchen-im-web.de/images/screenshot.png)
 
-# [kirchen-im-web.de](http://kirchen-im-web.de/en/index.php) - Directory of Churchy Websites and Social Network Pages 
+# [kirchen-im-web.de](https://kirchen-im-web.de/en/index.php) - Directory of Churchy Websites and Social Network Pages 
 
-We want to show that many parishes, regional churches and dioceses are do a good job in public relations and present those with their websites and social network pages [at a map](http://kirchen-im-web.de/en/map.php) and [tabularly](http://kirchen-im-web.de/en/table.php). kirchen-im-web.de also compares the follower numbers of the [social media pages](http://kirchen-im-web.de/en/table.php?compare=true). 
+We want to show that many parishes, regional churches and dioceses are do a good job in public relations and present those with their websites and social network pages [at a map](https://kirchen-im-web.de/en/map.php) and [tabularly](https://kirchen-im-web.de/en/table.php). kirchen-im-web.de also compares the follower numbers of the [social media pages](https://kirchen-im-web.de/en/table.php?compare=true). 
 
-Our Project is oecumenic, i. e. regardless whether Protestants, Catholic or free church - all can participate. You can simply add your church using our [form](http://kirchen-im-web.de/en/add.php).
+Our Project is oecumenic, i. e. regardless whether Protestants, Catholic or free church - all can participate. You can simply add your church using our [form](https://kirchen-im-web.de/en/add.php).
 
 The latest development version is online at [beta.kirchen-im-web.de](http://beta.kirchen-im-web.de/en/index.php).
 
 ## Features
-* [map](http://kirchen-im-web.de/en/map.php) with all churches which can be filtered according to denomination and network
-* [table](http://kirchen-im-web.de/en/table.php) with filtering according to name, postal code, city, country, denomination, type, network
-* [details page](http://kirchen-im-web.de/en/details.php?id=1) for every church showing all websites and networks, map and church hierarchy
-* form to [add new churches](http://kirchen-im-web.de/en/add.php)
-* [statistics](http://kirchen-im-web.de/en/statistics.php) and downloadable [open data](http://kirchen-im-web.de/en/data.php)
+* [map](https://kirchen-im-web.de/en/map.php) with all churches which can be filtered according to denomination and network
+* [table](https://kirchen-im-web.de/en/table.php) with filtering according to name, postal code, city, country, denomination, type, network
+* [details page](https://kirchen-im-web.de/en/details.php?id=1) for every church showing all websites and networks, map and church hierarchy
+* form to [add new churches](https://kirchen-im-web.de/en/add.php)
+* [statistics](https://kirchen-im-web.de/en/statistics.php) and downloadable [open data](https://kirchen-im-web.de/en/data.php)
 * available in English and German
 
 ## Changelog
@@ -47,20 +47,20 @@ The latest development version is online at [beta.kirchen-im-web.de](http://beta
 * JavaScript, especially the libraries [jQuery)(https://jquery.com/], [Highcharts](http://www.highcharts.com/), [Leaflet](http://leafletjs.com/), [Tablesorter](http://tablesorter.com/)
 
 
-# [kirchen-im-web.de](http://kirchen-im-web.de/de/index.php) - Verzeichnis kirchlicher Web- und Social-Media-Auftritte
+# [kirchen-im-web.de](https://kirchen-im-web.de/de/index.php) - Verzeichnis kirchlicher Web- und Social-Media-Auftritte
 
-Wir wollen zeigen, dass viele Kirchengemeinden, Landeskirchen und Bistümer auch im Web gute Öffentlichtkeitsarbeit machen und stellen diese mit ihren Web- und Social-Media-Auftritten [in einer Karte](http://kirchen-im-web.de/de/map.php) und [tabellarisch](http://kirchen-im-web.de/de/table.php) dar. kirchen-im-web.de vergleicht auch die Follower-Zahlen der [Social-Media-Auftritte](http://kirchen-im-web.de/de/table.php?compare=true).
+Wir wollen zeigen, dass viele Kirchengemeinden, Landeskirchen und Bistümer auch im Web gute Öffentlichtkeitsarbeit machen und stellen diese mit ihren Web- und Social-Media-Auftritten [in einer Karte](https://kirchen-im-web.de/de/map.php) und [tabellarisch](https://kirchen-im-web.de/de/table.php) dar. kirchen-im-web.de vergleicht auch die Follower-Zahlen der [Social-Media-Auftritte](https://kirchen-im-web.de/de/table.php?compare=true).
 
-Unser Projekt ist überkonfessionell, d. h. egal ob evangelisch, katholisch oder freikirchlich - alle können mitmachen. Sie können Ihre Gemeinde einfach über unser [Formular](http://kirchen-im-web.de/de/add.php) hinzufügen.
+Unser Projekt ist überkonfessionell, d. h. egal ob evangelisch, katholisch oder freikirchlich - alle können mitmachen. Sie können Ihre Gemeinde einfach über unser [Formular](https://kirchen-im-web.de/de/add.php) hinzufügen.
 
 Die aktuelle Entwicklungsversion gibt es unter [beta.kirchen-im-web.de](http://beta.kirchen-im-web.de/de/index.php).
 
 ## Funktionen
-* [Karte](http://kirchen-im-web.de/de/map.php) mit allen Gemeinden, die nach Konfession und Netzwerk gefiltert werden kann
-* [Tabelle](http://kirchen-im-web.de/de/table.php) mit Filter nach Name, PLZ, Stadt, Land, Konfession, Gemeindetyp, Netzwerk
-* [Detailseite](http://kirchen-im-web.de/de/details.php?id=1) für jede Gemeinde, die alle Web- und Social-Media-Auftritte, eine Karte und die Hierarchie anzeigt
-* Formular zum [Hinzufügen neuer Gemeinden](http://kirchen-im-web.de/de/add.php)
-* [Statistik](http://kirchen-im-web.de/de/statistics.php) und herunterladbare [offene Daten](http://kirchen-im-web.de/de/data.php)
+* [Karte](https://kirchen-im-web.de/de/map.php) mit allen Gemeinden, die nach Konfession und Netzwerk gefiltert werden kann
+* [Tabelle](https://kirchen-im-web.de/de/table.php) mit Filter nach Name, PLZ, Stadt, Land, Konfession, Gemeindetyp, Netzwerk
+* [Detailseite](https://kirchen-im-web.de/de/details.php?id=1) für jede Gemeinde, die alle Web- und Social-Media-Auftritte, eine Karte und die Hierarchie anzeigt
+* Formular zum [Hinzufügen neuer Gemeinden](https://kirchen-im-web.de/de/add.php)
+* [Statistik](https://kirchen-im-web.de/de/statistics.php) und herunterladbare [offene Daten](https://kirchen-im-web.de/de/data.php)
 * verfügbar in Deutsch und Englisch
 
 

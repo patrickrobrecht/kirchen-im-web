@@ -14,14 +14,14 @@ foreach ($languages_slugs as $lang) {
 
 	foreach ($headerLinks as $page) { ?>
 	<url>
-		<loc>http://kirchen-im-web.de/<?php echo $lang; ?>/<?php echo $page; ?></loc>
+		<loc>https://kirchen-im-web.de/<?php echo $lang; ?>/<?php echo $page; ?></loc>
 		<changefreq>monthly</changefreq>
 	</url>
 <?php }
 	
 	foreach ($footerLinks as $page) { ?>
 	<url>
-		<loc>http://kirchen-im-web.de/<?php echo $lang; ?>/<?php echo $page; ?></loc>
+		<loc>https://kirchen-im-web.de/<?php echo $lang; ?>/<?php echo $page; ?></loc>
 		<changefreq>monthly</changefreq>
 	</url>
 <?php }
@@ -31,7 +31,7 @@ foreach ($languages_slugs as $lang) {
 
 	foreach ($detailspages as $page) { ?>
 	<url>
-		<loc>http://kirchen-im-web.de/<?php echo $lang; ?>/details.php?id=<?php echo $page['id']; ?></loc>
+		<loc>https://kirchen-im-web.de/<?php echo $lang; ?>/details.php?id=<?php echo $page['id']; ?></loc>
 		<changefreq>monthly</changefreq>
 	</url>
 <?php }

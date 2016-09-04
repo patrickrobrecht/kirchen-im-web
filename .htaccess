@@ -3,6 +3,10 @@
 	RewriteEngine On
 	RewriteBase /
 	
+	# rewrite http to https
+	RewriteCond %{HTTPS} off
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 	# Redirect according to language, adding lang parameter
 	RewriteRule ^de(/.*)?$ ./$1?lang=de_DE&%{QUERY_STRING} [NC,L]
 	RewriteRule ^en(/.*)?$ ./$1?lang=en_US&%{QUERY_STRING} [NC,L]
@@ -130,7 +134,7 @@ Options -Indexes
 	
 	# SET HEADERS FOR SECURITY
 	# enforce browsers to use HTTPS
-#	Header always set Strict-Transport-Security "max-age=63072000; preload"
+	Header always set Strict-Transport-Security "max-age=63072000; preload"
 	
 	# disallow the website to be framed
 	Header always set X-Frame-Options "deny"
@@ -139,13 +143,13 @@ Options -Indexes
 	Header always set X-XSS-Protection "1; mode=block"
 	
 	# whitelist sources of approve content which prevents the browser from loading malicious assets
-#	Header set Content-Security-Policy "default-src https:; script-src https: 'unsafe-inline'; style-src https: 'unsafe-inline'; img-src 'self'"
+	Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.openstreetmap.fr"
 	
 	# force browsers to stick to the declared content-type
 	Header always set X-Content-Type-Options "nosniff"
 	
 	# public key pins
-#	Header always set Public-Key-Pins "pin-sha256=; max-age=86400;"
+	Header always set Public-Key-Pins "pin-sha256=\"fjY4462dKW9v87oQ+3NpNOhRgAQcS26P6BVfPfej2Rk=\"; pin-sha256=\"YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=\"; pin-sha256=\"Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys=\"; max-age=2592000;"
 	
 	# Remove sever information (this does not always work)
 	Header set Server ""
