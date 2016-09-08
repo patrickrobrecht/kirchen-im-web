@@ -32,39 +32,40 @@
 			ORDER BY timestamp 
 			LIMIT ' . $limit;
 		$statement = $connection->query($query);
-		echo '<ul>';
+		echo '<ol>';
 		while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 			$id = $row['cid'];
 			$url = $row['url'];
 			$followers = is_null($row['followers']) ? -1 : $row['followers'];
 			$followersNew = getFollowers($row['type'], $url);
-			$timestamp = time();
 			if ($followersNew > 0 && $followers != $followersNew) {
 				// Update follower number and the timestamp.
 				$insertStatement = $connection->prepare('
 					UPDATE websites 
-					SET followers = :followers, timestamp = :timestamp
+					SET followers = :followers, timestamp = NOW()
 					WHERE url = :url
 				');
 				$insertStatement->bindParam(':url', $url);
 				$insertStatement->bindParam(':followers', $followersNew, PDO::PARAM_INT);
-				$insertStatement->bindParam(':timestamp', $timestamp, PDO::PARAM_INT);
 				$insertStatement->execute();
-				echo '<li><a href="details.php?id=' . $id . '">updated</a> ' . $url . ' (' . $followers . ' to ' . $followersNew . ')</li>';
+				echo '<li><a href="details.php?id=' . $id . '">Updated ' . $id . '</a> ' 
+						. '<a href="' . $url . '">' . $url . "</a>" 
+						. ' (' . $followers . ' to ' . $followersNew . ')</li>';
 			} else {
 				// Update the timestamp
 				$insertStatement = $connection->prepare('
 					UPDATE websites
-					SET timestamp = :timestamp
+					SET timestamp = NOW()
 					WHERE url = :url
 				');
 				$insertStatement->bindParam(':url', $url);
-				$insertStatement->bindParam(':timestamp', $timestamp, PDO::PARAM_INT);
 				$insertStatement->execute();
-				echo '<li><a href="details.php?id=' . $id . '">checked</a> ' . $url . ' (' . $followersNew . ')</li>';
+				echo '<li><a href="details.php?id=' . $id . '">Checked ' . $id . '</a> ' 
+						. '<a href="' . $url . '">' . $url . "</a>"
+						. ' (' . $followersNew . ')</li>';
 			}
 		}
-		echo '</ul>';
+		echo '</ol>';
 	}
 	
 	function getFollowers($network, $url) {
@@ -126,10 +127,28 @@
 			);
 			$twitterAPI = new TwitterAPIExchange($settings);		
 			$follow_count = $twitterAPI->setGetfield('?screen_name=' . $name)
-			->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
-			->performRequest();
+										->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
+										->performRequest();
 			$data = json_decode($follow_count, true);
 			return $data['followers_count'];
+		} catch (Exception $e) {
+			return -1;
+		}
+	}
+	
+	function getGooglePlusOnes($url) {
+		try {
+			$apiKey = GOOGLE_API_KEY;
+			
+			$id = substr($url, 24);
+			$json_url = 'https://www.googleapis.com/plus/v1/people/' . $id .'?key=' . $apiKey;
+			$json = file_get_contents($json_url);
+			if (!$json) {
+				return -1;
+			}
+			$json_output = json_decode($json);
+			
+			return intval($json_output->circledByCount);
 		} catch (Exception $e) {
 			return -1;
 		}

@@ -118,6 +118,7 @@ $websitesStartOfURL = array(
 
 $networksToCompare = array(
 		'facebook' => 'Facebook',
+		'googlePlus' => 'Google+',
 		'twitter' => 'Twitter',
 		'youtube' => 'YouTube'
 );
@@ -129,12 +130,12 @@ $headerLinks = array(
 		_('Tabelle') => 'table.php',
 		_('Social-Media-Vergleich') => 'table.php?compare=true',
 		_('Statistik') => 'statistics.php',
-		_('Offene Daten') => 'data.php',
 		_('Tipps und Tricks') => 'links.php'
 );
 
 $footerLinks = array(
 		_('Impressum') => 'legal.php',
+		_('Offene Daten') => 'data.php',
 );
 
 $languages_slugs = array(
