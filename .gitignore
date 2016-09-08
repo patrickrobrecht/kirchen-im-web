@@ -1,6 +1,6 @@
 .buildpath
 .project
 .settings/
-data/data.csv
+data/*.csv
 data/data.json
 includes/constants.php
