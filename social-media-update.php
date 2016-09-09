@@ -12,7 +12,7 @@
 	$networksToCompareList = implode(', ', $networksToCompareAsStrings);
 
 	// Start update and measure time.
-	echo '<p>Started updating like data.</p>';
+	echo '<p>Started updating like data for ' . $networksToCompareList .  '.</p>';
 	$time_start = microtime(true);
 	updateEntriesForType($networksToCompareList, 10);
 	$time_end = microtime(true);
@@ -72,8 +72,12 @@
 		switch ($network) {
 			case 'facebook':
 				return getFacebookLikes($url);
+			case 'flickr':
+				return getFlickrFollowers($url);
 			case 'googlePlus':
 				return getGooglePlusOnes($url);
+			case 'instagram':
+				return getInstagramFollower($url);
 			case 'twitter':
 				return getTwitterFollower($url);
 			case 'youtube':
@@ -94,11 +98,9 @@
 	 			$id = end(explode('/', $id));
 	 		}
 	 		
-	 		$appid = FACEBOOK_API_ID;
-	 		$appsecret = FACEBOOK_API_SECRET;
-	
 			//Construct a Facebook URL
-			$json_url ='https://graph.facebook.com/'.$id.'?access_token='.$appid.'|'.$appsecret.'&fields=likes';
+			$json_url ='https://graph.facebook.com/' . $id . 
+				'?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
 			$json = file_get_contents($json_url);
 			if (!$json) {
 				return -1;
@@ -116,21 +118,10 @@
 		}
 	}
 	
-	function getTwitterFollower($url) {
+	function getFlickrFollowers($url) {
 		try {
-			$name = substr($url, 20); // 20 = strlen('https://twitter.com/')
-			$settings = array( // constants defined in apikey.php
-					'oauth_access_token' => TWITTER_API_TOKEN,
-					'oauth_access_token_secret' => TWITTER_API_TOKEN_SECRET,
-					'consumer_key' => TWITTER_API_CONSUMER_KEY,
-					'consumer_secret' => TWITTER_API_CONSUMER_SECRET
-			);
-			$twitterAPI = new TwitterAPIExchange($settings);		
-			$follow_count = $twitterAPI->setGetfield('?screen_name=' . $name)
-										->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
-										->performRequest();
-			$data = json_decode($follow_count, true);
-			return $data['followers_count'];
+			// TODO
+			return;
 		} catch (Exception $e) {
 			return -1;
 		}
@@ -138,10 +129,8 @@
 	
 	function getGooglePlusOnes($url) {
 		try {
-			$apiKey = GOOGLE_API_KEY;
-			
 			$id = substr($url, 24);
-			$json_url = 'https://www.googleapis.com/plus/v1/people/' . $id .'?key=' . $apiKey;
+			$json_url = 'https://www.googleapis.com/plus/v1/people/' . $id .'?key=' . GOOGLE_API_KEY;
 			$json = file_get_contents($json_url);
 			if (!$json) {
 				return -1;
@@ -154,12 +143,40 @@
 		}
 	}
 	
+	function getInstagramFollower($url) {
+		try {
+			// TODO
+			return;
+		} catch (Exception $e) {
+			return -1;
+		}
+	}
+	
+	function getTwitterFollower($url) {
+		try {
+			$name = substr($url, 20);
+			$settings = array(
+					'oauth_access_token' => TWITTER_API_TOKEN,
+					'oauth_access_token_secret' => TWITTER_API_TOKEN_SECRET,
+					'consumer_key' => TWITTER_API_CONSUMER_KEY,
+					'consumer_secret' => TWITTER_API_CONSUMER_SECRET
+			);
+			$twitterAPI = new TwitterAPIExchange($settings);
+			$follow_count = $twitterAPI->setGetfield('?screen_name=' . $name)
+				->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
+				->performRequest();
+			$data = json_decode($follow_count, true);
+			return $data['followers_count'];
+		} catch (Exception $e) {
+			return -1;
+		}
+	}
+	
 	function getYoutubeSubscribers($url) {
 		try {
-			$apiKey = GOOGLE_API_KEY;
-			
 			$username = substr($url, 28);
-			$json_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $username .'&type=channel&key=' . $apiKey;
+			$json_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $username 
+				. '&type=channel&key=' . GOOGLE_API_KEY;
 			$json = file_get_contents($json_url);
 			if (!$json) {
 				return -1;
@@ -167,7 +184,8 @@
 			$json_output = json_decode($json);
 			$channelId = $json_output->items[0]->id->channelId;
 		
-			$json_url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' . $channelId . '&key=' . $apiKey;
+			$json_url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' . $channelId 
+				. '&key=' . GOOGLE_API_KEY;
 			$json = file_get_contents($json_url);
 			if (!$json) {
 				return -1;

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kirchen-im-web\n"
-"POT-Creation-Date: 2016-09-03 12:40+0200\n"
-"PO-Revision-Date: 2016-09-03 12:40+0200\n"
+"POT-Creation-Date: 2016-09-09 19:09+0200\n"
+"PO-Revision-Date: 2016-09-09 19:09+0200\n"
 "Last-Translator: Patrick Robrecht\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -78,12 +78,12 @@ msgstr "Please enter a valid or no URL for %s  which has to start with %s."
 msgid "%s wurde hinzugefügt. Vielen Dank!"
 msgstr "%s was added. Thank you!"
 
-#: add.php:101 add.php:109 add.php:185 includes/config.php:127
+#: add.php:101 add.php:109 add.php:185 includes/config.php:128
 msgid "Gemeinde hinzufügen"
 msgstr "Add Church"
 
 #: add.php:102 data.php:10 index.php:10 legal.php:10 map.php:10
-#: statistics.php:44 table.php:39 table.php:42
+#: statistics.php:44 table.php:42
 msgid "Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte."
 msgstr "Many churches use social networks. "
 
@@ -254,7 +254,7 @@ msgstr "otherwise you create multiple identical entries"
 msgid "Bei Fehlern in Einträgen wenden Sie sich bitte an "
 msgstr "In the case of errors in entries please contact"
 
-#: data.php:9 data.php:16 includes/config.php:132 index.php:44
+#: data.php:9 data.php:16 includes/config.php:138 index.php:44
 msgid "Offene Daten"
 msgstr "Open Data"
 
@@ -455,23 +455,23 @@ msgstr "Website"
 msgid "Blog"
 msgstr "Blog"
 
-#: includes/config.php:126 index.php:19
+#: includes/config.php:127 index.php:19
 msgid "Über das Projekt"
 msgstr "About the project"
 
-#: includes/config.php:128 index.php:21 map.php:9
+#: includes/config.php:129 index.php:21 map.php:9
 msgid "Karte"
 msgstr "Map"
 
-#: includes/config.php:129 table.php:41
+#: includes/config.php:130 table.php:41
 msgid "Tabelle"
 msgstr "Table"
 
-#: includes/config.php:130
+#: includes/config.php:131
 msgid "Social-Media-Vergleich"
 msgstr "Social Network Comparison"
 
-#: includes/config.php:131 statistics.php:43 statistics.php:240
+#: includes/config.php:132 statistics.php:43 statistics.php:240
 msgid "Statistik"
 msgstr "Statistics"
 
@@ -741,13 +741,22 @@ msgstr "Website/network"
 msgid "Vergleich kirchlicher Social-Media-Auftritte"
 msgstr "Comparison of Churchy Social Network Pages"
 
+#: table.php:39
+msgid ""
+"kirchen-im-web.de vergleicht kirchliche Social-Media-Auftritte anhand ihrer "
+"Follower-Zahlen."
+msgstr ""
+"kirchen-im-web.de compares the follower numbers of churchy social Network "
+"pages according to their follower numbers."
+
 #: table.php:52
 msgid ""
-"Die Like-Zahlen für Facebook-Seiten, der Follower bei Twitter sowie der "
-"Abonnenten der YouTube-Kanäle werden hier verglichen."
+"Die Like-Zahlen für Facebook-Seiten, der Follower bei Twitter und Google+ "
+"sowie der Abonnenten der YouTube-Kanäle werden hier verglichen."
 msgstr ""
 "The number of likes of Facebook pages, the number of follwers at Twitter and "
-"the number of subscribers of the YouTube channels are compared here."
+"Google+ as well as the number of subscribers of the YouTube channels are "
+"compared here."
 
 #: table.php:53
 msgid ""
@@ -790,6 +799,13 @@ msgid "Eine Gemeinde gefunden!"
 msgid_plural "%d Gemeinden gefunden!"
 msgstr[0] "One church found!"
 msgstr[1] "%d churches found!"
+
+#~ msgid ""
+#~ "Die Like-Zahlen für Facebook-Seiten, der Follower bei Twitter sowie der "
+#~ "Abonnenten der YouTube-Kanäle werden hier verglichen."
+#~ msgstr ""
+#~ "The number of likes of Facebook pages, the number of follwers at Twitter "
+#~ "and the number of subscribers of the YouTube channels are compared here."
 
 #~ msgid ""
 #~ "Wir wollen zeigen, dass viele Kirchengemeinden, Landeskirchen und "

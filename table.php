@@ -36,7 +36,7 @@
 	<meta name="viewport" content="width=device-width">
 	<?php if ($compare) { ?>
 	<title><?php echo _('Vergleich kirchlicher Social-Media-Auftritte');?></title>
-	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
+	<meta name="description" content="<?php echo _('kirchen-im-web.de vergleicht kirchliche Social-Media-Auftritte anhand ihrer Follower-Zahlen.'); ?>">
 	<?php } else { ?>
 	<title><?php echo _('Tabelle'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
@@ -49,7 +49,7 @@
 	<main>
 		<?php if ($compare) {?>
 		<h1><?php echo _('Vergleich kirchlicher Social-Media-Auftritte'); ?></h1>
-		<p><?php echo _('Die Like-Zahlen für Facebook-Seiten, der Follower bei Twitter sowie der Abonnenten der YouTube-Kanäle werden hier verglichen.'); ?>
+		<p><?php echo _('Die Like-Zahlen für Facebook-Seiten, der Follower bei Twitter und Google+ sowie der Abonnenten der YouTube-Kanäle werden hier verglichen.'); ?>
 			<?php echo _('Mit einem Klick auf die jeweilige Spalte kann man nach dieser sortieren.'); ?></p>
 		<p><?php echo _('Wenn für einen Social-Media-Auftritt keine Zahl ermittelt werden konnte (z. B. weil die Facebook-Seite nicht öffentlich zugänglich ist), wird dieser in diesem Vergleich nicht aufgeführt.'); ?></p>
 		<?php } else { ?>

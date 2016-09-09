@@ -18,6 +18,9 @@ The latest development version is online at [beta.kirchen-im-web.de](http://beta
 
 ## Changelog
 
+### Version 2.1 (2016-09-08)
+* social media comparison: added Google+ followers
+
 ### Version 2.0 (2016-08-13)
 * translation into English
 
@@ -65,6 +68,9 @@ Die aktuelle Entwicklungsversion gibt es unter [beta.kirchen-im-web.de](http://b
 
 
 ##  Änderungshistorie
+
+### Version 2.1 (2016-09-08)
+* Social-Media-Vergleich: Google+ Followerzahl
 
 ### Version 2.0 (2016-08-13)
 * Übersetzung ins Englische
