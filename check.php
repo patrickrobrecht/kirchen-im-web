@@ -14,12 +14,9 @@
 	<main>
 		<h1>Consistency checks</h1>
 		<ul>
-			<li><a href="check.php?check=space">Space Characters</a></li>
-			<li><a href="check.php?check=geo">Missing geopositions</a></li>
-			<li><a href="check.php?check=rss">RSS</a>:
-				<?php for ($i = 1; $i < 1000; $i += 10) { ?>
-				<a href="check.php?check=rss&min=<?php echo $i; ?>&max=<?php echo ($i+9); ?>"><?php echo $i . '-' . ($i+9); ?></a> |
-				<?php }?>
+			<li><a href="#space">Space Characters</a></li>
+			<li><a href="#geo">Missing geopositions</a></li>
+			<li><a href="#social">Check for missing follower data for the social network comparison</a></li>
 			</li>
 		</ul>
 <?php
@@ -29,10 +26,10 @@
 	
 	$min = isset( $_GET['min'] ) ? intval($_GET['min']) : 0; 
 	$max = isset( $_GET['max'] ) ? intval($_GET['max']) : 10000;
+?>
 
-	if ('space' == $check) {
-		echo '<p>Check for spaces at the start and end of name, street, city:</p>';
-		
+	<h1 id="space">Check for spaces at the start and end of name, street, city</h1>
+	<?php		
 		$statement = $connection->prepare('SELECT id, name, street, city from churches WHERE id >= :min AND id <= :max');
 		$statement->bindParam(':min', $min);
 		$statement->bindParam(':max', $max);
@@ -62,11 +59,10 @@
 			}
 		}
 		echo '</p>';
-	}
+	?>
 	
-	if ('geo' == $check) {
-		echo '<p>Check for missing geolocation data</p>';
-		
+	<h1 id="geo">Check for missing geolocation data</h1>
+	<?php 	
 		$statement = $connection->prepare('SELECT * FROM `churches` WHERE lat is null or lon is null AND id >= :min AND id <= :max');
 		$statement->bindParam(':min', $min);
 		$statement->bindParam(':max', $max);
@@ -77,37 +73,32 @@
 			echo $row['id'] . ', ';
 		}
 		echo '</p>';
-	}
-	
-	if ('rss' == $check) {
-		echo '<p>Check typical RSS feed URLs for existence</p>';
+	?>
+
+	<h1 id="social">Check for missing follower data for the social network comparison</h1>
+	<?php 
+		$networksToCompareAsStrings = array();
+		foreach($networksToCompare as $type => $typeName) {
+			array_push($networksToCompareAsStrings, "'" . $type . "'");
+		}
+		$networksToCompareList = implode(', ', $networksToCompareAsStrings);
 		
-		$statement = $connection->prepare('SELECT cid, url from websites WHERE type = "web" and cid >= :min AND cid <= :max');
-		$statement->bindParam(':min', $min);
-		$statement->bindParam(':max', $max);
+		$statement = $connection->prepare('SELECT cid, url from websites WHERE type IN (' . $networksToCompareList . ') AND followers IS NULL');
 		$statement->execute();
 		
 		echo '<ul>';
 		
 		while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-			try { 
-				$feed_url = $row['url'] . 'feed/';
-				$feed = file_get_contents($feed_url);
-				if ($feed) {
-					echo '<li><a href="details.php?id='. $row['cid'] . '">' . $row['cid']  . '</a>: <a href="' . $feed_url . '">'  . '' . $feed_url . '</a></li>';
-				}
-			} catch (Exception $e) {
-				// continue
-			}
+			echo '<li><a href="details.php?id=' . $row['cid'] . '">'. $row['cid'] . '</a> ' .
+				'<a href="' . $row['url'] . '">' . $row['url'] . '</a></li>';
 		}
 		
 		echo '</ul>';
-	}
-	
-	$time_end = microtime(true);
-	$execution_time = ($time_end - $time_start);
-	echo '<p>Check completed in ' . number_format($execution_time, 3) . ' seconds.</p>';
-?>
+		
+		$time_end = microtime(true);
+		$execution_time = ($time_end - $time_start);
+		echo '<p>Check completed in ' . number_format($execution_time, 3) . ' seconds.</p>';
+	?>
 	</main>
 	<?php include_once 'includes/footer.php'; ?>
 </body>

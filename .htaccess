@@ -21,8 +21,11 @@ RedirectMatch 301 ^/add.php$			/de/add.php
 RedirectMatch 301 ^/map.php$			/de/map.php
 RedirectMatch 301 ^/table.php$			/de/table.php
 RedirectMatch 301 ^/table.php?compare=true$	/de/table.php?compare=true
+RedirectMatch 301 ^/statistics.php$		/de/statistics.php
 RedirectMatch 301 ^/data.php$			/de/data.php
+RedirectMatch 301 ^/links.php$			/de/links.php
 RedirectMatch 301 ^/legal.php$			/de/legal.php
+RedirectMatch 301 ^/details.php$		/de/details.php
 
 # Forbid unauthorized direct access for included php files
 	<files config.php>

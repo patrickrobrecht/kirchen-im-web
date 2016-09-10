@@ -6,7 +6,6 @@ Disallow: /de/404.php
 Disallow: /en/404.php
 
 Disallow: /data/
-Disallow: /data/
 Disallow: /includes/
 
-Sitemap: http://kirchen-im-web.de/sitemap.xml
+Sitemap: https://kirchen-im-web.de/sitemap.xml
