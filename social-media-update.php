@@ -103,10 +103,16 @@
 				'?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
 			$json = file_get_contents($json_url);
 			if (!$json) {
-				return -1;
+				$id = str_replace('/', '', end(explode('-', $id)) );
+				$json_url ='https://graph.facebook.com/' . $id .
+					'?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
+				$json = file_get_contents($json_url);
+				if (!json) {
+					return -1;
+				}
 			}
 			$json_output = json_decode($json);
-		
+			
 			//Extract the likes count from the JSON object
 			if($json_output->likes){
 				return $likes = $json_output->likes;

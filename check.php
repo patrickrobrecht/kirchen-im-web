@@ -83,17 +83,17 @@
 		}
 		$networksToCompareList = implode(', ', $networksToCompareAsStrings);
 		
-		$statement = $connection->prepare('SELECT cid, url from websites WHERE type IN (' . $networksToCompareList . ') AND followers IS NULL');
+		$statement = $connection->prepare('SELECT cid, url from websites WHERE type IN (' . $networksToCompareList . ') AND followers IS NULL ORDER BY type, cid');
 		$statement->execute();
 		
-		echo '<ul>';
+		echo '<ol>';
 		
 		while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 			echo '<li><a href="details.php?id=' . $row['cid'] . '">'. $row['cid'] . '</a> ' .
 				'<a href="' . $row['url'] . '">' . $row['url'] . '</a></li>';
 		}
 		
-		echo '</ul>';
+		echo '</ol>';
 		
 		$time_end = microtime(true);
 		$execution_time = ($time_end - $time_start);
