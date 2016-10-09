@@ -113,6 +113,7 @@ $websitesStartOfURL = array(
 		'instagram' => 'https://www.instagram.com/',
 		'soundcloud' => 'https://soundcloud.com',
 		'twitter' => 'https://twitter.com/',
+		'vimeo' => 'https://vimeo.com/',
 		'youtube' => 'https://www.youtube.com/',
 );
 
