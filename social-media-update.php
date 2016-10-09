@@ -38,7 +38,7 @@
 			$url = $row['url'];
 			$followers = is_null($row['followers']) ? -1 : $row['followers'];
 			$followersNew = getFollowers($row['type'], $url);
-			if ($followersNew > 0 && $followers != $followersNew) {
+			if ($followersNew >= 0 && $followers != $followersNew) {
 				// Update follower number and the timestamp.
 				$insertStatement = $connection->prepare('
 					UPDATE websites 
@@ -180,15 +180,19 @@
 	
 	function getYoutubeSubscribers($url) {
 		try {
-			$username = substr($url, 28);
-			$json_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $username 
-				. '&type=channel&key=' . GOOGLE_API_KEY;
-			$json = file_get_contents($json_url);
-			if (!$json) {
-				return -1;
+			$username = substr($url, 24);
+			if ( startsWith($username, 'channel/') ) {
+				$channelId = end(explode('/', $username));
+			} else {			
+				$json_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $username 
+					. '&type=channel&key=' . GOOGLE_API_KEY;
+				$json = file_get_contents($json_url);
+				if (!$json) {
+					return -1;
+				}
+				$json_output = json_decode($json);
+				$channelId = $json_output->items[0]->id->channelId;
 			}
-			$json_output = json_decode($json);
-			$channelId = $json_output->items[0]->id->channelId;
 		
 			$json_url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' . $channelId 
 				. '&key=' . GOOGLE_API_KEY;
@@ -197,7 +201,7 @@
 				return -1;
 			}
 			$json_output = json_decode($json);
-		
+			
 			return intval($json_output->items[0]->statistics->subscriberCount);
 		} catch (Exception $e) {
 			return -1;
