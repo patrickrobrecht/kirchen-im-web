@@ -83,7 +83,9 @@
 		}
 		$networksToCompareList = implode(', ', $networksToCompareAsStrings);
 		
-		$statement = $connection->prepare('SELECT cid, url from websites WHERE type IN (' . $networksToCompareList . ') AND followers IS NULL ORDER BY type, cid');
+		$statement = $connection->prepare('SELECT cid, url from websites 
+			WHERE type IN (' . $networksToCompareList . ') 
+				AND (followers IS NULL OR followers = 0) ORDER BY type, cid');
 		$statement->execute();
 		
 		echo '<ol>';
