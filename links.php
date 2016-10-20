@@ -12,9 +12,9 @@
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
-	
 	<main>
-		<h1>Tipps und Tricks</h1>
+		<h1><?php echo _('Tipps und Tricks'); ?></h1>
+	<?php if ($current_language == 'de_DE') { ?>
 		<p>Diese Unterseite ist noch im Aufbau! Vorschläge für Links zu weiteren hilfreichen Onlineressourcen sind immer willkommen!</p>
 		
 		<nav>
@@ -25,6 +25,7 @@
 					<ul>
 						<li><a href="#facebook">Facebook</a></li>
 						<li><a href="#twitter">Twitter</a></li>
+						<li><a href="#youtube">YouTube</a></li>
 					</ul></li>
 				<li><a href="#rechtliches">Rechtliches</a></li>
 				<li><a href="#oefflichkeitsarbeit">Kirchliche Öffentlichkeitsarbeit allgemein</a></li>
@@ -38,11 +39,11 @@
 			<ul>
 				<li><a href="https://de.wordpress.org/">WordPress</a> - kostenloses OpenSource Content Management System, das über sog. Themes in Layout und Design angepasst werden kann. Über Plugins können viele weitere Funktionen installiert werden.
 					<ul>
-						<li><a href="https://de.wordpress.org/themes/">Themes</a> - kostenlose Design-/Layouts für WordPress</li>
+						<li><a href="https://de.wordpress.org/themes/">Themes</a> - kostenlose Design-Templates/Layouts</li>
 						<li><a href="https://de.wordpress.org/plugins/polaroid-gallery/">Bildergalerien mit Slideshow</a></li>
 						<li><a href="https://de.wordpress.org/plugins/statify/">datenschutzfreundliche Aufrufstatistiken</a> und <a href="https://de.wordpress.org/plugins/extended-evaluation-for-statify/">eine ausführlichere Auswertung</a></li>
 						<li><a href="https://de.wordpress.org/plugins/wysija-newsletters/">Newsletter</a> mit mehreren Listen, die über das WordPress-Backend verschickt werden können.</li>
-						<li><a href="https://de.wordpress.org/plugins/seo-ultimate/">Suchmaschinenoptimierung</a> und <a href="https://wordpress.org/plugins/google-sitemap-generator/">XML-Sitemap für Suchmaschinen</a></li>
+						<li><a href="https://de.wordpress.org/plugins/seo-ultimate/">Suchmaschinenoptimierung</a> und <a href="https://de.wordpress.org/plugins/google-sitemap-generator/">XML-Sitemap für Suchmaschinen</a></li>
 						<li><a href="https://de.wordpress.org/plugins/events-manager/">Veranstaltungskalender</a></li>
 						<li><a href="https://www.elegantthemes.com/blog/tips-tricks/how-to-build-a-church-website-with-wordpress" hreflang="en">How to build a church website with WordPress</a> (in English)</li>
 					</ul>						
@@ -51,10 +52,13 @@
 		
 		<article id="social-media">
 			<h2>Kirche und Social Media</h2>
-			<ul>
-				<li><a href="http://www.smg-rwl.de/">Social Media Guidelines</a> der Evangelischen Kirche im Rheinland, der Evangelischen Kirche von Westfalen oder der Lippischen Landeskirche</li>
-				<li><a href="http://www.caritas-digital.de/so-will-die-caritas-online-kommunizieren/">So wollen wir online kommunizieren - Richtlinien der Caritas</a></li>
-			</ul>
+			<section>
+				<h3>Social Media allgemein</h3>
+				<ul>
+					<li><a href="http://www.smg-rwl.de/">Social Media Guidelines</a> der Evangelischen Kirche im Rheinland, der Evangelischen Kirche von Westfalen oder der Lippischen Landeskirche</li>
+					<li><a href="http://www.caritas-digital.de/so-will-die-caritas-online-kommunizieren/">So wollen wir online kommunizieren - Richtlinien der Caritas</a></li>
+				</ul>
+			</section>
 			<section id="facebook">
 				<h3>Facebook</h3>
 				<ul>
@@ -65,6 +69,12 @@
 				<h3>Twitter</h3>
 				<ul>
 					<li><a href="table.php?compare=true&sort=twitter">Positiv-Beispiele auf kirchen-im-web.de</a></li>
+				</ul>
+			</section>
+			<section id="youtube">
+				<h3>YouTube</h3>
+				<ul>
+					<li><a href="table.php?compare=true&sort=youtube">Positiv-Beispiele auf kirchen-im-web.de</a></li>
 				</ul>
 			</section>
 		</article>
@@ -101,8 +111,10 @@
 				<li><a href="https://luki.org/">Linux User im Bereich der Kirchen e. V.</a></li>
 			</ul>
 		</article>
+	<?php } else { ?>
+		<p><?php echo _('Diese Seite ist nur auf Deutsch verfügbar!'); ?></p>
+	<?php } ?>
 	</main>
-	
 	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

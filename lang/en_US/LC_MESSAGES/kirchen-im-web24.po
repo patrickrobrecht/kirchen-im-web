@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kirchen-im-web\n"
-"POT-Creation-Date: 2016-09-09 19:09+0200\n"
-"PO-Revision-Date: 2016-09-09 19:09+0200\n"
+"POT-Creation-Date: 2016-10-20 17:21+0200\n"
+"PO-Revision-Date: 2016-10-20 17:23+0200\n"
 "Last-Translator: Patrick Robrecht\n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -78,7 +78,7 @@ msgstr "Please enter a valid or no URL for %s  which has to start with %s."
 msgid "%s wurde hinzugefügt. Vielen Dank!"
 msgstr "%s was added. Thank you!"
 
-#: add.php:101 add.php:109 add.php:185 includes/config.php:128
+#: add.php:101 add.php:109 add.php:185 includes/config.php:129
 msgid "Gemeinde hinzufügen"
 msgstr "Add Church"
 
@@ -254,7 +254,7 @@ msgstr "otherwise you create multiple identical entries"
 msgid "Bei Fehlern in Einträgen wenden Sie sich bitte an "
 msgstr "In the case of errors in entries please contact"
 
-#: data.php:9 data.php:16 includes/config.php:138 index.php:44
+#: data.php:9 data.php:16 includes/config.php:139 index.php:44
 msgid "Offene Daten"
 msgstr "Open Data"
 
@@ -455,31 +455,31 @@ msgstr "Website"
 msgid "Blog"
 msgstr "Blog"
 
-#: includes/config.php:127 index.php:19
+#: includes/config.php:128 index.php:19
 msgid "Über das Projekt"
 msgstr "About the project"
 
-#: includes/config.php:129 index.php:21 map.php:9
+#: includes/config.php:130 index.php:21 map.php:9
 msgid "Karte"
 msgstr "Map"
 
-#: includes/config.php:130 table.php:41
+#: includes/config.php:131 table.php:41
 msgid "Tabelle"
 msgstr "Table"
 
-#: includes/config.php:131
+#: includes/config.php:132
 msgid "Social-Media-Vergleich"
 msgstr "Social Network Comparison"
 
-#: includes/config.php:132 statistics.php:43 statistics.php:240
+#: includes/config.php:133 statistics.php:43 statistics.php:240
 msgid "Statistik"
 msgstr "Statistics"
 
-#: includes/config.php:133
+#: includes/config.php:134 links.php:16
 msgid "Tipps und Tricks"
 msgstr "Tips and tricks"
 
-#: includes/config.php:137 legal.php:9 legal.php:16 legal.php:44
+#: includes/config.php:138 legal.php:9 legal.php:16 legal.php:44
 msgid "Impressum"
 msgstr "Legal notice"
 
@@ -668,6 +668,10 @@ msgstr "Licences"
 msgid "Der Quelltext dieser Webanwendung ist auf %s frei verfügbar."
 msgstr ""
 "The source code of this web application ist available as open source at %s."
+
+#: links.php:18
+msgid "Diese Seite ist nur auf Deutsch verfügbar!"
+msgstr "This page is only available in German!"
 
 #: map.php:11
 msgid "kirchen-im-web.de macht diese auf einer Karte sichtbar."
