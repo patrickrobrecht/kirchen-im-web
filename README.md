@@ -39,35 +39,6 @@ Example: A call to `https://beta.kirchen-im-web.de/api/?id=1` only returns data 
 
 The referenced variables can be found in the [configuration file](https://github.com/patrickrobrecht/kirchen-im-web/blob/master/includes/config.php).
 
-
-## Changelog
-
-### Version 2.1 (2016-09-08)
-* social media comparison: added Google+ followers
-
-### Version 2.0 (2016-08-13)
-* translation into English
-
-### Version 1.3 (2016-04-11)
-* different colors for all denominations at the map
-
-### Version 1.2 (2016-03-20)
-* filtering for the social media comparison, too
-* Statistics with diagrams
-
-### Version 1.1 (2016-01-30)
-* form for adding new churches
-* table with filtering according to name, postal code, country, denomination and type
-* details page for every church
-* statistics on the number of entries
-* social media comparison with Facebook likes, Twitter followers and YouTube subscribers
-
-### Version 1.0 (2015-05-29)
-* visualization of the churches as a map, realized with [OpenStreetMap](https://www.openstreetmap.org/)
-* table with filtering according to denomination and Network and sorting to arbitrary column
-* Open Data: name, denomination, regional church or diocese, address, web/Facebook/Google+/Twitter/YouTube URL
-* automatic calculation of longitude and latitude
-
 ## Used programming languages and libraries
 * [HTML5, CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss)
 * [PHP](https://secure.php.net/)
@@ -89,32 +60,3 @@ Die aktuelle Entwicklungsversion gibt es unter [beta.kirchen-im-web.de](http://b
 * Formular zum [Hinzufügen neuer Gemeinden](https://kirchen-im-web.de/de/add.php)
 * [Statistik](https://kirchen-im-web.de/de/statistics.php) und herunterladbare [offene Daten](https://kirchen-im-web.de/de/data.php)
 * verfügbar in Deutsch und Englisch
-
-
-##  Änderungshistorie
-
-### Version 2.1 (2016-09-08)
-* Social-Media-Vergleich: Google+ Followerzahl
-
-### Version 2.0 (2016-08-13)
-* Übersetzung ins Englische
-
-### Version 1.3 (2016-04-11)
-* verschiedene Farben für alle Konfessionen in der Karte
-
-### Version 1.2 (2016-03-20)
-* Filter auch für Social-Media-Vergleich
-* Statistik mit Diagrammen
-
-### Version 1.1 (2016-01-30)
-* Formular für Neueintragungen
-* Tabelle mit Filter nach Name, PLZ, Ort, Land, Konfession und Gemeindetyp
-* Detailseite für jede Gemeinde
-* Statistik zur Anzahl der vorhandenen Daten
-* Social-Media-Vergleich mit Facebook-Likes, Twitter-Follower und YouTube-Abonnenten)
-
-### Version 1.0 (2015-05-29)
-* Visualisierung der eingetragenden Gemeinden als Karte, realisiert mit [OpenStreetMap](https://www.openstreetmap.org/)
-* Tabelle mit Filter nach Konfession und Netzwerk und Sortierung nach beliebiger Spalte
-* Offene Daten: Name, Konfession, Landeskirche bzw. Bistum, Adresse, Web-/Facebook-/Google+-/Twitter-/YouTube-URL
-* automatische Berechnung von Längen- und Breitengrad
