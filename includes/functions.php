@@ -3,7 +3,7 @@
 	
 function echo_language() {
 	global $current_language;
-	echo $current_language;
+	echo str_replace('_', '-', $current_language);
 }
 	
 /**

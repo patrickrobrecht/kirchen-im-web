@@ -17,7 +17,6 @@
 			<li><a href="#space">Space Characters</a></li>
 			<li><a href="#geo">Missing geopositions</a></li>
 			<li><a href="#social">Check for missing follower data for the social network comparison</a></li>
-			</li>
 		</ul>
 <?php
 	$time_start = microtime(true);

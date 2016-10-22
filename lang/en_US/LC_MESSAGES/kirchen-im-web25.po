@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kirchen-im-web\n"
-"POT-Creation-Date: 2016-10-20 17:21+0200\n"
-"PO-Revision-Date: 2016-10-20 17:23+0200\n"
+"POT-Creation-Date: 2016-10-22 20:54+0200\n"
+"PO-Revision-Date: 2016-10-22 20:54+0200\n"
 "Last-Translator: Patrick Robrecht\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -479,7 +479,7 @@ msgstr "Statistics"
 msgid "Tipps und Tricks"
 msgstr "Tips and tricks"
 
-#: includes/config.php:138 legal.php:9 legal.php:16 legal.php:44
+#: includes/config.php:138 legal.php:9 legal.php:16 legal.php:45
 msgid "Impressum"
 msgstr "Legal notice"
 
@@ -669,7 +669,7 @@ msgid "Der Quelltext dieser Webanwendung ist auf %s frei verfügbar."
 msgstr ""
 "The source code of this web application ist available as open source at %s."
 
-#: links.php:18
+#: links.php:115
 msgid "Diese Seite ist nur auf Deutsch verfügbar!"
 msgstr "This page is only available in German!"
 
@@ -780,6 +780,10 @@ msgstr ""
 #: table.php:61
 msgid "Filter"
 msgstr "Filter"
+
+#: table.php:69 table.php:78 table.php:87 table.php:96
+msgid "bitte auswählen"
+msgstr "select please"
 
 #: table.php:103
 msgid "nur Gemeinden mit"

@@ -362,7 +362,7 @@
 					<tbody>
 						<?php foreach ($totalByWebsiteHTTPS as $row) { ?>
 						<tr>
-							<td><a class="<?php echo $row['type']; ?>" href="table.php?hasWebsiteType=<?php echo $row['type']; ?>&<?php echo $row['type']; ?>=show"><?php echo $websites[$row['type']]; ?></td>
+							<td><a class="<?php echo $row['type']; ?>" href="table.php?hasWebsiteType=<?php echo $row['type']; ?>&<?php echo $row['type']; ?>=show"><?php echo $websites[$row['type']]; ?></a></td>
 							<td class="number"><?php echo $row['count']; ?></td>
 							<td class="number"><?php echo $row['countHTTPS']; ?></td>
 							<td class="number">(<?php echo getNumberFormat( $row['countHTTPS']/$row['count']* 100, 1); ?> %)</td>

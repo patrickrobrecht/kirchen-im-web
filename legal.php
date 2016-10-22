@@ -38,6 +38,7 @@
 			<ul>
 				<li><a href="http://www.designbolts.com/2013/06/27/new-flat-free-social-media-icons-2013/">Social Media Icons, DesignBolts.com</a>, CC BY-NC-ND 3.0</li>
 				<li><a href="https://www.gosquared.com/resources/flag-icons/">2600 Flag Icon Set</a>, MIT License</li>
+			</ul>
 		</article>	
  				
 		<article>

@@ -162,7 +162,7 @@
 					}
 				?>
 				</select>
-				<label for="parent"><?php echo _('nächsthöhere Ebene'); ?></label>
+				<label for="parentId"><?php echo _('nächsthöhere Ebene'); ?></label>
 				<input id="hasChildren" name="hasChildren" type="checkbox">
 				<label for="hasChildren"><?php echo _('hat untergeordnete Ebene'); ?></label>
 				<p><?php echo _('Bei "Gemeindetyp" ist eine passende Auswahl zu treffen. "Pastoraler Raum" beschreibt dabei Zusammenschlüsse von mehreren katholischen Pfarreien/Pfarrvikarien (unterschiedliche Bezeichnungen in den Bistümern: Pastoralverbund, Pfarreiengemeinschaft, Seelsorgeeinheit etc.).'); ?>
