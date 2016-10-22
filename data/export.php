@@ -24,19 +24,19 @@
 
 	
 	function create_json_file( $statement ) {
-		$filename = 'data-' . date('Y-m-d') . '.json';
+		$filename = dirname(__FILE__) . '/data-' . date('Y-m-d') . '.json';
 		
 		$json = fopen( $filename, 'w' );
 		fwrite( $json, stripslashes( json_encode( $statement->fetchAll( PDO::FETCH_ASSOC ), JSON_UNESCAPED_UNICODE ) ) );
 		fclose( $json );
 		echo '<p>JSON Export completed</p>';
 		
-		copy( $filename, "data.json" );
+		copy( $filename, dirname(__FILE__) . '/data.json' );
 		echo '<p>Copied ' . $filename . ' to data.json</p>';
 	}
 	
 	function create_csv_file( $statement, $websites ) {
-		$filename = 'data-' . date('Y-m-d') . '.csv';
+		$filename = dirname(__FILE__) . '/data-' . date('Y-m-d') . '.csv';
 		
 		$file = fopen($filename, 'w');
 		$headline = 'id;lat;lon;Name;Straße;PLZ;Ort;Land;Konfession;Typ';
@@ -52,7 +52,7 @@
 		
 		echo '<p>CSV Export completed</p>';
 		
-		copy( $filename, "data.csv" );
+		copy( $filename, dirname(__FILE__) . '/data.csv' );
 		echo '<p>Copied ' . $filename . ' to data.csv</p>';
 	}
 ?>
