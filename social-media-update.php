@@ -1,8 +1,8 @@
 <?php
 	ini_set('max_execution_time', 300);
 
-	require_once './includes/config.php';
-	require_once './includes/TwitterAPIExchange.php';
+	require_once dirname(__FILE__) . '/includes/config.php';
+	require_once dirname(__FILE__) . '/includes/TwitterAPIExchange.php';
 	
 	// Create list of networks to compare (escaped, comma-separated)
 	$networksToCompareAsStrings = array();

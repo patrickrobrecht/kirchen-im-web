@@ -1,5 +1,5 @@
 <?php
-	require_once '../includes/config.php';
+	require_once dirname(__FILE__, 2) . '/includes/config.php';
 	
 	// Build Query
 	$query = 'SELECT id, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
