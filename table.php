@@ -66,7 +66,7 @@
 				<input id="city" name="city" type="text" value="<?php echo $city; ?>">
 				<label for="city"><?php echo _('Ort'); ?></label>
 				<select id="countryCode" name="countryCode">
-					<option><?php echo _('bitte auswählen'); ?></option>
+					<option value=""><?php echo _('bitte auswählen'); ?></option>
 				<?php 
 					foreach($countries as $countryCode => $countryName) {
 						showOption($countryCode, $countryName, $countryCode == $country);
@@ -75,7 +75,7 @@
 				</select>
 				<label for="countryCode"><?php echo _('Land'); ?></label>
 				<select id="denomination" name="denomination">
-					<option><?php echo _('bitte auswählen'); ?></option>
+					<option value=""><?php echo _('bitte auswählen'); ?></option>
 					<?php 
 					foreach($denominations as $value => $denominationName) {
 						showOption($value, $denominationName, $value == $denomination);
@@ -84,7 +84,7 @@
 				</select>
 				<label for="denomination"><?php echo _('Konfession'); ?></label>
 				<select id="type" name="type">
-					<option><?php echo _('bitte auswählen'); ?></option>
+					<option value=""><?php echo _('bitte auswählen'); ?></option>
 				<?php 
 					foreach($types as $value => $typeName) {
 						showOption($value, $typeName, $value == $type);
@@ -93,7 +93,7 @@
 				</select>
 				<label for="type"><?php echo _('Gemeindetyp'); ?></label>
 				<select id="hasWebsiteType" name="hasWebsiteType">
-					<option><?php echo _('bitte auswählen'); ?></option>
+					<option value=""><?php echo _('bitte auswählen'); ?></option>
 				<?php
 					foreach($websites as $websiteId => $websiteName) {
 						showOption($websiteId, $websiteName, $websiteId == $hasWebsiteType);
