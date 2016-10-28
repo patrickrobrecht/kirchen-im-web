@@ -151,9 +151,6 @@ Options -Indexes
 	# force browsers to stick to the declared content-type
 	Header always set X-Content-Type-Options "nosniff"
 	
-	# public key pins
-	Header always set Public-Key-Pins "pin-sha256=\"fjY4462dKW9v87oQ+3NpNOhRgAQcS26P6BVfPfej2Rk=\"; pin-sha256=\"YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=\"; pin-sha256=\"Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys=\"; max-age=2592000;"
-	
 	# Remove sever information (this does not always work)
 	Header set Server ""
 	Header always unset Server
