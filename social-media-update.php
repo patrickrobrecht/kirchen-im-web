@@ -95,7 +95,8 @@
 	 			return 0;
 	 		}
 	 		if ( startsWith($id, 'pages/') ) {
-	 			$id = end(explode('/', $id));
+	 			$temp = explode('/', $id);
+	 			$id = end($temp);
 	 		}
 	 		
 			//Construct a Facebook URL
@@ -103,11 +104,12 @@
 				'?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
 			$json = file_get_contents($json_url);
 			if (!$json) {
-				$id = str_replace('/', '', end(explode('-', $id)) );
+				$temp = explode('-', $id);
+				$id = str_replace('/', '', end($temp) );
 				$json_url ='https://graph.facebook.com/' . $id .
 					'?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
 				$json = file_get_contents($json_url);
-				if (!json) {
+				if (!$json) {
 					return -1;
 				}
 			}
@@ -182,7 +184,8 @@
 		try {
 			$username = substr($url, 24);
 			if ( startsWith($username, 'channel/') ) {
-				$channelId = end(explode('/', $username));
+				$temp = explode('/', $username);
+				$channelId = end($temp);
 			} else {			
 				$json_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $username 
 					. '&type=channel&key=' . GOOGLE_API_KEY;
