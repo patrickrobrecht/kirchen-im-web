@@ -102,7 +102,7 @@
 			//Construct a Facebook URL
 			$json_url ='https://graph.facebook.com/' . $id . 
 				'?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
-			$json = file_get_contents($json_url);
+			$json = @file_get_contents($json_url);
 			if (!$json) {
 				$temp = explode('-', $id);
 				$id = str_replace('/', '', end($temp) );
