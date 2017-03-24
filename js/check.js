@@ -21,7 +21,7 @@ function checkURL(input) {
 		urlStart = 'https://twitter.com/';
 		break;
 	case 'youtubeURL':
-		urlStart = 'https://www.youtube.com/'
+		urlStart = 'https://www.youtube.com/';
 		break;
 	default:
 		urlStart = '';

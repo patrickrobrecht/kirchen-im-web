@@ -15,14 +15,6 @@ figure{margin:1em;float:right;}
 figcaption{max-width:300px;}
 img{border:0;}
 
-table{border-collapse:collapse;clear:both;}
-thead tr, tbody tr:nth-child(2n){background:#ddd;}
-td,th{padding:.5em;}
-th{text-align:center;vertical-align:middle;}
-td{vertical-align:top;}
-td li{margin:0;}
-.number{text-align:right;}
-
 fieldset{width:30em;position:relative;margin:1em;border:none;float:left;}
 legend{font-weight:bold;margin-bottom:.4em;}
 input[type=text],input[type=url],select{margin:0 0 0.5em 32%;padding:.2em;width:60%;background-color:#fffbf0;border:1px solid #e7c157;}
@@ -54,7 +46,6 @@ a[href^="https://"]:after{content:" " url(/images/secure.png);}
 .rss:before{content:url(/images/icons/RSS.png) " ";}
 .facebook:before{content:url(/images/icons/Facebook.png) " ";}
 .flickr:before{content:url(/images/icons/Flickr.png) " ";}
-.github::before{content:url(/images/icons/Github.png) " ";}
 .googlePlus:before{content:url(/images/icons/Google-plus.png) " ";}
 .instagram:before{content:url(/images/icons/Instagram.png) " ";}
 .soundcloud:before{content:url(/images/icons/Soundcloud.png) " ";}
@@ -97,4 +88,38 @@ a[href^="https://"]:after{content:" " url(/images/secure.png);}
 @media print{ /* print version */
 	body{background:none;font-size:10pt;color:#fff;}
 	header,footer,nav{display:none;}
+}
+
+/* tables, partly inspired by tablesorter's default theme */
+table{clear:both;width:100%;border-collapse:collapse;font-size:.7em;text-align:left;}
+tbody tr:nth-child(2n-1){background:#ddd;}
+th,td{padding:4px;}
+th{text-align:center;vertical-align:middle;}
+td{vertical-align:top;}
+td li{margin:0;}
+.number{text-align:right;}
+
+.tablesorter-default .header,
+.tablesorter-default .tablesorter-header {
+    background: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==) center right no-repeat;
+    cursor: pointer;
+    white-space: normal;
+    padding: 4px 20px 4px 4px;
+}
+.tablesorter-default thead .headerSortUp,
+.tablesorter-default thead .tablesorter-headerSortUp,
+.tablesorter-default thead .tablesorter-headerAsc {
+    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+    border-bottom: #000 2px solid;
+}
+.tablesorter-default thead .headerSortDown,
+.tablesorter-default thead .tablesorter-headerSortDown,
+.tablesorter-default thead .tablesorter-headerDesc {
+    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+    border-bottom: #000 2px solid;
+}
+.tablesorter-default thead .sorter-false {
+    background-image: none;
+    cursor: default;
+    padding: 4px;
 }

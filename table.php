@@ -42,7 +42,6 @@
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<?php } ?>	
 	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/theme.default.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
