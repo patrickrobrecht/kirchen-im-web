@@ -68,7 +68,7 @@ a[href^="https://"]:after{content:" " url(/images/secure.png);}
 
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
 #map{height:1024px;width:1024px;}
-#detailsmap{height:256px;width:512px;}
+#detailsmap{height:256px;width:512px;margin-bottom:20px;}
 
 /* Details */
 .websites tr>:nth-child(1),.details tr>:nth-child(1){width:170px;}
@@ -91,7 +91,8 @@ a[href^="https://"]:after{content:" " url(/images/secure.png);}
 }
 
 /* tables, partly inspired by tablesorter's default theme */
-table{clear:both;width:100%;border-collapse:collapse;font-size:.7em;text-align:left;}
+table{clear:both;border-collapse:collapse;text-align:left;}
+.tablesorter{width:100%;font-size:.7em;}
 tbody tr:nth-child(2n-1){background:#ddd;}
 th,td{padding:4px;}
 th{text-align:center;vertical-align:middle;}
