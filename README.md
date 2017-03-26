@@ -18,11 +18,11 @@ The latest development version is online at [beta.kirchen-im-web.de](http://beta
 
 ## API Documentation
 
-kirchen-im-web.de offers the data via a public API at `https://beta.kirchen-im-web.de/api/` which returns all the data on the selected churches in JSON format. Even if there is only one result for the query, the data is returned as a list.
+kirchen-im-web.de offers the data via a public API at `https://kirchen-im-web.de/api/` which returns all the data on the selected churches in JSON format. Even if there is only one result for the query, the data is returned as a list.
 
 Per default, the whole data is returned. Parameters can be used to reduce the number of entries which are returned.
 
-Example: A call to `https://beta.kirchen-im-web.de/api/?id=1` only returns data of the church with ID 1.
+Example: A call to `https://kirchen-im-web.de/api/?id=1` only returns data of the church with ID 1.
 
 * `id`: the ID of a church entry
 * `name`: the substring of the name
@@ -42,7 +42,7 @@ The referenced variables can be found in the [configuration file](https://github
 ## Used programming languages and libraries
 * [HTML5, CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss)
 * [PHP](https://secure.php.net/)
-* JavaScript, especially the libraries [jQuery)(https://jquery.com/], [Highcharts](http://www.highcharts.com/), [Leaflet](http://leafletjs.com/), [Tablesorter](http://tablesorter.com/)
+* JavaScript, especially the libraries [jQuery](https://jquery.com/], [Highcharts](http://www.highcharts.com/), [Leaflet](http://leafletjs.com/), [Tablesorter](http://tablesorter.com/)
 
 
 # [kirchen-im-web.de](https://kirchen-im-web.de/de/index.php) - Verzeichnis kirchlicher Web- und Social-Media-Auftritte
