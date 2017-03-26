@@ -84,7 +84,8 @@
 		
 		$statement = $connection->prepare('SELECT cid, url from websites 
 			WHERE type IN (' . $networksToCompareList . ') 
-				AND (followers IS NULL OR followers = 0) ORDER BY type, cid');
+				AND (followers IS NULL AND timestamp < NOW()
+				ORDER BY type, cid');
 		$statement->execute();
 		
 		echo '<ol>';

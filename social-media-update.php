@@ -20,9 +20,10 @@
 	echo '<p>Completed in ' . $execution_time . ' seconds.</p>';
 	
 	/**
-	 * Updates the number of followers for the entries for the given network
+	 * Updates the number of followers for the entries for the given networks
 	 * 
 	 * @param unknown $network
+	 * @param number $limit the maximum number of entries to check
 	 */
 	function updateEntriesForType($networksToCompareList, $limit) {
 		global $connection;
@@ -72,12 +73,8 @@
 		switch ($network) {
 			case 'facebook':
 				return getFacebookLikes($url);
-			case 'flickr':
-				return getFlickrFollowers($url);
 			case 'googlePlus':
 				return getGooglePlusOnes($url);
-			case 'instagram':
-				return getInstagramFollower($url);
 			case 'twitter':
 				return getTwitterFollower($url);
 			case 'youtube':
@@ -108,7 +105,7 @@
 				$id = str_replace('/', '', end($temp) );
 				$json_url ='https://graph.facebook.com/' . $id .
 					'?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
-				$json = file_get_contents($json_url);
+				$json = @file_get_contents($json_url);
 				if (!$json) {
 					return -1;
 				}
@@ -116,20 +113,11 @@
 			$json_output = json_decode($json);
 			
 			//Extract the likes count from the JSON object
-			if($json_output->likes){
-				return $likes = $json_output->likes;
-			}else{
-				return 0;
+			if ($json_output->likes) {
+				return $json_output->likes;
+			} else {
+				return -1;
 			}
-		} catch (Exception $e) {
-			return -1;
-		}
-	}
-	
-	function getFlickrFollowers($url) {
-		try {
-			// TODO
-			return;
 		} catch (Exception $e) {
 			return -1;
 		}
@@ -139,22 +127,13 @@
 		try {
 			$id = substr($url, 24);
 			$json_url = 'https://www.googleapis.com/plus/v1/people/' . $id .'?key=' . GOOGLE_API_KEY;
-			$json = file_get_contents($json_url);
+			$json = @file_get_contents($json_url);
 			if (!$json) {
 				return -1;
 			}
 			$json_output = json_decode($json);
 			
 			return intval($json_output->circledByCount);
-		} catch (Exception $e) {
-			return -1;
-		}
-	}
-	
-	function getInstagramFollower($url) {
-		try {
-			// TODO
-			return;
 		} catch (Exception $e) {
 			return -1;
 		}
@@ -174,6 +153,9 @@
 				->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
 				->performRequest();
 			$data = json_decode($follow_count, true);
+			if (!$data || !$data['followers_count']) {
+				return -1;
+			}
 			return $data['followers_count'];
 		} catch (Exception $e) {
 			return -1;
@@ -189,7 +171,7 @@
 			} else {			
 				$json_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $username 
 					. '&type=channel&key=' . GOOGLE_API_KEY;
-				$json = file_get_contents($json_url);
+				$json = @file_get_contents($json_url);
 				if (!$json) {
 					return -1;
 				}
@@ -199,7 +181,7 @@
 		
 			$json_url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' . $channelId 
 				. '&key=' . GOOGLE_API_KEY;
-			$json = file_get_contents($json_url);
+			$json = @file_get_contents($json_url);
 			if (!$json) {
 				return -1;
 			}

@@ -1,9 +1,12 @@
 ﻿# kirchen-im-web.de Changelog / Änderungshistorie
 
+[2.x](#version-2x):
+[2.3](#version-23-2017-03-26)
 [2.2](#version-22-2016-10-20)
 [2.1](#version-21-2016-09-08)
 [2.0](#version-20-2016-08-13)
 
+[1.x](#version-1x):
 [1.3](#version-13-2016-04-11)
 [1.2](#version-12-2016-03-20)
 [1.1](#version-11-2016-01-30)
@@ -11,12 +14,14 @@
 
 ## Version 2.x
 
-### Version 2.3 (TODO)
+### Version 2.3 (2017-03-26)
 * Automatic generation of new JSON/CSV export after adding a church
+* Social media profiles without followers are not listed in missing follower data check anymore.
 * Minor style improvements
 
 Detusch:
 * automatische Erstellung eines neuen JSON/CSV-Exportes beim Hinzufügen einer Gemeinde
+* Social-Media-Profile ohne Follower werden nicht mehr unter fehlenden Follower-Daten angezeigt.
 * kleinere Design-Verbesserungen
 
 ### Version 2.2 (2016-10-20)
