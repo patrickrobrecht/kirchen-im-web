@@ -11,6 +11,14 @@
 
 ## Version 2.x
 
+### Version 2.3 (TODO)
+* Automatic generation of new JSON/CSV export after adding a church
+* Minor style improvements
+
+Detusch:
+* automatische Erstellung eines neuen JSON/CSV-Exportes beim Hinzufügen einer Gemeinde
+* kleinere Design-Verbesserungen
+
 ### Version 2.2 (2016-10-20)
 * Added API returning church data in JSON format.
 

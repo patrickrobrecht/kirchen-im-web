@@ -1,7 +1,7 @@
 <?php
 	// Include functions.
 	include_once 'includes/functions.php';
-	
+
 	// Parse the data.
 	$somethingSubmitted = false;
 	$data = array();
@@ -80,6 +80,9 @@
 		$id = addChurchToDatabase($data, $urls);
 		$message = sprintf( _('%s wurde hinzugefügt. Vielen Dank!'), getLinkToDetailsPage($id, $data['name']) );
 		$errors = false;
+
+		// Generate new JSON/CSV export.
+		export();
 	}
 	
 	// Get parameters for pre-selection.

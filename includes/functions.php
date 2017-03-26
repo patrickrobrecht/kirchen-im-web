@@ -1,5 +1,5 @@
 <?php
-	require_once 'includes/config.php';
+require_once dirname(__FILE__, 2) . '/includes/config.php';
 	
 function echo_language() {
 	global $current_language;
@@ -284,13 +284,63 @@ function getChurchesChildren($parent) {
 }
 
 function echoChurchesHierarchy($children) {
-	if (count($children) > 0) {?>
-	<ol>
-		<?php foreach ($children as $child) {
-			echo '<li>' . getLinkToDetailsPage($child['id'], $child['name']) . '</li>';
-			$grandchildren = getChurchesChildren($child['id']);
-			echoChurchesHierarchy($grandchildren);
-		} ?>
-	</ol>
+	if ( count( $children ) > 0 ) { ?>
+        <ol>
+			<?php foreach ( $children as $child ) {
+				echo '<li>' . getLinkToDetailsPage( $child['id'], $child['name'] ) . '</li>';
+				$grandchildren = getChurchesChildren( $child['id'] );
+				echoChurchesHierarchy( $grandchildren );
+			} ?>
+        </ol>
 	<?php }
+}
+
+function export() {
+    global $connection, $websites;
+    $query = 'SELECT id, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
+    foreach ($websites as $websiteId => $websiteName) {
+        $query .= ', ' .$websiteId . '.url AS ' . $websiteId;
+    }
+    $query .= ' FROM churches ';
+    foreach ($websites as $websiteId => $websiteName) {
+        $query .= 'LEFT JOIN websites AS ' . $websiteId . ' ON ' . $websiteId . '.cid = churches.id
+                AND ' . $websiteId . '.type = "' . $websiteId . '" ';
+    }
+
+    $time_start = microtime(true);
+
+    // Create files.
+    create_json_file( $connection->query($query) );
+    create_csv_file( $connection->query($query), $websites );
+
+    $time_end = microtime(true);
+    $execution_time = ($time_end - $time_start);
+}
+
+function create_json_file( $statement ) {
+    $filename = dirname(__FILE__, 2) . '/data/data-' . date('Y-m-d') . '.json';
+
+    $json = fopen( $filename, 'w' );
+    fwrite( $json, stripslashes( json_encode( $statement->fetchAll( PDO::FETCH_ASSOC ), JSON_UNESCAPED_UNICODE ) ) );
+    fclose( $json );
+
+    copy( $filename, dirname(__FILE__, 2) . '/data/data.json' );
+}
+
+function create_csv_file( $statement, $websites ) {
+    $filename = dirname(__FILE__, 2 ) . '/data/data-' . date('Y-m-d') . '.csv';
+
+    $file = fopen($filename, 'w');
+    $headline = 'id;lat;lon;Name;Straße;PLZ;Ort;Land;Konfession;Typ';
+    foreach ($websites as $websiteId => $websiteName) {
+        $headline .= ';' . $websiteName;
+    }
+    fwrite($file, $headline . "\n");
+    while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+        $data = implode(";", $row);
+        fwrite($file, $data . "\n");
+    }
+    fclose($file);
+
+    copy( $filename, dirname(__FILE__, 2) . '/data/data.csv' );
 }
