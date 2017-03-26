@@ -6,7 +6,7 @@ We want to show that many parishes, regional churches and dioceses are do a good
 
 Our Project is oecumenic, i. e. regardless whether Protestants, Catholic or free church - all can participate. You can simply add your church using our [form](https://kirchen-im-web.de/en/add.php).
 
-The latest development version is online at [beta.kirchen-im-web.de](http://beta.kirchen-im-web.de/en/index.php).
+The latest development version is online at [beta.kirchen-im-web.de](https://beta.kirchen-im-web.de/en/index.php).
 
 ## Features
 * [map](https://kirchen-im-web.de/en/map.php) with all churches which can be filtered according to denomination and network
@@ -29,20 +29,20 @@ Example: A call to `https://kirchen-im-web.de/api/?id=1` only returns data of th
 * `postalCode`: the postal code
 * `city`: the substring of the city
 * `country`: the country code (e. g. `DE` for Germany).
-	Possible values: see `$countries` variable in the configuration
+	Possible values: see `$countries` variable in the configuration file
 * `denomination`: the denomination. 
-	Possible values: see `$denominations` variable in the configuration
+	Possible values: see `$denominations` variable in the configuration file
 * `type`: the type. 
-	Possible values: see `$types` variable in the configuration
+	Possible values: see `$types` variable in the configuration file
 * `hasWebsiteType`: the website type.
-	Possible values: see `$websites` variable in the configuration
+	Possible values: see `$websites` variable in the configuration file
 
 The referenced variables can be found in the [configuration file](https://github.com/patrickrobrecht/kirchen-im-web/blob/master/includes/config.php).
 
 ## Used programming languages and libraries
 * [HTML5, CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss)
 * [PHP](https://secure.php.net/)
-* JavaScript, especially the libraries [jQuery](https://jquery.com/], [Highcharts](http://www.highcharts.com/), [Leaflet](http://leafletjs.com/), [Tablesorter](http://tablesorter.com/)
+* JavaScript, especially the libraries [jQuery](https://jquery.com/), [Highcharts](http://www.highcharts.com/), [Leaflet](http://leafletjs.com/), [Tablesorter](http://tablesorter.com/)
 
 
 # [kirchen-im-web.de](https://kirchen-im-web.de/de/index.php) - Verzeichnis kirchlicher Web- und Social-Media-Auftritte
@@ -51,7 +51,7 @@ Wir wollen zeigen, dass viele Kirchengemeinden, Landeskirchen und Bistümer auch
 
 Unser Projekt ist überkonfessionell, d. h. egal ob evangelisch, katholisch oder freikirchlich - alle können mitmachen. Sie können Ihre Gemeinde einfach über unser [Formular](https://kirchen-im-web.de/de/add.php) hinzufügen.
 
-Die aktuelle Entwicklungsversion gibt es unter [beta.kirchen-im-web.de](http://beta.kirchen-im-web.de/de/index.php).
+Die aktuelle Entwicklungsversion gibt es unter [beta.kirchen-im-web.de](https://beta.kirchen-im-web.de/de/index.php).
 
 ## Funktionen
 * [Karte](https://kirchen-im-web.de/de/map.php) mit allen Gemeinden, die nach Konfession und Netzwerk gefiltert werden kann
