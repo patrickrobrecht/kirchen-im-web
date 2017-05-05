@@ -1,5 +1,6 @@
 <?php 
 	include_once 'includes/functions.php';
+    global $countries, $preselected;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo_language(); ?>">
@@ -19,8 +20,8 @@
 			<h2><?php echo _('Download');?></h2>	
 			<p><?php echo _('Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden.'); ?></p>
 			<ul>
-				<li><a href="data/data.json"><?php echo _('Download JSON'); ?></a></li>
-				<li><a href="data/data.csv"><?php echo _('Download csv'); ?></a> (<?php echo _('Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten'); ?>)</li>
+				<li><a href="./data/data.json"><?php echo _('Download JSON'); ?></a></li>
+				<li><a href="./data/data.csv"><?php echo _('Download csv'); ?></a> (<?php echo _('Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten'); ?>)</li>
 			</ul>
 			<p><?php echo _('Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert.'); ?></p>
 		</article>
@@ -65,8 +66,8 @@
 					
 					$statement = $connection->prepare($query);
 					$statement->execute();
-					
-					while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+
+					while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 				?>
 					<tr>
 						<td><?php echo getLinkToDetailsPage($row['id'], $row['name']); ?></td>

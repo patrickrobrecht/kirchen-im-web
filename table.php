@@ -1,5 +1,6 @@
 <?php 
 	include_once 'includes/functions.php';
+	global $countries, $current_language, $denominations, $networksToCompare, $preselected, $types, $websites;
 	
 	// Get the values for the filters.
 	$name = isset($_GET['name']) ? trim($_GET['name']) : '';
@@ -17,7 +18,7 @@
 		$showWebsites = $networksToCompare;
 	} else {
 		$showWebsites = array();
-		foreach($websites as $websiteId => $websiteName) {
+		foreach ($websites as $websiteId => $websiteName) {
 			if ($hasWebsiteType == $websiteId
 					|| (isset($_GET[$websiteId]) && $_GET[$websiteId] == 'show') ) {
 				$showWebsites[$websiteId] = $websiteName;
@@ -67,7 +68,7 @@
 				<select id="countryCode" name="countryCode">
 					<option value=""><?php echo _('bitte auswählen'); ?></option>
 				<?php 
-					foreach($countries as $countryCode => $countryName) {
+					foreach ($countries as $countryCode => $countryName) {
 						showOption($countryCode, $countryName, $countryCode == $country);
 					} 
 				?>
@@ -76,7 +77,7 @@
 				<select id="denomination" name="denomination">
 					<option value=""><?php echo _('bitte auswählen'); ?></option>
 					<?php 
-					foreach($denominations as $value => $denominationName) {
+					foreach ($denominations as $value => $denominationName) {
 						showOption($value, $denominationName, $value == $denomination);
 					} 
 					?>
@@ -85,7 +86,7 @@
 				<select id="type" name="type">
 					<option value=""><?php echo _('bitte auswählen'); ?></option>
 				<?php 
-					foreach($types as $value => $typeName) {
+					foreach ($types as $value => $typeName) {
 						showOption($value, $typeName, $value == $type);
 					}
 				?>
@@ -182,14 +183,14 @@
 					foreach ($networksToCompare as $websiteId => $websiteName) {
 						array_push($compare_conditions, '(' . $websiteId . '.followers IS NOT NULL AND ' . $websiteId . '.followers > 0) ');
 					}
-					if (sizeof($compare_conditions) > 0) {
+					if ( sizeof($compare_conditions) > 0 ) {
 						$only_socialmedia_compare_condition = '';
 						foreach ($compare_conditions as $condition) {
 							$only_socialmedia_compare_condition .= ' OR ' . $condition;
 						}
 						$only_socialmedia_compare_condition = preg_replace('/ OR/', '(', $only_socialmedia_compare_condition, 1) . ')';
+						array_push($conditions, $only_socialmedia_compare_condition);
 					}
-					array_push($conditions, $only_socialmedia_compare_condition);
 				}
 				
 				if (sizeof($conditions) > 0) {

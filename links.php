@@ -1,5 +1,6 @@
 <?php 
 	include_once 'includes/functions.php';
+	global $current_language;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo_language(); ?>">

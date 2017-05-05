@@ -1,6 +1,7 @@
 <?php
 	// Include functions.
 	include_once 'includes/functions.php';
+    global $countries, $denominations, $types, $websites, $websitesStartOfURL;
 
 	// Parse the data.
 	$somethingSubmitted = false;
@@ -130,24 +131,24 @@
 				<input id="city" name="city" type="text" required value="<?php if ($errors) echo $data['city']; ?>">
 				<label for="city"><?php echo _('Ort'); ?></label>
 				<select id="countryCode" name="countryCode">
-				<?php 
-					foreach($countries as $country => $countryName) {
+				<?php
+					foreach ($countries as $country => $countryName) {
 						showOption($country, $countryName, $country == $data['countryCode'] && $errors);
-					} 
+					}
 				?>
 				</select>
 				<label for="countryCode"><?php echo _('Land'); ?></label>
 				<select id="denomination" name="denomination">
-					<?php 
-					foreach($denominations as $value => $denominationName) {
+				<?php
+					foreach ($denominations as $value => $denominationName) {
 						showOption($value, $denominationName, $value == $data['denomination'] && $errors);
 					} 
-					?>
+				?>
 				</select>
 				<label for="denomination"><?php echo _('Konfession'); ?></label>
 				<select id="type" name="type">
-				<?php 
-					foreach($types as $value => $typeName) {
+				<?php
+					foreach ($types as $value => $typeName) {
 						showOption($value, $typeName, ($value == $data['type'] && $errors) || $value == $defaultType);
 					}
 				?>

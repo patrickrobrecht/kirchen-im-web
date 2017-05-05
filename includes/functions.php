@@ -9,7 +9,7 @@ function echo_language() {
 /**
  * Tests whether the given variable is null or the empty string.
  * 
- * @param unknown $str
+ * @param string $str
  * @return boolean
  */
 function isNullOrEmptyString($str){
@@ -19,7 +19,7 @@ function isNullOrEmptyString($str){
 /**
  * Tests whether the given variable is a valid name.
  * 
- * @param unknown $name
+ * @param string $name
  * @return boolean
  */
 function isName($name) {
@@ -29,7 +29,7 @@ function isName($name) {
 /**
  * Tests whether the given variable is a valid street.
  * 
- * @param unknown $street
+ * @param string $street
  * @return boolean
  */
 function isStreet($street) {
@@ -39,8 +39,8 @@ function isStreet($street) {
 /**
  * Tests whether the given variable is a valid postal code for the given country.
  * 
- * @param unknown $postalCode
- * @param unknown $countryCode
+ * @param number|string $postalCode
+ * @param string $countryCode
  * @return number
  */
 function isPostalCode($postalCode, $countryCode) {
@@ -55,12 +55,13 @@ function isPostalCode($postalCode, $countryCode) {
 			return preg_match('/[0-9]{4}/', $postalCode);
 			break;
 	}
+	return 0;
 }
 
 /**
  * Tests whether the given variable is a valid city name.
  * 
- * @param unknown $city
+ * @param string $city
  * @return boolean
  */
 function isCity($city) {
@@ -70,7 +71,7 @@ function isCity($city) {
 /**
  * Tests whether the given variable is a valid country code.
  * 
- * @param unknown $countryCode
+ * @param string $countryCode
  * @return boolean
  */
 function isCountryCode($countryCode) {
@@ -81,7 +82,7 @@ function isCountryCode($countryCode) {
 /**
  * Tests whether the given variable is a valid denomination.
  * 
- * @param unknown $denomination
+ * @param string $denomination
  * @return boolean
  */
 function isDenomination($denomination) {
@@ -92,7 +93,7 @@ function isDenomination($denomination) {
 /**
  * Tests whether the given variable is a valid type.
  * 
- * @param unknown $type
+ * @param string $type
  * @return boolean
  */
 function isType($type) {
@@ -103,17 +104,17 @@ function isType($type) {
 /**
  * Tests whether the given variable is a valid parent id.
  * 
- * @param unknown $parentId
+ * @param number $parentId
  * @return boolean
  */
 function isParentId($parentId) {
-	return true;
+	return ($parentId > 0); // TODO check in the database here
 }
 
 /**
  * Tests whether the given variable is a valid URL.
  * 
- * @param unknown $url
+ * @param string $url
  * @return boolean
  */
 function isURL($url) {
@@ -124,7 +125,7 @@ function isURL($url) {
 /**
  * Tests whether the given variable is a valid URL with begins with the given string.
  * 
- * @param unknown $url
+ * @param string $url
  * @param string $startsWith
  * @return boolean
  */
@@ -135,8 +136,8 @@ function isValidURL($url, $startsWith = '') {
 /**
  * Tests whether the given haystack starts with needle.
  * 
- * @param unknown $haystack
- * @param unknown $needle
+ * @param string $haystack
+ * @param string $needle
  * @return boolean
  */
 function startsWith($haystack, $needle) {
@@ -147,8 +148,10 @@ function startsWith($haystack, $needle) {
 /**
  * Adds a church with the given data to the database.
  * 
- * @param unknown $data
- * @param unknown $urls
+ * @param array $data the church data
+ * @param array $urls
+ *
+ * @return number the id of the created church.
  */
 function addChurchToDatabase($data, $urls) {
 	// Add church to the database.
@@ -197,7 +200,7 @@ function addChurchToDatabase($data, $urls) {
 		$statement->execute();	
 	}
 	
-	return $churchId;
+	return intval($churchId);
 }
 
 function showOption($value, $text, $selected = false) {
@@ -245,7 +248,7 @@ function getLinkToDetailsPage($id, $text) {
 	if (is_null($id)) {
 		return '–';
 	} else {
-		return '<a href="details.php?id=' . $id . '">' . $text . '</a>';	
+		return '<a href="details.php?id=' . $id . '">' . $text . '</a>';
 	}	
 }
 
@@ -268,7 +271,7 @@ function postalCodeString($postalCodeNumber, $countryCode) {
 
 function geoPositionString($lat, $lon) {
 	$geo = '';
-	$geo .= $lat . '° ' . (($lat > 0) ? '<abbr title="nördliche Breite">N</abbr>' : '<abbr title="südliche Breite">S</<abbr>');
+	$geo .= $lat . '° ' . (($lat > 0) ? '<abbr title="nördliche Breite">N</abbr>' : '<abbr title="südliche Breite">S</abbr>');
 	$geo .= ', ';
 	$geo .= $lon . '° ' . (($lon > 0) ? '<abbr title="östliche Länge">E</abbr>' : '<abbr title="westliche Länge">W</abbr>');
 	return $geo; 
@@ -307,17 +310,12 @@ function export() {
                 AND ' . $websiteId . '.type = "' . $websiteId . '" ';
     }
 
-    $time_start = microtime(true);
-
     // Create files.
     create_json_file( $connection->query($query) );
     create_csv_file( $connection->query($query), $websites );
-
-    $time_end = microtime(true);
-    $execution_time = ($time_end - $time_start);
 }
 
-function create_json_file( $statement ) {
+function create_json_file( PDOStatement $statement ) {
     $filename = dirname(__FILE__, 2) . '/data/data-' . date('Y-m-d') . '.json';
 
     $json = fopen( $filename, 'w' );
@@ -327,7 +325,7 @@ function create_json_file( $statement ) {
     copy( $filename, dirname(__FILE__, 2) . '/data/data.json' );
 }
 
-function create_csv_file( $statement, $websites ) {
+function create_csv_file( PDOStatement $statement, $websites ) {
     $filename = dirname(__FILE__, 2 ) . '/data/data-' . date('Y-m-d') . '.csv';
 
     $file = fopen($filename, 'w');

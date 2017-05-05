@@ -1,4 +1,5 @@
 <?php
+    global $current_language, $headerLinks, $languages_slugs, $languages_names;
 	$self = basename( $_SERVER['PHP_SELF'] );
 	parse_str($_SERVER['QUERY_STRING'], $parameters);
 	unset($parameters['lang']);

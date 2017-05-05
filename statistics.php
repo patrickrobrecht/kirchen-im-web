@@ -1,5 +1,6 @@
 <?php 
 	include_once 'includes/functions.php';
+	global $countries, $denominations, $types, $websites;
 
 	$queryTotal = 'SELECT count(*) AS count FROM churches';
 	$statementTotal = $connection->query($queryTotal);
@@ -57,7 +58,7 @@
 				text: 'kirchen-im-web.de'
 			},
 			legend: {
-				enabled: true,
+				enabled: true
 			},
 			series: [ {
 				name: '<?php echo _('Anzahl der Einträge'); ?>',
@@ -148,7 +149,7 @@
 						echo "'" . $websites[$row['type']] . "',";
 					} ?> ],
 				labels: {
-					rotation: -45,
+					rotation: -45
 				}
 			},
 			yAxis: {
@@ -157,7 +158,7 @@
 				}
 			},
 			legend: {
-				enabled: false,
+				enabled: false
 			},
 			plotOptions: {
 				bar: {
@@ -197,7 +198,7 @@
 						echo "'" . $websites[$row['type']] . "',";
 					} ?> ],
 				labels: {
-					rotation: -45,
+					rotation: -45
 				}
 			},
 			yAxis: {
@@ -206,7 +207,7 @@
 				}
 			},
 			legend: {
-				enabled: true,
+				enabled: true
 			},
 			plotOptions: {
 				bar: {
@@ -219,7 +220,7 @@
 				name: 'HTTP',
 				data: [<?php foreach ($totalByWebsiteHTTPS as $row) { 
 							echo ($row['count'] - $row['countHTTPS']) . ','; 
-						} ?>],
+						} ?>]
 			}, { 
 				name: 'HTTPS',
 				data: [<?php foreach ($totalByWebsiteHTTPS as $row) { 

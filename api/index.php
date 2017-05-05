@@ -1,6 +1,7 @@
 <?php 
 	include_once '../includes/config.php';
-	
+	global $websites;
+
 	// Get the values for the filters.
 	$id = isset( $_GET['id'] ) ? intval( trim( $_GET['id'] ) ) : ''; 
 	$name = isset( $_GET['name'] ) ? trim( $_GET['name'] ) : '';
@@ -104,4 +105,4 @@
 	// Return the data in json format.
 	header( 'Content-Type: application/json;charset=utf-8' );
 	echo json_encode( $data, JSON_UNESCAPED_UNICODE );
-?>
+

@@ -1,17 +1,21 @@
 <?php 
 	include_once 'includes/functions.php';
-	
+    global $countries, $denominations, $denominations_colors, $types, $websites;
+
 	// Get the values for the filters.
 	$id = isset($_GET['id']) ? intval($_GET['id']) : -1;
-	
+	$data = array();
+	$theWebsites = array();
+    $children = array();
+
 	$exists = false;
 	if (is_int($id)) {
 		// Query for the data
 		$query = 'SELECT churches.id, churches.name, churches.street, churches.postalCode, churches.city, churches.country, 
 				churches.lat, churches.lon, churches.denomination, churches.type, churches.hasChildren,
-				parent.id AS parentId, parent.name AS parentName FROM churches';
-		$query .= ' LEFT JOIN churches AS parent ON parent.id = churches.parentId';
-		$query .= ' WHERE churches.id = ' . $id;
+				parent.id AS parentId, parent.name AS parentName FROM churches
+		        LEFT JOIN churches AS parent ON parent.id = churches.parentId
+                WHERE churches.id = ' . $id;
 		$statement = $connection->query($query);
 		$data = $statement->fetch(PDO::FETCH_ASSOC);
 		
@@ -62,7 +66,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($theWebsites as $website) { ?>
+					<?php
+					    foreach ($theWebsites as $website) { ?>
 					<tr>
 						<td><a class="<?php echo $website['type']; ?>" href="<?php echo $website['url']; ?>"><?php echo $websites[$website['type']]; ?></a></td>
 						<td class="number"><?php if (!is_null($website['followers']))					
@@ -104,7 +109,7 @@
 				
 				var group = L.featureGroup(markerArray).addTo(map);
 				map.fitBounds(group.getBounds());
-			};
+			}
 		</script>			
 			
 			<table class="details">

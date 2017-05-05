@@ -1,5 +1,6 @@
 <?php 
 	include_once 'includes/functions.php';
+    global $networksToCompare;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo_language(); ?>">
@@ -75,7 +76,7 @@
 	?>
 
 	<h1 id="social">Check for missing follower data for the social network comparison</h1>
-	<?php 
+	<?php
 		$networksToCompareAsStrings = array();
 		foreach($networksToCompare as $type => $typeName) {
 			array_push($networksToCompareAsStrings, "'" . $type . "'");
@@ -84,17 +85,15 @@
 		
 		$statement = $connection->prepare('SELECT cid, url from websites 
 			WHERE type IN (' . $networksToCompareList . ') 
-				AND (followers IS NULL AND timestamp < NOW()
+				AND (followers IS NULL AND timestamp < NOW())
 				ORDER BY type, cid');
 		$statement->execute();
 		
 		echo '<ol>';
-		
-		while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+		while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 			echo '<li><a href="details.php?id=' . $row['cid'] . '">'. $row['cid'] . '</a> ' .
 				'<a href="' . $row['url'] . '">' . $row['url'] . '</a></li>';
 		}
-		
 		echo '</ol>';
 		
 		$time_end = microtime(true);

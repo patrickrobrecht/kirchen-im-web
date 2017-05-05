@@ -1,5 +1,6 @@
 <?php 
 	include_once 'includes/functions.php';
+	global $websites;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo_language(); ?>">
@@ -64,7 +65,7 @@
 						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
 				}).addTo(map);
 			getData();
-		};
+		}
 
 		function getData() {
 			'use strict';
@@ -82,19 +83,19 @@
 							lat = val.lat;
 							title = val.name;
 							denomination = val.denomination;
-							if (denomination == 'alt-katholisch') {
+							if (denomination === 'alt-katholisch') {
 								denominationLayer = oldCatholicLayer;
 								icon = oldCatholicIcon;
-							} else if (denomination == 'anglikanisch') {
+							} else if (denomination === 'anglikanisch') {
 								denominationLayer = anglicanLayer;
 								icon = anglicanIcon;
-							} else if (denomination == 'evangelisch') {
+							} else if (denomination === 'evangelisch') {
 								denominationLayer = protestantLayer;
 								icon = protestantIcon;
-							} else if (denomination == 'freikirchlich') {
+							} else if (denomination === 'freikirchlich') {
 								denominationLayer = freeChurchesLayer;
 								icon = freeChurchesIcon;
-							} else if (denomination == 'katholisch') {
+							} else if (denomination === 'katholisch') {
 								denominationLayer = catholicLayer;
 								icon = catholicIcon;
 							} else {
@@ -213,15 +214,15 @@
 							"Soundcloud": soundcloudLayer,
 							"Twitter": twitterLayer,
 							"Vimeo": vimeoLayer,
-							"YouTube": youtubeLayer,
-						}
+							"YouTube": youtubeLayer
+                        };
 						L.control.layers(layers).addTo(map);
 						// put markers into a group to
 						var group = L.featureGroup(markerArray).addTo(map);
 						map.fitBounds(group.getBounds());
 					})
-		};
-	</script>
+        }
+    </script>
 	
 	<?php include_once 'includes/footer.php'; ?>
 </body>

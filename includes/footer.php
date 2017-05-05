@@ -1,4 +1,5 @@
 <?php
+    global $footerLinks;
 	$self = basename( $_SERVER['PHP_SELF'] );
 ?>
 
