@@ -81,50 +81,58 @@
 		<section>
 			<h2><?php echo _('Adresse, Konfession und Hierarchie'); ?></h2>
 
-		<div id="detailsmap"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/leaflet.js"></script>
-		<script type="text/javascript">
-			var map;
-			var markerArray = [];
-			
-			loadMap();
-			
-			function loadMap() {
-				'use strict'; // Strict mode makes the browse mourn, if bad practise is used
-				// create a map in the "map" div, set the view to a given place and zoom
-				map = L.map('detailsmap').setView([<?php echo $data['lat']; ?>, <?php echo $data['lon']; ?>], 13);
-				// add an OpenStreetMap tile layer
-				L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-							attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
-					}).addTo(map);
+            <?php if ($data['lat'] && $data['lon']) { ?>
+            <div id="detailsmap"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/leaflet.js"></script>
 
-				// add the marker
-				var icon = L.icon({iconUrl: '/images/markers/<?php echo $denominations_colors[$data['denomination']]; ?>.png'});
-				var thisMarker = L.marker([<?php echo $data['lat']; ?>, <?php echo $data['lon']; ?>], {title: "<?php echo $data['name']; ?>", icon: icon});
-				thisMarker.addTo(map).bindPopup("<strong><?php echo $data['name']; ?></strong>");
+            <script type="text/javascript">
+                var map;
+                var markerArray = [];
 
-				// Push the marker to the Array which shall be displayed on the map
-				markerArray.push(thisMarker);
-				
-				var group = L.featureGroup(markerArray).addTo(map);
-				map.fitBounds(group.getBounds());
-			}
-		</script>			
+                loadMap();
+
+                function loadMap() {
+                    'use strict'; // Strict mode makes the browse mourn, if bad practise is used
+                    // create a map in the "map" div, set the view to a given place and zoom
+                    map = L.map('detailsmap').setView([<?php echo $data['lat']; ?>, <?php echo $data['lon']; ?>], 13);
+                    // add an OpenStreetMap tile layer
+                    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
+                        }).addTo(map);
+
+                    // add the marker
+                    var icon = L.icon({iconUrl: '/images/markers/<?php echo $denominations_colors[$data['denomination']]; ?>.png'});
+                    var thisMarker = L.marker([<?php echo $data['lat']; ?>, <?php echo $data['lon']; ?>], {title: "<?php echo $data['name']; ?>", icon: icon});
+                    thisMarker.addTo(map).bindPopup("<strong><?php echo $data['name']; ?></strong>");
+
+                    // Push the marker to the Array which shall be displayed on the map
+                    markerArray.push(thisMarker);
+
+                    var group = L.featureGroup(markerArray).addTo(map);
+                    map.fitBounds(group.getBounds());
+                }
+            </script>
+            <?php } ?>
 			
 			<table class="details">
 				<tbody>
 					<tr>
 						<th><?php echo _('Adresse'); ?></th>
-						<td><?php echo $data['street']; ?>, 
+						<td><?php if ($data['street']) {
+						        echo $data['street'] . ', ';
+						    }; ?>
 							<a href="table.php?postalCode=<?php echo postalCodeString($data['postalCode'], $data['country']); ?>"><?php echo postalCodeString($data['postalCode'], $data['country']);?></a>
 							<a href="table.php?city=<?php echo $data['city']; ?>"><?php echo $data['city']; ?></a>,
 							<a href="table.php?countryCode=<?php echo $data['country']; ?>"><?php echo $countries[$data['country']]; ?></a></td>
 					</tr>
+                    <?php if ($data['lat'] && $data['lon']) { ?>
 					<tr>
 						<th><?php echo _('Geopositon'); ?></th>
-						<td><?php echo geoPositionString($data['lat'], $data['lon']); ?>
-					<tr>					
+						<td><?php echo geoPositionString($data['lat'], $data['lon']); ?></td>
+                    </tr>
+                    <?php } ?>
+                    <tr>
 						<th><?php echo _('Konfession'); ?></th>
 						<td><a href="table.php?denomination=<?php echo $data['denomination']; ?>"><?php echo $denominations[$data['denomination']]; ?></a></td>
 					</tr>
