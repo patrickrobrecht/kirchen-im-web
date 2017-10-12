@@ -14,12 +14,16 @@
 
 ## Version 2.x
 
+### Version 2.4 (in development)
+* Map: Show clusters on start instead of all entries
+* Load included libraries via nodejs (package.json)
+
 ### Version 2.3 (2017-03-26)
 * Automatic generation of new JSON/CSV export after adding a church
 * Social media profiles without followers are not listed in missing follower data check anymore.
 * Minor style improvements
 
-Detusch:
+Deutsch:
 * automatische Erstellung eines neuen JSON/CSV-Exportes beim Hinzufügen einer Gemeinde
 * Social-Media-Profile ohne Follower werden nicht mehr unter fehlenden Follower-Daten angezeigt.
 * kleinere Design-Verbesserungen

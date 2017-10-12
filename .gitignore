@@ -4,3 +4,4 @@
 data/*.csv
 data/data.json
 includes/constants.php
+node_modules/

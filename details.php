@@ -47,8 +47,8 @@
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo $data['name']; ?> - kirchen-im-web.de</title>
 	<meta name="description" content="<?php echo $data['name'] . ' - ' . _('Webauftritte und soziale Netzwerke'); ?>">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/leaflet.css">
+	<link rel="stylesheet" href="/public/css/style.css">
+	<link rel="stylesheet" href="/public/node_modules/leaflet/dist/leaflet.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
@@ -83,8 +83,8 @@
 
             <?php if ($data['lat'] && $data['lon']) { ?>
             <div id="detailsmap"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
-            <script src="/js/jquery.min.js"></script>
-            <script src="/js/leaflet.js"></script>
+            <script src="/public/node_modules/jquery/dist/jquery.min.js"></script>
+            <script src="/public/node_modules/leaflet/dist/leaflet.js"></script>
 
             <script type="text/javascript">
                 var map;

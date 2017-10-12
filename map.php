@@ -10,8 +10,10 @@
 	<title><?php echo _('Karte'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>
 		<?php echo _('kirchen-im-web.de macht diese auf einer Karte sichtbar.'); ?>">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/leaflet.css">
+	<link rel="stylesheet" href="/public/css/style.css">
+	<link rel="stylesheet" href="/public/node_modules/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="/public/node_modules/leaflet.markercluster/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="/public/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>	
@@ -22,8 +24,9 @@
 		<div id="map"><?php echo _('Bitte warten. Die Karte wird geladen.'); ?></div>
 	</main>
 	
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/leaflet.js"></script>
+	<script src="/public/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="/public/node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="/public/node_modules/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 	<script type="text/javascript">
 		var map;
 		var markerArray = [];
@@ -59,7 +62,7 @@
 		function loadMap() {
 			'use strict'; // Strict mode makes the browse mourn, if bad practise is used
 			// create a map in the "map" div, set the view to a given place and zoom
-			map = L.map('map', {layers: [allLayer]}).setView([25, 8], 11);
+			map = L.map('map', {center: L.latLng(50, 10), zoom: 6});
 			// add an OpenStreetMap tile layer
 			L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
@@ -70,7 +73,10 @@
 		function getData() {
 			'use strict';
 			var url = '/data/data.json';
-			console.log(url);
+            var markerCluster = L.markerClusterGroup({
+                maxClusterRadius: 60,
+                chunkedLoading: true
+            });
 			$.getJSON(url,
 				function(data) {
 					var lat, lng, title, denomination, icon, denominationLayer,
@@ -151,9 +157,10 @@
 							// Build the popup for this row (the small window which you get when clicking on the marker)
 							if (lat && lng && title && content) {
 								thisMarker = L.marker([lat, lng], {title: title, icon: icon});
-								thisMarker.addTo(map).bindPopup(content);
+								thisMarker.bindPopup(content);
 								// Push the marker to the Array which shall be displayed on the map
 								markerArray.push(thisMarker);
+								markerCluster.addLayer(thisMarker);
 								// add to the layers for the denominations
 								thisMarker.addTo(allLayer);
 								thisMarker.addTo(denominationLayer);
@@ -192,7 +199,7 @@
 									thisMarker.addTo(youtubeLayer);
 								}
 							} else {
-								console.log('Problem with lat/lng for data entry ' + title);
+								console.error('Problem with entry ' + val.id + ' ' + title);
 							}
 						});
 						// add control for the layers
@@ -216,10 +223,10 @@
 							"Vimeo": vimeoLayer,
 							"YouTube": youtubeLayer
                         };
-						L.control.layers(layers).addTo(map);
-						// put markers into a group to
-						var group = L.featureGroup(markerArray).addTo(map);
-						map.fitBounds(group.getBounds());
+					    L.control.layers(layers).addTo(map);
+
+						// Add cluster.
+                        map.addLayer(markerCluster);
 					})
         }
     </script>

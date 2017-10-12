@@ -105,7 +105,7 @@
 	<title><?php echo _('Gemeinde hinzufügen'); ?></title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>
 		<?php echo _('Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.'); ?>">
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
@@ -193,7 +193,7 @@
 			</fieldset>
 		</form>
 	</main>
-	<script type="text/javascript" src="/js/check.js"></script>
+	<script type="text/javascript" src="/public/js/check.js"></script>
 	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

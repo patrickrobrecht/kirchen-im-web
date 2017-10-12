@@ -42,7 +42,7 @@
 	<title><?php echo _('Tabelle'); ?>: <?php echo _('Kirchliche Web- und Social-Media-Auftritte'); ?></title>
 	<meta name="description" content="<?php echo _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'); ?>">
 	<?php } ?>	
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
@@ -277,37 +277,41 @@
 				echo sprintf( ngettext("Eine Gemeinde gefunden!", "%d Gemeinden gefunden!", $counter), $counter);
 			} ?></output></p>
 	</main>
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/jquery.tablesorter.js"></script>
-	<script>$("#churchTable").tablesorter({
-<?php 
-		if ($compare) {
-			$sort = isset($_GET['sort']) ? trim($_GET['sort']) : '';
-			$sortColumnId = 0;
-			if (array_key_exists($sort, $networksToCompare)) {
-				$sortColumnId = 6 + array_search($sort, array_keys($networksToCompare));
-			}
-			if ($sortColumnId == 0) {
-?>
-		sortList: [ [6,1], [7,1], [8,1] ],
-<?php 
-			} else {
-?>
-		sortList: [ [<?php echo $sortColumnId; ?>,1] ],
-<?php 
-			}
-		} else {
-?>
-		sortList: [ [3,0] ],
-<?php 
-		} 
-?>
-		<?php if ($current_language == 'de_DE') { ?>
-		usNumberFormat: false,
-		<?php } else { ?>
-		usNumberFormat: true,
-		<?php } ?>
-	});</script>	
+	<script src="/public/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="/public/node_modules/tablesorter/dist/js/jquery.tablesorter.min.js"></script>
+	<script>
+        $(function(){
+            $("#churchTable").tablesorter({
+                <?php
+                if ($compare) {
+                $sort = isset($_GET['sort']) ? trim($_GET['sort']) : '';
+                $sortColumnId = 0;
+                if (array_key_exists($sort, $networksToCompare)) {
+                    $sortColumnId = 6 + array_search($sort, array_keys($networksToCompare));
+                }
+                if ($sortColumnId == 0) {
+                ?>
+                sortList: [ [6,1], [7,1], [8,1] ],
+                <?php
+                } else {
+                ?>
+                sortList: [ [<?php echo $sortColumnId; ?>,1] ],
+                <?php
+                }
+                } else {
+                ?>
+                sortList: [ [3,0] ],
+                <?php
+                }
+                ?>
+                <?php if ($current_language == 'de_DE') { ?>
+                usNumberFormat: false,
+                <?php } else { ?>
+                usNumberFormat: true,
+                <?php } ?>
+            });
+        });
+    </script>
 	<?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

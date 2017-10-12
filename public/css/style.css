@@ -67,7 +67,7 @@ a[href^="https://"]:after{content:" " url(/images/secure.png);}
 .ökumenisch:before{content:url(/images/markers/red.png) " ";}
 
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
-#map{height:1024px;width:1024px;}
+#map{height:768px;width:1024px;}
 #detailsmap{height:256px;width:512px;margin-bottom:20px;}
 
 /* Details */

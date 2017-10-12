@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Linkliste Webauftritte und Social-Media-Auftritte gestalten</title>
 	<meta name="description" content="Hier gibt">
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
 	<?php include_once 'includes/header.php'; ?>
