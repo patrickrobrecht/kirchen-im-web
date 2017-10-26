@@ -1,7 +1,8 @@
 .buildpath
 .project
 .settings/
-data/*.csv
-data/data.json
+config.php
+data/
 includes/constants.php
 node_modules/
+vendor/

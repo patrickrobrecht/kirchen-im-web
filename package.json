@@ -36,6 +36,7 @@
     "assets": [
         "node_modules/jquery/dist/jquery.min.js",
         "node_modules/leaflet/dist/images/layers.png",
+        "node_modules/leaflet/dist/images/layers-2x.png",
         "node_modules/leaflet/dist/leaflet.css",
         "node_modules/leaflet/dist/leaflet.js",
         "node_modules/leaflet.markercluster/dist/leaflet.markercluster.js",

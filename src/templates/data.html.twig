@@ -1,0 +1,52 @@
+{% extends 'default.html.twig' %}
+
+{% block main %}
+    <article id="download">
+        <h2>{% trans 'Download' %}</h2>
+        <p>{% trans 'Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden.' %}</p>
+        <ul>
+            <li><a href="/data/data.json">{% trans 'Download JSON' %}</a></li>
+            <li><a href="/data/data.csv">{% trans 'Download csv' %}</a>
+                ({% trans 'Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten' %})</li>
+        </ul>
+        <p>{% trans 'Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert.' %}</p>
+    </article>
+
+    <article id="recently-added">
+        <h2>{% trans 'Zuletzt hinzugefügt' %}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>{% trans 'Name' %}</th>
+                    <th>{% trans 'PLZ' %}</th>
+                    <th>{% trans 'Ort' %}</th>
+                    <th>{% trans 'Land' %}</th>
+                    <th>{% trans 'Konfession' %}</th>
+                    <th>{% trans 'Gemeindetyp' %}</th>
+                    {% for id, name in config.preselectedWebsites %}
+                        <th>{{ name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                    <tr>
+                        <td><a href="{{ path_for(languageSlug ~ '-details', {'id': entry.id}) }}">{{ entry.name }}</a></td>
+                        <td>{{ entry.postalCode }}</td>
+                        <td>{{ entry.city }}</td>
+                        <td>{{ config.countries[entry.country] }}</td>
+                        <td>{{ entry.denomination }}</td>
+                        <td>{{ entry.type }}</td>
+                        {% for id, name in config.preselectedWebsites %}
+                            <td>
+                                {% if entry[id] %}
+                                    <a href="{{ entry[id] }}">{{ name }}</a>
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% macro menu(items, currentPath) %}
+    <ul>
+        {% for item in items %}
+            {% set url = path_for(item.path) %}
+            {% set text = item.text %}
+            {% if url == currentPath %}
+                <li><strong>{% trans text %}</strong></li>
+            {% else %}
+                {% if item.class %}
+                    <li><a class="{{ item.class }}" href="{{ url }}">{% trans text %}</a></li>
+                {% else %}
+                    <li><a href="{{ url }}">{% trans text %}</a></li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{% macro number_format(number, languageSlug) %}
+    {% if languageSlug == 'de' %}
+        {{- number|number_format(0, ',', '.') -}}
+    {% else %}
+        {{- number|number_format(0, '.', ',') -}}
+    {% endif %}
+{% endmacro %}
+
+{% macro percentage(count, total, languageSlug) %}
+    {% set number = (count / total)*100 %}
+    {% if languageSlug == 'de' %}
+        {{- number|number_format(1, ',', '.') ~ ' %' -}}
+    {% else %}
+        {{- number|number_format(1, '.', ',') ~ ' %' -}}
+    {% endif %}
+{% endmacro %}
+
+{% macro churchHierarchy(entry, languageSlug) %}
+    {% if entry.children|length > 0 %}
+        <ol>
+            {% for child in entry.children %}
+                <li><a href="{{ path_for(languageSlug ~ '-details', {'id': child.id}) }}">
+                        {{- child.name -}}</a>
+                    {% import _self as macros %}
+                    {{ macros.churchHierarchy(child, languageSlug) }}
+                </li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+{% endmacro %}

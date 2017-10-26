@@ -1,0 +1,41 @@
+{% extends 'default.html.twig' %}
+
+{% block main %}
+    <article id="info">
+        <h2>{% trans 'Über das Projekt' %}</h2>
+        <figure>
+            <a href="{{ path_for(languageSlug ~ '-map') }}"><img alt="{% trans 'Karte' %}" src="/images/screenshot.png"></a>
+            <figcaption>
+                {% trans 'Alt-katholische Kirchen werden orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.'%}
+            </figcaption>
+        </figure>
+        <p>{% trans 'Wir wollen zeigen, dass viele Kirchengemeinden, Landeskirchen und Bistümer auch im Web gute Öffentlichtkeitsarbeit machen und stellen diese mit ihren Web- und Social-Media-Auftritten dar.' %}
+            {% trans 'kirchen-im-web.de vergleicht auch die Follower-Zahlen der Social-Media-Auftritte.' %}
+        <p>{% trans 'Unser Projekt ist überkonfessionell, d. h. egal ob evangelisch, katholisch oder freikirchlich - alle können mitmachen.' %}</p>
+
+        <h3>{% trans 'Wie trage ich (m)eine Gemeinde ein?'%}</h3>
+        <p>{% trans 'Für das Verzeichnis benötigen wir die Adressen sowie die Webauftritte und Social-Media-Profile.'%}
+            {% trans 'Da es sich hierbei um öffentlich verfügbare Informationen handelt, müssen diese „nur“ zusammengetragen und gepflegt werden.'%}
+            {% trans 'Dabei kann jeder mithelfen, der ein wenig Zeit und Lust mitbringt:'%}</p>
+        <ul>
+            <li>{% trans 'Sie möchten Ihre (oder auch eine andere) Gemeinde ergänzen?'%}
+                <a href="{{ path_for(languageSlug ~ '-add') }}">{% trans 'Das geht über dieses Formular.'%}</a>
+                {% trans 'In der Karte oder der Tabelle können Sie vorher nachschauen, ob die Gemeinde bereits gelistet ist.'%}</li>
+            <li>{% trans 'Sie haben selber einen Datensatz und möchten uns diesen zur Verfügung stellen? Dann kontaktieren Sie bitte einen der Entwickler.'%}</li>
+        </ul>
+
+        <h3>{% trans 'Was ist der Unterschied zu ähnlichen Projekten?'%}</h3>
+        <ul>
+            <li>{% trans 'Unser Projekt ist überkonfessionell, d. h. egal ob evangelisch, katholisch oder freikirchlich - alle können mitmachen.'%}</li>
+            <li><a href="{{ path_for(languageSlug ~ '-data') }}">{% trans 'Offene Daten'%}</a>:
+                {% trans 'Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden.'%}</li>
+            <li>{% trans 'Die Daten werden automatisch validiert - das hilft, Fehler zu finden.'%}
+                {% trans 'Außerdem prüfen wir regelmäßig, ob die verlinkten Seiten noch existieren.'%}
+                {% trans 'So sind unsere Karte und Tabelle immer aktuell.'%}</li>
+            <li>{% trans 'Auch der Quelltext dieser Webanwendung ist frei verfügbar' %}</li>
+        </ul>
+
+        <h3>{% trans 'Sie haben eine Frage, die hier nicht beantwortet wird?'%}</h3>
+        <p><a href="{{ path_for(languageSlug ~ '-legal') }}">{% trans 'Dann schreiben Sie uns!'%}</a> {% trans 'Natürlich sind Verbesserungsvorschläge sehr willkommen.'%}</p>
+    </article>
+{% endblock %}

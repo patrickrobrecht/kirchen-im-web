@@ -1,0 +1,131 @@
+{% extends 'default.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block metadata %}
+    <title>{{ entry.name }} | {{ 'Kirchliche Web- und Social-Media-Auftritte'|trans }}</title>
+    <meta name="description" content="{{ entry.name }} - {% trans 'Webauftritte und soziale Netzwerke' %}">
+{% endblock %}
+
+{% block head_styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/public/node_modules/leaflet/dist/leaflet.css">
+{% endblock %}
+
+{% block main %}
+    <h1>{{ entry.name }}</h1>
+
+    <section>
+        <h2>{% trans 'Webauftritte und soziale Netzwerke' %}</h2>
+        <table class="websites">
+            <thead>
+                <tr>
+                    <th>{% trans 'Link' %}</th>
+                    <th>{% trans 'Follower' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for website in entry.websites %}
+                    <tr>
+                        <td><a class="{{ website.type }}" href="{{ website.url }}">{{ config.websites[website.type] }}</a></td>
+                        <td class="number">{% if website.followers > 0 %}{{ macros.number_format(website.followers, languageSlug) }}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>{% trans 'Adresse, Konfession und Hierarchie' %}</h2>
+
+        {% if entry.lat and entry.lon %}
+            <div id="detailsmap">
+                <p>{% trans 'Bitte warten. Die Karte wird geladen.' %}</p>
+            </div>
+            <script src="/public/node_modules/jquery/dist/jquery.min.js"></script>
+            <script src="/public/node_modules/leaflet/dist/leaflet.js"></script>
+            <script type="text/javascript">
+                loadMap();
+
+                function loadMap() {
+                    'use strict'; // Strict mode makes the browse mourn, if bad practise is used
+                    // create a map in the "map" div, set the view to a given place and zoom
+                    var map = L.map('detailsmap').setView([{{ entry.lat }}, {{ entry.lon }}], 13);
+                    // add an OpenStreetMap tile layer
+                    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
+                    }).addTo(map);
+
+                    // add the marker
+                    var icon = L.icon({iconUrl: '/images/markers/{{ config.denominations_colors[entry.denomination] }}.png'});
+                    var thisMarker = L.marker([{{ entry.lat }}, {{ entry.lon }}], {title: "{{ entry.name }}", icon: icon});
+                    thisMarker.addTo(map).bindPopup("<strong>{{ entry.name }}</strong>");
+
+                    var group = L.featureGroup([thisMarker]).addTo(map);
+                    map.fitBounds(group.getBounds());
+                }
+            </script>
+        {% endif %}
+
+        <table class="details">
+            <tbody>
+                <tr>
+                    <th>{% trans 'Adresse' %}</th>
+                    <td>{% if entry.street %}
+                            <span>{{ entry.street}}, </span>
+                        {% endif %}
+                        <span><a href="{{ path_for(languageSlug ~ '-search') }}?postalCode={{ entry.postalCode }}">{{ entry.postalCode }}</a>&nbsp;</span>
+                        <span><a href="{{ path_for(languageSlug ~ '-search') }}?city={{ entry.city }}">{{ entry.city }}</a>, </span>
+                        <span><a href="{{ path_for(languageSlug ~ '-search') }}?countryCode={{ entry.country }}">{{ config.countries[entry.country] }}</a></span></td>
+                </tr>
+                {% if entry.lat and entry.lon %}
+                <tr>
+                    <th>{% trans 'Geopositon' %}</th>
+                    <td>{% if entry.lat > 0 %}
+                            <span>{{ entry.lat }} ° <abbr title="{% trans 'nördliche Breite' %}">{% trans 'N' %}</abbr>, </span>
+                        {% else %}
+                            <span>{{ entry.lat }} ° <abbr title="{% trans 'südliche Breite' %}">{% trans 'S' %}</abbr>, </span>
+                        {% endif %}
+                        {% if entry.lon > 0 %}
+                            <span>{{ entry.lon }} ° <abbr title="{% trans 'östliche Länge' %}">{% trans 'O' %}</abbr></span>
+                        {% else %}
+                            <span>{{ entry.lon }} °<abbr title="{% trans 'westliche Länge' %}">{% trans 'W' %}</abbr></span>
+                        {% endif %}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th>{% trans 'Konfession' %}</th>
+                    <td><a href="{{ path_for(languageSlug ~ '-search') }}?denomination={{ entry.denomination }}">{{ config.denominations[entry.denomination] }}</a></td>
+                </tr>
+                <tr>
+                    <th>{% trans 'Gemeindetyp' %}</th>
+                    <td><a href="{{ path_for(languageSlug ~ '-search') }}?type={{ entry.type }}">{{ config.types[entry.type] }}</a></td>
+                </tr>
+                <tr>
+                    <th>{% trans 'nächsthöhere Ebene' %}</th>
+                    <td>{% if entry.parentId %}
+                            <a href="{{ path_for(languageSlug ~ '-details', {'id': entry.parentId}) }}">{{ entry.parentName }}</a>
+                        {% else %}
+                            <span>keine</span>
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <th>{% trans 'nächsttiefere Ebene' %}</th>
+                    <td>{% if entry.children|length == 0 %}
+                            <span>{% trans 'Bisher wurden keine untergeordneten Ebenen hinzugefügt!' %}</span>
+                        {% else %}
+                            {{ macros.churchHierarchy(entry, languageSlug) }}
+                        {% endif %}
+                        {% if entry.hasChildren == 1 %}
+                            <p><a href="{{ path_for(languageSlug ~ '-add') }}?parentId={{ entry.id }}&denomination={{ entry.denomination }}&countryCode={{ entry.country }}">
+                                    {% set name = entry.name %}
+                                    {% trans %}
+                                        Jetzt eine Gemeinde unterhalb von {{ name }} hinzufügen!
+                                    {% endtrans %}</a></p>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

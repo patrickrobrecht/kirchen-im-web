@@ -1,0 +1,18 @@
+{
+    "name": "patrick/kirchen-im-web",
+    "description": "kirchliche Web- und Social-Media-Auftritte",
+    "type": "project",
+    "require": {
+        "php": "^7.0",
+        "j7mbo/twitter-api-php": "^1.0",
+        "slim/slim": "^3.8",
+        "slim/twig-view": "^2.2",
+        "twig/extensions": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "KirchenImWeb\\": "src/"
+        }
+    },
+    "license": "GPL-3.0"
+}

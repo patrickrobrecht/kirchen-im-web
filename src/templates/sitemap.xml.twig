@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for lang in config.languages_slugs %}
+        {% set pages = ['home', 'map', 'search', 'comparison', 'add', 'stats', 'legal', 'data'] %}
+        {% for page in pages %}
+            <url>
+                <loc>https://kirchen-im-web.de{{ path_for(lang ~ '-' ~ page) }}</loc>
+                <changefreq>monthly</changefreq>
+            </url>
+        {% endfor %}
+
+        {% for id in ids %}
+            <url>
+                <loc>https://kirchen-im-web.de{{ path_for(lang ~ '-details', {'id': id['id']}) }}</loc>
+                <changefreq>monthly</changefreq>
+            </url>
+        {% endfor %}
+    {% endfor %}
+
+    <url>
+        <loc>https://kirchen-im-web.de{{ path_for('de-links') }}</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+</urlset>

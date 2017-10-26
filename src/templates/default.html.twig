@@ -1,0 +1,41 @@
+{% import 'macros.html.twig' as macros %}
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    {% block metadata %}
+        <title>{{ title|trans }} | {{ 'Kirchliche Web- und Social-Media-Auftritte'|trans }}</title>
+        <meta name="description" content="{{ description|trans }}">
+    {% endblock %}
+    {% block head_styles %}
+        <link rel="stylesheet" href="/public/css/style.css">
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            {{ macros.menu(headerMenu, currentPath) }}
+        </nav>
+    </header>
+    <main>
+        {% if headline %}
+            <h1>{{ headline|trans }}</h1>
+        {% elseif title %}
+            <h1>{{ title|trans }}</h1>
+        {% endif %}
+
+        {% block main %}
+            <p>{{ text|trans }}</p>
+        {% endblock %}
+    </main>
+    <footer>
+        <nav>
+            {{ macros.menu(footerMenu, currentPath) }}
+        </nav>
+    </footer>
+    {% block footer_scripts %}
+    {% endblock %}
+</body>
+</html>
+{% endspaceless %}
