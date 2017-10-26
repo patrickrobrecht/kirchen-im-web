@@ -45,7 +45,7 @@
                     <option value="{{ value }}" {% if value == sort.name %}selected{% endif %}>{{ name }}</option>
                 {% endfor %}
             </select>
-            <label for="sort">Sortieren nach</label>
+            <label for="sort">{% trans 'Sortieren nach' %}</label>
         </fieldset>
         <fieldset class="small-fieldset">
             {% if not compare %}
@@ -53,7 +53,7 @@
                 {% for id, name in config.websites %}
                 <div>
                     <input id="{{ id }}" name="{{ id }}" type="checkbox" value="show" {% if websites[id] is defined %}checked{% endif %}>
-                    <label for="{{ id }}">&nbsp;{{ name }}</label>
+                    <label for="{{ id }}">&nbsp;{{ name|trans }}</label>
                 </div>
                 {% endfor %}
             {% endif %}
@@ -80,7 +80,7 @@
                     <th>{% trans 'Konfession' %}</th>
                     <th>{% trans 'Gemeindetyp' %}</th>
                     {% for id, name in websites %}
-                        <th class="{{ id }}">{{ name }}</th>
+                        <th class="{{ id }}">{{ name|trans }}</th>
                     {% endfor %}
                 </tr>
             </thead>

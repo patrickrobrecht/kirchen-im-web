@@ -4,12 +4,22 @@
 	RewriteBase /
 	
 	# rewrite http to https
-#	RewriteCond %{HTTPS} off
-#	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+    RewriteCond %{HTTPS} off
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+    ## Redirect /index.php to root.
+    RewriteCond %{THE_REQUEST} ^.*/index\.php
+    RewriteRule ^(.*)index.php$ /$1 [R=301,L]
+
+    ## Redirect all requests to index.php (except directories and files).
 	RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [QSA,L]
+
+    ## Disallow direct access to any file in the following directories.
+    RedirectMatch 403 cache(/|$)
+    RedirectMatch 403 src(/|$)
+    RedirectMatch 403 vendor(/|$)
 </IfModule>
 
 # Forbid unauthorized direct access for included php files
@@ -22,51 +32,6 @@
             Deny from all
         </IfModule>
     </files>
-	<files constants.php>
-        <IfModule mod_authz_core.c>
-            Require all denied
-        </IfModule>
-        <IfModule !mod_authz_core.c>
-            Order allow,deny
-            Deny from all
-        </IfModule>
-    </files>    
-    <files footer.php>
-        <IfModule mod_authz_core.c>
-            Require all denied
-        </IfModule>
-        <IfModule !mod_authz_core.c>
-            Order allow,deny
-            Deny from all
-        </IfModule>
-    </files>
-	<files functions.php>
-        <IfModule mod_authz_core.c>
-            Require all denied
-        </IfModule>
-        <IfModule !mod_authz_core.c>
-            Order allow,deny
-            Deny from all
-        </IfModule>
-    </files>    
-    <files header.php>
-        <IfModule mod_authz_core.c>
-            Require all denied
-        </IfModule>
-        <IfModule !mod_authz_core.c>
-            Order allow,deny
-            Deny from all
-        </IfModule>
-    </files>
-    <files TwitterAPIExchange.php>
-        <IfModule mod_authz_core.c>
-            Require all denied
-        </IfModule>
-        <IfModule !mod_authz_core.c>
-            Order allow,deny
-            Deny from all
-        </IfModule>
-    </files>    
 
 # Disable Directory Browsing
 Options -Indexes

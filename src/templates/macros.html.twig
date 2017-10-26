@@ -1,7 +1,11 @@
 {% macro menu(items, currentPath) %}
     <ul>
         {% for item in items %}
-            {% set url = path_for(item.path) %}
+            {% if item.args %}
+                {% set url = path_for(item.path, item.args) %}
+            {% else %}
+                {% set url = path_for(item.path) %}
+            {% endif %}
             {% set text = item.text %}
             {% if url == currentPath %}
                 <li><strong>{% trans text %}</strong></li>

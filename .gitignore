@@ -1,8 +1,5 @@
-.buildpath
-.project
-.settings/
+cache/
 config.php
 data/
-includes/constants.php
 node_modules/
 vendor/

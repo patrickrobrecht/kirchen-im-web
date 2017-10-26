@@ -1,7 +1,7 @@
 ﻿# kirchen-im-web.de Changelog / Änderungshistorie
 
 [3.x](#version-3x):
-[3.0](#version-30-in-development)
+[3.0](#version-30-2017-10-26)
 
 [2.x](#version-2x):
 [2.3](#version-23-2017-03-26)
@@ -18,7 +18,7 @@
 
 ## Version 3.x
 
-### Version 3.0 (in development)
+### Version 3.0 (2017-10-26)
 * Map: Show clusters on start instead of all entries
 * Development: Load included libraries via nodejs (package.json)
 * Development: Rewrite with Slim and Twig, code cleanup (changing URLs)

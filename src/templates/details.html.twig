@@ -106,7 +106,7 @@
                     <td>{% if entry.parentId %}
                             <a href="{{ path_for(languageSlug ~ '-details', {'id': entry.parentId}) }}">{{ entry.parentName }}</a>
                         {% else %}
-                            <span>keine</span>
+                            <span>{% trans 'keine' %}</span>
                         {% endif %}</td>
                 </tr>
                 <tr>

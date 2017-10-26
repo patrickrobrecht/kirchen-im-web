@@ -36,7 +36,7 @@ class PageController {
         $this->twig->offsetSet('config', Configuration::getInstance());
 
         // Init textdomain and set default language.
-        $domain = "kirchen-im-web25";
+        $domain = "kirchen-im-web30";
         bindtextdomain($domain, 'lang');
         bind_textdomain_codeset($domain, 'UTF-8');
         textdomain($domain);
@@ -44,16 +44,16 @@ class PageController {
 
     public function index(Request $request, Response $response, array $args) {
         return $this->twig->render($response, 'index.html.twig', [
-            'title' => 'Das Projekt kirchen-im-web.de',
-            'description' => 'Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'
+            'title' => _('Das Projekt kirchen-im-web.de'),
+            'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.')
         ]);
     }
 
     public function map(Request $request, Response $response, array $args) {
         global $websites;
         return $this->twig->render($response, 'map.html.twig', [
-            'title' => 'Karte',
-            'headline' => 'Karte kirchlicher Web- und Social-Media-Auftritte',
+            'title' => _('Karte'),
+            'headline' => _('Karte kirchlicher Web- und Social-Media-Auftritte'),
             'websites' => $websites
         ]);
     }
@@ -63,9 +63,9 @@ class PageController {
         $filters = $pc->extractFilterParameters($request);
         $websites = $pc->extractFilterWebsites($request);
         return $this->twig->render($response, 'table.html.twig', [
-            'title' => 'Suche',
-            'headline' => 'Kirchliche Web- und Social-Media-Auftritte',
-            'description' => 'Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.',
+            'title' => _('Suche'),
+            'headline' => _('Kirchliche Web- und Social-Media-Auftritte'),
+            'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'),
             'compare' => false,
             'filters' => $filters,
             'websites' => $websites,
@@ -79,9 +79,9 @@ class PageController {
         $filters = $pc->extractFilterParameters($request);
         $websites = Configuration::getInstance()->networksToCompare;
         $this->twig->render($response, 'table.html.twig', [
-            'title' => 'Vergleich kirchlicher Social-Media-Auftritte',
-            'headline' => 'Vergleich kirchlicher Social-Media-Auftritte',
-            'description' => 'kirchen-im-web.de vergleicht kirchliche Social-Media-Auftritte anhand ihrer Follower-Zahlen.',
+            'title' => _('Vergleich kirchlicher Social-Media-Auftritte'),
+            'headline' => _('Vergleich kirchlicher Social-Media-Auftritte'),
+            'description' => _('kirchen-im-web.de vergleicht kirchliche Social-Media-Auftritte anhand ihrer Follower-Zahlen.'),
             'compare' => true,
             'filters' => $filters,
             'websites' => $websites,
@@ -109,8 +109,8 @@ class PageController {
 
     private function addResponse(Response $response, array $data, array $added = [], array $messages = []) {
         return $this->twig->render($response, 'add.html.twig', [
-            'title' => 'Gemeinde eintragen',
-            'description' => 'Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.',
+            'title' => _('Gemeinde eintragen'),
+            'description' => _('Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.'),
             'data' => $data,
             'added' => $added,
             'messages' => $messages,
@@ -121,7 +121,7 @@ class PageController {
     public function stats(Request $request, Response $response, array $args) {
         $db = Database::getInstance();
         return $this->twig->render($response, 'stats.html.twig', [
-            'title' => 'Statistik',
+            'title' => _('Statistik'),
             'total' => $db->getTotalCount(),
             'statsByCountry' => $db->getStatsByCountry(),
             'statsByDenomination' => $db->getStatsByDenomination(),
@@ -151,13 +151,13 @@ class PageController {
 
     public function legal(Request $request, Response $response, array $args) {
         return $this->twig->render($response, 'legal.html.twig', [
-            'title' => 'Impressum'
+            'title' => _('Impressum')
         ]);
     }
 
     public function data(Request $request, Response $response, array $args) {
         return $this->twig->render($response, 'data.html.twig', [
-            'title' => 'Offene Daten',
+            'title' => _('Offene Daten'),
             'entries' => Database::getInstance()->getRecentlyAddedEntries(),
         ]);
     }
@@ -170,9 +170,9 @@ class PageController {
         }
 
         return $this->twig->render($response, 'default.html.twig', [
-            'title' => 'Kirchliche Web- und Social-Media-Auftritte',
-            'headline' => 'Seite nicht gefunden',
-            'text' => 'Leider konnte die gewünschte Seite nicht gefunden werden. Möglicherweise wurde dieser Eintrag gelöscht.'
+            'title' => _('Kirchliche Web- und Social-Media-Auftritte'),
+            'headline' => _('Seite nicht gefunden'),
+            'text' => _('Leider konnte die gewünschte Seite nicht gefunden werden. Möglicherweise wurde dieser Eintrag gelöscht.')
         ])->withStatus(404);
     }
 
@@ -192,26 +192,27 @@ class PageController {
         // Set Menu
         $route = $request->getAttribute('route');
         $routeWithoutLanguagePrefix = $route ? substr($route->getName(), 3) : 'home';
+        $args = $route ? $route->getArguments() : [];
 
         $headerMenuItems = [
             [
                 'path' => $languageSlug . '-home',
-                'text' => 'Über das Projekt'
+                'text' => _('Über das Projekt')
             ], [
                 'path' => $languageSlug . '-map',
-                'text' => 'Karte'
+                'text' => _('Karte')
             ], [
                 'path' => $languageSlug . '-search',
-                'text' => 'Suche'
+                'text' => _('Suche')
             ], [
                 'path' => $languageSlug . '-comparison',
-                'text' => 'Social-Media-Vergleich'
+                'text' => _('Social-Media-Vergleich')
             ], [
                 'path' => $languageSlug . '-add',
-                'text' => 'Gemeinde eintragen'
+                'text' => _('Gemeinde eintragen')
             ], [
                 'path' => $languageSlug . '-stats',
-                'text' => 'Statistik'
+                'text' => _('Statistik')
             ]
         ];
 
@@ -228,6 +229,7 @@ class PageController {
                     [
                         'class' => 'lang_en',
                         'path' => 'en-' . $routeWithoutLanguagePrefix,
+                        'args' => $args,
                         'text' => 'English'
                     ]
                 ]);
@@ -238,6 +240,7 @@ class PageController {
                 [
                     'class' => 'lang_de',
                     'path' => 'de-' . $routeWithoutLanguagePrefix,
+                    'args' => $args,
                     'text' => 'Deutsch'
                 ]
             ]);

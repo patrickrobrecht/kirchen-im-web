@@ -9,7 +9,7 @@ if (file_exists(__DIR__ . '/config.php')) {
 
 // Create and configure Slim app
 $settings['addContentLengthHeader'] = false;
-$debug = true; // TODO
+$debug = defined('DEBUG') && DEBUG;
 $settings['debug'] = $debug;
 $settings['displayErrorDetails'] = $debug;
 
@@ -81,6 +81,34 @@ $app->group('/en/', function () {
     $container->PageController->setLanguage('en_US', $request);
     $response = $next($request, $response);
     return $response;
+});
+
+// Rewrites for URLs of kirchen-im-web.de v2.x
+$app->group('/{lang}/', function () {
+    $this->get('add.php', function (Request $request, Response $response, $args) {
+        return $response->withStatus(301)->withHeader('Location',
+            $this->router->pathFor($args['lang'] . '-add'));
+    });
+    $this->get('map.php', function (Request $request, Response $response, $args) {
+        return $response->withStatus(301)->withHeader('Location',
+            $this->router->pathFor($args['lang'] . '-map'));
+    });
+    $this->get('table.php', function (Request $request, Response $response, $args) {
+        return $response->withStatus(301)->withHeader('Location',
+            $this->router->pathFor($args['lang'] . '-search'));
+    });
+    $this->get('statistics.php', function (Request $request, Response $response, $args) {
+        return $response->withStatus(301)->withHeader('Location',
+            $this->router->pathFor($args['lang'] . '-stats'));
+    });
+    $this->get('links.php', function (Request $request, Response $response) {
+        return $response->withStatus(301)->withHeader('Location', $this->router->pathFor('de-links'));
+    });
+    $this->get('details.php', function (Request $request, Response $response, $args) {
+        $params = $request->getQueryParams();
+        return $response->withStatus(301)->withHeader('Location',
+            $this->router->pathFor($args['lang'] . '-details', ['id' => $params['id']]));
+    });
 });
 
 $app->run();

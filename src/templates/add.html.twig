@@ -78,7 +78,7 @@
             <p>{% trans 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' %}</p>
             {% for id, website in config.websites %}
                 <input id="{{ id }}URL" name="{{ id }}URL" type="url" oninput="checkURL(this)" value="{{ data.urls[id] }}">
-                <label class="{{ id }}" for="{{ id }}URL">{{ website }}</label>
+                <label class="{{ id }}" for="{{ id }}URL">{{ website|trans }}</label>
             {% endfor %}
             <button type="submit">{% trans 'Gemeinde hinzufügen' %}</button>
             <p><strong>{% trans 'Bitte achten Sie darauf, dieses Formular nur einmal mit denselben Daten abzuschicken' %}</strong>
