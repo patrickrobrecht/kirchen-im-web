@@ -110,11 +110,11 @@
                                 // add to the layers for the social networks
                                 if (v.web) {
                                     thisMarker.addTo(webLayer);
-                                    content = content + '<li><a href="' + v.web + '">{{ config.websites['web'] }}</a></li>';
+                                    content = content + '<li><a href="' + v.web + '">{{ config.websites['web']|trans }}</a></li>';
                                 }
                                 if (v.blog) {
                                     thisMarker.addTo(blogLayer);
-                                    content = content + '<li><a href="' + v.blog + '">{{ config.websites['blog'] }}</a></li>';
+                                    content = content + '<li><a href="' + v.blog + '">{{ config.websites['blog']|trans }}</a></li>';
                                 }
                                 if (v.rss) {
                                     thisMarker.addTo(rssLayer);

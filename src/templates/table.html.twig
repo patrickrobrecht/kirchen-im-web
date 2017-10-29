@@ -15,34 +15,34 @@
             <select id="countryCode" name="countryCode">
                 <option value="">{% trans 'bitte auswählen' %}</option>
                 {% for value, name in config.countries %}
-                    <option value="{{ value }}" {% if value == filters.country %}selected{% endif %}>{{ name }}</option>
+                    <option value="{{ value }}" {% if value == filters.country %}selected{% endif %}>{{ name|trans }}</option>
                 {% endfor %}
             </select>
             <label for="countryCode">{% trans 'Land' %}</label>
             <select id="denomination" name="denomination">
                 <option value="">{% trans 'bitte auswählen' %}</option>
                 {% for value, name in config.denominations %}
-                    <option value="{{ value }}" {% if value == filters.denomination %}selected{% endif %}>{{ name }}</option>
+                    <option value="{{ value }}" {% if value == filters.denomination %}selected{% endif %}>{{ name|trans }}</option>
                 {% endfor %}
             </select>
             <label for="denomination">{% trans 'Konfession' %}</label>
             <select id="type" name="type">
                 <option value="">{% trans 'bitte auswählen' %}</option>
                 {% for value, name in config.types %}
-                    <option value="{{ value }}" {% if value == filters.type %}selected{% endif %}>{{ name }}</option>
+                    <option value="{{ value }}" {% if value == filters.type %}selected{% endif %}>{{ name|trans }}</option>
                 {% endfor %}
             </select>
             <label for="type">{% trans 'Gemeindetyp' %}</label>
             <select id="hasWebsiteType" name="hasWebsiteType">
                 <option value="">{% trans 'bitte auswählen' %}</option>
                 {% for value, name in config.websites %}
-                    <option value="{{ value }}" {% if value == filters.hasWebsiteType %}selected{% endif %}>{{ name }}</option>
+                    <option value="{{ value }}" {% if value == filters.hasWebsiteType %}selected{% endif %}>{{ name|trans }}</option>
                 {% endfor %}
             </select>
             <label for="hasWebsiteType">{% trans 'nur Gemeinden mit' %}</label>
             <select id="sort" name="sort">
                 {% for value, name in config.sortOptions %}
-                    <option value="{{ value }}" {% if value == sort.name %}selected{% endif %}>{{ name }}</option>
+                    <option value="{{ value }}" {% if value == sort.name %}selected{% endif %}>{{ name|trans }}</option>
                 {% endfor %}
             </select>
             <label for="sort">{% trans 'Sortieren nach' %}</label>
@@ -90,9 +90,9 @@
                         <td><a href="{{ path_for(languageSlug ~ '-details', {'id': entry.id}) }}">{{ entry.name }}</a></td>
                         <td>{{ entry.postalCode }}</td>
                         <td>{{ entry.city }}</td>
-                        <td>{{ config.countries[entry.country] }}</td>
-                        <td>{{ entry.denomination }}</td>
-                        <td>{{ entry.type }}</td>
+                        <td>{{ config.countries[entry.country]|trans }}</td>
+                        <td>{{ entry.denomination|trans }}</td>
+                        <td>{{ entry.type|trans }}</td>
                         {% for id, name in websites %}
                             {% set followers = entry[id ~ '_followers'] %}
                             {% if entry[id] %}

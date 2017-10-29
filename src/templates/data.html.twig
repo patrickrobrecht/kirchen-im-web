@@ -34,9 +34,9 @@
                         <td><a href="{{ path_for(languageSlug ~ '-details', {'id': entry.id}) }}">{{ entry.name }}</a></td>
                         <td>{{ entry.postalCode }}</td>
                         <td>{{ entry.city }}</td>
-                        <td>{{ config.countries[entry.country] }}</td>
-                        <td>{{ entry.denomination }}</td>
-                        <td>{{ entry.type }}</td>
+                        <td>{{ config.countries[entry.country]|trans }}</td>
+                        <td>{{ entry.denomination|trans }}</td>
+                        <td>{{ entry.type|trans }}</td>
                         {% for id, name in config.preselectedWebsites %}
                             <td>
                                 {% if entry[id] %}

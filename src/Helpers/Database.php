@@ -6,6 +6,8 @@ use PDOException;
 
 /**
  * Class Database
+ *
+ * @package KirchenImWeb\Helpers
  */
 class Database extends AbstractHelper {
     private $connection;

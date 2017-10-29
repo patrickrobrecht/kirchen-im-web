@@ -36,7 +36,7 @@ class PageController {
         $this->twig->offsetSet('config', Configuration::getInstance());
 
         // Init textdomain and set default language.
-        $domain = "kirchen-im-web30";
+        $domain = "kirchen-im-web31";
         bindtextdomain($domain, 'lang');
         bind_textdomain_codeset($domain, 'UTF-8');
         textdomain($domain);
@@ -54,6 +54,7 @@ class PageController {
         return $this->twig->render($response, 'map.html.twig', [
             'title' => _('Karte'),
             'headline' => _('Karte kirchlicher Web- und Social-Media-Auftritte'),
+            'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'),
             'websites' => $websites
         ]);
     }
@@ -122,6 +123,7 @@ class PageController {
         $db = Database::getInstance();
         return $this->twig->render($response, 'stats.html.twig', [
             'title' => _('Statistik'),
+            'description' => _('Statistik zu den Eintragungen auf kirchen-im-web.de'),
             'total' => $db->getTotalCount(),
             'statsByCountry' => $db->getStatsByCountry(),
             'statsByDenomination' => $db->getStatsByDenomination(),

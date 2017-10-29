@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th>{% trans 'Link' %}</th>
-                    <th>{% trans 'Follower' %}</th>
+                    <th>{% trans 'Followers' %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,7 +80,7 @@
                 </tr>
                 {% if entry.lat and entry.lon %}
                 <tr>
-                    <th>{% trans 'Geopositon' %}</th>
+                    <th>{% trans 'Geoposition' %}</th>
                     <td>{% if entry.lat > 0 %}
                             <span>{{ entry.lat }} ° <abbr title="{% trans 'nördliche Breite' %}">{% trans 'N' %}</abbr>, </span>
                         {% else %}
@@ -95,11 +95,11 @@
                 {% endif %}
                 <tr>
                     <th>{% trans 'Konfession' %}</th>
-                    <td><a href="{{ path_for(languageSlug ~ '-search') }}?denomination={{ entry.denomination }}">{{ config.denominations[entry.denomination] }}</a></td>
+                    <td><a href="{{ path_for(languageSlug ~ '-search') }}?denomination={{ entry.denomination }}">{{ config.denominations[entry.denomination]|trans }}</a></td>
                 </tr>
                 <tr>
                     <th>{% trans 'Gemeindetyp' %}</th>
-                    <td><a href="{{ path_for(languageSlug ~ '-search') }}?type={{ entry.type }}">{{ config.types[entry.type] }}</a></td>
+                    <td><a href="{{ path_for(languageSlug ~ '-search') }}?type={{ entry.type }}">{{ config.types[entry.type]|trans }}</a></td>
                 </tr>
                 <tr>
                     <th>{% trans 'nächsthöhere Ebene' %}</th>

@@ -4,7 +4,7 @@ namespace KirchenImWeb\Helpers;
 /**
  * Class Configuration
  *
- * @package KirchenImWeb\Controllers
+ * @package KirchenImWeb\Helpers
  */
 class Configuration extends AbstractHelper {
     // Countries.
