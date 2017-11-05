@@ -1,98 +1,112 @@
-﻿# kirchen-im-web.de Changelog / Änderungshistorie
+﻿# kirchen-im-web.de Changelog
 
-[3.x](#version-3x):
-[3.0](#version-30-2017-10-26)
+All notable changes to this project will be documented in this file.
 
-[2.x](#version-2x):
-[2.3](#version-23-2017-03-26)
-[2.2](#version-22-2016-10-20)
-[2.1](#version-21-2016-09-08)
-[2.0](#version-20-2016-08-13)
-
-[1.x](#version-1x):
-[1.3](#version-13-2016-04-11)
-[1.2](#version-12-2016-03-20)
-[1.1](#version-11-2016-01-30)
-[1.0](#version-10-2015-05-29)
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## Version 3.x
+## Version 3.1 (unreleased)
 
-### Version 3.0 (2017-10-26)
-* Map: Show clusters on start instead of all entries
-* Development: Load included libraries via nodejs (package.json)
-* Development: Rewrite with Slim and Twig, code cleanup (changing URLs)
-
-
-## Version 2.x
-
-### Version 2.3 (2017-03-26)
-* Automatic generation of new JSON/CSV export after adding a church
-* Social media profiles without followers are not listed in missing follower data check anymore.
-* Minor style improvements
-
-Deutsch:
-* automatische Erstellung eines neuen JSON/CSV-Exportes beim Hinzufügen einer Gemeinde
-* Social-Media-Profile ohne Follower werden nicht mehr unter fehlenden Follower-Daten angezeigt.
-* kleinere Design-Verbesserungen
-
-### Version 2.2 (2016-10-20)
-* Added API returning church data in JSON format.
-
-Deutsch:
-* Hinzugefügt: API, die Gemeindedaten im JSON-Format zurückgibt
-
-### Version 2.1 (2016-09-08)
-* social media comparison: added Google+ followers
-
-Deutsch:
-* Social-Media-Vergleich: Google+ Followerzahl
-
-### Version 2.0 (2016-08-13)
-* translation into English
-
-Deutsch:
-* Übersetzung ins Englische
+### Fixed
+* I18n: fixed broken translations
+* Development: no redirection to HTTPS on localhost
 
 
-## Version 1.x
+## Version 3.0 (2017-10-26)
 
-### Version 1.3 (2016-04-11)
-* different colors for all denominations at the map
+### Changed
+* Map: show clusters on start instead of all entries
+* Development: load included libraries via nodejs (package.json)
+* Development: rewrite whole project with Slim and Twig (leading to new URLs)
+    redirects from old to new URLs, code cleanup
 
-Deutsch:
-* verschiedene Farben für alle Konfessionen in der Karte
+### Fixed
+* Details: display of churches without a street/geolocation. 
 
-### Version 1.2 (2016-03-20)
-* filtering for the social media comparison, too
-* Statistics with diagrams
 
-Deutsch:
-* Filter auch für Social-Media-Vergleich
-* Statistik mit Diagrammen
+## Version 2.3 (2017-03-26)
 
-### Version 1.1 (2016-01-30)
-* form for adding new churches
-* table with filtering according to name, postal code, country, denomination and type
-* details page for every church
-* statistics on the number of entries
-* social media comparison with Facebook likes, Twitter followers and YouTube subscribers
+### Changed
+* Add Form: automatic generation of new JSON/CSV export after adding a church
+* Check: social media profiles without followers are not listed in the check
+    for missing follower data anymore
 
-Deutsch:
-* Formular für Neueintragungen
-* Tabelle mit Filter nach Name, PLZ, Ort, Land, Konfession und Gemeindetyp
-* Detailseite für jede Gemeinde
-* Statistik zur Anzahl der vorhandenen Daten
-* Social-Media-Vergleich mit Facebook-Likes, Twitter-Follower und YouTube-Abonnenten)
 
-### Version 1.0 (2015-05-29)
-* visualization of the churches as a map, realized with [OpenStreetMap](https://www.openstreetmap.org/)
-* table with filtering according to denomination and Network and sorting to arbitrary column
+## Version 2.2 (2016-10-30)
+
+### Added
+* API: Requests for returning church data in JSON format
+
+### Fixed
+* Add Form: check start of Vimeo URLs
+* Comparison: improve cron updating the number of YouTube followers
+    if the URL contains `/channel`
+* Comparison: improve cron updating the number of Facebook likes
+    if the URL contains id instead of slug
+
+
+## Version 2.1 (2016-09-08)
+
+### Added
+* Add Form: Vimeo as website type
+* Add Form: museum as type
+* Check: consistency checks
+* Comparison: cron for updating the number of Google+ followers (via Google API)
+* Sitemap: sitemap.xml with all URLs
+* Statistics: numbers on HTTPS/HTTP sites
+
+## Fixed
+* Comparison: no PHP warnings anymore
+* Comparison: file paths in cron job 
+* Details, Search: English number format instead of German default 
+* Map: display for entries whose name contains a comma
+
+
+## Version 2.0 (2016-08-13)
+
+### Added
+* Add Form: Luxembourg and Liechtenstein as countries
+* Add Form: Soundcloud and RSS as website types
+* Comparison, Search: number of entries is shown
+* I18n: translation into English (changing URLs)
+
+### Changed
+* Links: new links in list of web links
+* Search: show only the 25 recently added entries if no filter is active
+
+
+## Version 1.3 (2016-04-11)
+
+### Added
+* Map: different colors for all denominations at the map
+
+
+## Version 1.2 (2016-03-20)
+
+### Added
+* Comparison: filters for the social media comparison, too
+* Statistics: diagrams
+
+
+## Version 1.1 (2016-01-30)
+
+### Added
+* Details: a page for every church
+* Statistics: page with statistics on the number of entries
+    per denomination, country, type and website type (table only)
+* Comparison: cron for updating the number of Facebook likes (via Facebook Graph API)
+* Comparison: cron for updating the number of Twitter followers (via Twitter API)
+* Comparison: cron for updating the number of YouTube subscribers (via Google API)
+
+### Changed
+* Search: table with filters according to name, postal code, country, denomination and type
+
+
+## Version 1.0 (2015-05-29)
+
+### Added
+* Map: visualization of the churches as a map, realized with [OpenStreetMap](https://www.openstreetmap.org/)
+* Search: table with filters according to denomination and Network and sorting to arbitrary column
 * Open Data: name, denomination, regional church or diocese, address, web/Facebook/Google+/Twitter/YouTube URL
-* automatic calculation of longitude and latitude
-
-Deutsch:
-* Visualisierung der eingetragenden Gemeinden als Karte, realisiert mit [OpenStreetMap](https://www.openstreetmap.org/)
-* Tabelle mit Filter nach Konfession und Netzwerk und Sortierung nach beliebiger Spalte
-* Offene Daten: Name, Konfession, Landeskirche bzw. Bistum, Adresse, Web-/Facebook-/Google+-/Twitter-/YouTube-URL
-* automatische Berechnung von Längen- und Breitengrad
+* Add Form: automatic calculation of longitude and latitude
