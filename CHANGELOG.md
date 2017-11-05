@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Version 3.1 (unreleased)
 
+### Added
+* Redirects for URLs without trailing slash
+
 ### Fixed
 * I18n: fixed broken translations
 * Development: no redirection to HTTPS on localhost

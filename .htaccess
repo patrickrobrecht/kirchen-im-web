@@ -14,6 +14,12 @@
     RewriteCond %{THE_REQUEST} ^.*/index\.php
     RewriteRule ^(.*)index.php$ /$1 [R=301,L]
 
+    # If request matches neither file nor directory and no trailing slash,
+    # force the trailing slash.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)([^/])$ /$1$2/ [L,R=301]
+
     ## Redirect all requests to index.php (except directories and files).
 	RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -122,6 +128,3 @@ Options -Indexes
 
 # DISABLE THE SERVER SIGNATURE
 	ServerSignature Off
-
-# Error documents
-ErrorDocument 404 /de/404.php
