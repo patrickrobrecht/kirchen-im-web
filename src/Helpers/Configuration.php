@@ -110,6 +110,7 @@ class Configuration extends AbstractHelper {
         $this->networksToCompare = array(
             'facebook' => 'Facebook',
             'googlePlus' => 'Google+',
+            'instagram' => 'Instagram',
             'twitter' => 'Twitter',
             'youtube' => 'YouTube'
         );
