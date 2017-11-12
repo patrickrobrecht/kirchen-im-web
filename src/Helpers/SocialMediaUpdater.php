@@ -50,7 +50,7 @@ class SocialMediaUpdater extends AbstractHelper {
             'followersOld' => is_null($row['followers']) ? null : intval($row['followers'])
         ];
 
-        if ($followersNew) {
+        if ($followersNew >= 0) {
             // Update follower number and the timestamp.
             if (Database::getInstance()->updateFollowers($url, $followersNew)) {
                 $data['updated'] = 'followers';

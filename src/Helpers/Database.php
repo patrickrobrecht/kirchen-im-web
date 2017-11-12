@@ -137,7 +137,7 @@ class Database extends AbstractHelper {
     public function getFaultyEntries() {
         $faultyEntries = [];
 
-        $statement = $this->connection->query('SELECT * FROM `churches` WHERE lat IS NULL or lon IS NULL');
+        $statement = $this->connection->query('SELECT * FROM `churches` WHERE street is NOT NULL AND (lat IS NULL or lon IS NULL)');
         $faultyEntries['geolocation_missing'] = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $networksToCompareAsStrings = array();
