@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     {% block metadata %}
         <title>{{ title|trans }} | {{ 'Kirchliche Web- und Social-Media-Auftritte'|trans }}</title>
-        <meta name="description" content="{{ description|trans }}">
+        {% if description %}
+            <meta name="description" content="{{ description|trans }}">
+        {% endif %}
     {% endblock %}
     {% block head_styles %}
         <link rel="stylesheet" href="/public/css/style.css">
@@ -35,6 +37,8 @@
         </nav>
     </footer>
     {% block footer_scripts %}
+    {% endblock %}
+    {% block structured_data %}
     {% endblock %}
 </body>
 </html>

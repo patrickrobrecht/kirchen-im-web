@@ -129,3 +129,43 @@
         </table>
     </section>
 {% endblock %}
+
+{% block structured_data %}
+    {% set schemaPlaceType = 'Place' %}
+    {% if entry.type == 'Museum' %}
+        {% set schemaPlaceType = 'Museum' %}
+    {% endif %}
+    {% if entry.type in ['Citykirche', 'Kirchengemeinde', 'Pfarrei', 'Pfarrvikarie'] %}
+        {% set schemaPlaceType = entry.denomination == 'katholisch' ? 'CatholicChurch' : 'Church' %}
+    {% endif %}
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "{{ config.countries[entry.country] }}",
+            "postalCode": "{{ entry.postalCode }}",
+            "streetAddress": "{{ entry.street }}"
+          },
+          "location": {
+            "@type": "{{ schemaPlaceType }}",
+              "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "{{ entry.lat }}",
+              "longitude": "{{ entry.lon }}"
+            },
+            "map": "http://www.openstreetmap.org/#map=18/{{ entry.lat }}/{{ entry.lon }}"
+          },
+          "name": "{{ entry.name }}",
+          {% if entry.parentId %}
+          "parentOrganization": {
+            "@type": "Organization",
+            "name": "{{ entry.parentName }}",
+            "url": "http://kirchen-im-web.de{{ path_for(languageSlug ~ '-details', {'id': entry.parentId}) }}"
+          },
+          {% endif %}
+          "url": "http://kirchen-im-web.de{{ path_for(languageSlug ~ '-details', {'id': entry.id}) }}"
+        }
+    </script>
+{% endblock %}

@@ -140,3 +140,26 @@
         });
     </script>
 {% endblock %}
+
+{% block structured_data %}
+    {% if filters|length > 0 %}
+        <script type="application/ld+json">
+            {
+               "@context": "http://schema.org",
+               "@type": "WebSite",
+               "url": "http://kirchen-im-web.de/",
+               "potentialAction": {
+                 "@type": "SearchAction",
+                 "actionStatus": "CompletedActionStatus",
+                 "target": "http://kirchen-im-web.de{{ path_for(languageSlug ~ '-search') }}?name={q}",
+                 "query": "{{ filters.name }}",
+                 "query-input": {
+                    "@type": "PropertyValueSpecification",
+                    "valueRequired": "True",
+                    "valueName": "q"
+                 }
+               }
+            }
+        </script>
+    {% endif %}
+{% endblock %}

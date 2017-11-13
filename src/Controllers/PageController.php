@@ -54,7 +54,7 @@ class PageController {
         return $this->twig->render($response, 'map.html.twig', [
             'title' => _('Karte'),
             'headline' => _('Karte kirchlicher Web- und Social-Media-Auftritte'),
-            'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'),
+            'description' => _('Unsere Karte zeigt viele Kirchengemeinden mit ihren Web- und Social-Media-Auftritten.'),
             'websites' => $websites
         ]);
     }
@@ -66,7 +66,7 @@ class PageController {
         return $this->twig->render($response, 'table.html.twig', [
             'title' => _('Suche'),
             'headline' => _('Kirchliche Web- und Social-Media-Auftritte'),
-            'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'),
+            'description' => _('Suchen Sie hier nach kirchlichen Web- und Social-Media-Auftritten.'),
             'compare' => false,
             'filters' => $filters,
             'websites' => $websites,

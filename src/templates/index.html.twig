@@ -39,3 +39,22 @@
         <p><a href="{{ path_for(languageSlug ~ '-legal') }}">{% trans 'Dann schreiben Sie uns!'%}</a> {% trans 'Natürlich sind Verbesserungsvorschläge sehr willkommen.'%}</p>
     </article>
 {% endblock %}
+
+{% block structured_data %}
+    <script type="application/ld+json">
+        {
+           "@context": "http://schema.org",
+           "@type": "WebSite",
+           "url": "http://kirchen-im-web.de/",
+           "potentialAction": {
+             "@type": "SearchAction",
+             "target": "http://kirchen-im-web.de{{ path_for(languageSlug ~ '-search') }}?name={q}",
+             "query-input": {
+                "@type": "PropertyValueSpecification",
+                "valueRequired": "True",
+                "valueName": "q"
+             }
+           }
+        }
+    </script>
+{% endblock %}
