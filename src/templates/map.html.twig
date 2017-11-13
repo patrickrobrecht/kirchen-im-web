@@ -2,9 +2,9 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="/public/node_modules/leaflet/dist/leaflet.css">
-    <link rel="stylesheet" href="/public/node_modules/leaflet.markercluster/dist/MarkerCluster.css">
-    <link rel="stylesheet" href="/public/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="/public/lib/leaflet.css">
+    <link rel="stylesheet" href="/public/lib/MarkerCluster.css">
+    <link rel="stylesheet" href="/public/lib/MarkerCluster.Default.css">
 {% endblock %}
 
 {% block main %}
@@ -15,9 +15,9 @@
 {% endblock %}
 
 {% block footer_scripts %}
-    <script src="/public/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/public/node_modules/leaflet/dist/leaflet.js"></script>
-    <script src="/public/node_modules/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="/public/lib/jquery.min.js"></script>
+    <script src="/public/lib/leaflet.js"></script>
+    <script src="/public/lib/leaflet.markercluster.js"></script>
     <script type="text/javascript">
         var map;
         var markerArray = [];

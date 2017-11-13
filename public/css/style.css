@@ -1,105 +1,411 @@
 ﻿@charset "UTF-8";
-*{padding:0;margin:0;}
-body{padding:1%;font:1em/1.5 Helvetica,Arial,sans-serif;color:#333;}
-h1{font-size:2em;}
-h2{font-size:1.5em;}
-h3{font-size:1em;}
-h1,h2,h3,p{margin:.3em 0;}
-li{margin:.5em 2em;}
-ol ol{margin-left:3em;}
-h1,h2,h3,p,li{max-width:60em;}
-a{color:#1982d1;text-decoration:none;}
-a:focus,a:active,a:hover{text-decoration:underline;}
 
-figure{margin:1em;float:right;}
-figcaption{max-width:300px;}
-img{border:0;}
-
-.clear {clear:both;}
-
-fieldset{width:30em;position:relative;margin:1em;border:none;float:left;}
-legend{font-weight:bold;margin-bottom:.4em;}
-input[type=text],input[type=url],select{margin:0 0 0.5em 32%;padding:.2em;width:60%;background-color:#fffbf0;border:1px solid #e7c157;}
-#hasChildren{margin:0 0 0.5em 32%;padding:.2em;}
-input[type=text]+label,input[type=url]+label,select+label{position:absolute;left:0;width:30%;line-height:1.5;text-align:right;}
-input[type=text]+label::after,input[type=url]+label::after,select+label::after{content: ": ";}
-button{padding:0.5em;}
-input:required+label::before,select:required+label::before{position:absolute;left:320%;content:"★";color:red;}
-input:required:valid+label::before{content:"✔";color:green;}
-input[type=url]+label::before{position:absolute;left:320%;top:-20%;}
-
-header nav,footer nav{float:left;width:100%;background:#222;margin:.5em 0;}
-header ul,footer ul{font-size:.9em;list-style:none;}
-header li,footer li{float:left;position:relative;margin:0;}
-header a,header strong, footer a, footer strong{display:block;padding:.8em;}
-header nav a,footer nav a{color:#eee;}
-nav strong{color:#1982d1;}
-footer{margin:1em 0;font-size:.8em;clear:both;}
-
-/* Icons */
-.lang_de:before{content:url(/images/flags/de.gif) " ";}
-.lang_en:before{content:url(/images/flags/en.gif) " ";}
-
-a[href^="http://"]:after{content:" " url(/images/non-secure.png);}
-a[href^="https://"]:after{content:" " url(/images/secure.png);}
-
-.web:before{content:url(/images/icons/Web.png) " ";}
-.blog:before{content:url(/images/icons/Wordpress.png) " ";}
-.rss:before{content:url(/images/icons/RSS.png) " ";}
-.facebook:before{content:url(/images/icons/Facebook.png) " ";}
-.flickr:before{content:url(/images/icons/Flickr.png) " ";}
-.googlePlus:before{content:url(/images/icons/Google-plus.png) " ";}
-.instagram:before{content:url(/images/icons/Instagram.png) " ";}
-.soundcloud:before{content:url(/images/icons/Soundcloud.png) " ";}
-.twitter:before{content:url(/images/icons/Twitter.png) " ";}
-.vimeo:before{content:url(/images/icons/Vimeo.png) " ";}
-.youtube:before{content:url(/images/icons/Youtube.png) " ";}
-
-.at:before{content:url(/images/flags/Austria.png) " ";}
-.ch:before{content:url(/images/flags/Switzerland.png) " ";}
-.de:before{content:url(/images/flags/Germany.png) " ";}
-.li:before{content:url(/images/flags/Liechtenstein.png) " ";}
-.lu:before{content:url(/images/flags/Luxembourg.png) " ";}
-
-.alt-katholisch:before{content:url(/images/markers/orange.png) " ";}
-.anglikanisch:before{content:url(/images/markers/green.png) " ";}
-.evangelisch:before{content:url(/images/markers/purple.png) " ";}
-.freikirchlich:before{content:url(/images/markers/blue.png) " ";}
-.katholisch:before{content:url(/images/markers/yellow.png) " ";}
-.ökumenisch:before{content:url(/images/markers/red.png) " ";}
-
-/* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
-#map{height:768px;width:1024px;}
-#detailsmap{height:256px;width:512px;margin-bottom:20px;}
-
-/* Details */
-.websites tr>:nth-child(1),.details tr>:nth-child(1){width:170px;}
-
-/* table */
-.small-fieldset{width:10em;}
-
-/* Statistics */
-.stats{float:left;margin-left:2em;}
-.chart{width:500px;height:400px;float:left;}
-
-@media screen and (max-width:700px){ /* small screens */
-	body{padding:0;font-size:.8em;}
+* {
+    padding: 0;
+    margin: 0;
 }
 
-@media print{ /* print version */
-	body{background:none;font-size:10pt;color:#fff;}
-	header,footer,nav{display:none;}
+body {
+    padding: 0;
+    font: 1em/1.5 "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+@media (min-width: 700px) {
+    body {
+        padding: 1%;
+    }
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: .3em 0;
+}
+
+li {
+    margin: .5em 2em;
+}
+
+ol ol {
+    margin-left: 3em;
+}
+
+h1,
+h2,
+h3,
+p,
+li {
+    max-width: 60em;
+}
+
+a {
+    color: #1982d1;
+    text-decoration: none;
+}
+
+a:active,
+a:focus,
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+    main {
+        padding: 5px;
+    }
+
+    figure {
+        text-align: center;
+    }
+}
+
+@media (min-width: 700px) {
+    figure {
+        margin: 1em;
+        float: right;
+    }
+
+    figcaption {
+        max-width: 300px;
+    }
+}
+
+figcaption {
+    font-size: .8em;
+}
+
+img {
+    border: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+fieldset {
+    width: 30em;
+    position: relative;
+    margin: 1em;
+    border: none;
+    float: left;
+}
+
+legend {
+    font-weight: bold;
+    margin-bottom: .4em;
+}
+
+input[type=text],
+input[type=url],
+select {
+    margin: 0 0 0.5em 32%;
+    padding: .2em;
+    width: 60%;
+    background-color: #fffbf0;
+    border: 1px solid #e7c157;
+}
+
+#hasChildren {
+    margin: 0 0 0.5em 32%;
+    padding: .2em;
+}
+
+input[type=text] + label,
+input[type=url] + label,
+select + label {
+    position: absolute;
+    left: 0;
+    width: 30%;
+    line-height: 1.5;
+    text-align: right;
+}
+
+input[type=text] + label::after,
+input[type=url] + label::after,
+select + label::after {
+    content: ": ";
+}
+
+button {
+    padding: 0.5em;
+}
+
+input:required + label::before,
+select:required + label::before {
+    position: absolute;
+    left: 320%;
+    content: "★";
+    color: red;
+}
+
+input:required:valid + label::before {
+    content: "✔";
+    color: green;
+}
+
+input[type=url] + label::before {
+    position: absolute;
+    left: 320%;
+    top: -20%;
+}
+
+header nav,
+footer nav {
+    float: left;
+    width: 100%;
+    background: #222;
+    margin: .5em 0;
+}
+
+header ul,
+footer ul {
+    font-size: .9em;
+    list-style: none;
+}
+
+header li,
+footer li {
+    float: left;
+    position: relative;
+    margin: 0;
+}
+
+header a,
+header strong,
+footer a,
+footer strong {
+    display: block;
+    padding: .8em;
+}
+
+header nav a,
+footer nav a {
+    color: #eee;
+}
+
+nav strong {
+    color: #1982d1;
+}
+
+footer {
+    margin: 1em 0;
+    font-size: .8em;
+    clear: both;
+}
+
+/* Icons */
+.lang_de:before {
+    content: url(/images/flags/de.gif) " ";
+}
+
+.lang_en:before {
+    content: url(/images/flags/en.gif) " ";
+}
+
+a[href^="http://"]:after {
+    content: " " url(/images/non-secure.png);
+}
+
+a[href^="https://"]:after {
+    content: " " url(/images/secure.png);
+}
+
+.web:before {
+    content: url(/images/icons/Web.png) " ";
+}
+
+.blog:before {
+    content: url(/images/icons/Wordpress.png) " ";
+}
+
+.rss:before {
+    content: url(/images/icons/RSS.png) " ";
+}
+
+.facebook:before {
+    content: url(/images/icons/Facebook.png) " ";
+}
+
+.flickr:before {
+    content: url(/images/icons/Flickr.png) " ";
+}
+
+.googlePlus:before {
+    content: url(/images/icons/Google-plus.png) " ";
+}
+
+.instagram:before {
+    content: url(/images/icons/Instagram.png) " ";
+}
+
+.soundcloud:before {
+    content: url(/images/icons/Soundcloud.png) " ";
+}
+
+.twitter:before {
+    content: url(/images/icons/Twitter.png) " ";
+}
+
+.vimeo:before {
+    content: url(/images/icons/Vimeo.png) " ";
+}
+
+.youtube:before {
+    content: url(/images/icons/Youtube.png) " ";
+}
+
+.at:before {
+    content: url(/images/flags/Austria.png) " ";
+}
+
+.ch:before {
+    content: url(/images/flags/Switzerland.png) " ";
+}
+
+.de:before {
+    content: url(/images/flags/Germany.png) " ";
+}
+
+.li:before {
+    content: url(/images/flags/Liechtenstein.png) " ";
+}
+
+.lu:before {
+    content: url(/images/flags/Luxembourg.png) " ";
+}
+
+.alt-katholisch:before {
+    content: url(/images/markers/orange.png) " ";
+}
+
+.anglikanisch:before {
+    content: url(/images/markers/green.png) " ";
+}
+
+.evangelisch:before {
+    content: url(/images/markers/purple.png) " ";
+}
+
+.freikirchlich:before {
+    content: url(/images/markers/blue.png) " ";
+}
+
+.katholisch:before {
+    content: url(/images/markers/yellow.png) " ";
+}
+
+.ökumenisch:before {
+    content: url(/images/markers/red.png) " ";
+}
+
+/* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
+
+#map {
+    height: 512px;
+    width: 512px;
+}
+
+@media (min-width: 1024px) {
+    #map {
+        height: 768px;
+        width: 1024px;
+    }
+}
+
+#detailsmap {
+    height: 256px;
+    width: 512px;
+    margin-bottom: 20px;
+}
+
+/* details */
+.websites tr > :nth-child(1),
+.details tr > :nth-child(1) {
+    width: 170px;
+}
+
+/* search */
+.small-fieldset {
+    width: 10em;
+}
+
+/* statistics */
+.stats {
+    float: left;
+    margin-left: 2em;
+}
+
+.chart {
+    width: 500px;
+    height: 400px;
+    float: left;
+}
+
+@media print {
+    /* print version */
+    body {
+        background: none;
+        font-size: 10pt;
+        color: #fff;
+    }
+
+    header,
+    footer,
+    nav {
+        display: none;
+    }
 }
 
 /* tables, partly inspired by tablesorter's default theme */
-table{clear:both;border-collapse:collapse;text-align:left;}
-.tablesorter{width:100%;font-size:.7em;}
-tbody tr:nth-child(2n-1){background:#ddd;}
-th,td{padding:4px;}
-th{text-align:center;}
-td{vertical-align:top;}
-td li{margin:0 0 0 20px;}
-.number{text-align:right;}
+table {
+    clear: both;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tablesorter {
+    width: 100%;
+    font-size: .7em;
+}
+
+tbody tr:nth-child(2n-1) {
+    background: #ddd;
+}
+
+th,
+td {
+    padding: 4px;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    vertical-align: top;
+}
+
+td li {
+    margin: 0 0 0 20px;
+}
+
+.number {
+    text-align: right;
+}
 
 .tablesorter-default .header,
 .tablesorter-default .tablesorter-header {
@@ -108,18 +414,21 @@ td li{margin:0 0 0 20px;}
     white-space: normal;
     padding: 4px 20px 4px 4px;
 }
+
 .tablesorter-default thead .headerSortUp,
 .tablesorter-default thead .tablesorter-headerSortUp,
 .tablesorter-default thead .tablesorter-headerAsc {
     background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
     border-bottom: #000 2px solid;
 }
+
 .tablesorter-default thead .headerSortDown,
 .tablesorter-default thead .tablesorter-headerSortDown,
 .tablesorter-default thead .tablesorter-headerDesc {
     background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
     border-bottom: #000 2px solid;
 }
+
 .tablesorter-default thead .sorter-false {
     background-image: none;
     cursor: default;

@@ -4,7 +4,7 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <script type="text/javascript" src="/public/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/lib/jquery.min.js"></script>
     <script type="text/javascript">
         $(function() {
             $('#denominations').highcharts({
@@ -198,8 +198,7 @@
         </ul>
     </nav>
 
-    <script src="/public/js/highcharts.js"></script>
-    <script src="/public/js/exporting.js"></script>
+    <script src="/public/lib/highcharts.js"></script>
 
     <article id="statistics-denominations" class="clear">
         <h2>{% trans 'Einträge nach Konfessionen' %}</h2>

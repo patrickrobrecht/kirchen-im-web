@@ -9,7 +9,7 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="/public/node_modules/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="/public/lib/leaflet.css">
 {% endblock %}
 
 {% block main %}
@@ -42,8 +42,8 @@
             <div id="detailsmap">
                 <p>{% trans 'Bitte warten. Die Karte wird geladen.' %}</p>
             </div>
-            <script src="/public/node_modules/jquery/dist/jquery.min.js"></script>
-            <script src="/public/node_modules/leaflet/dist/leaflet.js"></script>
+            <script src="/public/lib/jquery.min.js"></script>
+            <script src="/public/lib/leaflet.js"></script>
             <script type="text/javascript">
                 loadMap();
 

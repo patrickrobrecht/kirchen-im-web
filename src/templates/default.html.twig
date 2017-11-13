@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="{{ language }}">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     {% block metadata %}
         <title>{{ title|trans }} | {{ 'Kirchliche Web- und Social-Media-Auftritte'|trans }}</title>
@@ -11,7 +12,7 @@
         {% endif %}
     {% endblock %}
     {% block head_styles %}
-        <link rel="stylesheet" href="/public/css/style.css">
+        <link rel="stylesheet" href="/public/css/style.min.css">
     {% endblock %}
 </head>
 <body>
