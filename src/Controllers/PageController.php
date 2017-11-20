@@ -70,7 +70,7 @@ class PageController {
             'compare' => false,
             'filters' => $filters,
             'websites' => $websites,
-            'sort' => $pc->extractSort($request, $websites),
+            'sort' => $pc->extractSort($request, $websites, 'city'),
             'entries' => Database::getInstance()->getFilteredEntries($filters, $websites)
         ]);
     }
@@ -86,7 +86,7 @@ class PageController {
             'compare' => true,
             'filters' => $filters,
             'websites' => $websites,
-            'sort' => $pc->extractSort($request, $websites),
+            'sort' => $pc->extractSort($request, $websites, 'facebook'),
             'entries' => Database::getInstance()->getFilteredEntries($filters, $websites, true)
         ]);
     }

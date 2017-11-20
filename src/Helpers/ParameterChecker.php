@@ -39,9 +39,9 @@ class ParameterChecker extends AbstractHelper {
         return $websites;
     }
 
-    public function extractSort(Request $request, $websites) {
+    public function extractSort(Request $request, $websites, $default = '') {
         $data = $request->getQueryParams();
-        $sort = isset($data['sort']) ? trim($data['sort']) : '';
+        $sort = isset($data['sort']) ? trim($data['sort']) : $default;
         $sortColumnId = -1;
         $columns = Configuration::getInstance()->sortOptions;
         if (array_key_exists($sort, $columns)) {

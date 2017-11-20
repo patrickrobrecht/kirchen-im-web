@@ -3,61 +3,88 @@
 {% import 'macros.html.twig' as macros %}
 
 {% block main %}
-    <form method="get">
+    <form method="get" class="search">
         <fieldset>
             <legend>{% trans 'Filter' %}</legend>
-            <input id="name" name="name" type="text" value="{{ filters.name }}">
-            <label for="name">{% trans 'Name' %}</label>
-            <input id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" value="{% if filters.postalCode > 0 %}{{ filters.postalCode }}{% endif %}">
-            <label for="postalCode">{% trans 'PLZ' %}</label>
-            <input id="city" name="city" type="text" value="{{ filters.city }}">
-            <label for="city">{% trans 'Ort' %}</label>
-            <select id="countryCode" name="countryCode">
-                <option value="">{% trans 'bitte auswählen' %}</option>
-                {% for value, name in config.countries %}
-                    <option value="{{ value }}" {% if value == filters.country %}selected{% endif %}>{{ name|trans }}</option>
-                {% endfor %}
-            </select>
-            <label for="countryCode">{% trans 'Land' %}</label>
-            <select id="denomination" name="denomination">
-                <option value="">{% trans 'bitte auswählen' %}</option>
-                {% for value, name in config.denominations %}
-                    <option value="{{ value }}" {% if value == filters.denomination %}selected{% endif %}>{{ name|trans }}</option>
-                {% endfor %}
-            </select>
-            <label for="denomination">{% trans 'Konfession' %}</label>
-            <select id="type" name="type">
-                <option value="">{% trans 'bitte auswählen' %}</option>
-                {% for value, name in config.types %}
-                    <option value="{{ value }}" {% if value == filters.type %}selected{% endif %}>{{ name|trans }}</option>
-                {% endfor %}
-            </select>
-            <label for="type">{% trans 'Gemeindetyp' %}</label>
-            <select id="hasWebsiteType" name="hasWebsiteType">
-                <option value="">{% trans 'bitte auswählen' %}</option>
-                {% for value, name in config.websites %}
-                    <option value="{{ value }}" {% if value == filters.hasWebsiteType %}selected{% endif %}>{{ name|trans }}</option>
-                {% endfor %}
-            </select>
-            <label for="hasWebsiteType">{% trans 'nur Gemeinden mit' %}</label>
-            <select id="sort" name="sort">
-                {% for value, name in config.sortOptions %}
-                    <option value="{{ value }}" {% if value == sort.name %}selected{% endif %}>{{ name|trans }}</option>
-                {% endfor %}
-            </select>
-            <label for="sort">{% trans 'Sortieren nach' %}</label>
+            <div class="field">
+                <label for="name">{% trans 'Name' %}</label>
+                <input id="name" name="name" type="text" value="{{ filters.name }}">
+            </div>
+            <div class="field">
+                <label for="postalCode">{% trans 'PLZ' %}</label>
+                <input id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" value="{% if filters.postalCode > 0 %}{{ filters.postalCode }}{% endif %}">
+                <span></span>
+            </div>
+            <div class="field">
+                <label for="city">{% trans 'Ort' %}</label>
+                <input id="city" name="city" type="text" value="{{ filters.city }}">
+            </div>
+            <div class="field">
+                <label for="countryCode">{% trans 'Land' %}</label>
+                <select id="countryCode" name="countryCode">
+                    <option value="">{% trans 'bitte auswählen' %}</option>
+                    {% for value, name in config.countries %}
+                        <option value="{{ value }}" {% if value == filters.country %}selected{% endif %}>{{ name|trans }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label for="denomination">{% trans 'Konfession' %}</label>
+                <select id="denomination" name="denomination">
+                    <option value="">{% trans 'bitte auswählen' %}</option>
+                    {% for value, name in config.denominations %}
+                        <option value="{{ value }}" {% if value == filters.denomination %}selected{% endif %}>{{ name|trans }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label for="type">{% trans 'Gemeindetyp' %}</label>
+                <select id="type" name="type">
+                    <option value="">{% trans 'bitte auswählen' %}</option>
+                    {% for value, name in config.types %}
+                        <option value="{{ value }}" {% if value == filters.type %}selected{% endif %}>{{ name|trans }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label for="hasWebsiteType">{% trans 'nur Gemeinden mit' %}</label>
+                <select id="hasWebsiteType" name="hasWebsiteType">
+                    <option value="">{% trans 'bitte auswählen' %}</option>
+                    {% for value, name in config.websites %}
+                        <option value="{{ value }}" {% if value == filters.hasWebsiteType %}selected{% endif %}>{{ name|trans }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="btn">
+                <button type="submit">{% trans 'Filtern' %}</button>
+            </div>
         </fieldset>
-        <fieldset class="small-fieldset">
+        <fieldset>
+            <legend>{% trans 'Anzeige' %}</legend>
+            <div class="field">
+                <label for="sort">{% trans 'Sortieren nach' %}</label>
+                <select id="sort" name="sort">
+                    {% for value, name in config.sortOptions %}
+                        <option value="{{ value }}" {% if value == sort.name %}selected{% endif %}>{{ name|trans }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             {% if not compare %}
-                <legend>{% trans 'Anzeige' %}</legend>
-                {% for id, name in config.websites %}
-                <div>
-                    <input id="{{ id }}" name="{{ id }}" type="checkbox" value="show" {% if websites[id] is defined %}checked{% endif %}>
-                    <label for="{{ id }}">&nbsp;{{ name|trans }}</label>
+                <div class="field">
+                    <label>{% trans 'Anzeige' %}</label>
+                    <div class="options">
+                        {% for id, name in config.websites %}
+                            <div>
+                                <input id="{{ id }}" name="{{ id }}" type="checkbox" value="show" {% if websites[id] is defined %}checked{% endif %}>
+                                <label for="{{ id }}">&nbsp;{{ name|trans }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                {% endfor %}
             {% endif %}
-            <button type="submit">{% trans 'Filtern' %}</button>
+            <div class="btn">
+                <button type="submit">{% trans 'Filtern' %}</button>
+            </div>
         </fieldset>
     </form>
     {% if entries|length == 0 %}
@@ -97,7 +124,7 @@
                             {% set followers = entry[id ~ '_followers'] %}
                             {% if entry[id] %}
                                 {% if followers > 0 %}
-                                    <td class="number"><a href="{{ entry[id] }}">{{ macros.number_format(followers, languageSlug) }}</a></td>
+                                    <td class="number"><a href="{{ entry[id] }}" title="{{ name }}">{{ macros.number_format(followers, languageSlug) }}</a></td>
                                 {% else %}
                                     {% if compare %}
                                         <td></td>

@@ -65,7 +65,7 @@ a:hover {
 
 @media (max-width: 700px) {
     main {
-        padding: 5px;
+        padding: .7em;
     }
 
     figure {
@@ -92,16 +92,69 @@ img {
     border: 0;
 }
 
-.clear {
-    clear: both;
+/* forms */
+@media (min-width: 1000px) {
+    form {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-areas: "f f2";
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .search {
+        grid-template-columns: 2fr 1fr;
+        max-width: 1400px;
+    }
 }
 
+
 fieldset {
-    width: 30em;
-    position: relative;
-    margin: 1em;
+    grid-area: f;
     border: none;
-    float: left;
+}
+
+fieldset:nth-child(2) {
+    grid-area: f2
+}
+
+.field {
+    margin: .5em 0;
+}
+
+@media (max-width: 699px) {
+    .field>label {
+        display: block;
+        width: 100%
+    }
+
+    .field>input, .field>select {
+        width: 80%;
+    }
+
+    .field>span {
+        margin-left: 5px;
+        width: 5%;
+    }
+}
+
+@media (min-width: 700px) {
+    .field {
+        display: grid;
+        grid-gap: 5px 10px;
+        grid-template-columns: 10em auto 20px;
+    }
+
+    .field>label  {
+        text-align: right;
+    }
+
+    .add fieldset:nth-child(2) label {
+        text-align: left;
+    }
+
+    .checkbox {
+        margin: .5em 0 .5em 11em;
+    }
 }
 
 legend {
@@ -109,102 +162,74 @@ legend {
     margin-bottom: .4em;
 }
 
-input[type=text],
-input[type=url],
+input:not([type='checkbox']),
 select {
-    margin: 0 0 0.5em 32%;
-    padding: .2em;
-    width: 60%;
+    padding: 0 2px;
     background-color: #fffbf0;
     border: 1px solid #e7c157;
+    height: 24px;
 }
 
-#hasChildren {
-    margin: 0 0 0.5em 32%;
-    padding: .2em;
-}
-
-input[type=text] + label,
-input[type=url] + label,
-select + label {
-    position: absolute;
-    left: 0;
-    width: 30%;
-    line-height: 1.5;
-    text-align: right;
-}
-
-input[type=text] + label::after,
-input[type=url] + label::after,
-select + label::after {
-    content: ": ";
+.btn {
+    text-align: center;
 }
 
 button {
-    padding: 0.5em;
+    background: #1982d1;
+    color: #fff;
+    border: none;
+    padding: 0.7em 2em;
 }
 
-input:required + label::before,
-select:required + label::before {
-    position: absolute;
-    left: 320%;
-    content: "★";
-    color: red;
-}
-
-input:required:valid + label::before {
+input:valid + span::before,
+select:valid + span::before {
     content: "✔";
     color: green;
 }
 
-input[type=url] + label::before {
-    position: absolute;
-    left: 320%;
-    top: -20%;
+input:invalid,
+select:invalid {
+    border: 1px red solid;
 }
 
-header nav,
-footer nav {
-    float: left;
-    width: 100%;
+input:invalid + span::before,
+select:invalid + span::before {
+    content: "★";
+    color: red;
+}
+
+.options {
+    column-count: 2;
+}
+
+/* menus */
+.menu ul {
+    padding: .5em;
     background: #222;
-    margin: .5em 0;
-}
-
-header ul,
-footer ul {
-    font-size: .9em;
     list-style: none;
+    text-align: center;
 }
 
-header li,
-footer li {
-    float: left;
-    position: relative;
+.menu li {
+    display: inline-block;
     margin: 0;
 }
 
-header a,
-header strong,
-footer a,
-footer strong {
-    display: block;
-    padding: .8em;
+.menu a,
+.menu strong {
+    padding: .7em;
 }
 
-header nav a,
-footer nav a {
+.menu a {
     color: #eee;
 }
 
-nav strong {
+.menu strong {
     color: #1982d1;
 }
 
 footer {
     margin: 1em 0;
-    font-size: .8em;
-    clear: both;
 }
 
 /* Icons */
@@ -224,47 +249,47 @@ a[href^="https://"]:after {
     content: " " url(/images/secure.png);
 }
 
-.web:before {
+.web::before {
     content: url(/images/icons/Web.png) " ";
 }
 
-.blog:before {
+.blog::before {
     content: url(/images/icons/Wordpress.png) " ";
 }
 
-.rss:before {
+.rss::before {
     content: url(/images/icons/RSS.png) " ";
 }
 
-.facebook:before {
+.facebook::before {
     content: url(/images/icons/Facebook.png) " ";
 }
 
-.flickr:before {
+.flickr::before {
     content: url(/images/icons/Flickr.png) " ";
 }
 
-.googlePlus:before {
+.googlePlus::before {
     content: url(/images/icons/Google-plus.png) " ";
 }
 
-.instagram:before {
+.instagram::before {
     content: url(/images/icons/Instagram.png) " ";
 }
 
-.soundcloud:before {
+.soundcloud::before {
     content: url(/images/icons/Soundcloud.png) " ";
 }
 
-.twitter:before {
+.twitter::before {
     content: url(/images/icons/Twitter.png) " ";
 }
 
-.vimeo:before {
+.vimeo::before {
     content: url(/images/icons/Vimeo.png) " ";
 }
 
-.youtube:before {
+.youtube::before {
     content: url(/images/icons/Youtube.png) " ";
 }
 
@@ -313,7 +338,6 @@ a[href^="https://"]:after {
 }
 
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
-
 #map {
     height: 512px;
     width: 512px;
@@ -338,25 +362,32 @@ a[href^="https://"]:after {
     width: 170px;
 }
 
-/* search */
-.small-fieldset {
-    width: 10em;
-}
-
 /* statistics */
-.stats {
-    float: left;
-    margin-left: 2em;
+@media (min-width: 800px) {
+    .stats {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 500px auto;
+    }
+
+    .stats h2 {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .stats div {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .stats div.chart {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
 }
 
-.chart {
-    width: 500px;
-    height: 400px;
-    float: left;
-}
-
+/* print version */
 @media print {
-    /* print version */
     body {
         background: none;
         font-size: 10pt;
@@ -372,7 +403,6 @@ a[href^="https://"]:after {
 
 /* tables, partly inspired by tablesorter's default theme */
 table {
-    clear: both;
     border-collapse: collapse;
     text-align: left;
 }

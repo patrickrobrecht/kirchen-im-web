@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Development: manage all dependencies via Composer
     (and [asset-packagist.org](https://asset-packagist.org/))
 * Minimization of custom CSS and JavaScript files
+* Improved styling of forms (validation, fixes for display on small devices),
+    CSS grids instead of floats
 
 ### Fixed
 * Sitemap: no trailing slash redirect for `sitemap.xml`
