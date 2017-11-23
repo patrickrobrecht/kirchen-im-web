@@ -39,11 +39,11 @@ class SocialMediaUpdater extends AbstractHelper {
     }
 
     private function update($row) {
-        $id = intval($row['cid']);
+	    $websiteId = intval($row['websiteId']);
         $url = $row['url'];
         $followersNew = $this->getFollowers($row['type'], $url);
         $data = [
-            'id' => $id,
+            'churchId' => intval($row['churchId']),
             'url' => $url,
             'type' => $row['type'],
             'followers' => $followersNew,
@@ -52,8 +52,9 @@ class SocialMediaUpdater extends AbstractHelper {
 
         if ($followersNew >= 0) {
             // Update follower number and the timestamp.
-            if (Database::getInstance()->updateFollowers($url, $followersNew)) {
+            if (Database::getInstance()->updateFollowers($websiteId, $followersNew)) {
                 $data['updated'] = 'followers';
+	            Database::getInstance()->addFollowers($websiteId, $followersNew);
             }
         } else {
             // Update the timestamp

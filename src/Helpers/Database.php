@@ -32,7 +32,7 @@ class Database extends AbstractHelper {
         }
         $query .= ' FROM churches ';
         foreach ($websites as $websiteId => $websiteName) {
-            $query .= 'LEFT JOIN websites AS ' . $websiteId . ' ON ' . $websiteId . '.cid = churches.id
+            $query .= 'LEFT JOIN websites AS ' . $websiteId . ' ON ' . $websiteId . '.churchId = churches.id
                 AND ' . $websiteId . '.type = "' . $websiteId . '" ';
         }
         $statement = $this->connection->query($query);
@@ -49,7 +49,7 @@ class Database extends AbstractHelper {
 
         // .... get the URLs to show.
         foreach ($websites as $websiteId => $websiteName) {
-            $query .= 'LEFT JOIN websites AS ' . $websiteId . ' ON ' . $websiteId . '.cid = churches.id
+            $query .= 'LEFT JOIN websites AS ' . $websiteId . ' ON ' . $websiteId . '.churchId = churches.id
 								AND ' . $websiteId . '.type = "' . $websiteId . '" ';
         }
 
@@ -74,7 +74,7 @@ class Database extends AbstractHelper {
             array_push($conditions, 'churches.type = :ctype ');
         }
         if ($filters['hasWebsiteType'] != '') {
-            array_push($conditions, 'EXISTS (SELECT * FROM websites WHERE id = cid AND type = :wtype) ');
+            array_push($conditions, 'EXISTS (SELECT * FROM websites WHERE id = churchId AND type = :wtype) ');
         }
         if ($compare) {
             // restrict to churches with at least one profile with followers set
@@ -145,9 +145,9 @@ class Database extends AbstractHelper {
             array_push($networksToCompareAsStrings, "'" . $type . "'");
         }
         $networksToCompareList = implode(', ', $networksToCompareAsStrings);
-        $statement = $this->connection->prepare('SELECT cid, url from websites 
+        $statement = $this->connection->prepare('SELECT churchId, url from websites 
 			WHERE type IN (' . $networksToCompareList . ') AND (followers IS NULL AND timestamp < NOW())
-			ORDER BY type, cid');
+			ORDER BY type, churchId');
         $statement->execute();
         $faultyEntries['followers_missing'] = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -165,7 +165,7 @@ class Database extends AbstractHelper {
 
         // .... get the URLs to show.
         foreach ($showWebsites as $websiteId => $websiteName) {
-            $query .= 'LEFT JOIN websites AS ' . $websiteId . ' ON ' . $websiteId . '.cid = churches.id 
+            $query .= 'LEFT JOIN websites AS ' . $websiteId . ' ON ' . $websiteId . '.churchId = churches.id 
 								AND ' . $websiteId . '.type = "' . $websiteId . '" ';
         }
 
@@ -207,7 +207,7 @@ class Database extends AbstractHelper {
 
         // Query for the websites
         $statement = $this->connection->prepare('SELECT url, type, followers FROM websites
-            WHERE cid = :id
+            WHERE churchId = :id
             ORDER BY type ASC');
         $statement->bindParam(':id', $id);
         $statement->execute();
@@ -238,7 +238,7 @@ class Database extends AbstractHelper {
     }
 
     public function getURLsForUpdate($networksToCompareList, $limit) {
-        $query = 'SELECT cid, url, type, followers, timestamp
+        $query = 'SELECT websiteId, churchId, url, type, followers, timestamp
             FROM websites
             WHERE type IN (' . $networksToCompareList . ')
             ORDER BY timestamp 
@@ -247,19 +247,28 @@ class Database extends AbstractHelper {
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function updateFollowers($url, $followers) {
+    public function updateFollowers($websiteId, $followers) {
         if ($followers === false) {
             $statement = $this->connection->prepare('UPDATE websites
                 SET timestamp = NOW()
-                WHERE url = :url');
+                WHERE websiteId = :websiteId');
         } else {
             $statement = $this->connection->prepare('UPDATE websites 
 			    SET followers = :followers, timestamp = NOW()
-			    WHERE url = :url');
+			    WHERE websiteId = :websiteId');
             $statement->bindParam(':followers', $followers, PDO::PARAM_INT);
         }
-        $statement->bindParam(':url', $url);
+        $statement->bindParam(':websiteId', $websiteId);
         return $statement->execute();
+    }
+
+    public function addFollowers($websiteId, $followers) {
+	    $statement = $this->connection->prepare('INSERT INTO followers 
+			    (websiteId, followers, date)
+			    VALUES (:websiteId, :followers, NOW())');
+	    $statement->bindParam(':websiteId', $websiteId);
+	    $statement->bindParam(':followers', $followers, PDO::PARAM_INT);
+	    return $statement->execute();
     }
 
     public function getTotalCount() {
@@ -312,7 +321,6 @@ class Database extends AbstractHelper {
      * Adds a church.
      *
      * @param array $data the church data
-     * @param array $urls
      *
      * @return number the id of the created church.
      */
@@ -348,10 +356,10 @@ class Database extends AbstractHelper {
         }
 
         // Add the URLs to the database.
-        $statement = $this->connection->prepare('INSERT INTO websites (cid, type, url) 
-			VALUES (:cid, :type, :url)');
+        $statement = $this->connection->prepare('INSERT INTO websites (churchId, type, url) 
+			VALUES (:churchId, :type, :url)');
         foreach($urls as $type => $url) {
-            $statement->bindParam(':cid', $churchId);
+            $statement->bindParam(':churchId', $churchId);
             $statement->bindParam(':type', $type);
             $statement->bindParam(':url', $url);
             $statement->execute();
