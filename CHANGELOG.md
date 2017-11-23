@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
 ## Version 3.2 (unreleased)
 
 ### Added
@@ -21,6 +22,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 * Sitemap: no trailing slash redirect for `sitemap.xml`
 * Issues in responsive design on mobile devices
+* Search, Comparison: ascending order if sorting alphabetically;
+    descending order only if sorting by followers
 
 
 ## Version 3.1 (2017-11-05)

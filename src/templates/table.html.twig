@@ -156,7 +156,7 @@
                         sortList: [ [3,0], [2,0] ],
                     {% endif %}
                 {% else %}
-                    sortList: [ [{{ sort.id }},1] ],
+                    sortList: [ [{{ sort.id }},{{ sort.dir }}] ],
                 {% endif %}
                 {% if languageSlug == 'de' %}
                     usNumberFormat: false

@@ -49,7 +49,8 @@ class ParameterChecker extends AbstractHelper {
         }
         return [
             'name' => ($sortColumnId > -1) ? $sort : '',
-            'id' => $sortColumnId
+            'id' => $sortColumnId,
+	        'dir' => ($sortColumnId >= 6) ? 1 : 0
         ];
     }
 
