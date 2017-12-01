@@ -17,6 +17,7 @@ class Configuration extends AbstractHelper {
     public $preselectedWebsites;
     public $websitesStartOfURL;
     public $networksToCompare;
+    public $networksToCompareColors;
     public $sortOptions;
     public $languages_slugs;
 
@@ -114,6 +115,14 @@ class Configuration extends AbstractHelper {
             'twitter' => 'Twitter',
             'youtube' => 'YouTube'
         );
+
+	    $this->networksToCompareColors = array(
+		    'facebook' => '#3b5998',
+		    'googlePlus' => '#008000',
+		    'instagram' => '#383838',
+		    'twitter' => '#1da1f2',
+		    'youtube' => '#ff0000'
+	    );
 
         $this->sortOptions = array(
             'name' => _('Name'),

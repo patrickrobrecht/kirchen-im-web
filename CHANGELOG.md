@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 * Details, Search: page structured with schema.org (JSON-LF)
-* Save history of follower data (for future usage)
+* Details: show history of follower data
 
 ### Changed
 * Development: manage all dependencies via Composer

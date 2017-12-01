@@ -206,12 +206,20 @@ class Database extends AbstractHelper {
         $data['children'] = $this->getChildrenOfEntry($id, $childrenRecursive);
 
         // Query for the websites
-        $statement = $this->connection->prepare('SELECT url, type, followers FROM websites
+        $statement = $this->connection->prepare('SELECT websiteId, url, type, followers FROM websites
             WHERE churchId = :id
             ORDER BY type ASC');
         $statement->bindParam(':id', $id);
         $statement->execute();
         $data['websites'] = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Queries for the followers history of the social media entries.
+	    foreach ($data['websites'] as $key => $website) {
+			if (in_array($website['type'], array_keys(Configuration::getInstance()->networksToCompare))) {
+				$data['websites'][$key]['followerHistory'] = $this->getFollowerHistory($website['websiteId']);
+			}
+			unset($data['websites'][$key]['websiteId']);
+	    }
 
         return $data;
     }
@@ -269,6 +277,14 @@ class Database extends AbstractHelper {
 	    $statement->bindParam(':websiteId', $websiteId);
 	    $statement->bindParam(':followers', $followers, PDO::PARAM_INT);
 	    return $statement->execute();
+    }
+
+    private function getFollowerHistory($websiteId) {
+    	$statement = $this->connection->prepare('SELECT followers, date FROM followers
+			WHERE websiteId = :websiteId');
+    	$statement->bindParam(':websiteId', $websiteId);
+    	$statement->execute();
+    	return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getTotalCount() {

@@ -107,7 +107,6 @@ img {
     }
 }
 
-
 fieldset {
     grid-area: f;
     border: none;
@@ -357,17 +356,21 @@ a[href^="https://"]:after {
 }
 
 /* details */
-.websites tr > :nth-child(1),
 .details tr > :nth-child(1) {
     width: 170px;
+}
+
+.chart {
+    width: 512px;
+    min-height: 400px;
 }
 
 /* statistics */
 @media (min-width: 800px) {
     .stats {
         display: grid;
-        grid-gap: 10px;
-        grid-template-columns: 500px auto;
+        grid-gap: 30px;
+        grid-template-columns: 512px auto;
     }
 
     .stats h2 {
@@ -380,7 +383,7 @@ a[href^="https://"]:after {
         grid-row: 2 / 3;
     }
 
-    .stats div.chart {
+    .stats div.chart, .stats div#detailsmap {
         grid-column: 1 / 2;
         grid-row: 2 / 3;
     }
