@@ -41,7 +41,8 @@
     ],
     "minify": [
       "minifycss public/css/style.css > public/css/style.min.css",
-      "minifyjs public/js/check.js > public/js/check.min.js"
+      "minifyjs public/js/check.js > public/js/check.min.js",
+      "minifyjs public/js/map.js > public/js/map.min.js"
     ]
   },
   "autoload": {

@@ -161,7 +161,8 @@ legend {
     margin-bottom: .4em;
 }
 
-input:not([type='checkbox']),
+input[type='text'],
+input[type='url'],
 select {
     padding: 0 2px;
     background-color: #fffbf0;
@@ -180,7 +181,8 @@ button {
     padding: 0.7em 2em;
 }
 
-input:valid + span::before,
+input[type='text']:valid + span::before,
+input[type='url']:valid + span::before,
 select:valid + span::before {
     content: "✔";
     color: green;

@@ -1,3 +1,23 @@
+{% macro map(mapId, url, config) %}
+    <script src="/public/lib/leaflet.js"></script>
+    <script src="/public/lib/leaflet.markercluster.js"></script>
+    <script src="/public/js/map.min.js"></script>
+    <script type="text/javascript">
+        var map = new Map({
+            'all': '{% trans 'alle' %}',
+            'oldCatholic': "{% trans 'alt-katholisch' %}",
+            'anglican': "{% trans 'anglikanisch' %}",
+            'protestant': "{% trans 'evangelisch' %}",
+            'freeChurches': "{% trans 'freikirchlich' %}",
+            'catholic': "{% trans 'katholisch' %}",
+            'others': "{% trans 'andere Konfession' %}",
+            'web': "{{ config.websites['web'] }}",
+            'blog': "{{ config.websites['blog'] }}"
+        });
+        map.load('{{ mapId }}', '{{ url }}');
+    </script>
+{% endmacro %}
+
 {% macro menu(items, currentPath) %}
     <ul>
         {% for item in items %}

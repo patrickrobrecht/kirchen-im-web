@@ -2,6 +2,6 @@ cache/
 config.php
 data/
 public/css/style.min.css
-public/js/check.min.js
+public/js/*.min.js
 public/lib/
 vendor/

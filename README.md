@@ -32,7 +32,8 @@ kirchen-im-web.de offers the data via a public API at `https://kirchen-im-web.de
 
 ### GET /api/churches
 
-Per default, the whole data is returned. Parameters can be used to reduce the number of entries which are returned.
+Per default, the whole data is returned in [JSON](https://www.json.org/).
+Parameters can be used to reduce the number of entries which are returned.
 
 Example: A call to `https://kirchen-im-web.de/api/churches/?name=test` only returns data of the churches whose name contains the string `test`.
 
@@ -51,8 +52,9 @@ Supported parameters:
 	Possible values: see `$websites` variable in the configuration file
 
 ### GET /api/churches/{id}
-The data of the church with the given entry id is returned.
+The data of the church with the given entry id is returned in JSON.
 The entry id is the number in the URL of the details page.
+
 
 ## Used programming languages and libraries
 * [HTML5, CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss)

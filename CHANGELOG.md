@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 * Development: manage all dependencies via Composer
     (and [asset-packagist.org](https://asset-packagist.org/))
+* Map: refactored code, JavaScript into own file
 * Minimization of custom CSS and JavaScript files
 * Improved styling of forms (validation, fixes for display on small devices),
     CSS grids instead of floats
