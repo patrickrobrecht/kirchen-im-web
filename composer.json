@@ -36,6 +36,12 @@
     }
   ],
   "scripts": {
+    "post-install-cmd": [
+      "@copyassets"
+    ],
+    "post-update-cmd": [
+      "@copyassets"
+    ],
     "copyassets": [
       "SlowProg\\CopyFile\\ScriptHandler::copy"
     ],

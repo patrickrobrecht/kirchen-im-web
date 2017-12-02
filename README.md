@@ -76,11 +76,22 @@ The entry id is the number in the URL of the details page.
 Returns the (direct) children of the church with the given id in JSON.
 
 
+## How to develop
+For development you need a local web server, PHP and a MySQL database.
+
+* Clone the Git repository.
+* Install the dependencies via `composer install`
+* Run `composer minify` to generate `*.min.css` and `*.min.js` files.
+* Create a database.
+* Create a `config.php` with the database credentials and valid API keys/secrets. 
+
+
 ## Used programming languages and libraries
 * [HTML5, CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss)
 * [PHP](https://secure.php.net/) with libraries
-    [Slim](https://www.slimframework.com/) and 
+    [Slim](https://www.slimframework.com/), 
     [Twig](https://twig.symfony.com/)
+    and [twitter-api-php](https://github.com/J7mbo/twitter-api-php)
 * JavaScript, especially the libraries 
     [jQuery](https://jquery.com/),
     [Highcharts](http://www.highcharts.com/),

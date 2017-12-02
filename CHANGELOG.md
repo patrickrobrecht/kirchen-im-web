@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## Version 3.2 (unreleased)
+## Version 3.2 (2017-12-02)
 
 ### Added
 * Details, Search: page structured with schema.org (JSON-LF)
@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Improved styling of forms (validation, fixes for display on small devices),
     CSS grids instead of floats
 * API: several improvements, documentation in README
+* Updated dependencies (Slim, Highcharts)
 
 ### Fixed
 * Sitemap: no trailing slash redirect for `sitemap.xml`
