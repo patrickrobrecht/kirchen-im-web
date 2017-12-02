@@ -352,12 +352,11 @@ a[href^="https://"]:after {
 }
 
 #detailsmap {
-    height: 256px;
+    height: 512px;
     width: 512px;
     margin-bottom: 20px;
 }
 
-/* details */
 .details tr > :nth-child(1) {
     width: 170px;
 }

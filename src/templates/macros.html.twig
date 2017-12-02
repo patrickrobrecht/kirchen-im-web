@@ -14,7 +14,7 @@
             'web': "{{ config.websites['web'] }}",
             'blog': "{{ config.websites['blog'] }}"
         });
-        map.load('{{ mapId }}', '{{ url }}');
+        map.load('{{ mapId }}', '{{ url|raw }}');
     </script>
 {% endmacro %}
 

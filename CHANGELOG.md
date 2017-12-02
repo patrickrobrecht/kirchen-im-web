@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 * Details, Search: page structured with schema.org (JSON-LF)
 * Details: show history of follower data
+* Details: show children on map
 
 ### Changed
 * Development: manage all dependencies via Composer
@@ -19,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Minimization of custom CSS and JavaScript files
 * Improved styling of forms (validation, fixes for display on small devices),
     CSS grids instead of floats
+* API: several improvements, documentation in README
 
 ### Fixed
 * Sitemap: no trailing slash redirect for `sitemap.xml`

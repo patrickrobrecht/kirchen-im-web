@@ -38,6 +38,22 @@ class APIController {
         }
     }
 
+	public function children(Request $request, Response $response, array $args) {
+		$entry = Database::getInstance()->getEntry($args['id']);
+		if ($entry) {
+			$children = Database::getInstance()->getFilteredEntries(
+				[
+					'parent' => $args['id'],
+					'options' => ParameterChecker::getInstance()->extractOptions('')
+				],
+				Configuration::getInstance()->websites
+			);
+			return $response->withJson(Exporter::getInstance()->removeNullValues($children));
+		} else {
+			return $response->withStatus(404);
+		}
+	}
+
 
     // Admin API
 

@@ -30,7 +30,7 @@ The latest development version is online at [beta.kirchen-im-web.de](https://bet
 
 kirchen-im-web.de offers the data via a public API at `https://kirchen-im-web.de/api/` which returns all the data on the selected churches in JSON format. Even if there is only one result for the query, the data is returned as a list.
 
-### GET /api/churches
+### GET /api/churches/
 
 Per default, the whole data is returned in [JSON](https://www.json.org/).
 Parameters can be used to reduce the number of entries which are returned.
@@ -39,21 +39,41 @@ Example: A call to `https://kirchen-im-web.de/api/churches/?name=test` only retu
 
 Supported parameters:
 
-* `name`: the substring of the name
-* `postalCode`: the postal code
-* `city`: the substring of the city
-* `country`: the country code (e. g. `DE` for Germany).
+* `ids` (optional):
+    entry ids (multiple ids can be separated by comma)
+* `parent` (optional):
+    only children of the given parent id
+    (`options` allow to include the parent itself and grandchildren)
+* `name` (optional):
+    the substring of the name
+* `postalCode` (optional):
+    the postal code
+* `city` (optional):
+    the substring of the city
+* `country` (optional):
+    the country code (e. g. `DE` for Germany).
 	Possible values: see `$countries` variable in the [configuration file](./src/Helpers/Configuration.php)
-* `denomination`: the denomination. 
+* `denomination` (optional):
+    the denomination.
 	Possible values: see `$denominations` variable in the configuration file
-* `type`: the type. 
+* `type` (optional):
+    the type.
 	Possible values: see `$types` variable in the configuration file
-* `hasWebsiteType`: the website type.
+* `hasWebsiteType` (optional):
+    the website type.
 	Possible values: see `$websites` variable in the configuration file
+* `options=includeSelf,recursive` (optional):
+    * If `parent` is given and `options` contains `childrenRecursive`,
+        the grandchildren are also included in the response.
+    * If `parent` is given and `options` contains `includeSelf`,
+        the parent is included in the response.
 
-### GET /api/churches/{id}
-The data of the church with the given entry id is returned in JSON.
+### GET /api/churches/{id}/
+The data of the church with the given id is returned in JSON.
 The entry id is the number in the URL of the details page.
+
+### GET /api/churches/{id}/children/
+Returns the (direct) children of the church with the given id in JSON.
 
 
 ## Used programming languages and libraries

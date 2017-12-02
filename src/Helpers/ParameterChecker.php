@@ -13,6 +13,8 @@ class ParameterChecker extends AbstractHelper {
     public function extractFilterParameters(Request $request) {
         $data = $request->getQueryParams();
         $filters = [];
+        $filters['ids'] = isset($data['ids']) ? $this->toIntArray($data['ids']): [];
+        $filters['parent'] = isset($data['parent']) ? intval($data['parent']): 0;
         $filters['name'] = isset($data['name']) ? trim($data['name']) : '';
         $filters['postalCode'] = isset($_GET['postalCode']) && intval($_GET['postalCode']) > 0 ? $_GET['postalCode'] : '';
         $filters['city'] = isset($_GET['city']) ? trim($_GET['city']) : '';
@@ -20,8 +22,32 @@ class ParameterChecker extends AbstractHelper {
         $filters['denomination'] = isset($_GET['denomination']) ? trim($_GET['denomination']) : '';
         $filters['type'] = isset($_GET['type']) ? trim($_GET['type']) : '';
         $filters['hasWebsiteType'] = isset($_GET['hasWebsiteType']) ? trim($_GET['hasWebsiteType']) : '';
+	    $filters['options'] = $this->extractOptions(isset($data['options']) ? $data['options'] : '');
         return $filters;
     }
+
+    public function extractOptions($optionString) {
+    	$optionArray = explode(',', $optionString);
+    	$options = [];
+	    foreach(['childrenRecursive', 'includeSelf'] as $option) {
+		    $options[$option] = in_array($option, $optionArray);
+	    }
+	    return $options;
+    }
+
+    private function toIntArray($s) {
+		$array = explode(',', $s);
+		$intArray = [];
+		foreach ($array as $s) {
+			$i = intval($s);
+			if ($i > 0) {
+				array_push($intArray, $i);
+			} else {
+				return false;
+			}
+		}
+		return $intArray;
+	}
 
     public function extractFilterWebsites(Request $request) {
         $data = $request->getQueryParams();

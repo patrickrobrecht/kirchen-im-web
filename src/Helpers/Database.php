@@ -41,7 +41,7 @@ class Database extends AbstractHelper {
 
     public function getFilteredEntries($filters, $websites, $compare = false) {
         // Query churches
-        $query = 'SELECT id, name, postalCode, city, country, denomination, churches.type';
+	    $query = 'SELECT id, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
         foreach ($websites as $websiteId => $websiteName) {
             $query .= ', ' .$websiteId . '.url AS ' . $websiteId . ', ' . $websiteId . '.followers AS ' . $websiteId . '_followers';
         }
@@ -55,25 +55,39 @@ class Database extends AbstractHelper {
 
         // ... and apply the filters
         $conditions = array();
-        if ($filters['name'] != '') {
+        if (isset($filters['ids']) && $filters['ids'] && count($filters['ids']) > 0) {
+        	array_push($conditions, 'id IN (' . implode(', ', $filters['ids']) . ') ');
+        }
+	    if (isset($filters['parent']) && $filters['parent'] > 0) {
+		    $children = $this->getChildrenOfEntry(
+		    	$filters['parent'],
+			    Database::getOption($filters, 'childrenRecursive')
+		    );
+		    $childrenIds = array_merge(
+			    Database::getOption($filters, 'includeSelf') ? [$filters['parent']] : [],
+			    Database::extractIds($children)
+		    );
+		    array_push($conditions, 'id IN (' . implode(', ', $childrenIds) . ') ');
+	    }
+        if (isset($filters['name']) && $filters['name'] != '') {
             array_push($conditions, 'name LIKE :name ');
         }
-        if ($filters['postalCode'] != 0) {
+        if (isset($filters['postalCode']) && $filters['postalCode'] != 0) {
             array_push($conditions, 'postalCode = :postalCode ');
         }
-        if ($filters['city'] != '') {
+        if (isset($filters['city']) && $filters['city'] != '') {
             array_push($conditions, 'city LIKE :city ');
         }
-        if ($filters['country'] != '') {
+        if (isset($filters['country']) && $filters['country'] != '') {
             array_push($conditions, 'country = :country ');
         }
-        if ($filters['denomination'] != '') {
+        if (isset($filters['denomination']) && $filters['denomination'] != '') {
             array_push($conditions, 'denomination = :denomination ');
         }
-        if ($filters['type'] != '') {
+        if (isset($filters['type']) && $filters['type'] != '') {
             array_push($conditions, 'churches.type = :ctype ');
         }
-        if ($filters['hasWebsiteType'] != '') {
+        if (isset($filters['hasWebsiteType']) && $filters['hasWebsiteType'] != '') {
             array_push($conditions, 'EXISTS (SELECT * FROM websites WHERE id = churchId AND type = :wtype) ');
         }
         if ($compare) {
@@ -99,39 +113,54 @@ class Database extends AbstractHelper {
             }
             $whereclause = preg_replace('/ AND/', ' WHERE', $whereclause, 1);
             $query .= $whereclause;
-            $query .= 'ORDER BY country, postalCode';
+            $query .= 'ORDER BY id';
         } else {
             $query .= 'ORDER BY churches.timestamp DESC, id DESC LIMIT 25';
         }
 
         $statement = $this->connection->prepare($query);
-        if ($filters['name'] != '') {
+        if (isset($filters['name']) && $filters['name'] != '') {
             $name = '%' . $filters['name'] . '%';
             $statement->bindParam(':name', $name);
         }
-        if ($filters['postalCode'] != 0) {
+        if (isset($filters['postalCode']) && $filters['postalCode'] != 0) {
             $statement->bindParam(':postalCode', $filters['postalCode']);
         }
-        if ($filters['city'] != '') {
+        if (isset($filters['city']) && $filters['city'] != '') {
             $city = '%' . $filters['city'] . '%';
             $statement->bindParam(':city', $city);
         }
-        if ($filters['country'] != '') {
+        if (isset($filters['country']) && $filters['country'] != '') {
             $statement->bindParam(':country', $filters['country']);
         }
-        if ($filters['denomination'] != '') {
+        if (isset($filters['denomination']) && $filters['denomination'] != '') {
             $statement->bindParam(':denomination', $filters['denomination']);
         }
-        if ($filters['type'] != '') {
+        if (isset($filters['type']) && $filters['type'] != '') {
             $statement->bindParam(':ctype', $filters['type']);
         }
-        if ($filters['hasWebsiteType'] != '') {
+        if (isset($filters['hasWebsiteType']) && $filters['hasWebsiteType'] != '') {
             $statement->bindParam(':wtype', $filters['hasWebsiteType']);
         }
 
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    private static function getOption($filters, $name) {
+    	return isset($filters['options'][$name]) ? $filters['options'][$name] : false;
+    }
+
+    private static function extractIds($entries) {
+	    $ids = [];
+	    foreach ($entries as $entry) {
+			array_push($ids, $entry['id']);
+			if (isset($entry['children'])) {
+				$ids = array_merge($ids, Database::extractIds($entry['children']));
+			}
+	    }
+	    return $ids;
     }
 
     public function getFaultyEntries() {

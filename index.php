@@ -40,8 +40,9 @@ $app->group('/', function () {
 });
 
 $app->group('/api/', function () {
-    $this->get('churches/', 'APIController:churches')->setName('api-churches');
-    $this->get('churches/{id}/', 'APIController:church')->setName('api-church');
+    $this->get('churches/', 'APIController:churches');
+    $this->get('churches/{id}/', 'APIController:church');
+	$this->get('churches/{id}/children/', 'APIController:children');
 
     $this->get('check/', 'APIController:check');
     $this->get('export/', 'APIController:export');
