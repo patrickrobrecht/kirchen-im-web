@@ -61,6 +61,7 @@ $app->group('/de/', function () {
     $this->get('details/{id}/', 'PageController:details')->setName('de-details');
     $this->get('impressum/', 'PageController:legal')->setName('de-legal');
     $this->get('daten/', 'PageController:data')->setName('de-data');
+	$this->get('opensearch.xml', 'PageController:opensearch')->setName('de-opensearch');
 })->add(function ($request, $response, $next) use ($container) {
     $container->PageController->setLanguage('de_DE', $request);
     $response = $next($request, $response);
@@ -78,6 +79,7 @@ $app->group('/en/', function () {
     $this->get('details/{id}/', 'PageController:details')->setName('en-details');
     $this->get('legal-notice/', 'PageController:legal')->setName('en-legal');
     $this->get('data/', 'PageController:data')->setName('en-data');
+	$this->get('opensearch.xml', 'PageController:opensearch')->setName('en-opensearch');
 })->add(function ($request, $response, $next) use ($container) {
     $container->PageController->setLanguage('en_US', $request);
     $response = $next($request, $response);

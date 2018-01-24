@@ -32,6 +32,7 @@ class PageController {
         $this->twig->addExtension(new TwigExtension($container['router'], $basePath));
 
         // Pass global variables to the view.
+	    $this->twig->offsetSet('domain', $_SERVER['HTTP_HOST']);
         $this->twig->offsetSet('currentPath', $container['request']->getUri()->getPath());
         $this->twig->offsetSet('config', Configuration::getInstance());
 
@@ -183,6 +184,10 @@ class PageController {
             'ids' => Database::getInstance()->getIds()
         ])->withHeader('Content-Type', 'text/xml; charset=UTF-8');
     }
+
+	public function opensearch(Request $request, Response $response, array $args) {
+		return $this->twig->render($response, 'opensearch.xml.twig')->withHeader('Content-Type', 'text/xml; charset=UTF-8');
+	}
 
     public function setLanguage($language, Request $request) {
         putenv(sprintf('LC_ALL=%s', $language));
