@@ -168,8 +168,8 @@ class SocialMediaUpdater extends AbstractHelper {
             $json = @file_get_contents($url . '?__a=1');
             if ($json) {
                 $json = json_decode($json);
-                if (isset($json->user->followed_by->count)) {
-                    return intval($json->user->followed_by->count);
+                if (isset($json->graphql->user->edge_followed_by->count)) {
+                    return intval($json->graphql->user->edge_followed_by->count);
                 }
             }
             return false;
