@@ -110,20 +110,20 @@ class SocialMediaUpdater extends AbstractHelper {
             }
 
             $json_url ='https://graph.facebook.com/' . $id .
-                       '?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
+                       '?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=fan_count';
             $json = @file_get_contents($json_url);
             if (!$json) {
                 $temp = explode('-', $id);
                 $id = str_replace('/', '', end($temp) );
                 $json_url ='https://graph.facebook.com/' . $id .
-                           '?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=likes';
+                           '?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=fan_count';
                 $json = @file_get_contents($json_url);
             }
 
             if ($json) {
                 $json = json_decode($json);
-                if (isset($json->likes)) {
-                    return $json->likes;
+                if (isset($json->fan_count)) {
+                    return $json->fan_count;
                 }
             }
             return false;
