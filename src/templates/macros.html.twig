@@ -19,25 +19,29 @@
 {% endmacro %}
 
 {% macro menu(items, currentPath) %}
-    <ul>
-        {% for item in items %}
-            {% if item.args %}
-                {% set url = path_for(item.path, item.args) %}
+    {% for item in items %}
+        {% if item.args %}
+            {% set url = path_for(item.path, item.args) %}
+        {% else %}
+            {% set url = path_for(item.path) %}
+        {% endif %}
+        {% set text = item.text %}
+        {% if url == currentPath %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url }}">{% trans text %}</a> <span class="sr-only">({% trans 'current' %})</span>
+            </li>
+        {% else %}
+            {% if item.class %}
+                <li class="nav-item">
+                    <a class="nav-link {{ item.class }}" href="{{ url }}">{% trans text %}</a>
+                </li>
             {% else %}
-                {% set url = path_for(item.path) %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url }}">{% trans text %}</a>
+                </li>
             {% endif %}
-            {% set text = item.text %}
-            {% if url == currentPath %}
-                <li><strong>{% trans text %}</strong></li>
-            {% else %}
-                {% if item.class %}
-                    <li><a class="{{ item.class }}" href="{{ url }}">{% trans text %}</a></li>
-                {% else %}
-                    <li><a href="{{ url }}">{% trans text %}</a></li>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-    </ul>
+        {% endif %}
+    {% endfor %}
 {% endmacro %}
 
 {% macro number_format(number, languageSlug) %}

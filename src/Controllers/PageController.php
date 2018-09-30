@@ -203,9 +203,6 @@ class PageController {
 
         $headerMenuItems = [
             [
-                'path' => $languageSlug . '-home',
-                'text' => _('Über das Projekt')
-            ], [
                 'path' => $languageSlug . '-map',
                 'text' => _('Karte')
             ], [
@@ -214,9 +211,6 @@ class PageController {
             ], [
                 'path' => $languageSlug . '-comparison',
                 'text' => _('Social-Media-Vergleich')
-            ], [
-                'path' => $languageSlug . '-add',
-                'text' => _('Gemeinde eintragen')
             ], [
                 'path' => $languageSlug . '-stats',
                 'text' => _('Statistik')
