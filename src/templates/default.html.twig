@@ -20,15 +20,14 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="search" type="application/opensearchdescription+xml" href="{{ path_for(languageSlug ~ '-opensearch') }}" title="Kirchen im Web">
     {% block head_styles %}
-        <link rel="stylesheet" href="/public/lib/bootstrap.min.css">
-        <link rel="stylesheet" href="/public/css/style.min.css">
+        <link rel="stylesheet" href="/public/css/style.css">
     {% endblock %}
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="{{ path_for(languageSlug ~ '-home') }}">{% trans 'Kirchen im Web' %}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav" aria-controls="eader-nav" aria-expanded="false" aria-label="{% trans 'Menü umschalten' %}">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav" aria-controls="header-nav" aria-expanded="false" aria-label="{% trans 'Menü umschalten' %}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 

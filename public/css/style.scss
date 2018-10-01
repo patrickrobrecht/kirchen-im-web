@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+@import "../../vendor/npm-asset/bootstrap/scss/functions";
+@import "../../vendor/npm-asset/bootstrap/scss/variables";
+@import "../../vendor/npm-asset/bootstrap/scss/mixins";
+@import "../../vendor/npm-asset/bootstrap/scss/reboot";
+@import "../../vendor/npm-asset/bootstrap/scss/type";
+@import "../../vendor/npm-asset/bootstrap/scss/images";
+@import "../../vendor/npm-asset/bootstrap/scss/grid";
+@import "../../vendor/npm-asset/bootstrap/scss/tables";
+@import "../../vendor/npm-asset/bootstrap/scss/forms";
+@import "../../vendor/npm-asset/bootstrap/scss/buttons";
+@import "../../vendor/npm-asset/bootstrap/scss/transitions";
+@import "../../vendor/npm-asset/bootstrap/scss/button-group";
+@import "../../vendor/npm-asset/bootstrap/scss/input-group";
+@import "../../vendor/npm-asset/bootstrap/scss/nav";
+@import "../../vendor/npm-asset/bootstrap/scss/navbar";
+@import "../../vendor/npm-asset/bootstrap/scss/breadcrumb";
+@import "../../vendor/npm-asset/bootstrap/scss/alert";
+@import "../../vendor/npm-asset/bootstrap/scss/utilities";
+@import "../../vendor/npm-asset/bootstrap/scss/print";
+
+/* Icons */
+.lang_de:before {
+  content: url(/images/flags/de.gif) " ";
+}
+
+.lang_en:before {
+  content: url(/images/flags/en.gif) " ";
+}
+
+a[href^="http://"]:after {
+  content: " " url(/images/non-secure.png);
+}
+
+a[href^="https://"]:after {
+  content: " " url(/images/secure.png);
+}
+
+.web::before {
+  content: url(/images/icons/Web.png) " ";
+}
+
+.blog::before {
+  content: url(/images/icons/Wordpress.png) " ";
+}
+
+.rss::before {
+  content: url(/images/icons/RSS.png) " ";
+}
+
+.facebook::before {
+  content: url(/images/icons/Facebook.png) " ";
+}
+
+.flickr::before {
+  content: url(/images/icons/Flickr.png) " ";
+}
+
+.googlePlus::before {
+  content: url(/images/icons/Google-plus.png) " ";
+}
+
+.instagram::before {
+  content: url(/images/icons/Instagram.png) " ";
+}
+
+.soundcloud::before {
+  content: url(/images/icons/Soundcloud.png) " ";
+}
+
+.twitter::before {
+  content: url(/images/icons/Twitter.png) " ";
+}
+
+.vimeo::before {
+  content: url(/images/icons/Vimeo.png) " ";
+}
+
+.youtube::before {
+  content: url(/images/icons/Youtube.png) " ";
+}
+
+.at:before {
+  content: url(/images/flags/Austria.png) " ";
+}
+
+.ch:before {
+  content: url(/images/flags/Switzerland.png) " ";
+}
+
+.de:before {
+  content: url(/images/flags/Germany.png) " ";
+}
+
+.li:before {
+  content: url(/images/flags/Liechtenstein.png) " ";
+}
+
+.lu:before {
+  content: url(/images/flags/Luxembourg.png) " ";
+}
+
+.alt-katholisch:before {
+  content: url(/images/markers/orange.png) " ";
+}
+
+.anglikanisch:before {
+  content: url(/images/markers/green.png) " ";
+}
+
+.evangelisch:before {
+  content: url(/images/markers/purple.png) " ";
+}
+
+.freikirchlich:before {
+  content: url(/images/markers/blue.png) " ";
+}
+
+.katholisch:before {
+  content: url(/images/markers/yellow.png) " ";
+}
+
+.ökumenisch:before {
+  content: url(/images/markers/red.png) " ";
+}
+
+/* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
+#map {
+  height: 512px;
+  width: 512px;
+}
+
+@media (min-width: 1024px) {
+  #map {
+    height: 768px;
+    width: 1024px;
+  }
+}
+
+#detailsmap {
+  height: 512px;
+  width: 512px;
+  margin-bottom: 20px;
+}
+
+.details tr > :nth-child(1) {
+  width: 170px;
+}
+
+/* charts, statistics */
+.chart {
+  width: 512px;
+  min-height: 400px;
+}
+
+.stats-table {
+  width: auto;
+}
+
+/* tables, partly inspired by tablesorter's default theme */
+.tablesorter {
+  font-size: .7em;
+}
+
+.number {
+  text-align: right;
+}
+
+.tablesorter-default .header,
+.tablesorter-default .tablesorter-header {
+  background: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==) center right no-repeat;
+  cursor: pointer;
+  white-space: normal;
+}
+
+.tablesorter-default thead .headerSortUp,
+.tablesorter-default thead .tablesorter-headerSortUp,
+.tablesorter-default thead .tablesorter-headerAsc {
+  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+  border-bottom: #000 2px solid;
+}
+
+.tablesorter-default thead .headerSortDown,
+.tablesorter-default thead .tablesorter-headerSortDown,
+.tablesorter-default thead .tablesorter-headerDesc {
+  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+  border-bottom: #000 2px solid;
+}
+
+.tablesorter-default thead .sorter-false {
+  background-image: none;
+  cursor: default;
+}
+
+/* print version */
+@media print {
+  body {
+    background: none;
+    font-size: 10pt;
+    color: #fff;
+  }
+
+  header,
+  footer,
+  nav {
+    display: none;
+  }
+}

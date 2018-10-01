@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "sass": "^1"
+  },
+  "scripts": {
+    "postinstall": "npm run sass",
+    "sass": "sass public/css/style.scss public/css/style.css --style compressed",
+    "sass-watch": "sass --watch public/css/style.scss public/css/style.css"
+  }
+}

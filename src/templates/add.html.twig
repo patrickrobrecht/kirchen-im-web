@@ -20,136 +20,129 @@
         </ul>
     {% endif %}
 
-    <form action="{{ path_for(languageSlug ~ '-add-form') }}" method="post">
-        <div class="row">
-            <fieldset class="col">
-                <legend>{% trans 'Adresse, Konfession und Hierarchie' %}</legend>
-                <div class="form-row">
-                    <p class="alert alert-primary">{% trans 'Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.' %}
-                        <strong>{% trans 'Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem Ausfüllen, ob die Gemeinde bereits aufgeführt ist' %}</strong>
-                        (<a href="{{ path_for(languageSlug ~ '-map') }}">{% trans 'Karte' %}</a>
-                        {% trans 'oder' %}
-                        <a href="{{ path_for(languageSlug ~ '-search') }}">{% trans 'Suche' %}</a>).</p>
-                    <div class="col-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="name">{% trans 'Name' %}</label>
-                            <input class="form-control" id="name" name="name" type="text" required value="{{ data.name }}">
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="street">{% trans 'Straße' %}, <abbr title="{% trans 'Hausnummer' %}">{% trans 'Nr.' %}</abbr></label>
-                            <input class="form-control" id="street" name="street" type="text" required value="{{ data.street }}">
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <div class="form-group">
-                            <label for="postalCode">{% trans 'PLZ' %}</label>
-                            <input class="form-control" id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" required value="{{ data.postalCode }}">
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-5">
-                        <div class="form-group">
-                            <label for="city">{% trans 'Ort' %}</label>
-                            <input class="form-control" id="city" name="city" type="text" required value="{{ data.city }}">
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="form-group">
-                            <label for="countryCode">{% trans 'Land' %}</label>
-                            <select class="form-control" id="countryCode" name="countryCode" required>
-                                <option value="">{% trans 'bitte auswählen' %}</option>
-                                {% for value, name in config.countries %}
-                                    <option value="{{ value }}" class="{{ value|lower }}" {% if value == data.countryCode %}selected{% endif %}>{{ name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+    <form action="{{ path_for(languageSlug ~ '-add-form') }}" method="post" class="row">
+        <fieldset class="col-12 col-lg-6">
+            <legend>{% trans 'Adresse, Konfession und Hierarchie' %}</legend>
+            <div class="form-row">
+                <p class="alert alert-primary">{% trans 'Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.' %}
+                    <strong>{% trans 'Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem Ausfüllen, ob die Gemeinde bereits aufgeführt ist' %}</strong>
+                    (<a href="{{ path_for(languageSlug ~ '-map') }}">{% trans 'Karte' %}</a>
+                    {% trans 'oder' %}
+                    <a href="{{ path_for(languageSlug ~ '-search') }}">{% trans 'Suche' %}</a>).</p>
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="name">{% trans 'Name' %}</label>
+                        <input class="form-control" id="name" name="name" type="text" required value="{{ data.name }}">
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="col-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="denomination">{% trans 'Konfession' %}</label>
-                            <select class="form-control" id="denomination" name="denomination" required>
-                                <option value="">{% trans 'bitte auswählen' %}</option>
-                                {% for value, name in config.denominations %}
-                                    <option value="{{ value }}" {% if value == data.denomination %}selected{% endif %}>{{ name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="type">{% trans 'Gemeindetyp' %}</label>
-                            <select class="form-control" id="type" name="type" required>
-                                <option value="">{% trans 'bitte auswählen' %}</option>
-                                {% for value, name in config.types %}
-                                    <option value="{{ value }}" {% if value == data.type %}selected{% endif %}>{{ name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="parentId">{% trans 'nächsthöhere Ebene' %}</label>
-                            <select class="form-control" id="parentId" name="parentId" aria-describedby="parentHelp">
-                                <option value="none">{% trans 'keine' %}</option>
-                                {% for parent in parents %}
-                                    <option value="{{ parent.id }}" {% if parent.id == data.parentId %}selected{% endif %}>{{ parent.name }}</option>
-                                {% endfor %}
-                            </select>
-                            <small id="parentHelp" class="form-text text-muted">
-                                {% trans 'Die nächsthöhere Ebene ist bei katholischen Pfarreien und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen Kirchengemeinden entsprechend der Kirchenkreis bzw. die Landeskirche.' %}
-                                {% trans 'Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor angelegt werden (hierbei ein Häkchen bei "hat übergeordnete Ebene" nicht vergessen).' %}
-                            </small>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" id="hasChildren" name="hasChildren" type="checkbox" aria-describedby="hasChildrenHelp">
-                                <label class="form-check-label" for="hasChildren"> {% trans 'hat untergeordnete Ebene' %}</label>
-                            </div>
-                            <small id="hasChildrenHelp" class="form-text text-muted">
-                                {% trans 'Der Haken ist zu setzen, wenn die Gemeinde selbst unter "nächsthöhere Ebene" aufgeführt werden soll (also bei Dekanaten und bei Kirchenkreisen). Bei Kirchengemeinden darf der Haken nicht gesetzt werden!' %}
-                            </small>
-                        </div>
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="street">{% trans 'Straße' %}, <abbr title="{% trans 'Hausnummer' %}">{% trans 'Nr.' %}</abbr></label>
+                        <input class="form-control" id="street" name="street" type="text" required value="{{ data.street }}">
                     </div>
                 </div>
-            </fieldset>
-            <fieldset class="col">
-                <legend>{% trans 'URLs des Webauftritts und der Social-Media-Profile' %}</legend>
-                <div class="form-row">
-                    <p class="alert alert-primary">
-                        {% trans 'Bitte achten Sie darauf, nur öffentliche Webauftritte und Social-Media-Auftritte (d.h. keine Facebook-Gruppen, sondern nur öffentliche Facebook-Seiten) anzugeben.' %}
-                        {% trans 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' %}
-                    </p>
-                    {% for id, website in config.websites %}
-                        <div class="col-12 col-lg-6 col-xl-4">
-                            <div class="form-group">
-                                <label class="{{ id }}" for="{{ id }}URL">{{ website|trans }}</label>
-                                <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" oninput="checkURL(this)" value="{{ data.urls[id] }}">
-                            </div>
-                        </div>
-                    {% endfor %}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="form-group">
+                        <label for="postalCode">{% trans 'PLZ' %}</label>
+                        <input class="form-control" id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" required value="{{ data.postalCode }}">
+                    </div>
                 </div>
-            </fieldset>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-6">
+                <div class="col-12 col-sm-6 col-md-5">
+                    <div class="form-group">
+                        <label for="city">{% trans 'Ort' %}</label>
+                        <input class="form-control" id="city" name="city" type="text" required value="{{ data.city }}">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="form-group">
+                        <label for="countryCode">{% trans 'Land' %}</label>
+                        <select class="form-control" id="countryCode" name="countryCode" required>
+                            <option value="">{% trans 'bitte auswählen' %}</option>
+                            {% for value, name in config.countries %}
+                                <option value="{{ value }}" class="{{ value|lower }}" {% if value == data.countryCode %}selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="denomination">{% trans 'Konfession' %}</label>
+                        <select class="form-control" id="denomination" name="denomination" required>
+                            <option value="">{% trans 'bitte auswählen' %}</option>
+                            {% for value, name in config.denominations %}
+                                <option value="{{ value }}" {% if value == data.denomination %}selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="type">{% trans 'Gemeindetyp' %}</label>
+                        <select class="form-control" id="type" name="type" required>
+                            <option value="">{% trans 'bitte auswählen' %}</option>
+                            {% for value, name in config.types %}
+                                <option value="{{ value }}" {% if value == data.type %}selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="parentId">{% trans 'nächsthöhere Ebene' %}</label>
+                        <select class="form-control" id="parentId" name="parentId" aria-describedby="parentHelp">
+                            <option value="none">{% trans 'keine' %}</option>
+                            {% for parent in parents %}
+                                <option value="{{ parent.id }}" {% if parent.id == data.parentId %}selected{% endif %}>{{ parent.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <small id="parentHelp" class="form-text text-muted">
+                            {% trans 'Die nächsthöhere Ebene ist bei katholischen Pfarreien und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen Kirchengemeinden entsprechend der Kirchenkreis bzw. die Landeskirche.' %}
+                            {% trans 'Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor angelegt werden (hierbei ein Häkchen bei "hat übergeordnete Ebene" nicht vergessen).' %}
+                        </small>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="hasChildren" name="hasChildren" type="checkbox" aria-describedby="hasChildrenHelp">
+                            <label class="form-check-label" for="hasChildren"> {% trans 'hat untergeordnete Ebene' %}</label>
+                        </div>
+                        <small id="hasChildrenHelp" class="form-text text-muted">
+                            {% trans 'Der Haken ist zu setzen, wenn die Gemeinde selbst unter "nächsthöhere Ebene" aufgeführt werden soll (also bei Dekanaten und bei Kirchenkreisen). Bei Kirchengemeinden darf der Haken nicht gesetzt werden!' %}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="col-12 col-lg-6">
+            <legend>{% trans 'Webauftritte und Social-Media-Profile' %}</legend>
+            <div class="form-row">
                 <p class="alert alert-primary">
-                    <strong>{% trans 'Bitte achten Sie darauf, dieses Formular nur einmal mit denselben Daten abzuschicken' %}</strong>
-                    ({% trans 'sonst erzeugen Sie mehrere identische Einträge' %}).
-                    {% trans 'Bei Fehlern in Einträgen wenden Sie sich bitte an ' %} kontakt [ät] kirchen-im-web [punkt] de.
+                    {% trans 'Bitte achten Sie darauf, nur öffentliche Webauftritte und Social-Media-Auftritte (d.h. keine Facebook-Gruppen, sondern nur öffentliche Facebook-Seiten) anzugeben.' %}
+                    {% trans 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' %}
                 </p>
+                {% for id, website in config.websites %}
+                    <div class="col-12 col-xl-6">
+                        <div class="form-group">
+                            <label class="{{ id }}" for="{{ id }}URL">{{ website|trans }}</label>
+                            <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" oninput="checkURL(this)" value="{{ data.urls[id] }}">
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="col-12 col-lg-6">
-                <button class="btn btn-primary btn-block" type="submit">{% trans 'Gemeinde hinzufügen' %}</button>
-            </div>
-        </div>
+            <p class="alert alert-primary">
+                <strong>{% trans 'Bitte achten Sie darauf, dieses Formular nur einmal mit denselben Daten abzuschicken' %}</strong>
+                ({% trans 'sonst erzeugen Sie mehrere identische Einträge' %}).
+                {% trans 'Bei Fehlern in Einträgen wenden Sie sich bitte an ' %} kontakt [ät] kirchen-im-web [punkt] de.
+            </p>
+            <button class="btn btn-primary btn-block" type="submit">{% trans 'Gemeinde hinzufügen' %}</button>
+        </fieldset>
     </form>
 {% endblock %}
 
 {% block footer_scripts %}
+    {{ parent() }}
     <script type="text/javascript" src="/public/js/check.min.js"></script>
 {% endblock %}

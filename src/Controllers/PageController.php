@@ -192,7 +192,7 @@ class PageController {
     public function setLanguage($language, Request $request) {
         putenv(sprintf('LC_ALL=%s', $language));
         setlocale(LC_ALL, $language);
-        $this->twig->offsetSet('language', $language);
+        $this->twig->offsetSet('language', str_replace('_', '-', $language));
         $languageSlug = substr($language, 0, 2);
         $this->twig->offsetSet('languageSlug', $languageSlug);
 
