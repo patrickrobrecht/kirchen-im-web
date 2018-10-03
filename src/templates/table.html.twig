@@ -154,7 +154,7 @@
 {% endblock %}
 
 {% block footer_scripts %}
-    <script src="{{ base_url() }}/public/lib/jquery.min.js"></script>
+    {{ parent() }}
     <script src="{{ base_url() }}/public/lib/jquery.tablesorter.min.js"></script>
     <script>
         $(function(){

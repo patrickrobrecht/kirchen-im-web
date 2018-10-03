@@ -36,8 +36,7 @@ class Configuration extends AbstractHelper {
             'evangelisch' => _('evangelisch'),
             'freikirchlich' => _('freikirchlich'),
             'katholisch' => _('katholisch'),
-            'ökumenisch' => _('ökumenisch'),
-            'andere' => _('andere'),
+            'ökumenisch' => _('ökumenisch')
         );
 
         $this->denominations_colors = array(
@@ -46,8 +45,7 @@ class Configuration extends AbstractHelper {
             'evangelisch' => 'purple',
             'freikirchlich' => 'blue',
             'katholisch' => 'yellow',
-            'ökumenisch' => 'red',
-            'andere' => 'red',
+            'ökumenisch' => 'red'
         );
 
         $this->types = array(

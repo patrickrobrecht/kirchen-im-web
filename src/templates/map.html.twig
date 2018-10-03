@@ -11,12 +11,26 @@
 
 {% block main %}
     <p>{% trans 'Alt-katholische Kirchen werden orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.' %}</p>
+
+    <div class="mx-auto">
+        <ul class="list-unstyled row">
+            {% for value, name in config.denominations %}
+                <li class="media my-4 col-12 col-sm-6 col-md-4 col-xl-2">
+                    <span class="mr-3 {{ value }}"></span>
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ name|trans }}</h5>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
     <div id="map">
         <p>{% trans 'Bitte warten. Die Karte wird geladen.' %}</p>
     </div>
 {% endblock %}
 
 {% block footer_scripts %}
-    <script src="{{ base_url() }}/public/lib/jquery.min.js"></script>
+    {{ parent() }}
     {{ macros.map('map', base_url() ~ '/data/data.json', config) }}
 {% endblock %}

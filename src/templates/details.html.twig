@@ -11,7 +11,7 @@
 
 {% block metadata %}
     <title>{{ entry.name }} | {{ 'Kirchliche Web- und Social-Media-Auftritte'|trans }}</title>
-    <meta name="description" content="{{ entry.name }} - {% trans 'Webauftritte und soziale Netzwerke' %}">
+    <meta name="description" content="{{ entry.name }} - {% trans 'Webauftritte und Social-Media-Profile' %}">
 {% endblock %}
 
 {% block head_styles %}
@@ -32,7 +32,7 @@
 
     <h1>{{ entry.name }}</h1>
 
-    <h2>{% trans 'Webauftritte und soziale Netzwerke' %}</h2>
+    <h2>{% trans 'Webauftritte und Social-Media-Profile' %}</h2>
     <div class="row">
         <div class="col-12 col-lg-6">
             <table class="table table-striped stats-table">
@@ -97,7 +97,7 @@
                         <td><a href="{{ path_for(languageSlug ~ '-search') }}?type={{ entry.type }}">{{ config.types[entry.type]|trans }}</a></td>
                     </tr>
                     <tr>
-                        <th>{% trans 'nächsthöhere Ebenen' %}</th>
+                        <th>{% trans 'Nächsthöhere Ebenen' %}</th>
                         <td>{% if entry.parentId %}
                                 <ol>
                                     {% for parent in entry.parents %}
@@ -110,7 +110,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>{% trans 'nächsttiefere Ebenen' %}</th>
+                        <th>{% trans 'Nächsttiefere Ebenen' %}</th>
                         <td>{% if entry.children|length == 0 %}
                                 <span>{% trans 'Bisher wurden keine untergeordneten Ebenen hinzugefügt!' %}</span>
                             {% else %}

@@ -37,7 +37,7 @@ class PageController {
         $this->twig->offsetSet('config', Configuration::getInstance());
 
         // Init textdomain and set default language.
-        $domain = "kirchen-im-web31";
+        $domain = "kirchen-im-web";
         bindtextdomain($domain, 'lang');
         bind_textdomain_codeset($domain, 'UTF-8');
         textdomain($domain);
