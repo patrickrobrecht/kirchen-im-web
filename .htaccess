@@ -1,7 +1,6 @@
 # Redirects
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteBase /
 
 	# rewrite http to https
 	RewriteCond %{REMOTE_ADDR} !127.0.0.1
@@ -22,12 +21,13 @@
     RewriteRule ^(.*)([^/])$ /$1$2/ [L,R=301]
 
     ## Redirect all requests to index.php (except directories and files).
-	RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.php [QSA,L]
+    RewriteRule ^(.*)$ index.php [L,QSA]
 
     ## Disallow direct access to any file in the following directories.
     RedirectMatch 403 cache(/|$)
+    RedirectMatch 403 lang(/|$)
     RedirectMatch 403 src(/|$)
     RedirectMatch 403 vendor(/|$)
 </IfModule>

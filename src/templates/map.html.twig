@@ -4,9 +4,9 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="/public/lib/leaflet.css">
-    <link rel="stylesheet" href="/public/lib/MarkerCluster.css">
-    <link rel="stylesheet" href="/public/lib/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="{{ base_url() }}/public/lib/leaflet.css">
+    <link rel="stylesheet" href="{{ base_url() }}/public/lib/MarkerCluster.css">
+    <link rel="stylesheet" href="{{ base_url() }}/public/lib/MarkerCluster.Default.css">
 {% endblock %}
 
 {% block main %}
@@ -17,6 +17,6 @@
 {% endblock %}
 
 {% block footer_scripts %}
-    <script src="/public/lib/jquery.min.js"></script>
-    {{ macros.map('map', '/data/data.json', config) }}
+    <script src="{{ base_url() }}/public/lib/jquery.min.js"></script>
+    {{ macros.map('map', base_url() ~ '/data/data.json', config) }}
 {% endblock %}

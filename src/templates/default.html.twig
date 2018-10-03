@@ -12,15 +12,15 @@
             <meta name="description" content="{{ description|trans }}">
         {% endif %}
     {% endblock %}
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ base_url() }}/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ base_url() }}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ base_url() }}/favicon-16x16.png">
+    <link rel="manifest" href="{{ base_url() }}/manifest.json">
+    <link rel="mask-icon" href="{{ base_url() }}/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
-    <link rel="search" type="application/opensearchdescription+xml" href="{{ path_for(languageSlug ~ '-opensearch') }}" title="Kirchen im Web">
+    <link rel="search" type="application/opensearchdescription+xml" href="{{ base_url() ~ path_for(languageSlug ~ '-opensearch') }}" title="Kirchen im Web">
     {% block head_styles %}
-        <link rel="stylesheet" href="/public/css/style.css">
+        <link rel="stylesheet" href="{{ base_url() }}/public/css/style.css">
     {% endblock %}
 </head>
 <body>
@@ -66,8 +66,8 @@
         </nav>
     </footer>
     {% block footer_scripts %}
-        <script src="/public/lib/jquery.min.js"></script>
-        <script src="/public/lib/bootstrap.min.js"></script>
+        <script src="{{ base_url() }}/public/lib/jquery.min.js"></script>
+        <script src="{{ base_url() }}/public/lib/bootstrap.min.js"></script>
     {% endblock %}
     {% block structured_data %}
     {% endblock %}

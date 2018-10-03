@@ -1,7 +1,7 @@
 {% macro map(mapId, url, config) %}
-    <script src="/public/lib/leaflet.js"></script>
-    <script src="/public/lib/leaflet.markercluster.js"></script>
-    <script src="/public/js/map.min.js"></script>
+    <script src="{{ base_url() }}/public/lib/leaflet.js"></script>
+    <script src="{{ base_url() }}/public/lib/leaflet.markercluster.js"></script>
+    <script src="{{ base_url() }}/public/js/map.min.js"></script>
     <script type="text/javascript">
         var map = new Map({
             'all': '{% trans 'alle' %}',
@@ -19,6 +19,12 @@
 {% endmacro %}
 
 {% macro menu(items, currentPath) %}
+    {% if base_url() == '' %}
+        {% set current_url = currentPath %}
+    {% else %}
+        {% set current_url = base_url() ~ '/' ~ currentPath %}
+    {% endif %}
+
     {% for item in items %}
         {% if item.args %}
             {% set url = path_for(item.path, item.args) %}
@@ -26,7 +32,8 @@
             {% set url = path_for(item.path) %}
         {% endif %}
         {% set text = item.text %}
-        {% if url == currentPath %}
+
+        {% if url == current_url %}
             <li class="nav-item">
                 <a class="nav-link active" href="{{ url }}">{% trans text %}</a> <span class="sr-only">({% trans 'current' %})</span>
             </li>

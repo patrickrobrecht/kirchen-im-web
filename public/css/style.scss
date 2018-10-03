@@ -22,107 +22,107 @@
 
 /* Icons */
 .lang_de:before {
-  content: url(/images/flags/de.gif) " ";
+  content: url(../../images/flags/de.gif) " ";
 }
 
 .lang_en:before {
-  content: url(/images/flags/en.gif) " ";
+  content: url(../../images/flags/en.gif) " ";
 }
 
 a[href^="http://"]:after {
-  content: " " url(/images/non-secure.png);
+  content: " " url(../../images/non-secure.png);
 }
 
 a[href^="https://"]:after {
-  content: " " url(/images/secure.png);
+  content: " " url(../../images/secure.png);
 }
 
 .web::before {
-  content: url(/images/icons/Web.png) " ";
+  content: url(../../images/icons/Web.png) " ";
 }
 
 .blog::before {
-  content: url(/images/icons/Wordpress.png) " ";
+  content: url(../../images/icons/Wordpress.png) " ";
 }
 
 .rss::before {
-  content: url(/images/icons/RSS.png) " ";
+  content: url(../../images/icons/RSS.png) " ";
 }
 
 .facebook::before {
-  content: url(/images/icons/Facebook.png) " ";
+  content: url(../../images/icons/Facebook.png) " ";
 }
 
 .flickr::before {
-  content: url(/images/icons/Flickr.png) " ";
+  content: url(../../images/icons/Flickr.png) " ";
 }
 
 .googlePlus::before {
-  content: url(/images/icons/Google-plus.png) " ";
+  content: url(../../images/icons/Google-plus.png) " ";
 }
 
 .instagram::before {
-  content: url(/images/icons/Instagram.png) " ";
+  content: url(../../images/icons/Instagram.png) " ";
 }
 
 .soundcloud::before {
-  content: url(/images/icons/Soundcloud.png) " ";
+  content: url(../../images/icons/Soundcloud.png) " ";
 }
 
 .twitter::before {
-  content: url(/images/icons/Twitter.png) " ";
+  content: url(../../images/icons/Twitter.png) " ";
 }
 
 .vimeo::before {
-  content: url(/images/icons/Vimeo.png) " ";
+  content: url(../../images/icons/Vimeo.png) " ";
 }
 
 .youtube::before {
-  content: url(/images/icons/Youtube.png) " ";
+  content: url(../../images/icons/Youtube.png) " ";
 }
 
 .at:before {
-  content: url(/images/flags/Austria.png) " ";
+  content: url(../../images/flags/Austria.png) " ";
 }
 
 .ch:before {
-  content: url(/images/flags/Switzerland.png) " ";
+  content: url(../../images/flags/Switzerland.png) " ";
 }
 
 .de:before {
-  content: url(/images/flags/Germany.png) " ";
+  content: url(../../images/flags/Germany.png) " ";
 }
 
 .li:before {
-  content: url(/images/flags/Liechtenstein.png) " ";
+  content: url(../../images/flags/Liechtenstein.png) " ";
 }
 
 .lu:before {
-  content: url(/images/flags/Luxembourg.png) " ";
+  content: url(../../images/flags/Luxembourg.png) " ";
 }
 
 .alt-katholisch:before {
-  content: url(/images/markers/orange.png) " ";
+  content: url(../../images/markers/orange.png) " ";
 }
 
 .anglikanisch:before {
-  content: url(/images/markers/green.png) " ";
+  content: url(../../images/markers/green.png) " ";
 }
 
 .evangelisch:before {
-  content: url(/images/markers/purple.png) " ";
+  content: url(../../images/markers/purple.png) " ";
 }
 
 .freikirchlich:before {
-  content: url(/images/markers/blue.png) " ";
+  content: url(../../images/markers/blue.png) " ";
 }
 
 .katholisch:before {
-  content: url(/images/markers/yellow.png) " ";
+  content: url(../../images/markers/yellow.png) " ";
 }
 
 .ökumenisch:before {
-  content: url(/images/markers/red.png) " ";
+  content: url(../../images/markers/red.png) " ";
 }
 
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */

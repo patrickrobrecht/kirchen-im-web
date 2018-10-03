@@ -24,12 +24,12 @@ function Map(translations) {
         var vimeoLayer = new L.LayerGroup;
         var youtubeLayer = new L.LayerGroup;
         // the icons
-        var oldCatholicIcon = L.icon({iconUrl: '/images/markers/orange.png'});
-        var anglicanIcon = L.icon({iconUrl: '/images/markers/green.png'});
-        var protestantIcon = L.icon({iconUrl: '/images/markers/purple.png'});
-        var freeChurchesIcon = L.icon({iconUrl: '/images/markers/blue.png'});
-        var catholicIcon = L.icon({iconUrl: '/images/markers/yellow.png'});
-        var othersIcon = L.icon({iconUrl: '/images/markers/red.png'});
+        var oldCatholicIcon = L.icon({iconUrl: '../../images/markers/orange.png'});
+        var anglicanIcon = L.icon({iconUrl: '../../images/markers/green.png'});
+        var protestantIcon = L.icon({iconUrl: '../../images/markers/purple.png'});
+        var freeChurchesIcon = L.icon({iconUrl: '../../images/markers/blue.png'});
+        var catholicIcon = L.icon({iconUrl: '../../images/markers/yellow.png'});
+        var othersIcon = L.icon({iconUrl: '../../images/markers/red.png'});
 
         'use strict'; // Strict mode makes the browse mourn, if bad practise is used
         // create a map in the "map" div, set the view to a given place and zoom

@@ -65,7 +65,7 @@ class Configuration extends AbstractHelper {
             'Laienorganisation' => _('Laienorganisation'),
             'Landeskirche' => _('Landeskirche'),
             'Museum' => _('Museum'),
-            'Pastoraler Raum' => _('Pastoraler Raum/Pfarreiengemeinschaft/Seelsorgeeinheit'),
+            'Pastoraler Raum' => _('Pastoraler Raum/ Pfarreiengemeinschaft/ Seelsorgeeinheit'),
             'Pfarrei' => _('Pfarrei'),
             'Pfarrvikarie' => _('Pfarrvikarie'),
             'andere' => _('andere')
