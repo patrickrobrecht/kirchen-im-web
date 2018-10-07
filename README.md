@@ -1,4 +1,4 @@
-﻿![Screenshot](https://kirchen-im-web.de/images/screenshot.png)
+﻿![Screenshot](./images/screenshot.png)
 
 # [kirchen-im-web.de](https://kirchen-im-web.de/en/) - Directory of Churchy Websites and Social Network Pages 
 
@@ -79,23 +79,26 @@ Returns the (direct) children of the church with the given id in JSON.
 ## How to develop
 
 ### Requirements
- * [Apache](https://httpd.apache.org/) 2.4+
- * [PHP](https://secure.php.net/) 7+
- * a MySQL database
- * [Node.js](https://nodejs.org/en/download/) 10+ and [npm](https://www.npmjs.com/) 6+
- * [Composer](https://getcomposer.org/) 1.7+
+* [Apache](https://httpd.apache.org/) 2.4+
+* [PHP](https://secure.php.net/) 7+
+* [MySQL](https://dev.mysql.com/downloads/) database
+* [Node.js](https://nodejs.org/en/download/) 10+
+    and [npm](https://www.npmjs.com/) 6+
+* [Composer](https://getcomposer.org/) 1.7+
 
 ### Setup
 * Clone the Git repository.
-* Install the dependencies via `composer install`.
-* Run `npm run sass` to compile `*.scss` to `*.css`.
-* Run `composer minify` to generate `*.min.js` files.
+* Install the dependencies via `composer install`
+    (this includes `npm install` for Bootstrap and JavaScript libraries).
+* Run `composer dev` to automatically compile `*.scss` to `*.css` 
+    and `*.js` to `*.min.js` whenever the file is changed.
 * Create a database.
-* Create a `config.php` with the database credentials and valid API keys/secrets.
+* Create a `config.php` with the database credentials and valid API keys/secrets
+    (cp. `config.sample.php`).
 
 
 ## Used programming languages and libraries
-* [HTML5, CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss), based on
+* [HTML5 and CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss), based on
     [Bootstrap 4](https://getbootstrap.com/)
 * [PHP](https://secure.php.net/) with libraries
     [Slim](https://www.slimframework.com/), 
