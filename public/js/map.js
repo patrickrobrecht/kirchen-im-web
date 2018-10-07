@@ -1,7 +1,8 @@
 function Map(translations) {
     this.translations = translations;
-    this.load = function (mapId, url) {
+    this.load = function (mapId, baseUrl, dataPath, language) {
         var t = this.translations;
+        var detailsUrlPrefix = baseUrl + '/' + language;
         var map;
         var markerArray = [];
         // the layers
@@ -24,27 +25,27 @@ function Map(translations) {
         var vimeoLayer = new L.LayerGroup;
         var youtubeLayer = new L.LayerGroup;
         // the icons
-        var oldCatholicIcon = L.icon({iconUrl: '../../images/markers/orange.png'});
-        var anglicanIcon = L.icon({iconUrl: '../../images/markers/green.png'});
-        var protestantIcon = L.icon({iconUrl: '../../images/markers/purple.png'});
-        var freeChurchesIcon = L.icon({iconUrl: '../../images/markers/blue.png'});
-        var catholicIcon = L.icon({iconUrl: '../../images/markers/yellow.png'});
-        var othersIcon = L.icon({iconUrl: '../../images/markers/red.png'});
+        var oldCatholicIcon = L.icon({iconUrl: baseUrl + '/images/markers/orange.png'});
+        var anglicanIcon = L.icon({iconUrl: baseUrl + '/images/markers/green.png'});
+        var protestantIcon = L.icon({iconUrl: baseUrl + '/images/markers/purple.png'});
+        var freeChurchesIcon = L.icon({iconUrl: baseUrl + '/images/markers/blue.png'});
+        var catholicIcon = L.icon({iconUrl: baseUrl + '/images/markers/yellow.png'});
+        var othersIcon = L.icon({iconUrl: baseUrl + '/images/markers/red.png'});
 
-        'use strict'; // Strict mode makes the browse mourn, if bad practise is used
-        // create a map in the "map" div, set the view to a given place and zoom
+        'use strict'; // Strict mode makes the browse mourn, if bad practise is used.
+        // Create a map in the container with the given id, set the view to a given place and zoom.
         map = L.map(mapId, {center: L.latLng(50, 10), zoom: 6});
-        // add an OpenStreetMap tile layer
+        // Add an OpenStreetMap tile layer.
         L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
         }).addTo(map);
         var markerCluster = L.markerClusterGroup({maxClusterRadius: 80, chunkedLoading: true});
-        $.getJSON(url,
+        $.getJSON(baseUrl + dataPath,
             function(data) {
                 var title, denomination, icon, denominationLayer, content, thisMarker;
                 $.each(data,
                     function(i, v) {
-                        // read the JSON data
+                        // Read the JSON data.
                         title = v.name;
                         denomination = v.denomination;
                         if (denomination === 'alt-katholisch') {
@@ -70,18 +71,18 @@ function Map(translations) {
                         if (v.lat && v.lon && title && icon) {
                             thisMarker = L.marker([v.lat, v.lon], {title: title, icon: icon});
 
-                            // Push the marker to the Array which shall be displayed on the map
+                            // Push the marker to the Array which shall be displayed on the map.
                             markerArray.push(thisMarker);
                             markerCluster.addLayer(thisMarker);
 
-                            // add to the layers for the denominations
+                            // Add to the layers for the denominations.
                             thisMarker.addTo(allLayer);
                             thisMarker.addTo(denominationLayer);
 
-                            // Build the popup for the marker
-                            content = '<strong><a href="/{{ languageSlug }}/details/' + v.id + '/">' + title + '</a></strong><br>' + v.street + ', ' + v.postalCode + ' ' + v.city + '<br><ul>';
+                            // Build the popup for the marker.
+                            content = '<strong><a href="' + detailsUrlPrefix + '/details/' + v.id + '/">' + title + '</a></strong><br>' + v.street + ', ' + v.postalCode + ' ' + v.city + '<br><ul>';
 
-                            // add to the layers for the social networks
+                            // Add to the layers for the social networks.
                             if (v.web) {
                                 thisMarker.addTo(webLayer);
                                 content = content + '<li><a href="' + v.web + '">' + t.web + '</a></li>';
@@ -132,7 +133,8 @@ function Map(translations) {
                             console.error('Problem with entry ' + v.id + ' ' + title);
                         }
                     });
-                // add control for the layers
+
+                // Add control for the layers.
                 var layers = {};
                 layers[t.all] = allLayer;
                 layers[t.oldCatholic] = oldCatholicLayer;

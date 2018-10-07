@@ -32,5 +32,10 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    {{ macros.map('map', base_url() ~ '/data/data.json', config) }}
+    {{ macros.map(
+        'map',
+        '/data/data.json',
+        languageSlug,
+        config
+    ) }}
 {% endblock %}

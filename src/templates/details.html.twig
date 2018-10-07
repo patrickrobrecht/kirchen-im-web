@@ -187,7 +187,7 @@
                             name: '{{ config.websites[website.type] }}',
                             data: [
                                 {% for row in website.followerHistory %}
-                                [Date.UTC({{ row.date|date('Y') }}, {{ row.date|date('m') - 1 }}, {{ row.date|date('d') }}), {{ row.followers }}],
+                                [Date.UTC({{ row.date|date('Y') }}, {{ row.date|date('m') - 1 }}, {{ row.date|date('d') + 0 }}), {{ row.followers }}],
                                 {% endfor %}
                             ],
                             color: '{{ config.networksToCompareColors[website.type] }}'
@@ -203,7 +203,12 @@
         </script>
     {% endif %}
     {% if entry.lat and entry.lon %}
-        {{ macros.map('detailsmap', '/api/churches/?parent=' ~ entry.id ~ '&options=includeSelf,childrenRecursive', config) }}
+        {{ macros.map(
+            'detailsmap',
+            '/api/churches/?parent=' ~ entry.id ~ '&options=includeSelf,childrenRecursive',
+            languageSlug,
+            config
+        ) }}
     {% endif %}
 {% endblock %}
 

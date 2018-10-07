@@ -1,4 +1,4 @@
-{% macro map(mapId, url, config) %}
+{% macro map(mapId, dataPath, languageSlug, config) %}
     <script src="{{ base_url() }}/public/lib/leaflet.js"></script>
     <script src="{{ base_url() }}/public/lib/leaflet.markercluster.js"></script>
     <script src="{{ base_url() }}/public/js/map.min.js"></script>
@@ -14,7 +14,7 @@
             'web': "{{ config.websites['web'] }}",
             'blog': "{{ config.websites['blog'] }}"
         });
-        map.load('{{ mapId }}', '{{ url|raw }}');
+        map.load('{{ mapId }}', '{{ base_url() }}', '{{ dataPath|raw }}', '{{ languageSlug }}');
     </script>
 {% endmacro %}
 
