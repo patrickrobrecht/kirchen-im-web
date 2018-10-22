@@ -134,13 +134,6 @@ class PageController {
         ]);
     }
 
-    public function links(Request $request, Response $response, array $args) {
-        $this->twig->render($response, 'links.html.twig', [
-            'title' => 'Linkliste Webauftritte und Social-Media-Auftritte gestalten',
-            'headline' => 'Tipps und Tricks'
-        ]);
-    }
-
     public function details(Request $request, Response $response, array $args) {
         $entry = Database::getInstance()->getEntry($args['id'], true);
         if (!$entry) {
@@ -220,22 +213,12 @@ class PageController {
         if ($language === 'de_DE') {
             $headerMenuItems = array_merge($headerMenuItems, [
                 [
-                    'path' => 'de-links',
-                    'text' => 'Tipps und Tricks'
+                    'class' => 'lang_en',
+                    'path' => 'en-' . $routeWithoutLanguagePrefix,
+                    'args' => $args,
+                    'text' => 'English'
                 ]
             ]);
-
-            if ($routeWithoutLanguagePrefix !== 'links') {
-                $headerMenuItems = array_merge($headerMenuItems, [
-                    [
-                        'class' => 'lang_en',
-                        'path' => 'en-' . $routeWithoutLanguagePrefix,
-                        'args' => $args,
-                        'text' => 'English'
-                    ]
-                ]);
-            }
-
         } elseif ($language === 'en_US') {
             $headerMenuItems = array_merge($headerMenuItems, [
                 [

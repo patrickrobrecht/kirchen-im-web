@@ -57,7 +57,6 @@ $app->group('/de/', function () {
     $this->get('eintragen/', 'PageController:add')->setName('de-add');
     $this->post('eintragen/', 'PageController:addForm')->setName('de-add-form');
     $this->get('statistik/', 'PageController:stats')->setName('de-stats');
-    $this->get('tipps-und-tricks/', 'PageController:links')->setName('de-links');
     $this->get('details/{id}/', 'PageController:details')->setName('de-details');
     $this->get('impressum/', 'PageController:legal')->setName('de-legal');
     $this->get('daten/', 'PageController:data')->setName('de-data');
