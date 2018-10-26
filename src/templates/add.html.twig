@@ -124,10 +124,24 @@
                     {% trans 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' %}
                 </p>
                 {% for id, website in config.websites %}
+                    {% set urlPrefix = config.websitesStartOfURL[id] %}
+                    {% set urlPattern = urlPrefix ? urlPrefix ~ '.+' : 'https?://.+' %}
                     <div class="col-12 col-xl-6">
                         <div class="form-group">
                             <label class="{{ id }}" for="{{ id }}URL">{{ website|trans }}</label>
-                            <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" oninput="checkURL(this)" value="{{ data.urls[id] }}">
+                            <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" pattern="{{ urlPattern }}" placeholder="{{ urlPrefix }}" value="{{ data.urls[id] }}">
+                            <div class="invalid-feedback">
+                                {% if urlPrefix %}
+                                    {% trans %}
+                                        URL muss mit {{ urlPrefix }} beginnen!
+                                    {% endtrans %}
+                                {% else %}
+                                    {% trans 'Bitte eine vollständige URL eingeben (mit http oder https).' %}
+                                {% endif %}
+                            </div>
+                            <div class="valid-feedback">
+                                {% trans 'Gültige URL.' %}
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -144,5 +158,5 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ base_url() }}/public/js/check.min.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}/public/js/add.min.js"></script>
 {% endblock %}
