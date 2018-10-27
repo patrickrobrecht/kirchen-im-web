@@ -12,7 +12,7 @@ kirchen-im-web.de also compares the follower numbers of the
 Our Project is oecumenic, i. e. regardless whether Protestants, Catholic or free church - all can participate. 
 You can simply add your church using our [form](https://kirchen-im-web.de/en/add/).
 
-The latest development version is online at [beta.kirchen-im-web.de](https://beta.kirchen-im-web.de/en/).
+The latest development version is online at [test.kirchen-im-web.de](https://test.kirchen-im-web.de/en/).
 
 ## Features
 * [map](https://kirchen-im-web.de/en/map/)
@@ -125,7 +125,7 @@ Sie können Ihre Gemeinde einfach über unser
     [Formular](https://kirchen-im-web.de/de/eintragen/) hinzufügen.
 
 Die aktuelle Entwicklungsversion gibt es unter 
-    [beta.kirchen-im-web.de](https://beta.kirchen-im-web.de/de/).
+    [test.kirchen-im-web.de](https://test.kirchen-im-web.de/de/).
 
 ## Funktionen
 * [Karte](https://kirchen-im-web.de/de/karte/)

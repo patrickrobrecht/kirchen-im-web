@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version 3.4 (unreleased)
 
+### Added
+* Details: breadcrumbs for parent churches
+
 ### Changed
 * Improved design (based on Bootstrap 4 now)
 * Add Form: Improve form validation
@@ -15,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Development: list required PHP extensions in `composer.json`
 * Development: manage JavaScript and build dependencies via `package.json` 
 
-# Removed
+### Removed
 * Links: no link list anymore
 
 

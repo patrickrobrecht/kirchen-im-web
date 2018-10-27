@@ -27,6 +27,7 @@
             {% for parent in entry.parents|reverse %}
                 <li class="breadcrumb-item"><a href="{{ path_for(languageSlug ~ '-details', {'id': parent.id}) }}">{{ parent.name }}</a></li>
             {% endfor %}
+            <li class="breadcrumb-item active" aria-current="page">{{ entry.name }}</li>
         </ol>
     </nav>
 
