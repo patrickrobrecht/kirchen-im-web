@@ -217,10 +217,7 @@ class Database extends AbstractHelper {
         $id = intval($id);
 
         // Query for the entry itself
-        $statement = $this->connection->prepare('SELECT churches.id, churches.name, churches.street, churches.postalCode, churches.city, churches.country, 
-            churches.lat, churches.lon, churches.denomination, churches.type, churches.hasChildren,
-            parent.id AS parentId, parent.name AS parentName FROM churches
-            LEFT JOIN churches AS parent ON parent.id = churches.parentId
+        $statement = $this->connection->prepare('SELECT * FROM churches
             WHERE churches.id = :id');
         $statement->bindParam(':id', $id);
         $statement->execute();
@@ -233,6 +230,9 @@ class Database extends AbstractHelper {
 
         // Query for the children
         $data['children'] = $this->getChildrenOfEntry($id, $childrenRecursive);
+
+        // Query for the parents
+	    $data['parents'] = $this->getParentsOfEntry($data['parentId'], []);
 
         // Query for the websites
         $statement = $this->connection->prepare('SELECT websiteId, url, type, followers FROM websites
@@ -251,6 +251,22 @@ class Database extends AbstractHelper {
 	    }
 
         return $data;
+    }
+
+    private function getParentsOfEntry($parentId, $parents) {
+    	if ($parentId === null) {
+    		return $parents;
+	    }
+	    $statement = $this->connection->prepare('SELECT id, name, parentId FROM churches
+            WHERE id = :parentId');
+	    $statement->bindParam(':parentId', $parentId);
+	    $statement->execute();
+	    $parentData = $statement->fetch(PDO::FETCH_ASSOC);
+	    array_push($parents, [
+	    	'id' => $parentId,
+		    'name' => $parentData['name']
+	    ]);
+	    return $this->getParentsOfEntry($parentData['parentId'], $parents);
     }
 
     private function getChildrenOfEntry($parentId, $recursive) {

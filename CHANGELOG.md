@@ -2,8 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+
+## Version 3.4 (unreleased)
+
+### Added
+* Details: breadcrumbs for parent churches
+
+### Changed
+* Improved design (based on Bootstrap 4 now)
+* Add Form: Improve form validation
+* Make app ready for installation in a subdirectory
+* Development: list required PHP extensions in `composer.json`
+* Development: manage JavaScript and build dependencies via `package.json` 
+
+### Removed
+* Links: no link list anymore
 
 
 ## Version 3.3 (2018-01-24)
@@ -11,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 * Favicon
 * OpenSearch description
+
 
 ## Version 3.2 (2017-12-02)
 
@@ -53,7 +70,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 * Map: show clusters on start instead of all entries
-* Development: load included libraries via nodejs (package.json)
+* Development: load included libraries via nodejs (`package.json`)
 * Development: rewrite whole project with Slim and Twig (leading to new URLs)
     redirects from old to new URLs, code cleanup
 

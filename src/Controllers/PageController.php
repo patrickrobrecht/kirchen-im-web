@@ -37,7 +37,7 @@ class PageController {
         $this->twig->offsetSet('config', Configuration::getInstance());
 
         // Init textdomain and set default language.
-        $domain = "kirchen-im-web31";
+        $domain = "kirchen-im-web";
         bindtextdomain($domain, 'lang');
         bind_textdomain_codeset($domain, 'UTF-8');
         textdomain($domain);
@@ -134,13 +134,6 @@ class PageController {
         ]);
     }
 
-    public function links(Request $request, Response $response, array $args) {
-        $this->twig->render($response, 'links.html.twig', [
-            'title' => 'Linkliste Webauftritte und Social-Media-Auftritte gestalten',
-            'headline' => 'Tipps und Tricks'
-        ]);
-    }
-
     public function details(Request $request, Response $response, array $args) {
         $entry = Database::getInstance()->getEntry($args['id'], true);
         if (!$entry) {
@@ -192,7 +185,7 @@ class PageController {
     public function setLanguage($language, Request $request) {
         putenv(sprintf('LC_ALL=%s', $language));
         setlocale(LC_ALL, $language);
-        $this->twig->offsetSet('language', $language);
+        $this->twig->offsetSet('language', str_replace('_', '-', $language));
         $languageSlug = substr($language, 0, 2);
         $this->twig->offsetSet('languageSlug', $languageSlug);
 
@@ -203,9 +196,6 @@ class PageController {
 
         $headerMenuItems = [
             [
-                'path' => $languageSlug . '-home',
-                'text' => _('Über das Projekt')
-            ], [
                 'path' => $languageSlug . '-map',
                 'text' => _('Karte')
             ], [
@@ -215,9 +205,6 @@ class PageController {
                 'path' => $languageSlug . '-comparison',
                 'text' => _('Social-Media-Vergleich')
             ], [
-                'path' => $languageSlug . '-add',
-                'text' => _('Gemeinde eintragen')
-            ], [
                 'path' => $languageSlug . '-stats',
                 'text' => _('Statistik')
             ]
@@ -226,22 +213,12 @@ class PageController {
         if ($language === 'de_DE') {
             $headerMenuItems = array_merge($headerMenuItems, [
                 [
-                    'path' => 'de-links',
-                    'text' => 'Tipps und Tricks'
+                    'class' => 'lang_en',
+                    'path' => 'en-' . $routeWithoutLanguagePrefix,
+                    'args' => $args,
+                    'text' => 'English'
                 ]
             ]);
-
-            if ($routeWithoutLanguagePrefix !== 'links') {
-                $headerMenuItems = array_merge($headerMenuItems, [
-                    [
-                        'class' => 'lang_en',
-                        'path' => 'en-' . $routeWithoutLanguagePrefix,
-                        'args' => $args,
-                        'text' => 'English'
-                    ]
-                ]);
-            }
-
         } elseif ($language === 'en_US') {
             $headerMenuItems = array_merge($headerMenuItems, [
                 [

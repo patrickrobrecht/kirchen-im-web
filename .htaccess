@@ -1,7 +1,6 @@
 # Redirects
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteBase /
 
 	# rewrite http to https
 	RewriteCond %{REMOTE_ADDR} !127.0.0.1
@@ -22,12 +21,13 @@
     RewriteRule ^(.*)([^/])$ /$1$2/ [L,R=301]
 
     ## Redirect all requests to index.php (except directories and files).
-	RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.php [QSA,L]
+    RewriteRule ^(.*)$ index.php [L,QSA]
 
     ## Disallow direct access to any file in the following directories.
     RedirectMatch 403 cache(/|$)
+    RedirectMatch 403 lang(/|$)
     RedirectMatch 403 src(/|$)
     RedirectMatch 403 vendor(/|$)
 </IfModule>
@@ -49,10 +49,10 @@ Options -Indexes
 # SET MIME TYPES according to file extension
 <IfModule mod_mime.c>
 	AddType application/json .json
-	AddType application/pdf .pdf
 	AddType image/jpeg .jpeg .jpg .jpe .JPG
 	AddType image/gif .gif .GIF
 	AddType image/png .png
+	AddType text/css .css
 	AddType text/csv .csv
 	AddType text/html .html .htm .php
 	AddType text/javascript	.js
@@ -63,27 +63,12 @@ Options -Indexes
 	ExpiresActive On
 	ExpiresDefault "access plus 1 week"
 
-	# Images
-	ExpiresByType image/png "access plus 1 year"
-
-	# CSS and Javascript
-	ExpiresByType text/css "access plus 1 year"	
-	ExpiresByType text/javascript "access plus 1 year"
-
-	# PDFs
-	ExpiresByType application/pdf "access plus 1 year"
-
-	# HTML documents, Feeds
-	ExpiresByType text/html "access plus 2 seconds"
-	ExpiresByType application/atom+xml "access plus 1 hour"
-	ExpiresByType application/rss+xml "access plus 1 hour"
-
-	# Data
-	ExpiresByType application/json "access plus 1 hour"
-	ExpiresByType text/csv "access plus 1 hour"
-
-	# Other file types
-	ExpiresByType text/cache-manifest "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+    ExpiresByType image/png "access plus 1 month"
+	ExpiresByType text/css "access plus 1 month"
+	ExpiresByType text/csv "access plus 0 seconds"
+	ExpiresByType text/html "access plus 0 seconds"
+	ExpiresByType text/javascript "access plus 1 month"
 </IfModule>
 
 # SET HEADERS FOR CACHING / SECURITY
@@ -97,7 +82,7 @@ Options -Indexes
 
 	# SET HEADERS FOR SECURITY
 	# enforce browsers to use HTTPS
-	Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+	Header always set Strict-Transport-Security "max-age=63072000"
 
 	# set referer policy
 	Header always set Referrer-Policy same-origin
@@ -126,7 +111,7 @@ Options -Indexes
 # ENABLE GZIP COMPRESSION
 <IfModule mod_deflate.c>
 	SetOutputFilter DEFLATE
-	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/json
 </IfModule>
 
 # DISABLE THE SERVER SIGNATURE

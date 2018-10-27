@@ -2,98 +2,41 @@
 
 {% import 'macros.html.twig' as macros %}
 
+{% set hasFollowerHistory = false %}
+{% for website in entry.websites %}
+    {% if website.followerHistory %}
+        {% set hasFollowerHistory = true %}
+    {% endif %}
+{% endfor %}
+
 {% block metadata %}
     <title>{{ entry.name }} | {{ 'Kirchliche Web- und Social-Media-Auftritte'|trans }}</title>
-    <meta name="description" content="{{ entry.name }} - {% trans 'Webauftritte und soziale Netzwerke' %}">
+    <meta name="description" content="{{ entry.name }} - {% trans 'Webauftritte und Social-Media-Profile' %}">
 {% endblock %}
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="/public/lib/leaflet.css">
-    <link rel="stylesheet" href="/public/lib/MarkerCluster.css">
-    <link rel="stylesheet" href="/public/lib/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="{{ base_url() }}/public/lib/leaflet.css">
+    <link rel="stylesheet" href="{{ base_url() }}/public/lib/MarkerCluster.css">
+    <link rel="stylesheet" href="{{ base_url() }}/public/lib/MarkerCluster.Default.css">
 {% endblock %}
 
 {% block main %}
-    <script type="text/javascript" src="/public/lib/jquery.min.js"></script>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% for parent in entry.parents|reverse %}
+                <li class="breadcrumb-item"><a href="{{ path_for(languageSlug ~ '-details', {'id': parent.id}) }}">{{ parent.name }}</a></li>
+            {% endfor %}
+            <li class="breadcrumb-item active" aria-current="page">{{ entry.name }}</li>
+        </ol>
+    </nav>
 
     <h1>{{ entry.name }}</h1>
 
-    {% set hasFollowerHistory = false %}
-    {% for website in entry.websites %}
-        {% if website.followerHistory %}
-            {% set hasFollowerHistory = true %}
-        {% endif %}
-    {% endfor %}
-
-    <section {% if hasFollowerHistory %}class="stats"{% endif %}>
-        <h2>{% trans 'Webauftritte und soziale Netzwerke' %}</h2>
-        {% if hasFollowerHistory %}
-            <div id="followerHistory" class="chart"></div>
-            <script src="/public/lib/highcharts.js"></script>
-            <script>
-                {% if languageSlug == 'de' %}
-                    Highcharts.setOptions({
-                        lang: {
-                            weekdays: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']
-                        }
-                    });
-                {% endif %}
-
-                $(function() {
-                    $('#followerHistory').highcharts({
-                        title: {
-                            text: '{% trans 'Followers' %}'
-                        },
-                        subtitle: {
-                            text: '{{ entry.name }}'
-                        },
-                        xAxis: {
-                            type: 'datetime'
-                        },
-                        yAxis: {
-                            allowDecimals: false,
-                            min: 0,
-                            title: {
-                                text: '{% trans 'Anzahl der Follower' %}'
-                            }
-                        },
-                        legend: {
-                            enabled: true
-                        },
-                        plotOptions: {
-                            series: {
-                                marker: {
-                                    enabled: true
-                                },
-                                tooltip: {
-                                    xDateFormat: '%A, %e.%m.%Y'
-                                }
-                            }
-                        },
-                        series: [
-                            {% for website in entry.websites if website.followerHistory %}
-                                {
-                                    name: '{{ config.websites[website.type] }}',
-                                    data: [
-                                        {% for row in website.followerHistory %}
-                                            [Date.UTC({{ row.date|date('Y') }}, {{ row.date|date('m') - 1 }}, {{ row.date|date('d') }}), {{ row.followers }}],
-                                        {% endfor %}
-                                    ],
-                                    color: '{{ config.networksToCompareColors[website.type] }}'
-                                },
-                            {% endfor %}
-                        ],
-                        credits: {
-                            href: '',
-                            text: ''
-                        }
-                    });
-                });
-            </script>
-        {% endif %}
-        <div>
-            <table class="details">
+    <h2>{% trans 'Webauftritte und Social-Media-Profile' %}</h2>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <table class="table table-striped stats-table">
                 <thead>
                     <tr>
                         <th>{% trans 'Link' %}</th>
@@ -110,20 +53,17 @@
                 </tbody>
             </table>
         </div>
-    </section>
-
-    <section {% if entry.lat and entry.lon %}class="stats"{% endif %}>
-        <h2>{% trans 'Adresse, Konfession und Hierarchie' %}</h2>
-
-        {% if entry.lat and entry.lon %}
-            <div id="detailsmap">
-                <p>{% trans 'Bitte warten. Die Karte wird geladen.' %}</p>
+        {% if hasFollowerHistory %}
+            <div class="col-12 col-lg-6">
+                <div id="followerHistory" class="chart"></div>
             </div>
-            {{ macros.map('detailsmap', '/api/churches/?parent=' ~ entry.id ~ '&options=includeSelf,childrenRecursive', config) }}
         {% endif %}
+    </div>
 
-        <div>
-            <table class="details">
+    <h2>{% trans 'Adresse, Konfession und Hierarchie' %}</h2>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <table class="table">
                 <tbody>
                     <tr>
                         <th>{% trans 'Adresse' %}</th>
@@ -158,22 +98,27 @@
                         <td><a href="{{ path_for(languageSlug ~ '-search') }}?type={{ entry.type }}">{{ config.types[entry.type]|trans }}</a></td>
                     </tr>
                     <tr>
-                        <th>{% trans 'nächsthöhere Ebene' %}</th>
+                        <th>{% trans 'Nächsthöhere Ebenen' %}</th>
                         <td>{% if entry.parentId %}
-                                <a href="{{ path_for(languageSlug ~ '-details', {'id': entry.parentId}) }}">{{ entry.parentName }}</a>
+                                <ol>
+                                    {% for parent in entry.parents %}
+                                        <li><a href="{{ path_for(languageSlug ~ '-details', {'id': parent.id}) }}">{{ parent.name }}</a></li>
+                                    {% endfor %}
+                                </ol>
                             {% else %}
                                 <span>{% trans 'keine' %}</span>
-                            {% endif %}</td>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
-                        <th>{% trans 'nächsttiefere Ebene' %}</th>
+                        <th>{% trans 'Nächsttiefere Ebenen' %}</th>
                         <td>{% if entry.children|length == 0 %}
                                 <span>{% trans 'Bisher wurden keine untergeordneten Ebenen hinzugefügt!' %}</span>
                             {% else %}
                                 {{ macros.churchHierarchy(entry, languageSlug) }}
                             {% endif %}
                             {% if entry.hasChildren == 1 %}
-                                <p><a href="{{ path_for(languageSlug ~ '-add') }}?parentId={{ entry.id }}&denomination={{ entry.denomination }}&countryCode={{ entry.country }}">
+                                <p><a class="btn btn-secondary" href="{{ path_for(languageSlug ~ '-add') }}?parentId={{ entry.id }}&denomination={{ entry.denomination }}&countryCode={{ entry.country }}">
                                         {% set name = entry.name %}
                                         {% trans %}
                                             Jetzt eine Gemeinde unterhalb von {{ name }} hinzufügen!
@@ -184,7 +129,88 @@
                 </tbody>
             </table>
         </div>
-    </section>
+
+        {% if entry.lat and entry.lon %}
+            <div id="detailsmap" class="col-12 col-lg-6">
+                <p>{% trans 'Bitte warten. Die Karte wird geladen.' %}</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer_scripts %}
+    {{ parent() }}
+    {% if hasFollowerHistory %}
+        <script src="{{ base_url() }}/public/lib/highcharts.js"></script>
+        <script>
+            {% if languageSlug == 'de' %}
+            Highcharts.setOptions({
+                lang: {
+                    weekdays: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']
+                }
+            });
+            {% endif %}
+
+            $(function() {
+                $('#followerHistory').highcharts({
+                    title: {
+                        text: '{% trans 'Followers' %}'
+                    },
+                    subtitle: {
+                        text: '{{ entry.name }}'
+                    },
+                    xAxis: {
+                        type: 'datetime'
+                    },
+                    yAxis: {
+                        allowDecimals: false,
+                        min: 0,
+                        title: {
+                            text: '{% trans 'Anzahl der Follower' %}'
+                        }
+                    },
+                    legend: {
+                        enabled: true
+                    },
+                    plotOptions: {
+                        series: {
+                            marker: {
+                                enabled: true
+                            },
+                            tooltip: {
+                                xDateFormat: '%A, %e.%m.%Y'
+                            }
+                        }
+                    },
+                    series: [
+                        {% for website in entry.websites if website.followerHistory %}
+                        {
+                            name: '{{ config.websites[website.type] }}',
+                            data: [
+                                {% for row in website.followerHistory %}
+                                [Date.UTC({{ row.date|date('Y') }}, {{ row.date|date('m') - 1 }}, {{ row.date|date('d') + 0 }}), {{ row.followers }}],
+                                {% endfor %}
+                            ],
+                            color: '{{ config.networksToCompareColors[website.type] }}'
+                        },
+                        {% endfor %}
+                    ],
+                    credits: {
+                        href: '',
+                        text: ''
+                    }
+                });
+            });
+        </script>
+    {% endif %}
+    {% if entry.lat and entry.lon %}
+        {{ macros.map(
+            'detailsmap',
+            '/api/churches/?parent=' ~ entry.id ~ '&options=includeSelf,childrenRecursive',
+            languageSlug,
+            config
+        ) }}
+    {% endif %}
 {% endblock %}
 
 {% block structured_data %}
@@ -218,7 +244,7 @@
           {% if entry.parentId %}
           "parentOrganization": {
             "@type": "Organization",
-            "name": "{{ entry.parentName }}",
+            "name": "{{ entry.parents|first.name }}",
             "url": "http://kirchen-im-web.de{{ path_for(languageSlug ~ '-details', {'id': entry.parentId}) }}"
           },
           {% endif %}

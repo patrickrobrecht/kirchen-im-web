@@ -1,7 +1,7 @@
-{% macro map(mapId, url, config) %}
-    <script src="/public/lib/leaflet.js"></script>
-    <script src="/public/lib/leaflet.markercluster.js"></script>
-    <script src="/public/js/map.min.js"></script>
+{% macro map(mapId, dataPath, languageSlug, config) %}
+    <script src="{{ base_url() }}/public/lib/leaflet.js"></script>
+    <script src="{{ base_url() }}/public/lib/leaflet.markercluster.js"></script>
+    <script src="{{ base_url() }}/public/js/map.min.js"></script>
     <script type="text/javascript">
         var map = new Map({
             'all': '{% trans 'alle' %}',
@@ -14,30 +14,41 @@
             'web': "{{ config.websites['web'] }}",
             'blog': "{{ config.websites['blog'] }}"
         });
-        map.load('{{ mapId }}', '{{ url|raw }}');
+        map.load('{{ mapId }}', '{{ base_url() }}', '{{ dataPath|raw }}', '{{ languageSlug }}');
     </script>
 {% endmacro %}
 
 {% macro menu(items, currentPath) %}
-    <ul>
-        {% for item in items %}
-            {% if item.args %}
-                {% set url = path_for(item.path, item.args) %}
+    {% if base_url() == '' %}
+        {% set current_url = currentPath %}
+    {% else %}
+        {% set current_url = base_url() ~ '/' ~ currentPath %}
+    {% endif %}
+
+    {% for item in items %}
+        {% if item.args %}
+            {% set url = path_for(item.path, item.args) %}
+        {% else %}
+            {% set url = path_for(item.path) %}
+        {% endif %}
+        {% set text = item.text %}
+
+        {% if url == current_url %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url }}">{% trans text %}</a> <span class="sr-only">{% trans '(aktuelle Seite)' %}</span>
+            </li>
+        {% else %}
+            {% if item.class %}
+                <li class="nav-item">
+                    <a class="nav-link {{ item.class }}" href="{{ url }}">{% trans text %}</a>
+                </li>
             {% else %}
-                {% set url = path_for(item.path) %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url }}">{% trans text %}</a>
+                </li>
             {% endif %}
-            {% set text = item.text %}
-            {% if url == currentPath %}
-                <li><strong>{% trans text %}</strong></li>
-            {% else %}
-                {% if item.class %}
-                    <li><a class="{{ item.class }}" href="{{ url }}">{% trans text %}</a></li>
-                {% else %}
-                    <li><a href="{{ url }}">{% trans text %}</a></li>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-    </ul>
+        {% endif %}
+    {% endfor %}
 {% endmacro %}
 
 {% macro number_format(number, languageSlug) %}

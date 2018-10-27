@@ -14,24 +14,24 @@
 
     <article id="recently-added">
         <h2>{% trans 'Zuletzt hinzugefügt' %}</h2>
-        <table>
+        <table class="table table-striped tablesorter">
             <thead>
                 <tr>
-                    <th>{% trans 'Name' %}</th>
-                    <th>{% trans 'PLZ' %}</th>
-                    <th>{% trans 'Ort' %}</th>
-                    <th>{% trans 'Land' %}</th>
-                    <th>{% trans 'Konfession' %}</th>
-                    <th>{% trans 'Gemeindetyp' %}</th>
+                    <th scope="col">{% trans 'Name' %}</th>
+                    <th scope="col">{% trans 'PLZ' %}</th>
+                    <th scope="col">{% trans 'Ort' %}</th>
+                    <th scope="col">{% trans 'Land' %}</th>
+                    <th scope="col">{% trans 'Konfession' %}</th>
+                    <th scope="col">{% trans 'Gemeindetyp' %}</th>
                     {% for id, name in config.preselectedWebsites %}
-                        <th>{{ name }}</th>
+                        <th scope="col">{{ name }}</th>
                     {% endfor %}
                 </tr>
             </thead>
             <tbody>
                 {% for entry in entries %}
                     <tr>
-                        <td><a href="{{ path_for(languageSlug ~ '-details', {'id': entry.id}) }}">{{ entry.name }}</a></td>
+                        <td scope="row"><a href="{{ path_for(languageSlug ~ '-details', {'id': entry.id}) }}">{{ entry.name }}</a></td>
                         <td>{{ entry.postalCode }}</td>
                         <td>{{ entry.city }}</td>
                         <td>{{ config.countries[entry.country]|trans }}</td>

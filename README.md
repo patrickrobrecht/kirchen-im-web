@@ -1,4 +1,4 @@
-﻿![Screenshot](https://kirchen-im-web.de/images/screenshot.png)
+﻿![Screenshot](./images/screenshot.png)
 
 # [kirchen-im-web.de](https://kirchen-im-web.de/en/) - Directory of Churchy Websites and Social Network Pages 
 
@@ -12,7 +12,7 @@ kirchen-im-web.de also compares the follower numbers of the
 Our Project is oecumenic, i. e. regardless whether Protestants, Catholic or free church - all can participate. 
 You can simply add your church using our [form](https://kirchen-im-web.de/en/add/).
 
-The latest development version is online at [beta.kirchen-im-web.de](https://beta.kirchen-im-web.de/en/).
+The latest development version is online at [test.kirchen-im-web.de](https://test.kirchen-im-web.de/en/).
 
 ## Features
 * [map](https://kirchen-im-web.de/en/map/)
@@ -77,17 +77,29 @@ Returns the (direct) children of the church with the given id in JSON.
 
 
 ## How to develop
-For development you need a local web server, PHP and a MySQL database.
 
+### Requirements
+* [Apache](https://httpd.apache.org/) 2.4+
+* [PHP](https://secure.php.net/) 7+
+* [MySQL](https://dev.mysql.com/downloads/) database
+* [Node.js](https://nodejs.org/en/download/) 10+
+    and [npm](https://www.npmjs.com/) 6+
+* [Composer](https://getcomposer.org/) 1.7+
+
+### Setup
 * Clone the Git repository.
 * Install the dependencies via `composer install`
-* Run `composer minify` to generate `*.min.css` and `*.min.js` files.
+    (this includes `npm install` for Bootstrap and JavaScript libraries).
+* Run `composer dev` to automatically compile `*.scss` to `*.css` 
+    and `*.js` to `*.min.js` whenever the file is changed.
 * Create a database.
-* Create a `config.php` with the database credentials and valid API keys/secrets. 
+* Create a `config.php` with the database credentials and valid API keys/secrets
+    (cp. `config.sample.php`).
 
 
 ## Used programming languages and libraries
-* [HTML5, CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss)
+* [HTML5 and CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss), based on
+    [Bootstrap 4](https://getbootstrap.com/)
 * [PHP](https://secure.php.net/) with libraries
     [Slim](https://www.slimframework.com/), 
     [Twig](https://twig.symfony.com/)
@@ -113,7 +125,7 @@ Sie können Ihre Gemeinde einfach über unser
     [Formular](https://kirchen-im-web.de/de/eintragen/) hinzufügen.
 
 Die aktuelle Entwicklungsversion gibt es unter 
-    [beta.kirchen-im-web.de](https://beta.kirchen-im-web.de/de/).
+    [test.kirchen-im-web.de](https://test.kirchen-im-web.de/de/).
 
 ## Funktionen
 * [Karte](https://kirchen-im-web.de/de/karte/)
