@@ -8,6 +8,7 @@ use KirchenImWeb\Helpers\ParameterChecker;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Railto\TwigAssetVersionExtension;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 use Twig_Extensions_Extension_I18n;
@@ -25,22 +26,25 @@ class PageController {
         $this->twig = new Twig(__DIR__ . '/../templates', [
             'cache' => (defined('DEBUG') && DEBUG) ? false : __DIR__ . '/../../cache'
         ]);
-        $this->twig->addExtension(new Twig_Extensions_Extension_I18n());
 
         // Instantiate and add Slim specific extension
         $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
         $this->twig->addExtension(new TwigExtension($container['router'], $basePath));
 
-        // Pass global variables to the view.
-	    $this->twig->offsetSet('domain', $_SERVER['HTTP_HOST']);
-        $this->twig->offsetSet('currentPath', $container['request']->getUri()->getPath());
-        $this->twig->offsetSet('config', Configuration::getInstance());
+        // Add asset extension for Twig.
+	    $this->twig->addExtension(new TwigAssetVersionExtension(__DIR__. '/../../assets/rev-manifest.json'));
 
-        // Init textdomain and set default language.
-        $domain = "kirchen-im-web";
-        bindtextdomain($domain, 'lang');
-        bind_textdomain_codeset($domain, 'UTF-8');
-        textdomain($domain);
+        // Add I18n extension for Twig and init textdomain and set default language.
+	    $this->twig->addExtension(new Twig_Extensions_Extension_I18n());
+        $textdomain = "kirchen-im-web";
+        bindtextdomain($textdomain, 'lang');
+        bind_textdomain_codeset($textdomain, 'UTF-8');
+        textdomain($textdomain);
+
+	    // Pass global variables to the view.
+	    $this->twig->offsetSet('domain', $_SERVER['HTTP_HOST']);
+	    $this->twig->offsetSet('currentPath', $container['request']->getUri()->getPath());
+	    $this->twig->offsetSet('config', Configuration::getInstance());
     }
 
     public function index(Request $request, Response $response, array $args) {
