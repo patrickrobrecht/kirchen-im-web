@@ -1,6 +1,9 @@
 <?php
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use KirchenImWeb\Controllers\APIController;
+use KirchenImWeb\Controllers\FileController;
+use KirchenImWeb\Controllers\PageController;
 
 require __DIR__ . '/vendor/autoload.php';
 if (file_exists(__DIR__ . '/config.php')) {
@@ -26,27 +29,31 @@ $app = new \Slim\App([
 
 $container = $app->getContainer();
 $container['APIController'] = function ($container) {
-    return new \KirchenImWeb\Controllers\APIController($container);
+    return new APIController($container);
+};
+$container['FileController'] = function ($container) {
+	return new FileController($container);
 };
 $container['PageController'] = function ($container) {
-    return new \KirchenImWeb\Controllers\PageController($container);
+    return new PageController($container);
 };
 
 $app->group('/', function () {
     $this->get('', function (Request $request, Response $response) {
         return $response->withStatus(301)->withHeader('Location', $this->router->pathFor('de-home'));
     });
-    $this->get('sitemap.xml', 'PageController:sitemap');
+	$this->get('robots.txt', FileController::class . ':robots');
+    $this->get('sitemap.xml', FileController::class . ':sitemap');
 });
 
 $app->group('/api/', function () {
-    $this->get('churches/', 'APIController:churches');
-    $this->get('churches/{id}/', 'APIController:church');
-	$this->get('churches/{id}/children/', 'APIController:children');
+    $this->get('churches/', APIController::class . ':churches');
+    $this->get('churches/{id}/', APIController::class . ':church');
+	$this->get('churches/{id}/children/', APIController::class . ':children');
 
-    $this->get('check/', 'APIController:check');
-    $this->get('export/', 'APIController:export');
-    $this->get('update/', 'APIController:update');
+    $this->get('check/', APIController::class . ':check');
+    $this->get('export/', APIController::class . ':export');
+    $this->get('update/', APIController::class . ':update');
 });
 
 $app->group('/de/', function () {
@@ -62,7 +69,7 @@ $app->group('/de/', function () {
     $this->get('daten/', 'PageController:data')->setName('de-data');
 	$this->get('opensearch.xml', 'PageController:opensearch')->setName('de-opensearch');
 })->add(function ($request, $response, $next) use ($container) {
-    $container->PageController->setLanguage('de_DE', $request);
+	$container['PageController']->setLanguage('de_DE', $request);
     $response = $next($request, $response);
     return $response;
 });
@@ -80,37 +87,9 @@ $app->group('/en/', function () {
     $this->get('data/', 'PageController:data')->setName('en-data');
 	$this->get('opensearch.xml', 'PageController:opensearch')->setName('en-opensearch');
 })->add(function ($request, $response, $next) use ($container) {
-    $container->PageController->setLanguage('en_US', $request);
+	$container['PageController']->setLanguage('en_US', $request);
     $response = $next($request, $response);
     return $response;
-});
-
-// Rewrites for URLs of kirchen-im-web.de v2.x
-$app->group('/{lang}/', function () {
-    $this->get('add.php', function (Request $request, Response $response, $args) {
-        return $response->withStatus(301)->withHeader('Location',
-            $this->router->pathFor($args['lang'] . '-add'));
-    });
-    $this->get('map.php', function (Request $request, Response $response, $args) {
-        return $response->withStatus(301)->withHeader('Location',
-            $this->router->pathFor($args['lang'] . '-map'));
-    });
-    $this->get('table.php', function (Request $request, Response $response, $args) {
-        return $response->withStatus(301)->withHeader('Location',
-            $this->router->pathFor($args['lang'] . '-search'));
-    });
-    $this->get('statistics.php', function (Request $request, Response $response, $args) {
-        return $response->withStatus(301)->withHeader('Location',
-            $this->router->pathFor($args['lang'] . '-stats'));
-    });
-    $this->get('links.php', function (Request $request, Response $response) {
-        return $response->withStatus(301)->withHeader('Location', $this->router->pathFor('de-links'));
-    });
-    $this->get('details.php', function (Request $request, Response $response, $args) {
-        $params = $request->getQueryParams();
-        return $response->withStatus(301)->withHeader('Location',
-            $this->router->pathFor($args['lang'] . '-details', ['id' => $params['id']]));
-    });
 });
 
 $app->run();

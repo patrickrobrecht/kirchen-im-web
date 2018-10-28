@@ -22,3 +22,6 @@ define('TWITTER_API_CONSUMER_SECRET', "");
 
 // debug mode
 define('DEBUG', false);
+
+// production mode
+define('PRODUCTION', true);

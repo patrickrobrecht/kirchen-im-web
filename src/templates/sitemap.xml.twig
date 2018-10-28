@@ -9,16 +9,12 @@
             </url>
         {% endfor %}
 
-        {% for id in ids %}
+        {% for church in churches %}
             <url>
-                <loc>https://kirchen-im-web.de{{ path_for(lang ~ '-details', {'id': id['id']}) }}</loc>
+                <loc>https://kirchen-im-web.de{{ path_for(lang ~ '-details', {'id': church.id}) }}</loc>
                 <changefreq>monthly</changefreq>
+                <lastmod>{{ church.lastUpdate|date('c') }}</lastmod>
             </url>
         {% endfor %}
     {% endfor %}
-
-    <url>
-        <loc>https://kirchen-im-web.de{{ path_for('de-links') }}</loc>
-        <changefreq>monthly</changefreq>
-    </url>
 </urlset>

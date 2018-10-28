@@ -1,0 +1,9 @@
+User-agent: *
+{% if production %}
+Allow: /
+Disallow: /data/
+
+Sitemap: https://{{ domain ~ base_url }}/sitemap.xml
+{% else %}
+Disallow: /
+{% endif %}

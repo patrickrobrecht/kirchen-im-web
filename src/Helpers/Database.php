@@ -285,8 +285,13 @@ class Database extends AbstractHelper {
         return $children;
     }
 
-    public function getIds() {
-        $statement = $this->connection->query('SELECT id FROM churches');
+    public function getAllChurchesWithLastUpdate() {
+        $statement = $this->connection->query('SELECT id, IFNULL(lastFollowerUpdate, timestamp) AS lastUpdate FROM churches
+			LEFT JOIN (
+				SELECT churchId, MAX(TIMESTAMP) AS lastFollowerUpdate FROM websites
+				WHERE TIMESTAMP IS NOT NULL
+				GROUP BY churchId
+			) AS w ON id = w.churchId');
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 

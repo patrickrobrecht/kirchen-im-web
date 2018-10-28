@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow: /data/
-
-Sitemap: https://kirchen-im-web.de/sitemap.xml

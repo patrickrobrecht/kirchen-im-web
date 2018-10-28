@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 * Details: breadcrumbs for parent churches
+* robots.txt: dependent on production mode
+* sitemap.xml: include last modified
 
 ### Changed
 * Improved design (based on Bootstrap 4 now)
@@ -21,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 * Links: no link list anymore
+* Redirects for URLs of kirchen-im-web.de 2.x
 
 
 ## Version 3.3 (2018-01-24)
