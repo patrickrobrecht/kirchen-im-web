@@ -55,6 +55,7 @@ class Configuration extends AbstractHelper {
             'Citykirche' => _('Citykirche'),
             'Dekanat' => _('Dekanat'),
             'Jugend' => _('Jugend'),
+            'Gemeindeverband' => _('Gemeindeverband'),
             'Hilfswerk' => _('Hilfswerk'),
             'Internetportal' => _('Internetportal'),
             'Kirchengemeinde' => _('Kirchengemeinde'),

@@ -17,9 +17,13 @@ use Twig_Extensions_Extension_I18n;
 class TwigController {
 	protected $twig;
 
+	/**
+	 * Initialize Twig and extensions.
+	 *
+	 * @param ContainerInterface $container the Slim container
+	 */
 	public function __construct( ContainerInterface $container ) {
-		// Configure Twig for templates and translations.
-		$this->twig = new Twig( __DIR__ . '/../templates', [
+		$this->twig = new Twig( __DIR__ . '/../../theme/html', [
 			'cache' => ( defined( 'DEBUG' ) && DEBUG ) ? false : __DIR__ . '/../../cache'
 		] );
 

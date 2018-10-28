@@ -66,7 +66,7 @@ function copyJavaScriptLibraries() {
 
 function minifyCSS() {
     del(['assets/css/*.css']);
-    return gulp.src(['public/css/*.scss'], {base: 'public/css'})
+    return gulp.src(['theme/css/*.scss'], {base: 'theme/css'})
         .pipe(sass({
             outputStyle: 'compressed'
         }).on(
@@ -87,7 +87,7 @@ function minifyCSS() {
 
 function minifyJavaScript() {
     del(['assets/*.js']);
-    return gulp.src(['public/js/*.js'], {base: 'public/js'})
+    return gulp.src(['theme/js/*.js'], {base: 'theme/js'})
         .pipe(minify({
             ext: {
                 min: '.js'
@@ -107,11 +107,11 @@ function minifyJavaScript() {
 }
 
 function watchCSS() {
-    return gulp.watch('public/css/*.scss', minifyCSS);
+    return gulp.watch('theme/css/*.scss', minifyCSS);
 }
 
 function watchJavaScript() {
-    return gulp.watch('public/js/*.js', minifyJavaScript);
+    return gulp.watch('theme/js/*.js', minifyJavaScript);
 }
 
 exports.copy = parallel(copyCSSFromLibraries, copyImagesFromLibraries, copyJavaScriptLibraries);

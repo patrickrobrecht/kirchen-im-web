@@ -106,9 +106,9 @@ Returns the (direct) children of the church with the given id in JSON.
     and [twitter-api-php](https://github.com/J7mbo/twitter-api-php)
 * JavaScript, especially the libraries 
     [jQuery](https://jquery.com/),
-    [Highcharts](http://www.highcharts.com/),
-    [Leaflet](http://leafletjs.com/) and 
-    [Tablesorter](http://tablesorter.com/)
+    [Highcharts](https://www.highcharts.com/),
+    [Leaflet](https://leafletjs.com/) and 
+    [Tablesorter](https://mottie.github.io/tablesorter/)
 
 
 # [kirchen-im-web.de](https://kirchen-im-web.de/de/) - Verzeichnis kirchlicher Web- und Social-Media-Auftritte
