@@ -155,7 +155,7 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script src="{{ base_url() }}/public/lib/jquery.tablesorter.min.js"></script>
+    <script src="{{ base_url() }}/assets/{{ 'lib/jquery.tablesorter.min.js' | asset_version }}"></script>
     <script>
         $(function(){
             $("#churchTable").tablesorter({

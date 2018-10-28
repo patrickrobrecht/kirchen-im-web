@@ -1,9 +1,6 @@
 cache/
 config.php
+assets/
 data/
 node_modules/
-public/css/*.css
-public/css/*.css.map
-public/js/*.min.js
-public/lib/
 vendor/

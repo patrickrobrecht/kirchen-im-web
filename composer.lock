@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a25190d3f83a36d54bffa6c05960333",
+    "content-hash": "966e1f7ac814a9461396c51aaf41b7cf",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -281,6 +281,47 @@
                 "response"
             ],
             "time": "2016-08-06T14:39:51+00:00"
+        },
+        {
+            "name": "railto/twig-asset-version-extension",
+            "version": "V1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/railto/TwigAssetVersionExtension.git",
+                "reference": "97fe57f43c0792f693c393ee9ca77784644a7763"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/railto/TwigAssetVersionExtension/zipball/97fe57f43c0792f693c393ee9ca77784644a7763",
+                "reference": "97fe57f43c0792f693c393ee9ca77784644a7763",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "twig/twig": "^2.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.2",
+                "squizlabs/php_codesniffer": "^3.0.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Railto\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Railton",
+                    "email": "mark@markrailton.com"
+                }
+            ],
+            "description": "A twig extension for working with versioned assets using a rev-manifest file",
+            "time": "2017-07-14T14:41:38+00:00"
         },
         {
             "name": "slim/slim",
@@ -651,7 +692,10 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "ext-gettext": "*",
+        "ext-json": "*",
+        "ext-pdo": "*"
     },
     "platform-dev": []
 }

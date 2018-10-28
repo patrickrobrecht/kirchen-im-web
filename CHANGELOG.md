@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Add Form: Improve form validation
 * Make app ready for installation in a subdirectory
 * Development: list required PHP extensions in `composer.json`
-* Development: manage JavaScript and build dependencies via `package.json` 
+* Development: manage JavaScript and build dependencies via `package.json`
+* Development: hash-based file-names for assets to handle browser caching
 
 ### Removed
 * Links: no link list anymore
