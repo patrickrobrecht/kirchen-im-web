@@ -4,9 +4,7 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ base_url() }}/public/lib/leaflet.css">
-    <link rel="stylesheet" href="{{ base_url() }}/public/lib/MarkerCluster.css">
-    <link rel="stylesheet" href="{{ base_url() }}/public/lib/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="{{ base_url() }}/assets/{{ 'lib/leaflet-bundle.css' | asset_version }}">
 {% endblock %}
 
 {% block main %}

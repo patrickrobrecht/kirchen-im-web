@@ -3,5 +3,4 @@ config.php
 assets/
 data/
 node_modules/
-public/lib/
 vendor/

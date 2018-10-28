@@ -16,9 +16,7 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ base_url() }}/public/lib/leaflet.css">
-    <link rel="stylesheet" href="{{ base_url() }}/public/lib/MarkerCluster.css">
-    <link rel="stylesheet" href="{{ base_url() }}/public/lib/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="{{ base_url() }}/assets/{{ 'lib/leaflet-bundle.css' | asset_version }}">
 {% endblock %}
 
 {% block main %}
@@ -141,7 +139,7 @@
 {% block footer_scripts %}
     {{ parent() }}
     {% if hasFollowerHistory %}
-        <script src="{{ base_url() }}/public/lib/highcharts.js"></script>
+        <script src="{{ base_url() }}/assets/{{ 'lib/highcharts.js' | asset_version }}"></script>
         <script>
             {% if languageSlug == 'de' %}
             Highcharts.setOptions({
