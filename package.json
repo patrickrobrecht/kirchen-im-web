@@ -1,7 +1,6 @@
 {
   "devDependencies": {
-    "bootstrap": "^4",
-    "copyfiles": "^1",
+    "bootstrap": "^4.2.1",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-clean-css": "^3.10.0",
@@ -15,12 +14,7 @@
     "jquery": "^3",
     "leaflet": "^1",
     "leaflet.markercluster": "^1",
-    "node-sass": "^4.9.4",
-    "npm-run-all": "^4",
-    "onchange": "^5",
-    "sass": "^1.14.3",
-    "tablesorter": "^2",
-    "uglify-js": "^3"
+    "tablesorter": "^2.31.1"
   },
   "scripts": {
     "postinstall": "npm run copy && npm run build",
