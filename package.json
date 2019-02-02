@@ -10,16 +10,23 @@
     "gulp-rename": "^1.4.0",
     "gulp-rev": "^9.0.0",
     "gulp-sass": "^4.0.2",
+    "gulp-stylelint": "^8.0.0",
     "highcharts": "^6.2.0",
     "jquery": "^3",
     "leaflet": "^1.4.0",
     "leaflet.markercluster": "^1",
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended": "^2.1.0",
     "tablesorter": "^2.31.1"
   },
   "scripts": {
     "postinstall": "npm run copy && npm run build",
     "build": "gulp",
+    "cs": "gulp cs",
     "copy": "gulp copy",
     "watch": "gulp watch"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-recommended"
   }
 }

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* Necessary Bootstrap modules. */
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
@@ -20,7 +21,7 @@
 @import "../../node_modules/bootstrap/scss/utilities";
 @import "../../node_modules/bootstrap/scss/print";
 
-/* Icons */
+/* Icons for languages */
 .lang_de:before {
   content: url(../../images/flags/de.gif) " ";
 }
@@ -29,6 +30,7 @@
   content: url(../../images/flags/en.gif) " ";
 }
 
+/* Icons for links and social networks */
 a[href^="http://"]:after {
   content: " " url(../../images/non-secure.png);
 }
@@ -81,6 +83,7 @@ a[href^="https://"]:after {
   content: url(../../images/icons/Youtube.png) " ";
 }
 
+/* Icons for countries */
 .at:before {
   content: url(../../images/flags/Austria.png) " ";
 }
@@ -101,6 +104,7 @@ a[href^="https://"]:after {
   content: url(../../images/flags/Luxembourg.png) " ";
 }
 
+/* Icons for denominations */
 .alt-katholisch:before {
   content: url(../../images/markers/orange.png) " ";
 }

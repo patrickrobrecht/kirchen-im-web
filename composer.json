@@ -32,6 +32,9 @@
       "npm update",
       "npm run postinstall"
     ],
+    "cs": [
+      "npm run cs"
+    ],
     "dev": [
       "npm run watch"
     ]

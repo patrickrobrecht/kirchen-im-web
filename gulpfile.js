@@ -6,6 +6,7 @@ const minify = require('gulp-minify');
 const rename = require("gulp-rename");
 const rev = require('gulp-rev');
 const sass = require('gulp-sass');
+const stylelint = require('gulp-stylelint');
 
 const {parallel} = require('gulp');
 
@@ -106,6 +107,15 @@ function minifyJavaScript() {
         .pipe(gulp.dest('assets'));
 }
 
+function checkCodeStyleCSS() {
+    return gulp.src('theme/css/*.scss')
+        .pipe(stylelint({
+            reporters: [
+                {formatter: 'string', console: true}
+            ]
+        }));
+}
+
 function watchCSS() {
     return gulp.watch('theme/css/*.scss', minifyCSS);
 }
@@ -115,5 +125,6 @@ function watchJavaScript() {
 }
 
 exports.copy = parallel(copyCSSFromLibraries, copyImagesFromLibraries, copyJavaScriptLibraries);
+exports.cs = parallel(checkCodeStyleCSS);
 exports.default = parallel(minifyCSS, minifyJavaScript);
 exports.watch = parallel(watchCSS, watchJavaScript);
