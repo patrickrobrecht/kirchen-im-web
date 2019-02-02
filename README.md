@@ -96,13 +96,22 @@ Returns the (direct) children of the church with the given id in JSON.
 * Create a `config.php` with the database credentials and valid API keys/secrets
     (cp. `config.sample.php`).
 
+### Code Style Guidelines
+- CSS: [stylelint](https://stylelint.io/) using the recommended configuration
+    - `npm run csCSS` checks the stylesheets for compliance with the guidelines.
+    - `npm run fixCSS` applies fixes for violations automatically.
+- JavaScript: [eslint](https://eslint.org/) using the standard configuration
+    - `npm run csJS` checks all JavaScript for compliance with the guidelines.
+    - `npm run fixJS` applies fixes for violations automatically.
+
 
 ## Used programming languages and libraries
 * [HTML5 and CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss), based on
     [Bootstrap 4](https://getbootstrap.com/)
 * [PHP](https://secure.php.net/) with libraries
     [Slim](https://www.slimframework.com/), 
-    [Twig](https://twig.symfony.com/)
+    [Twig](https://twig.symfony.com/),
+    [instagram-php-scraper](https://github.com/postaddictme/instagram-php-scraper)
     and [twitter-api-php](https://github.com/J7mbo/twitter-api-php)
 * JavaScript, especially the libraries 
     [jQuery](https://jquery.com/),

@@ -33,7 +33,8 @@
       "npm run postinstall"
     ],
     "cs": [
-      "npm run cs"
+      "npm run csCSS",
+      "npm run csJS"
     ],
     "dev": [
       "npm run watch"
