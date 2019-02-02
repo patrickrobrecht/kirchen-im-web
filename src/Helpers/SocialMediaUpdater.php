@@ -165,14 +165,10 @@ class SocialMediaUpdater extends AbstractHelper {
      */
     private function getInstagramFollowers($url) {
         try {
-            $json = @file_get_contents($url . '?__a=1');
-            if ($json) {
-                $json = json_decode($json);
-                if (isset($json->graphql->user->edge_followed_by->count)) {
-                    return intval($json->graphql->user->edge_followed_by->count);
-                }
-            }
-            return false;
+	        $name = str_replace('/', '', substr($url, 25));
+	        $instagram = new \InstagramScraper\Instagram();
+	        $account = $instagram->getAccount($name);
+            return $account->getFollowedByCount();
         } catch (Exception $e) {
             return false;
         }
