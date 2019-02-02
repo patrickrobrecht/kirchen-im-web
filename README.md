@@ -2,14 +2,15 @@
 
 # [kirchen-im-web.de](https://kirchen-im-web.de/en/) - Directory of Churchy Websites and Social Network Pages 
 
-We want to show that many parishes, regional churches and dioceses are do a good job in public relations 
+We want to show that many parishes, regional churches and dioceses
+    do a good job in public relations 
     and present those with their websites and social network pages 
     [at a map](https://kirchen-im-web.de/en/map/) and 
     [tabularly](https://kirchen-im-web.de/en/search/).
 kirchen-im-web.de also compares the follower numbers of the
-    [social media pages](https://kirchen-im-web.de/en/comparison/). 
+    [social media pages](https://kirchen-im-web.de/en/comparison/).
 
-Our Project is oecumenic, i. e. regardless whether Protestants, Catholic or free church - all can participate. 
+Our Project is oecumenic, i. e. regardless whether Protestants, Catholic or free church - all can participate.
 You can simply add your church using our [form](https://kirchen-im-web.de/en/add/).
 
 The latest development version is online at [test.kirchen-im-web.de](https://test.kirchen-im-web.de/en/).
@@ -97,13 +98,18 @@ Returns the (direct) children of the church with the given id in JSON.
     (cp. `config.sample.php`).
 
 ### Code Style Guidelines
-- CSS: [stylelint](https://stylelint.io/) using the recommended configuration
-    - `npm run csCSS` checks the stylesheets for compliance with the guidelines.
+- CSS: recommended configuration for [stylelint](https://stylelint.io/)
+    - `npm run csCSS` to run a check for compliance with the guidelines
     - `npm run fixCSS` applies fixes for violations automatically.
-- JavaScript: [eslint](https://eslint.org/) using the standard configuration
-    - `npm run csJS` checks all JavaScript for compliance with the guidelines.
+- JavaScript: [JavaScript Standard Style](https://standardjs.com/rules.html),
+    checked by [eslint](https://eslint.org/)
+    - `npm run csJS` to run a check for compliance with the guidelines
     - `npm run fixJS` applies fixes for violations automatically.
+- PHP: [PSR2](https://www.php-fig.org/psr/psr-2/)
+    - `composer csPHP` to run a check for compliance with the guidelines
+    - `composer fixPHP` applies fixes for violations automatically.
 
+To run all checks, use `composer cs`.
 
 ## Used programming languages and libraries
 * [HTML5 and CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss), based on

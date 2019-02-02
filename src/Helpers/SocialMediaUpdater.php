@@ -9,14 +9,16 @@ use TwitterAPIExchange;
  *
  * @package KirchenImWeb\Helpers
  */
-class SocialMediaUpdater extends AbstractHelper {
+class SocialMediaUpdater extends AbstractHelper
+{
 
-    public function cron() {
+    public function cron()
+    {
         ini_set('max_execution_time', 300);
 
         // Create list of networks to compare (escaped, comma-separated)
         $networksToCompare = Configuration::getInstance()->networksToCompare;
-        $networksToCompareAsStrings = array();
+        $networksToCompareAsStrings = [];
         foreach ($networksToCompare as $type => $typeName) {
             array_push($networksToCompareAsStrings, "'" . $type . "'");
         }
@@ -38,8 +40,9 @@ class SocialMediaUpdater extends AbstractHelper {
         ];
     }
 
-    private function update($row) {
-	    $websiteId = intval($row['websiteId']);
+    private function update($row)
+    {
+        $websiteId = intval($row['websiteId']);
         $url = $row['url'];
         $followersNew = $this->getFollowers($row['type'], $url);
         $data = [
@@ -54,7 +57,7 @@ class SocialMediaUpdater extends AbstractHelper {
             // Update follower number and the timestamp.
             if (Database::getInstance()->updateFollowers($websiteId, $followersNew)) {
                 $data['updated'] = 'followers';
-	            Database::getInstance()->addFollowers($websiteId, $followersNew);
+                Database::getInstance()->addFollowers($websiteId, $followersNew);
             }
         } else {
             // Update the timestamp
@@ -74,7 +77,8 @@ class SocialMediaUpdater extends AbstractHelper {
      *
      * @return int|bool the follower count; false in case of errors.
      */
-    private function getFollowers($network, $url) {
+    private function getFollowers($network, $url)
+    {
         switch ($network) {
             case 'facebook':
                 return $this->getFacebookLikes($url);
@@ -98,7 +102,8 @@ class SocialMediaUpdater extends AbstractHelper {
      *
      * @return int|bool the number of likes, or false on failure
      */
-    private function getFacebookLikes($url) {
+    private function getFacebookLikes($url)
+    {
         try {
             $id = substr($url, 25); // 25 = strlen('https://www.facebook.com/')
             if (SocialMediaUpdater::startsWith($id, 'groups/')) {
@@ -114,7 +119,7 @@ class SocialMediaUpdater extends AbstractHelper {
             $json = @file_get_contents($json_url);
             if (!$json) {
                 $temp = explode('-', $id);
-                $id = str_replace('/', '', end($temp) );
+                $id = str_replace('/', '', end($temp));
                 $json_url ='https://graph.facebook.com/' . $id .
                            '?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=fan_count';
                 $json = @file_get_contents($json_url);
@@ -139,7 +144,8 @@ class SocialMediaUpdater extends AbstractHelper {
      *
      * @return int|bool the number of +1s, or false on failure
      */
-    private function getGooglePlusOnes($url) {
+    private function getGooglePlusOnes($url)
+    {
         try {
             $id = substr($url, 24);
             $json_url = 'https://www.googleapis.com/plus/v1/people/' . $id .'?key=' . GOOGLE_API_KEY;
@@ -163,11 +169,12 @@ class SocialMediaUpdater extends AbstractHelper {
      *
      * @return int|bool the number of +1s, or false on failure
      */
-    private function getInstagramFollowers($url) {
+    private function getInstagramFollowers($url)
+    {
         try {
-	        $name = str_replace('/', '', substr($url, 25));
-	        $instagram = new \InstagramScraper\Instagram();
-	        $account = $instagram->getAccount($name);
+            $name = str_replace('/', '', substr($url, 25));
+            $instagram = new \InstagramScraper\Instagram();
+            $account = $instagram->getAccount($name);
             return $account->getFollowedByCount();
         } catch (Exception $e) {
             return false;
@@ -181,21 +188,22 @@ class SocialMediaUpdater extends AbstractHelper {
      *
      * @return int|bool the number of subscribers, or false on failure
      */
-    private function getTwitterFollower($url) {
+    private function getTwitterFollower($url)
+    {
         try {
             $name = substr($url, 20);
-            $settings = array(
+            $settings = [
                 'oauth_access_token' => TWITTER_API_TOKEN,
                 'oauth_access_token_secret' => TWITTER_API_TOKEN_SECRET,
                 'consumer_key' => TWITTER_API_CONSUMER_KEY,
                 'consumer_secret' => TWITTER_API_CONSUMER_SECRET
-            );
+            ];
             $twitterAPI = new TwitterAPIExchange($settings);
             $json = $twitterAPI->setGetfield('?screen_name=' . $name)
                                ->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
                                ->performRequest();
             $json = json_decode($json);
-            if (isset($json->followers_count) ) {
+            if (isset($json->followers_count)) {
                 return intval($json->followers_count);
             }
             return false;
@@ -211,11 +219,12 @@ class SocialMediaUpdater extends AbstractHelper {
      *
      * @return int|bool the number of subscribers, or false on failure
      */
-    private function getYoutubeSubscribers($url) {
+    private function getYoutubeSubscribers($url)
+    {
         try {
             $username = substr($url, 24);
             $channelId = false;
-            if ( SocialMediaUpdater::startsWith($username, 'channel/') ) {
+            if (SocialMediaUpdater::startsWith($username, 'channel/')) {
                 $temp = explode('/', $username);
                 $channelId = end($temp);
             } else {
@@ -255,8 +264,9 @@ class SocialMediaUpdater extends AbstractHelper {
      * @param string $needle the needle
      * @return boolean true if and only if the haystack starts with needle
      */
-    private static function startsWith($haystack, $needle) {
+    private static function startsWith($haystack, $needle)
+    {
         // search backwards starting from haystack length characters from the end
-        return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+        return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
     }
 }

@@ -32,7 +32,7 @@ $container['APIController'] = function ($container) {
     return new APIController($container);
 };
 $container['FileController'] = function ($container) {
-	return new FileController($container);
+    return new FileController($container);
 };
 $container['PageController'] = function ($container) {
     return new PageController($container);
@@ -42,14 +42,14 @@ $app->group('/', function () {
     $this->get('', function (Request $request, Response $response) {
         return $response->withStatus(301)->withHeader('Location', $this->router->pathFor('de-home'));
     });
-	$this->get('robots.txt', FileController::class . ':robots');
+    $this->get('robots.txt', FileController::class . ':robots');
     $this->get('sitemap.xml', FileController::class . ':sitemap');
 });
 
 $app->group('/api/', function () {
     $this->get('churches/', APIController::class . ':churches');
     $this->get('churches/{id}/', APIController::class . ':church');
-	$this->get('churches/{id}/children/', APIController::class . ':children');
+    $this->get('churches/{id}/children/', APIController::class . ':children');
 
     $this->get('check/', APIController::class . ':check');
     $this->get('export/', APIController::class . ':export');
@@ -67,9 +67,9 @@ $app->group('/de/', function () {
     $this->get('details/{id}/', 'PageController:details')->setName('de-details');
     $this->get('impressum/', 'PageController:legal')->setName('de-legal');
     $this->get('daten/', 'PageController:data')->setName('de-data');
-	$this->get('opensearch.xml', 'PageController:opensearch')->setName('de-opensearch');
+    $this->get('opensearch.xml', 'PageController:opensearch')->setName('de-opensearch');
 })->add(function ($request, $response, $next) use ($container) {
-	$container['PageController']->setLanguage('de_DE', $request);
+    $container['PageController']->setLanguage('de_DE', $request);
     $response = $next($request, $response);
     return $response;
 });
@@ -85,9 +85,9 @@ $app->group('/en/', function () {
     $this->get('details/{id}/', 'PageController:details')->setName('en-details');
     $this->get('legal-notice/', 'PageController:legal')->setName('en-legal');
     $this->get('data/', 'PageController:data')->setName('en-data');
-	$this->get('opensearch.xml', 'PageController:opensearch')->setName('en-opensearch');
+    $this->get('opensearch.xml', 'PageController:opensearch')->setName('en-opensearch');
 })->add(function ($request, $response, $next) use ($container) {
-	$container['PageController']->setLanguage('en_US', $request);
+    $container['PageController']->setLanguage('en_US', $request);
     $response = $next($request, $response);
     return $response;
 });
