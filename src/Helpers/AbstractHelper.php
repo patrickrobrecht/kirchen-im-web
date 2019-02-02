@@ -6,20 +6,25 @@ namespace KirchenImWeb\Helpers;
  *
  * @package KirchenImWeb\Helpers
  */
-class AbstractHelper {
+class AbstractHelper
+{
 
-    protected function __construct() {
+    protected function __construct()
+    {
     }
 
     // No cloning.
-    private function __clone() {
+    private function __clone()
+    {
     }
 
     // No wakeups.
-    private function __wakeup() {
+    private function __wakeup()
+    {
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         static $instance = null;
         if (null === $instance) {
             $instance = new static;

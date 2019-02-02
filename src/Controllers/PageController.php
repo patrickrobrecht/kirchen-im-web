@@ -14,20 +14,24 @@ use Psr\Http\Message\ResponseInterface as Response;
  *
  * @package KirchenImWeb\Controllers
  */
-class PageController extends TwigController {
+class PageController extends TwigController
+{
 
-    public function __construct(ContainerInterface $container) {
+    public function __construct(ContainerInterface $container)
+    {
         parent::__construct($container);
     }
 
-    public function index(Request $request, Response $response, array $args) {
+    public function index(Request $request, Response $response, array $args)
+    {
         return $this->twig->render($response, 'index.html.twig', [
             'title' => _('Das Projekt kirchen-im-web.de'),
             'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.')
         ]);
     }
 
-    public function map(Request $request, Response $response, array $args) {
+    public function map(Request $request, Response $response, array $args)
+    {
         global $websites;
         return $this->twig->render($response, 'map.html.twig', [
             'title' => _('Karte'),
@@ -37,7 +41,8 @@ class PageController extends TwigController {
         ]);
     }
 
-    public function search(Request $request, Response $response, array $args) {
+    public function search(Request $request, Response $response, array $args)
+    {
         $pc = ParameterChecker::getInstance();
         $filters = $pc->extractFilterParameters($request);
         $websites = $pc->extractFilterWebsites($request);
@@ -53,28 +58,32 @@ class PageController extends TwigController {
         ]);
     }
 
-    public function comparison(Request $request, Response $response, array $args) {
+    public function comparison(Request $request, Response $response, array $args)
+    {
         $pc = ParameterChecker::getInstance();
         $filters = $pc->extractFilterParameters($request);
         $websites = Configuration::getInstance()->networksToCompare;
         $this->twig->render($response, 'table.html.twig', [
             'title' => _('Vergleich kirchlicher Social-Media-Auftritte'),
             'headline' => _('Vergleich kirchlicher Social-Media-Auftritte'),
+            // phpcs:ignore Generic.Files.LineLength.TooLong
             'description' => _('kirchen-im-web.de vergleicht kirchliche Social-Media-Auftritte anhand ihrer Follower-Zahlen.'),
             'compare' => true,
             'filters' => $filters,
             'websites' => $websites,
-            'sort' => $pc->extractSort($request, $websites, 'facebook'),
+            'sort' => $pc->extractSort($request, 'facebook'),
             'entries' => Database::getInstance()->getFilteredEntries($filters, $websites, true)
         ]);
     }
 
-    public function add(Request $request, Response $response, array $args) {
+    public function add(Request $request, Response $response, array $args)
+    {
         $data = ParameterChecker::getInstance()->parseAddFormPreSelectionParameters($request);
         return $this->addResponse($response, $data);
     }
 
-    public function addForm(Request $request, Response $response, array $args) {
+    public function addForm(Request $request, Response $response, array $args)
+    {
         $check = ParameterChecker::getInstance()->parseAddFormParameters($request);
         $added = [];
 
@@ -86,7 +95,8 @@ class PageController extends TwigController {
         return $this->addResponse($response, $check['data'], $added, $check['messages']);
     }
 
-    private function addResponse(Response $response, array $data, array $added = [], array $messages = []) {
+    private function addResponse(Response $response, array $data, array $added = [], array $messages = [])
+    {
         return $this->twig->render($response, 'add.html.twig', [
             'title' => _('Gemeinde eintragen'),
             'description' => _('Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.'),
@@ -97,7 +107,8 @@ class PageController extends TwigController {
         ]);
     }
 
-    public function stats(Request $request, Response $response, array $args) {
+    public function stats(Request $request, Response $response, array $args)
+    {
         $db = Database::getInstance();
         return $this->twig->render($response, 'stats.html.twig', [
             'title' => _('Statistik'),
@@ -111,7 +122,8 @@ class PageController extends TwigController {
         ]);
     }
 
-    public function details(Request $request, Response $response, array $args) {
+    public function details(Request $request, Response $response, array $args)
+    {
         $entry = Database::getInstance()->getEntry($args['id'], true);
         if (!$entry) {
             return $this->error($request, $response, $args);
@@ -122,20 +134,23 @@ class PageController extends TwigController {
         ]);
     }
 
-    public function legal(Request $request, Response $response, array $args) {
+    public function legal(Request $request, Response $response, array $args)
+    {
         return $this->twig->render($response, 'legal.html.twig', [
             'title' => _('Impressum')
         ]);
     }
 
-    public function data(Request $request, Response $response, array $args) {
+    public function data(Request $request, Response $response, array $args)
+    {
         return $this->twig->render($response, 'data.html.twig', [
             'title' => _('Offene Daten'),
             'entries' => Database::getInstance()->getRecentlyAddedEntries(),
         ]);
     }
 
-    public function error(Request $request, Response $response, array $args) {
+    public function error(Request $request, Response $response, array $args)
+    {
         if (substr($request->getRequestTarget(), 0, 3) == '/en') {
             $this->setLanguage('en_US', $request);
         } else {
@@ -145,15 +160,19 @@ class PageController extends TwigController {
         return $this->twig->render($response, 'default.html.twig', [
             'title' => _('Kirchliche Web- und Social-Media-Auftritte'),
             'headline' => _('Seite nicht gefunden'),
+            // phpcs:ignore Generic.Files.LineLength.TooLong
             'text' => _('Leider konnte die gewünschte Seite nicht gefunden werden. Möglicherweise wurde dieser Eintrag gelöscht.')
         ])->withStatus(404);
     }
 
-	public function opensearch(Request $request, Response $response, array $args) {
-		return $this->twig->render($response, 'opensearch.xml.twig')->withHeader('Content-Type', 'text/xml; charset=UTF-8');
-	}
+    public function opensearch(Request $request, Response $response, array $args)
+    {
+        return $this->twig->render($response, 'opensearch.xml.twig')
+                          ->withHeader('Content-Type', 'text/xml; charset=UTF-8');
+    }
 
-    public function setLanguage($language, Request $request) {
+    public function setLanguage($language, Request $request)
+    {
         putenv(sprintf('LC_ALL=%s', $language));
         setlocale(LC_ALL, $language);
         $this->twig->offsetSet('language', str_replace('_', '-', $language));

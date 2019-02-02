@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 * Comparison: Fix update of Instagram follower count
     (was broken due to changes of the Instagram API)
+* Development: Code style checks for CSS, JavaScript and PHP
 
 
 ## Version 3.4 (2018-10-28)

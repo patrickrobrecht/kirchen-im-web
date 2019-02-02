@@ -6,7 +6,8 @@ namespace KirchenImWeb\Helpers;
  *
  * @package KirchenImWeb\Helpers
  */
-class Configuration extends AbstractHelper {
+class Configuration extends AbstractHelper
+{
     // Countries.
     public $countries;
     public $denominations;
@@ -21,34 +22,35 @@ class Configuration extends AbstractHelper {
     public $sortOptions;
     public $languages_slugs;
 
-    protected function __construct() {
-        $this->countries = array(
+    protected function __construct()
+    {
+        $this->countries = [
             'DE' => _('Deutschland'),
             'LI' => _('Liechtenstein'),
             'LU' => _('Luxemburg'),
             'AT' => _('Österreich'),
             'CH' => _('Schweiz')
-        );
+        ];
 
-        $this->denominations = array(
+        $this->denominations = [
             'alt-katholisch' => _('alt-katholisch'),
             'anglikanisch' => _('anglikanisch'),
             'evangelisch' => _('evangelisch'),
             'freikirchlich' => _('freikirchlich'),
             'katholisch' => _('katholisch'),
             'ökumenisch' => _('ökumenisch')
-        );
+        ];
 
-        $this->denominations_colors = array(
+        $this->denominations_colors = [
             'alt-katholisch' => 'orange',
             'anglikanisch' => 'green',
             'evangelisch' => 'purple',
             'freikirchlich' => 'blue',
             'katholisch' => 'yellow',
             'ökumenisch' => 'red'
-        );
+        ];
 
-        $this->types = array(
+        $this->types = [
             'Bildungseinrichtung' => _('Bildungseinrichtung'),
             'Bischofskonferenz' => _('Bischofskonferenz'),
             'Bistum' => _('Bistum'),
@@ -68,10 +70,10 @@ class Configuration extends AbstractHelper {
             'Pfarrei' => _('Pfarrei'),
             'Pfarrvikarie' => _('Pfarrvikarie'),
             'andere' => _('andere')
-        );
+        ];
         $this->defaultType = 'Kirchengemeinde';
 
-        $this->websites = array(
+        $this->websites = [
             'web' => _('Webauftritt'),
             'blog' => _('Blog'),
             'rss' => 'RSS',
@@ -83,17 +85,17 @@ class Configuration extends AbstractHelper {
             'twitter' => 'Twitter',
             'vimeo' => 'Vimeo',
             'youtube' => 'YouTube',
-        );
+        ];
 
-        $this->preselectedWebsites = array(
+        $this->preselectedWebsites = [
             'web' => _('Webauftritt'),
             'facebook' => 'Facebook',
             'twitter' => 'Twitter',
             'youtube' => 'YouTube',
-        );
+        ];
 
         // Must contain the beginning of a URL for the website type.
-        $this->websitesStartOfURL = array(
+        $this->websitesStartOfURL = [
             'web' => '',
             'blog' => '',
             'rss' => '',
@@ -105,37 +107,37 @@ class Configuration extends AbstractHelper {
             'twitter' => 'https://twitter.com/',
             'vimeo' => 'https://vimeo.com/',
             'youtube' => 'https://www.youtube.com/',
-        );
+        ];
 
-        $this->networksToCompare = array(
+        $this->networksToCompare = [
             'facebook' => 'Facebook',
             'googlePlus' => 'Google+',
             'instagram' => 'Instagram',
             'twitter' => 'Twitter',
             'youtube' => 'YouTube'
-        );
+        ];
 
-	    $this->networksToCompareColors = array(
-		    'facebook' => '#3b5998',
-		    'googlePlus' => '#008000',
-		    'instagram' => '#383838',
-		    'twitter' => '#1da1f2',
-		    'youtube' => '#ff0000'
-	    );
+        $this->networksToCompareColors = [
+            'facebook' => '#3b5998',
+            'googlePlus' => '#008000',
+            'instagram' => '#383838',
+            'twitter' => '#1da1f2',
+            'youtube' => '#ff0000'
+        ];
 
-        $this->sortOptions = array(
+        $this->sortOptions = [
             'name' => _('Name'),
             'postalCode' => _('PLZ'),
             'city' => _('Ort'),
             'country' => _('Land'),
             'denomination' => _('Konfession'),
             'type' => _('Gemeindetyp')
-        );
+        ];
         $this->sortOptions = array_merge($this->sortOptions, $this->networksToCompare);
 
-        $this->languages_slugs = array(
+        $this->languages_slugs = [
             'de_DE' => 'de',
             'en_US' => 'en'
-        );
+        ];
     }
 }
