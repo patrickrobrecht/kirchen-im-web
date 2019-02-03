@@ -20,6 +20,9 @@ define('TWITTER_API_TOKEN_SECRET', "");
 define('TWITTER_API_CONSUMER_KEY', "");
 define('TWITTER_API_CONSUMER_SECRET', "");
 
+// OpenCage API
+define('OPENCAGE_API_KEY', '');
+
 // debug mode
 define('DEBUG', false);
 

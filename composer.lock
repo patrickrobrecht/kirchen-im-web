@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0dd80868cc961a9a6055cd00e2446699",
+    "content-hash": "6046b447f1bf43cdda7343c763a1c407",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -178,6 +178,53 @@
                 "routing"
             ],
             "time": "2018-02-13T20:26:39+00:00"
+        },
+        {
+            "name": "opencage/geocode",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenCageData/php-opencage-geocode.git",
+                "reference": "617aca70bfaa6f9846a9afd4c71ffa7d2afefae8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenCageData/php-opencage-geocode/zipball/617aca70bfaa6f9846a9afd4c71ffa7d2afefae8",
+                "reference": "617aca70bfaa6f9846a9afd4c71ffa7d2afefae8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7",
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OpenCage\\Geocoder\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "OpenCage Data Limited",
+                    "email": "info@opencagedata.com",
+                    "homepage": "http://geocoder.opencagedata.com"
+                }
+            ],
+            "description": "A PHP library for geocoding via the OpenCage Geocoder API",
+            "keywords": [
+                "addresses",
+                "geocode",
+                "geocoding",
+                "opencagedata"
+            ],
+            "time": "2018-01-17T17:52:19+00:00"
         },
         {
             "name": "phpfastcache/phpfastcache",

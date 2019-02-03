@@ -13,5 +13,7 @@
 
     <!-- Paths to check -->
     <file>src</file>
+    <file>config.sample.php</file>
+    <file>cron.php</file>
     <file>index.php</file>
 </ruleset>
