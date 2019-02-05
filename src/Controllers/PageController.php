@@ -16,10 +16,12 @@ use Psr\Http\Message\ResponseInterface as Response;
  */
 class PageController extends TwigController
 {
+    private $router;
 
     public function __construct(ContainerInterface $container)
     {
         parent::__construct($container);
+        $this->router = $container['router'];
     }
 
     public function index(Request $request, Response $response, array $args)
@@ -124,12 +126,25 @@ class PageController extends TwigController
 
     public function details(Request $request, Response $response, array $args)
     {
-        $entry = Database::getInstance()->getEntry($args['id'], true);
+        $id = intval($args['id']);
+        if ($id > 0) {
+            // Redirect for old URL.
+            $entry = Database::getInstance()->getEntry($id, true);
+            $redirect = $this->router->pathFor(
+                $this->twig->offsetGet('languageSlug') . '-details',
+                ['id' => $entry['slug']]
+            );
+            return $response->withRedirect($redirect);
+        }
+
+        $id = Database::getInstance()->getIDForSlug($args['id']);
+        $entry = Database::getInstance()->getEntry($id, true);
+
         if (!$entry) {
             return $this->error($request, $response, $args);
         }
 
-        $this->twig->render($response, 'details.html.twig', [
+        return $this->twig->render($response, 'details.html.twig', [
             'entry' => $entry
         ]);
     }

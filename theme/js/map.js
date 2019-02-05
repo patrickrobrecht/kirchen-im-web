@@ -84,7 +84,7 @@ function Map (translations) {
               thisMarker.addTo(denominationLayer);
 
               // Build the popup for the marker.
-              content = '<strong><a href="' + detailsUrlPrefix + '/details/' + v.id + '/">' + title + '</a></strong><br>' + v.street + ', ' + v.postalCode + ' ' + v.city + '<br><ul>';
+              content = '<strong><a href="' + detailsUrlPrefix + '/details/' + v.slug + '/">' + title + '</a></strong><br>' + v.street + ', ' + v.postalCode + ' ' + v.city + '<br><ul>';
 
               // Add to the layers for the social networks.
               if (v.web) {

@@ -52,6 +52,7 @@ class Exporter extends AbstractHelper
         fwrite($file, $headline . "\n");
 
         foreach ($entries as $row) {
+            unset($row['slug']);
             $data = implode(";", $row);
             fwrite($file, $data . "\n");
         }

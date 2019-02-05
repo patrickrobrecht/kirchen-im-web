@@ -124,7 +124,7 @@
             <tbody>
                 {% for entry in entries %}
                     <tr>
-                        <td scope="row"><a href="{{ path_for(languageSlug ~ '-details', {'id': entry.id}) }}">{{ entry.name }}</a></td>
+                        <td scope="row"><a href="{{ path_for(languageSlug ~ '-details', {'id': entry.slug}) }}">{{ entry.name }}</a></td>
                         <td>{{ entry.postalCode }}</td>
                         <td>{{ entry.city }}</td>
                         <td>{{ config.countries[entry.country]|trans }}</td>

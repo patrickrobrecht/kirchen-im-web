@@ -45,6 +45,7 @@ class TwigController
 
         // Pass global variables to the view.
         $this->twig->offsetSet('domain', $_SERVER['HTTP_HOST']);
+        $this->twig->offsetSet('host', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']);
         $this->twig->offsetSet('currentPath', $container['request']->getUri()->getPath());
         $this->twig->offsetSet('config', Configuration::getInstance());
     }
