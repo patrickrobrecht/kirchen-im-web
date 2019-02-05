@@ -11,7 +11,7 @@
 
         {% for church in churches %}
             <url>
-                <loc>https://kirchen-im-web.de{{ path_for(lang ~ '-details', {'id': church.id}) }}</loc>
+                <loc>https://kirchen-im-web.de{{ path_for(lang ~ '-details', {'id': church.slug}) }}</loc>
                 <changefreq>monthly</changefreq>
                 <lastmod>{{ church.lastUpdate|date('c') }}</lastmod>
             </url>

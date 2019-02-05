@@ -34,7 +34,7 @@ class Database extends AbstractHelper
     public function getEntries()
     {
         $websites = Configuration::getInstance()->websites;
-        $query = 'SELECT id, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
+        $query = 'SELECT id, slug, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
         foreach ($websites as $websiteId => $websiteName) {
             $query .= ', ' .$websiteId . '.url AS ' . $websiteId;
         }
@@ -50,7 +50,7 @@ class Database extends AbstractHelper
     public function getFilteredEntries($filters, $websites, $compare = false)
     {
         // Query churches
-        $query = 'SELECT id, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
+        $query = 'SELECT id, slug, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
         foreach ($websites as $websiteId => $websiteName) {
             $query .= ', ' .$websiteId . '.url AS ' . $websiteId . ', '
                       . $websiteId . '.followers AS ' . $websiteId . '_followers';
@@ -183,10 +183,9 @@ class Database extends AbstractHelper
     {
         $faultyEntries = [];
 
-        $statement = $this->connection->query(
-            'SELECT * FROM `churches`
-			WHERE street is NOT NULL AND (lat IS NULL or lon IS NULL)'
-        );
+        $statement = $this->connection->query('SELECT *
+            FROM `churches`
+			WHERE street is NOT NULL AND (lat IS NULL or lon IS NULL)');
         $faultyEntries['geolocation_missing'] = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         $networksToCompareAsStrings = [];
@@ -207,7 +206,7 @@ class Database extends AbstractHelper
     {
         $showWebsites = Configuration::getInstance()->preselectedWebsites;
 
-        $query = 'SELECT id, name, postalCode, city, country, denomination, churches.type';
+        $query = 'SELECT id, slug, name, postalCode, city, country, denomination, churches.type';
         foreach ($showWebsites as $websiteId => $websiteName) {
             $query .= ', ' .$websiteId . '.url AS ' . $websiteId;
         }
@@ -229,7 +228,7 @@ class Database extends AbstractHelper
 
     public function getParentEntries()
     {
-        $statement = $this->connection->query('SELECT id, name FROM churches
+        $statement = $this->connection->query('SELECT id, slug, name FROM churches
 			WHERE hasChildren = 1
 			ORDER BY name');
         return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -281,13 +280,15 @@ class Database extends AbstractHelper
         if ($parentId === null) {
             return $parents;
         }
-        $statement = $this->connection->prepare('SELECT id, name, parentId FROM churches
+        $statement = $this->connection->prepare('SELECT id, slug, name, parentId
+            FROM churches
             WHERE id = :parentId');
         $statement->bindParam(':parentId', $parentId);
         $statement->execute();
         $parentData = $statement->fetch(PDO::FETCH_ASSOC);
         array_push($parents, [
             'id' => $parentId,
+            'slug' => $parentData['slug'],
             'name' => $parentData['name']
         ]);
         return $this->getParentsOfEntry($parentData['parentId'], $parents);
@@ -295,7 +296,8 @@ class Database extends AbstractHelper
 
     private function getChildrenOfEntry($parentId, $recursive)
     {
-        $statement = $this->connection->prepare('SELECT id, name FROM churches
+        $statement = $this->connection->prepare('SELECT id, slug, name
+            FROM churches
             WHERE parentId = :parentId
             ORDER BY name');
         $statement->bindParam(':parentId', $parentId);
@@ -312,7 +314,7 @@ class Database extends AbstractHelper
 
     public function getAllChurchesWithLastUpdate()
     {
-        $statement = $this->connection->query('SELECT id, IFNULL(lastFollowerUpdate, timestamp) AS lastUpdate
+        $statement = $this->connection->query('SELECT id, slug, IFNULL(lastFollowerUpdate, timestamp) AS lastUpdate
             FROM churches
 			LEFT JOIN (
 				SELECT churchId, MAX(TIMESTAMP) AS lastFollowerUpdate FROM websites
@@ -436,11 +438,14 @@ class Database extends AbstractHelper
 
         // Add church to the database.
         $statement = $this->connection->prepare('
-			INSERT INTO churches (name, street, postalCode, city, country,
+			INSERT INTO churches (slug, name, street, postalCode, city, country,
 			                      lat, lon, denomination, type, hasChildren, timestamp)
-			VALUES (:name, :street, :postalCode, :city, :countryCode,
+			VALUES (:slug, :name, :street, :postalCode, :city, :countryCode,
 			        :lat, :lon, :denomination, :type, :hasChildren, NOW())');
 
+        $slug = $this->createSlug($data['name']);
+
+        $statement->bindParam(':slug', $slug);
         $statement->bindParam(':name', $data['name']);
         $statement->bindParam(':street', $data['street']);
         $statement->bindParam(':postalCode', $data['postalCode']);
@@ -475,5 +480,39 @@ class Database extends AbstractHelper
         }
 
         return $this->getEntry(intval($churchId));
+    }
+
+    private function createSlug($name, $iteration = 1)
+    {
+        $name = mb_strtolower($name, 'UTF-8');
+        $name = str_replace([' ', '/', '(', ')'], '-', $name);
+        $name = str_replace(['ä', 'ö', 'ü', 'ß'], ['ae', 'oe', 'ue', 'ss'], $name);
+        $name = preg_replace("/[^a-z-0-9]+/i", "", $name);
+        while (strpos($name, '--') !== false) {
+            $name = str_replace('--', '-', $name);
+        }
+        $name = trim($name, '-');
+
+        $name = substr($name, 0, 95);
+
+        $slug = $name;
+        $iteration = 1;
+        while (\KirchenImWeb\Helpers\Database::getInstance()->getIDForSlug($slug)) {
+            $iteration++;
+            $slug = $name . '-' . $iteration;
+        }
+
+        return $slug;
+    }
+
+    public function getIDForSlug($slug)
+    {
+        $statement = $this->connection->prepare('
+			SELECT id FROM churches
+            WHERE slug = :slug');
+        $statement->bindParam(':slug', $slug);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result ? intval($result['id']) : false;
     }
 }

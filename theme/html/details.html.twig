@@ -23,7 +23,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             {% for parent in entry.parents|reverse %}
-                <li class="breadcrumb-item"><a href="{{ path_for(languageSlug ~ '-details', {'id': parent.id}) }}">{{ parent.name }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ path_for(languageSlug ~ '-details', {'id': parent.slug}) }}">{{ parent.name }}</a></li>
             {% endfor %}
             <li class="breadcrumb-item active" aria-current="page">{{ entry.name }}</li>
         </ol>
@@ -100,7 +100,7 @@
                         <td>{% if entry.parentId %}
                                 <ol>
                                     {% for parent in entry.parents %}
-                                        <li><a href="{{ path_for(languageSlug ~ '-details', {'id': parent.id}) }}">{{ parent.name }}</a></li>
+                                        <li><a href="{{ path_for(languageSlug ~ '-details', {'id': parent.slug}) }}">{{ parent.name }}</a></li>
                                     {% endfor %}
                                 </ol>
                             {% else %}
@@ -243,10 +243,10 @@
           "parentOrganization": {
             "@type": "Organization",
             "name": "{{ entry.parents|first.name }}",
-            "url": "http://kirchen-im-web.de{{ path_for(languageSlug ~ '-details', {'id': entry.parentId}) }}"
+            "url": "{{ host ~ base_url ~ path_for(languageSlug ~ '-details', {'id': entry.parents|first.slug}) }}"
           },
           {% endif %}
-          "url": "http://kirchen-im-web.de{{ path_for(languageSlug ~ '-details', {'id': entry.id}) }}"
+          "url": "{{ host ~ base_url ~ path_for(languageSlug ~ '-details', {'id': entry.slug}) }}"
         }
     </script>
 {% endblock %}

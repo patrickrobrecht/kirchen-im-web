@@ -4,7 +4,7 @@
     {% if added %}
         {% set name = added.name %}
         <p class="alert alert-success">
-            <a href="{{ path_for(languageSlug ~ '-details', {'id': added.id}) }}">
+            <a href="{{ path_for(languageSlug ~ '-details', {'id': added.slug}) }}">
                 {% trans %}
                     {{ name }} wurde eingetragen.
                 {% endtrans %}

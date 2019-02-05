@@ -72,7 +72,7 @@
     {% if entry.children|length > 0 %}
         <ol>
             {% for child in entry.children %}
-                <li><a href="{{ path_for(languageSlug ~ '-details', {'id': child.id}) }}">
+                <li><a href="{{ path_for(languageSlug ~ '-details', {'id': child.slug}) }}">
                         {{- child.name -}}</a>
                     {% import _self as macros %}
                     {{ macros.churchHierarchy(child, languageSlug) }}

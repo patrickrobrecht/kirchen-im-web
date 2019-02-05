@@ -43,7 +43,7 @@ $app->group('/', function () {
         return $response->withStatus(301)->withHeader('Location', $this->router->pathFor('de-home'));
     });
     $this->get('robots.txt', FileController::class . ':robots');
-    $this->get('sitemap.xml', FileController::class . ':sitemap');
+    $this->get('sitemap.xml', FileController::class . ':sitemap')->setName('sitemap');
 });
 
 $app->group('/api/', function () {
