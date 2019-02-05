@@ -1,6 +1,8 @@
 <?php
 namespace KirchenImWeb\Helpers;
 
+use Exception;
+use OpenCage\Geocoder\Geocoder;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
@@ -333,18 +335,28 @@ class ParameterChecker extends AbstractHelper
 
     private function getGeolocation($street, $city, $countryCode)
     {
-        $address = str_replace(" ", "+", $street . $city);
-        $region = Configuration::getInstance()->countries[$countryCode];
+        $geocoder = new Geocoder(OPENCAGE_API_KEY);
+        try {
+            $result = $geocoder->geocode(
+                $street . ', ' . $city,
+                [
+                    'countrycode' => strtolower(Configuration::getInstance()->countries[$countryCode])
+                ]
+            );
 
-        $mapsURL = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=$region";
-        $json = file_get_contents($mapsURL);
-        $json = json_decode($json);
-        $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
-        $lon = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+            if ($result && $result['total_results'] > 0) {
+                $first = $result['results'][0];
+                return [
+                    'lat' => $first['geometry']['lat'],
+                    'lon' => $first['geometry']['lng']
+                ];
+            }
+        } catch (Exception $e) {
+        }
 
         return [
-            'lat' => $lat,
-            'lon' => $lon
+            'lat' => null,
+            'lon' => null
         ];
     }
 }

@@ -18,6 +18,7 @@
     "ext-json": "*",
     "ext-pdo": "*",
     "j7mbo/twitter-api-php": "^1.0",
+    "opencage/geocode": "^2.0",
     "railto/twig-asset-version-extension": "^1.0",
     "raiym/instagram-php-scraper": "^0.8.27",
     "slim/slim": "^3.11",
