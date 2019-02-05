@@ -86,7 +86,7 @@ function minifyCSS () {
 }
 
 function minifyJavaScript () {
-  del(['assets/*.js']);
+  del(['assets/js/*.js']);
   return gulp.src(['theme/js/*.js'], { base: 'theme/js' })
     .pipe(minify({
       ext: {
