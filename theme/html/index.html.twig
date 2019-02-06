@@ -10,7 +10,7 @@
                 {% trans 'Alt-katholische Kirchen werden orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.'%}
             </figcaption>
         </figure>
-        <div class="col-12 col-md-8 col-lg-9">
+        <div class="col-12 col-md-8 col-lg-6">
             <h2>{% trans 'Über das Projekt' %}</h2>
             <p>{% trans 'Wir wollen zeigen, dass viele Kirchengemeinden, Landeskirchen und Bistümer auch im Web gute Öffentlichtkeitsarbeit machen und stellen diese mit ihren Web- und Social-Media-Auftritten dar.' %}
                 {% trans 'kirchen-im-web.de vergleicht auch die Follower-Zahlen der Social-Media-Auftritte.' %}
@@ -40,6 +40,32 @@
 
             <p>{% trans 'Sie haben eine Frage, die hier nicht beantwortet wird?'%}
                 <a href="{{ path_for(languageSlug ~ '-legal') }}">{% trans 'Dann schreiben Sie uns!'%}</a> {% trans 'Natürlich sind Verbesserungsvorschläge sehr willkommen.'%}</p>
+        </div>
+        <div class="col-12 col-lg-3">
+            <h2>{% trans 'Zuletzt hinzugefügt' %}</h2>
+            <div class="row">
+                {% for entry in recentlyAddedEntries %}
+                    <div class="col-12 col-sm-6 col-lg-12">
+                        <div class="card mb-2 shadow-sm">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <a href="{{ path_for(languageSlug ~ '-details', {'id': entry.slug}) }}">{{ entry.name }}</a>
+                                </div>
+                                <small class="text-muted">{{ entry.denomination|trans }} | {{ entry.type }} | {{ entry.city }}</small>
+                                <div class="py-1 mx-n1">
+                                    {% for id, name in config.websites %}
+                                        {% if entry[id] %}
+                                            <a class="px-1" href="{{ entry[id] }}" title="{{ name|trans }}">
+                                                <img src="{{ base_url }}/images/icons/{{ id }}.png" alt="{{ name|trans }}">
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </article>
 {% endblock %}

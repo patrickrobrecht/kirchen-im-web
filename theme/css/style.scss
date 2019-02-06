@@ -12,9 +12,11 @@
 @import "../../node_modules/bootstrap/scss/forms";
 @import "../../node_modules/bootstrap/scss/buttons";
 @import "../../node_modules/bootstrap/scss/transitions";
+@import "../../node_modules/bootstrap/scss/button-group";
 @import "../../node_modules/bootstrap/scss/input-group";
 @import "../../node_modules/bootstrap/scss/nav";
 @import "../../node_modules/bootstrap/scss/navbar";
+@import "../../node_modules/bootstrap/scss/card";
 @import "../../node_modules/bootstrap/scss/breadcrumb";
 @import "../../node_modules/bootstrap/scss/alert";
 @import "../../node_modules/bootstrap/scss/media";
@@ -35,52 +37,48 @@ a[href^="http://"]:after {
   content: " " url(../../images/non-secure.png);
 }
 
-a[href^="https://"]:after {
-  content: " " url(../../images/secure.png);
-}
-
 .web::before {
-  content: url(../../images/icons/Web.png) " ";
+  content: url(../../images/icons/web.png) " ";
 }
 
 .blog::before {
-  content: url(../../images/icons/Wordpress.png) " ";
+  content: url(../../images/icons/blog.png) " ";
 }
 
 .rss::before {
-  content: url(../../images/icons/RSS.png) " ";
+  content: url(../../images/icons/rss.png) " ";
 }
 
 .facebook::before {
-  content: url(../../images/icons/Facebook.png) " ";
+  content: url(../../images/icons/facebook.png) " ";
 }
 
 .flickr::before {
-  content: url(../../images/icons/Flickr.png) " ";
+  content: url(../../images/icons/flickr.png) " ";
 }
 
 .googlePlus::before {
-  content: url(../../images/icons/Google-plus.png) " ";
+  content: url(../../images/icons/googlePlus.png) " ";
 }
 
 .instagram::before {
-  content: url(../../images/icons/Instagram.png) " ";
+  content: url(../../images/icons/instagram.png) " ";
 }
 
 .soundcloud::before {
-  content: url(../../images/icons/Soundcloud.png) " ";
+  content: url(../../images/icons/soundcloud.png) " ";
 }
 
 .twitter::before {
-  content: url(../../images/icons/Twitter.png) " ";
+  content: url(../../images/icons/twitter.png) " ";
 }
 
 .vimeo::before {
-  content: url(../../images/icons/Vimeo.png) " ";
+  content: url(../../images/icons/vimeo.png) " ";
 }
 
 .youtube::before {
-  content: url(../../images/icons/Youtube.png) " ";
+  content: url(../../images/icons/youtube.png) " ";
 }
 
 /* Icons for countries */

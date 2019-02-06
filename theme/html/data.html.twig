@@ -11,42 +11,4 @@
         </ul>
         <p>{% trans 'Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert.' %}</p>
     </article>
-
-    <article id="recently-added">
-        <h2>{% trans 'Zuletzt hinzugefügt' %}</h2>
-        <table class="table table-striped tablesorter">
-            <thead>
-                <tr>
-                    <th scope="col">{% trans 'Name' %}</th>
-                    <th scope="col">{% trans 'PLZ' %}</th>
-                    <th scope="col">{% trans 'Ort' %}</th>
-                    <th scope="col">{% trans 'Land' %}</th>
-                    <th scope="col">{% trans 'Konfession' %}</th>
-                    <th scope="col">{% trans 'Gemeindetyp' %}</th>
-                    {% for id, name in config.preselectedWebsites %}
-                        <th scope="col">{{ name }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for entry in entries %}
-                    <tr>
-                        <td scope="row"><a href="{{ path_for(languageSlug ~ '-details', {'id': entry.slug}) }}">{{ entry.name }}</a></td>
-                        <td>{{ entry.postalCode }}</td>
-                        <td>{{ entry.city }}</td>
-                        <td>{{ config.countries[entry.country]|trans }}</td>
-                        <td>{{ entry.denomination|trans }}</td>
-                        <td>{{ entry.type|trans }}</td>
-                        {% for id, name in config.preselectedWebsites %}
-                            <td>
-                                {% if entry[id] %}
-                                    <a href="{{ entry[id] }}">{{ name }}</a>
-                                {% endif %}
-                            </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </article>
 {% endblock %}

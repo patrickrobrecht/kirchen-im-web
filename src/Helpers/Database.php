@@ -218,7 +218,7 @@ class Database extends AbstractHelper
 								AND ' . $websiteId . '.type = "' . $websiteId . '" ';
         }
 
-        $query .= ' ORDER BY churches.timestamp DESC, id DESC LIMIT 25';
+        $query .= ' ORDER BY churches.timestamp DESC, id DESC LIMIT 6';
 
         $statement = $this->connection->prepare($query);
         $statement->execute();

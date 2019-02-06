@@ -28,7 +28,8 @@ class PageController extends TwigController
     {
         return $this->twig->render($response, 'index.html.twig', [
             'title' => _('Das Projekt kirchen-im-web.de'),
-            'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.')
+            'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'),
+            'recentlyAddedEntries' => Database::getInstance()->getRecentlyAddedEntries()
         ]);
     }
 
@@ -55,7 +56,7 @@ class PageController extends TwigController
             'compare' => false,
             'filters' => $filters,
             'websites' => $websites,
-            'sort' => $pc->extractSort($request, $websites, 'city'),
+            'sort' => $pc->extractSort($request, 'city'),
             'entries' => Database::getInstance()->getFilteredEntries($filters, $websites)
         ]);
     }
@@ -159,8 +160,7 @@ class PageController extends TwigController
     public function data(Request $request, Response $response, array $args)
     {
         return $this->twig->render($response, 'data.html.twig', [
-            'title' => _('Offene Daten'),
-            'entries' => Database::getInstance()->getRecentlyAddedEntries(),
+            'title' => _('Offene Daten')
         ]);
     }
 
