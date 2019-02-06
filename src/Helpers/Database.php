@@ -515,4 +515,12 @@ class Database extends AbstractHelper
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result ? intval($result['id']) : false;
     }
+
+    public function getSettings()
+    {
+        $statement = $this->connection->prepare('SELECT name, value
+			FROM settings');
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
 }

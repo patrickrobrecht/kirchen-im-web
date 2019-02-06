@@ -66,6 +66,7 @@ $app->group('/de/', function () {
     $this->get('statistik/', 'PageController:stats')->setName('de-stats');
     $this->get('details/{id}/', 'PageController:details')->setName('de-details');
     $this->get('impressum/', 'PageController:legal')->setName('de-legal');
+    $this->get('datenschutzerklaerung/', 'PageController:privacy')->setName('de-privacy');
     $this->get('daten/', 'PageController:data')->setName('de-data');
     $this->get('opensearch.xml', 'PageController:opensearch')->setName('de-opensearch');
 })->add(function ($request, $response, $next) use ($container) {
@@ -84,6 +85,7 @@ $app->group('/en/', function () {
     $this->get('statistics/', 'PageController:stats')->setName('en-stats');
     $this->get('details/{id}/', 'PageController:details')->setName('en-details');
     $this->get('legal-notice/', 'PageController:legal')->setName('en-legal');
+    $this->get('privacy/', 'PageController:privacy')->setName('en-privacy');
     $this->get('data/', 'PageController:data')->setName('en-data');
     $this->get('opensearch.xml', 'PageController:opensearch')->setName('en-opensearch');
 })->add(function ($request, $response, $next) use ($container) {

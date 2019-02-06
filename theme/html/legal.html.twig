@@ -27,8 +27,8 @@
     <article>
         <h2>{% trans 'Impressum' %}</h2>
         <p>Verantwortlich für diesen Webauftritt ist:
-            <br>Patrick Robrecht, Dr.-Rörig-Damm 99, 33102 Paderborn
-            <br>E-Mail: kontakt [ät-Zeichen] kirchen [minus] im [minus] web de
+            <br>{{ settings.legalNotice }}
+            <br>E-Mail: {{ settings.mailContactEscaped }}
             <br>Twitter: <a href="https://twitter.com/kirchenimweb/">@kirchenimweb</a></p>
     </article>
 {% endblock %}

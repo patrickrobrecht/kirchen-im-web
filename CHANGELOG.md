@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Details: URLs based on the name of the church
 * Show recently added entries on home page instead of open data page
 * Don't mark HTTPS links with secure icon (only HTTP marked as non-secure)
+* Own page for privacy statement
 
 ### Fixed
 * Add Form: Fix geolocation

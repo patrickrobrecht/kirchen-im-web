@@ -153,7 +153,16 @@ class PageController extends TwigController
     public function legal(Request $request, Response $response, array $args)
     {
         return $this->twig->render($response, 'legal.html.twig', [
-            'title' => _('Impressum')
+            'title' => _('Impressum'),
+            'settings' => Database::getInstance()->getSettings()
+        ]);
+    }
+
+    public function privacy(Request $request, Response $response, array $args)
+    {
+        return $this->twig->render($response, 'privacy.html.twig', [
+            'title' => _('Datenschutzerklärung'),
+            'settings' => Database::getInstance()->getSettings()
         ]);
     }
 
@@ -239,7 +248,12 @@ class PageController extends TwigController
             [
                 'path' => $languageSlug . '-legal',
                 'text' => 'Impressum'
-            ], [
+            ],
+            [
+                'path' => $languageSlug . '-privacy',
+                'text' => 'Datenschutzerklärung'
+            ],
+            [
                 'path' => $languageSlug . '-data',
                 'text' => 'Offene Daten'
             ]

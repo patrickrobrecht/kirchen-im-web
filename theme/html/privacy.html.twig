@@ -1,0 +1,7 @@
+{% extends 'default.html.twig' %}
+
+{% block main %}
+    <article>
+        {{ settings.privacyStatement | striptags('<h2><h3><p><br><ul><li><a>') | raw }}
+    </article>
+{% endblock %}
