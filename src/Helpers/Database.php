@@ -324,23 +324,27 @@ class Database extends AbstractHelper
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getURLsForUpdate($networksToCompareList, $limit)
+    public function getURLsForUpdate($networksToCompareList, int $limit = 10)
     {
-        $query = 'SELECT websiteId, churchId, url, type, followers, timestamp
+        $statement = $this->connection->prepare('SELECT websiteId, churchId, url, type, followers, timestamp
             FROM websites
             WHERE type IN (' . $networksToCompareList . ')
             ORDER BY timestamp 
-            LIMIT ' . $limit;
-        $statement = $this->connection->query($query);
+            LIMIT :maxResults');
+        $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
+        $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getWebsitesToCheck()
+    public function getWebsitesToCheck(int $limit = 100)
     {
-        $query = 'SELECT websiteId, url
+        $statement = $this->connection->prepare('SELECT websiteId, url
             FROM websites
-            WHERE lastCheck IS NULL OR lastCheck <= CURDATE()';
-        $statement = $this->connection->query($query);
+            WHERE lastCheck IS NULL OR lastCheck <= CURDATE()
+            ORDER BY lastCheck
+            LIMIT :maxResults');
+        $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
+        $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 

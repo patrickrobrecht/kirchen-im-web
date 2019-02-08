@@ -12,6 +12,8 @@ class LinkCheck
     private $httpStatusCode;
     private $redirectTarget;
 
+    const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0';
+
     /**
      * Checks the availability of the website with the given URL.
      *
@@ -23,6 +25,7 @@ class LinkCheck
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_NOBODY, true);
         curl_setopt($handle, CURLOPT_HEADER, true);
+        curl_setopt($handle, CURLOPT_USERAGENT, self::USER_AGENT);
         curl_exec($handle);
         $this->httpStatusCode = (int)curl_getinfo($handle, CURLINFO_HTTP_CODE);
         $this->redirectTarget = (string)curl_getinfo($handle, CURLINFO_REDIRECT_URL);

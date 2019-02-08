@@ -1,6 +1,9 @@
 <?php
-namespace KirchenImWeb\Helpers;
+namespace KirchenImWeb\Updaters;
 
+use KirchenImWeb\Helpers\AbstractHelper;
+use KirchenImWeb\Helpers\Configuration;
+use KirchenImWeb\Helpers\Database;
 use Exception;
 use TwitterAPIExchange;
 
@@ -14,8 +17,6 @@ class SocialMediaUpdater extends AbstractHelper
 
     public function cron()
     {
-        ini_set('max_execution_time', 300);
-
         // Create list of networks to compare (escaped, comma-separated)
         $networksToCompare = Configuration::getInstance()->networksToCompare;
         $networksToCompareAsStrings = [];
@@ -26,7 +27,7 @@ class SocialMediaUpdater extends AbstractHelper
 
         // Start update and measure time.
         $time = microtime(true);
-        $urls = Database::getInstance()->getURLsForUpdate($networksToCompareList, 10);
+        $urls = Database::getInstance()->getURLsForUpdate($networksToCompareList);
         $results = [];
         foreach ($urls as $row) {
             array_push($results, $this->update($row));

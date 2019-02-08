@@ -1,7 +1,7 @@
 <?php
 use KirchenImWeb\Helpers\Exporter;
-use KirchenImWeb\Helpers\SocialMediaUpdater;
 use KirchenImWeb\Updaters\LinkCheckUpdater;
+use KirchenImWeb\Updaters\SocialMediaUpdater;
 
 require __DIR__ . '/vendor/autoload.php';
 if (file_exists(__DIR__ . '/config.php')) {
