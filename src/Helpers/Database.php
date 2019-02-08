@@ -335,6 +335,28 @@ class Database extends AbstractHelper
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getWebsitesToCheck()
+    {
+        $query = 'SELECT websiteId, url
+            FROM websites
+            WHERE lastCheck IS NULL OR lastCheck <= CURDATE()';
+        $statement = $this->connection->query($query);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateWebsiteCheck($websiteId, $statusCode, $redirectTarget)
+    {
+        $statement = $this->connection->prepare('UPDATE websites
+            SET statusCode = :statusCode,
+                redirectTarget = :redirectTarget,
+                lastCheck = NOW()
+            WHERE websiteId = :websiteId');
+        $statement->bindParam(':statusCode', $statusCode);
+        $statement->bindParam(':redirectTarget', $redirectTarget);
+        $statement->bindParam(':websiteId', $websiteId);
+        return $statement->execute();
+    }
+
     public function updateFollowers($websiteId, $followers)
     {
         if ($followers === false) {
@@ -482,7 +504,7 @@ class Database extends AbstractHelper
         return $this->getEntry(intval($churchId));
     }
 
-    private function createSlug($name, $iteration = 1)
+    private function createSlug($name)
     {
         $name = mb_strtolower($name, 'UTF-8');
         $name = str_replace([' ', '/', '(', ')'], '-', $name);

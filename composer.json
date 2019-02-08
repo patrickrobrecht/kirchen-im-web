@@ -14,6 +14,7 @@
   "license": "GPL-3.0",
   "require": {
     "php": "^7.1",
+    "ext-curl": "*",
     "ext-gettext": "*",
     "ext-json": "*",
     "ext-pdo": "*",

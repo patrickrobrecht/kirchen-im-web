@@ -93,7 +93,7 @@ Returns the (direct) children of the church with the given id in JSON.
     (this includes `npm install` for Bootstrap and JavaScript libraries).
 * Run `composer dev` to automatically compile `*.scss` to `*.css` 
     and `*.js` to `*.min.js` whenever the file is changed.
-* Create a database.
+* Create a database and create the tables with `database-scheme.sql`.
 * Create a `config.php` with the database credentials and valid API keys/secrets
     (cp. `config.sample.php`).
 

@@ -1,0 +1,51 @@
+<?php
+
+namespace KirchenImWeb\Updaters;
+
+/**
+ * Utility for checking the availability of the website with the given URL.
+ *
+ * @package KirchenImWeb\Updaters
+ */
+class LinkCheck
+{
+    private $httpStatusCode;
+    private $redirectTarget;
+
+    /**
+     * Checks the availability of the website with the given URL.
+     *
+     * @param string $url
+     */
+    public function __construct(string $url)
+    {
+        $handle = curl_init($url);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_NOBODY, true);
+        curl_setopt($handle, CURLOPT_HEADER, true);
+        curl_exec($handle);
+        $this->httpStatusCode = (int)curl_getinfo($handle, CURLINFO_HTTP_CODE);
+        $this->redirectTarget = (string)curl_getinfo($handle, CURLINFO_REDIRECT_URL);
+        curl_close($handle);
+    }
+
+    /**
+     * Returns the HTTP status code.
+     *
+     * @return int the status code
+     */
+    public function getStatusCode()
+    {
+        return $this->httpStatusCode;
+    }
+
+    /**
+     * Returns the target URL of a redirect, otherwise the empty string.
+     *
+     * @return string the target URL
+     */
+    public function getRedirectTarget()
+    {
+        return $this->redirectTarget;
+    }
+}
