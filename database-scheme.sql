@@ -27,7 +27,8 @@ CREATE TABLE `followers`
   `followers`  INT(11)  NOT NULL,
   `date`       DATETIME NOT NULL,
   PRIMARY KEY (`followerId`),
-  INDEX `FK_followers_websites` (`websiteId`)
+  INDEX `FK_followers_websites` (`websiteId`),
+  CONSTRAINT `FK_followers_websites` FOREIGN KEY (`websiteId`) REFERENCES `websites` (`websiteId`)
 );
 
 CREATE TABLE `settings`
@@ -41,16 +42,18 @@ CREATE TABLE `settings`
 
 CREATE TABLE `websites`
 (
-  `websiteId`      INT(11)     NOT NULL AUTO_INCREMENT,
-  `churchId`       INT(11)     NOT NULL,
-  `type`           VARCHAR(20) NOT NULL,
-  `url`            TEXT        NULL,
-  `followers`      INT(11)     NULL DEFAULT NULL,
-  `timestamp`      DATETIME    NULL DEFAULT NULL,
-  `notes`          TEXT        NULL,
-  `statusCode`     INT(11)     NULL DEFAULT NULL,
-  `redirectTarget` TEXT        NULL,
-  `lastCheck`      DATETIME    NULL DEFAULT NULL,
+  `websiteId`           INT(11)     NOT NULL AUTO_INCREMENT,
+  `churchId`            INT(11)     NOT NULL,
+  `type`                VARCHAR(20) NOT NULL,
+  `url`                 TEXT        NULL,
+  `followers`           INT(11)     NULL DEFAULT NULL,
+  `followersStatus`     INT(11)     NULL DEFAULT NULL,
+  `followersLastUpdate` DATETIME    NULL DEFAULT NULL,
+  `statusCode`          INT(11)     NULL DEFAULT NULL,
+  `redirectTarget`      TEXT        NULL,
+  `lastCheck`           DATETIME    NULL DEFAULT NULL,
+  `notes`               TEXT        NULL,
+  `notesUpdate`         DATETIME    NULL DEFAULT NULL,
   PRIMARY KEY (`websiteId`),
   INDEX `FK_websites_churches` (`churchId`),
   CONSTRAINT `FK_websites_churches` FOREIGN KEY (`churchId`) REFERENCES `churches` (`id`)
