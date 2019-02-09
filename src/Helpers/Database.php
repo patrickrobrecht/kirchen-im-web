@@ -179,27 +179,29 @@ class Database extends AbstractHelper
         return $ids;
     }
 
-    public function getFaultyEntries()
+    public function getWebsitesWithMissingFollowers()
     {
-        $faultyEntries = [];
-
-        $statement = $this->connection->query('SELECT *
-            FROM `churches`
-			WHERE street is NOT NULL AND (lat IS NULL or lon IS NULL)');
-        $faultyEntries['geolocation_missing'] = $statement->fetchAll(PDO::FETCH_ASSOC);
-
         $networksToCompareAsStrings = [];
         foreach (Configuration::getInstance()->networksToCompare as $type => $typeName) {
             array_push($networksToCompareAsStrings, "'" . $type . "'");
         }
         $networksToCompareList = implode(', ', $networksToCompareAsStrings);
-        $statement = $this->connection->prepare('SELECT churchId, url from websites 
+        $statement = $this->connection->prepare('SELECT churchId, url
+            FROM websites 
 			WHERE type IN (' . $networksToCompareList . ') AND (followers IS NULL AND timestamp < NOW())
 			ORDER BY type, churchId');
         $statement->execute();
-        $faultyEntries['followers_missing'] = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-        return $faultyEntries;
+    public function getErrorWebsitesByStatusCode()
+    {
+        $statement = $this->connection->prepare('SELECT *
+            FROM websites
+            WHERE statusCode != 200 AND notes NOT LIKE "ok%" AND lastCheck IS NOT NULL
+            ORDER BY url');
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getRecentlyAddedEntries()
@@ -336,7 +338,7 @@ class Database extends AbstractHelper
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getWebsitesToCheck(int $limit = 100)
+    public function getWebsitesToCheck(int $limit = 25)
     {
         $statement = $this->connection->prepare('SELECT websiteId, url
             FROM websites

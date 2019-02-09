@@ -58,25 +58,4 @@ class APIController
             return $response->withStatus(404);
         }
     }
-
-
-    // Admin API
-
-    public function check(Request $request, Response $response, array $args)
-    {
-        $entries = Database::getInstance()->getFaultyEntries();
-        return $response->withJson(Exporter::getInstance()->removeNullValues($entries));
-    }
-
-    public function export(Request $request, Response $response, array $args)
-    {
-        Exporter::getInstance()->export();
-        return $response->getBody()->write('Regenerated export files');
-    }
-
-    public function update(Request $request, Response $response, array $args)
-    {
-        $results = SocialMediaUpdater::getInstance()->cron();
-        return $response->withJson($results);
-    }
 }

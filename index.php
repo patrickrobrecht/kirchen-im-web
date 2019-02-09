@@ -1,6 +1,7 @@
 <?php
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use KirchenImWeb\Controllers\AdminController;
 use KirchenImWeb\Controllers\APIController;
 use KirchenImWeb\Controllers\FileController;
 use KirchenImWeb\Controllers\PageController;
@@ -50,11 +51,9 @@ $app->group('/api/', function () {
     $this->get('churches/', APIController::class . ':churches');
     $this->get('churches/{id}/', APIController::class . ':church');
     $this->get('churches/{id}/children/', APIController::class . ':children');
-
-    $this->get('check/', APIController::class . ':check');
-    $this->get('export/', APIController::class . ':export');
-    $this->get('update/', APIController::class . ':update');
 });
+
+$app->get('/admin/', PageController::class . ':admin');
 
 $app->group('/de/', function () {
     $this->get('', 'PageController:index')->setName('de-home');

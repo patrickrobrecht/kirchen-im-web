@@ -17,17 +17,31 @@ class LinkCheck
     /**
      * Checks the availability of the website with the given URL.
      *
-     * @param string $url
+     * @param string $url the URL to check
      */
     public function __construct(string $url)
     {
+        $this->check($url, true);
+        if ($this->httpStatusCode === 405) {
+            $this->check($url, false);
+        }
+    }
+
+    /**
+     * Calls the given URL with curl.
+     *
+     * @param string $url the URL to check
+     * @param bool $useHead true for a HEAD request, false for a GET request
+     */
+    private function check(string $url, $useHead = true)
+    {
         $handle = curl_init($url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($handle, CURLOPT_NOBODY, true);
+        curl_setopt($handle, CURLOPT_NOBODY, $useHead);
         curl_setopt($handle, CURLOPT_HEADER, true);
         curl_setopt($handle, CURLOPT_USERAGENT, self::USER_AGENT);
         curl_exec($handle);
-        $this->httpStatusCode = (int)curl_getinfo($handle, CURLINFO_HTTP_CODE);
+        $this->httpStatusCode = (int)curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
         $this->redirectTarget = (string)curl_getinfo($handle, CURLINFO_REDIRECT_URL);
         curl_close($handle);
     }

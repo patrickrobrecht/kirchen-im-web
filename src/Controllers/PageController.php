@@ -195,6 +195,17 @@ class PageController extends TwigController
                           ->withHeader('Content-Type', 'text/xml; charset=UTF-8');
     }
 
+    public function admin(Request $request, Response $response, array $args)
+    {
+        $this->setLanguage('de_DE', $request);
+        $db = Database::getInstance();
+        return $this->twig->render($response, 'admin.html.twig', [
+            'title' => 'Admin',
+            'websitesWithMissingFollowers' => $db->getWebsitesWithMissingFollowers(),
+            'websitesError' => $db->getErrorWebsitesByStatusCode()
+        ]);
+    }
+
     public function setLanguage($language, Request $request)
     {
         putenv(sprintf('LC_ALL=%s', $language));
@@ -224,24 +235,26 @@ class PageController extends TwigController
             ]
         ];
 
-        if ($language === 'de_DE') {
-            $headerMenuItems = array_merge($headerMenuItems, [
-                [
-                    'class' => 'lang_en',
-                    'path' => 'en-' . $routeWithoutLanguagePrefix,
-                    'args' => $args,
-                    'text' => 'English'
-                ]
-            ]);
-        } elseif ($language === 'en_US') {
-            $headerMenuItems = array_merge($headerMenuItems, [
-                [
-                    'class' => 'lang_de',
-                    'path' => 'de-' . $routeWithoutLanguagePrefix,
-                    'args' => $args,
-                    'text' => 'Deutsch'
-                ]
-            ]);
+        if ($routeWithoutLanguagePrefix) {
+            if ($language === 'de_DE') {
+                $headerMenuItems = array_merge($headerMenuItems, [
+                    [
+                        'class' => 'lang_en',
+                        'path' => 'en-' . $routeWithoutLanguagePrefix,
+                        'args' => $args,
+                        'text' => 'English'
+                    ]
+                ]);
+            } elseif ($language === 'en_US') {
+                $headerMenuItems = array_merge($headerMenuItems, [
+                    [
+                        'class' => 'lang_de',
+                        'path' => 'de-' . $routeWithoutLanguagePrefix,
+                        'args' => $args,
+                        'text' => 'Deutsch'
+                    ]
+                ]);
+            }
         }
 
         $footerMenuItems = [
