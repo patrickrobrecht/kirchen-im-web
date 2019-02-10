@@ -49,22 +49,17 @@ class SocialMediaUpdater extends AbstractHelper
         $data = [
             'churchId' => intval($row['churchId']),
             'url' => $url,
-            'type' => $row['type'],
-            'followers' => $followersNew,
+            'followersNew' => $followersNew,
             'followersOld' => is_null($row['followers']) ? null : intval($row['followers'])
         ];
 
         if ($followersNew >= 0) {
             // Update follower number and the timestamp.
-            if (Database::getInstance()->updateFollowers($websiteId, $followersNew)) {
-                $data['updated'] = 'followers';
-                Database::getInstance()->addFollowers($websiteId, $followersNew);
-            }
+            Database::getInstance()->updateFollowers($websiteId, $followersNew);
+            Database::getInstance()->addFollowers($websiteId, $followersNew);
         } else {
-            // Update the timestamp
-            if (Database::getInstance()->updateFollowers($url, false)) {
-                $data['updated'] = 'timestamp';
-            }
+            // Update the timestamp.
+            Database::getInstance()->updateFollowers($websiteId, false);
         }
 
         return $data;

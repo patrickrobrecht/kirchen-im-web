@@ -1,0 +1,90 @@
+{% extends 'default.html.twig' %}
+
+{% block head_styles %}
+    {{ parent() }}
+    <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block main %}
+    <main class="container-fluid py-md-3">
+        <article>
+            <h2>Webauftritt nicht erreichbar ({{ websitesError | length }})</h2>
+            <table class="table table-striped tablesorter">
+                <thead>
+                    <tr>
+                        <th>Church</th>
+                        <th>URL</th>
+                        <th>Status Code</th>
+                        <th>Redirect Target</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for w in websitesError %}
+                        <tr>
+                            <td>
+                                <a href="{{ path_for('de-details', {'id': w.churchId}) }}" target="_blank">
+                                    {{ w.churchId }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ w.url }}" target="_blank">
+                                    {{ w.url }}
+                                </a>
+                            </td>
+                            <td>{{ w.statusCode }}</td>
+                            <td>
+                                {% if w.redirectTarget %}
+                                    <a href="{{ w.redirectTarget }}" target="_blank">
+                                        {{ w.redirectTarget }}
+                                    </a>
+                                {% endif %}
+                            </td>
+                            <td>{{ w.notes }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </article>
+
+        <article>
+            <h2>Keine Followerzahlen verfügbar ({{ websitesWithMissingFollowers | length }})</h2>
+            <table class="table table-striped tablesorter">
+                <thead>
+                    <tr>
+                        <th>Church</th>
+                        <th>URL</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for w in websitesWithMissingFollowers %}
+                        <tr>
+                            <td>
+                                <a href="{{ path_for('de-details', {'id': w.churchId}) }}">
+                                    {{ w.churchId }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ w.url }}">
+                                    {{ w.url }}
+                                </a>
+                            </td>
+                            <td>{{ w.notes }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </article>
+    </main>
+{% endblock %}
+
+{% block footer_scripts %}
+    {{ parent() }}
+    <script src="{{ base_url() }}/assets/{{ 'lib/jquery.tablesorter.min.js' | asset_version }}"></script>
+    <script>
+        $(function(){
+            $("table").tablesorter();
+        });
+    </script>
+{% endblock %}

@@ -179,27 +179,29 @@ class Database extends AbstractHelper
         return $ids;
     }
 
-    public function getFaultyEntries()
+    public function getWebsitesWithMissingFollowers()
     {
-        $faultyEntries = [];
-
-        $statement = $this->connection->query('SELECT *
-            FROM `churches`
-			WHERE street is NOT NULL AND (lat IS NULL or lon IS NULL)');
-        $faultyEntries['geolocation_missing'] = $statement->fetchAll(PDO::FETCH_ASSOC);
-
         $networksToCompareAsStrings = [];
         foreach (Configuration::getInstance()->networksToCompare as $type => $typeName) {
             array_push($networksToCompareAsStrings, "'" . $type . "'");
         }
         $networksToCompareList = implode(', ', $networksToCompareAsStrings);
-        $statement = $this->connection->prepare('SELECT churchId, url from websites 
-			WHERE type IN (' . $networksToCompareList . ') AND (followers IS NULL AND timestamp < NOW())
+        $statement = $this->connection->prepare('SELECT churchId, url
+            FROM websites
+			WHERE type IN (' . $networksToCompareList . ') AND followersStatus = 0
 			ORDER BY type, churchId');
         $statement->execute();
-        $faultyEntries['followers_missing'] = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-        return $faultyEntries;
+    public function getErrorWebsitesByStatusCode()
+    {
+        $statement = $this->connection->prepare('SELECT *
+            FROM websites
+            WHERE statusCode != 200 AND notes NOT LIKE "ok%" AND lastCheck IS NOT NULL
+            ORDER BY url');
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getRecentlyAddedEntries()
@@ -317,8 +319,8 @@ class Database extends AbstractHelper
         $statement = $this->connection->query('SELECT id, slug, IFNULL(lastFollowerUpdate, timestamp) AS lastUpdate
             FROM churches
 			LEFT JOIN (
-				SELECT churchId, MAX(TIMESTAMP) AS lastFollowerUpdate FROM websites
-				WHERE TIMESTAMP IS NOT NULL
+				SELECT churchId, MAX(followersLastUpdate) AS lastFollowerUpdate FROM websites
+				WHERE followersLastUpdate IS NOT NULL
 				GROUP BY churchId
 			) AS w ON id = w.churchId');
         return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -326,17 +328,17 @@ class Database extends AbstractHelper
 
     public function getURLsForUpdate($networksToCompareList, int $limit = 10)
     {
-        $statement = $this->connection->prepare('SELECT websiteId, churchId, url, type, followers, timestamp
+        $statement = $this->connection->prepare('SELECT websiteId, churchId, url, type, followers, followersLastUpdate
             FROM websites
             WHERE type IN (' . $networksToCompareList . ')
-            ORDER BY timestamp 
+            ORDER BY followersLastUpdate 
             LIMIT :maxResults');
         $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getWebsitesToCheck(int $limit = 100)
+    public function getWebsitesToCheck(int $limit = 25)
     {
         $statement = $this->connection->prepare('SELECT websiteId, url
             FROM websites
@@ -365,11 +367,14 @@ class Database extends AbstractHelper
     {
         if ($followers === false) {
             $statement = $this->connection->prepare('UPDATE websites
-                SET timestamp = NOW()
+                SET followersStatus = 0,
+                    followersLastUpdate = NOW()
                 WHERE websiteId = :websiteId');
         } else {
             $statement = $this->connection->prepare('UPDATE websites 
-			    SET followers = :followers, timestamp = NOW()
+			    SET followers = :followers,
+			        followersStatus = 1,
+			        followersLastUpdate = NOW()
 			    WHERE websiteId = :websiteId');
             $statement->bindParam(':followers', $followers, PDO::PARAM_INT);
         }
@@ -523,7 +528,7 @@ class Database extends AbstractHelper
 
         $slug = $name;
         $iteration = 1;
-        while (\KirchenImWeb\Helpers\Database::getInstance()->getIDForSlug($slug)) {
+        while ($this->getIDForSlug($slug)) {
             $iteration++;
             $slug = $name . '-' . $iteration;
         }

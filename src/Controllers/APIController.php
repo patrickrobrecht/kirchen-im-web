@@ -5,7 +5,6 @@ use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
 use KirchenImWeb\Helpers\Exporter;
 use KirchenImWeb\Helpers\ParameterChecker;
-use KirchenImWeb\Helpers\SocialMediaUpdater;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -57,26 +56,5 @@ class APIController
         } else {
             return $response->withStatus(404);
         }
-    }
-
-
-    // Admin API
-
-    public function check(Request $request, Response $response, array $args)
-    {
-        $entries = Database::getInstance()->getFaultyEntries();
-        return $response->withJson(Exporter::getInstance()->removeNullValues($entries));
-    }
-
-    public function export(Request $request, Response $response, array $args)
-    {
-        Exporter::getInstance()->export();
-        return $response->getBody()->write('Regenerated export files');
-    }
-
-    public function update(Request $request, Response $response, array $args)
-    {
-        $results = SocialMediaUpdater::getInstance()->cron();
-        return $response->withJson($results);
     }
 }

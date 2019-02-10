@@ -5,10 +5,7 @@ use KirchenImWeb\Controllers\APIController;
 use KirchenImWeb\Controllers\FileController;
 use KirchenImWeb\Controllers\PageController;
 
-require __DIR__ . '/vendor/autoload.php';
-if (file_exists(__DIR__ . '/config.php')) {
-    require __DIR__ . '/config.php';
-}
+require __DIR__ . '/src/autoload.php';
 
 // Create and configure Slim app
 $settings['addContentLengthHeader'] = false;
@@ -50,11 +47,9 @@ $app->group('/api/', function () {
     $this->get('churches/', APIController::class . ':churches');
     $this->get('churches/{id}/', APIController::class . ':church');
     $this->get('churches/{id}/children/', APIController::class . ':children');
-
-    $this->get('check/', APIController::class . ':check');
-    $this->get('export/', APIController::class . ':export');
-    $this->get('update/', APIController::class . ':update');
 });
+
+$app->get('/admin/', PageController::class . ':admin');
 
 $app->group('/de/', function () {
     $this->get('', 'PageController:index')->setName('de-home');
