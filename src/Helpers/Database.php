@@ -181,15 +181,10 @@ class Database extends AbstractHelper
 
     public function getWebsitesWithMissingFollowers()
     {
-        $networksToCompareAsStrings = [];
-        foreach (Configuration::getInstance()->networksToCompare as $type => $typeName) {
-            array_push($networksToCompareAsStrings, "'" . $type . "'");
-        }
-        $networksToCompareList = implode(', ', $networksToCompareAsStrings);
-        $statement = $this->connection->prepare('SELECT churchId, url
+        $statement = $this->connection->prepare('SELECT *
             FROM websites
-			WHERE type IN (' . $networksToCompareList . ') AND followersStatus = 0
-			ORDER BY type, churchId');
+            WHERE followersStatus = 0
+            ORDER BY type, url');
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -198,7 +193,7 @@ class Database extends AbstractHelper
     {
         $statement = $this->connection->prepare('SELECT *
             FROM websites
-            WHERE statusCode != 200 AND notes NOT LIKE "ok%" AND lastCheck IS NOT NULL
+            WHERE statusCode != 200 AND notes NOT LIKE "ok%"
             ORDER BY url');
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);

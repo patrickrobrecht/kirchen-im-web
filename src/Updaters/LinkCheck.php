@@ -21,8 +21,10 @@ class LinkCheck
      */
     public function __construct(string $url)
     {
+        // Check with HEAD request.
         $this->check($url, true);
-        if ($this->httpStatusCode === 405) {
+        if ($this->httpStatusCode > 400) {
+            // Check with GET request to deal with servers not denying HEAD requests.
             $this->check($url, false);
         }
     }
