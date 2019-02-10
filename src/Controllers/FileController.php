@@ -22,14 +22,14 @@ class FileController extends TwigController
 
     public function robots(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'robots.txt.twig', [
+        return $this->twig->render($response, 'files/robots.txt.twig', [
             'production' => PRODUCTION
         ])->withHeader('Content-Type', 'text/plain; charset=UTF-8');
     }
 
     public function sitemap(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'sitemap.xml.twig', [
+        return $this->twig->render($response, 'files/sitemap.xml.twig', [
             'churches' => Database::getInstance()->getAllChurchesWithLastUpdate()
         ])->withHeader('Content-Type', 'text/xml; charset=UTF-8');
     }

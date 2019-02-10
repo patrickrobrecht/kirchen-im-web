@@ -26,7 +26,7 @@ class PageController extends TwigController
 
     public function index(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'index.html.twig', [
+        return $this->twig->render($response, 'pages/index.html.twig', [
             'title' => _('Das Projekt kirchen-im-web.de'),
             'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'),
             'recentlyAddedEntries' => Database::getInstance()->getRecentlyAddedEntries()
@@ -35,12 +35,10 @@ class PageController extends TwigController
 
     public function map(Request $request, Response $response, array $args)
     {
-        global $websites;
-        return $this->twig->render($response, 'map.html.twig', [
+        return $this->twig->render($response, 'pages/map.html.twig', [
             'title' => _('Karte'),
             'headline' => _('Karte kirchlicher Web- und Social-Media-Auftritte'),
-            'description' => _('Unsere Karte zeigt viele Kirchengemeinden mit ihren Web- und Social-Media-Auftritten.'),
-            'websites' => $websites
+            'description' => _('Unsere Karte zeigt viele Kirchengemeinden mit ihren Web- und Social-Media-Auftritten.')
         ]);
     }
 
@@ -49,7 +47,7 @@ class PageController extends TwigController
         $pc = ParameterChecker::getInstance();
         $filters = $pc->extractFilterParameters($request);
         $websites = $pc->extractFilterWebsites($request);
-        return $this->twig->render($response, 'table.html.twig', [
+        return $this->twig->render($response, 'pages/table.html.twig', [
             'title' => _('Suche'),
             'headline' => _('Kirchliche Web- und Social-Media-Auftritte'),
             'description' => _('Suchen Sie hier nach kirchlichen Web- und Social-Media-Auftritten.'),
@@ -66,7 +64,7 @@ class PageController extends TwigController
         $pc = ParameterChecker::getInstance();
         $filters = $pc->extractFilterParameters($request);
         $websites = Configuration::getInstance()->networksToCompare;
-        $this->twig->render($response, 'table.html.twig', [
+        $this->twig->render($response, 'pages/table.html.twig', [
             'title' => _('Vergleich kirchlicher Social-Media-Auftritte'),
             'headline' => _('Vergleich kirchlicher Social-Media-Auftritte'),
             // phpcs:ignore Generic.Files.LineLength.TooLong
@@ -100,7 +98,7 @@ class PageController extends TwigController
 
     private function addResponse(Response $response, array $data, array $added = [], array $messages = [])
     {
-        return $this->twig->render($response, 'add.html.twig', [
+        return $this->twig->render($response, 'pages/add.html.twig', [
             'title' => _('Gemeinde eintragen'),
             'description' => _('Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.'),
             'data' => $data,
@@ -113,7 +111,7 @@ class PageController extends TwigController
     public function stats(Request $request, Response $response, array $args)
     {
         $db = Database::getInstance();
-        return $this->twig->render($response, 'stats.html.twig', [
+        return $this->twig->render($response, 'pages/stats.html.twig', [
             'title' => _('Statistik'),
             'description' => _('Statistik zu den Eintragungen auf kirchen-im-web.de'),
             'total' => $db->getTotalCount(),
@@ -145,14 +143,14 @@ class PageController extends TwigController
             return $this->error($request, $response, $args);
         }
 
-        return $this->twig->render($response, 'details.html.twig', [
+        return $this->twig->render($response, 'pages/details.html.twig', [
             'entry' => $entry
         ]);
     }
 
     public function legal(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'legal.html.twig', [
+        return $this->twig->render($response, 'pages/legal.html.twig', [
             'title' => _('Impressum'),
             'settings' => Database::getInstance()->getSettings()
         ]);
@@ -160,7 +158,7 @@ class PageController extends TwigController
 
     public function privacy(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'privacy.html.twig', [
+        return $this->twig->render($response, 'pages/privacy.html.twig', [
             'title' => _('Datenschutzerklärung'),
             'settings' => Database::getInstance()->getSettings()
         ]);
@@ -168,7 +166,7 @@ class PageController extends TwigController
 
     public function data(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'data.html.twig', [
+        return $this->twig->render($response, 'pages/data.html.twig', [
             'title' => _('Offene Daten')
         ]);
     }
@@ -191,7 +189,7 @@ class PageController extends TwigController
 
     public function opensearch(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'opensearch.xml.twig')
+        return $this->twig->render($response, 'pages/opensearch.xml.twig')
                           ->withHeader('Content-Type', 'text/xml; charset=UTF-8');
     }
 
@@ -199,7 +197,7 @@ class PageController extends TwigController
     {
         $this->setLanguage('de_DE', $request);
         $db = Database::getInstance();
-        return $this->twig->render($response, 'admin.html.twig', [
+        return $this->twig->render($response, 'admin/admin.html.twig', [
             'title' => 'Admin',
             'websitesWithMissingFollowers' => $db->getWebsitesWithMissingFollowers(),
             'websitesError' => $db->getErrorWebsitesByStatusCode()
