@@ -5,7 +5,6 @@ use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
 use KirchenImWeb\Helpers\Exporter;
 use KirchenImWeb\Helpers\ParameterChecker;
-use KirchenImWeb\Helpers\SocialMediaUpdater;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;

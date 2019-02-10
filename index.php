@@ -1,15 +1,11 @@
 <?php
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use KirchenImWeb\Controllers\AdminController;
 use KirchenImWeb\Controllers\APIController;
 use KirchenImWeb\Controllers\FileController;
 use KirchenImWeb\Controllers\PageController;
 
-require __DIR__ . '/vendor/autoload.php';
-if (file_exists(__DIR__ . '/config.php')) {
-    require __DIR__ . '/config.php';
-}
+require __DIR__ . '/src/autoload.php';
 
 // Create and configure Slim app
 $settings['addContentLengthHeader'] = false;

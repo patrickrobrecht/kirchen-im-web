@@ -3,10 +3,7 @@ use KirchenImWeb\Helpers\Exporter;
 use KirchenImWeb\Updaters\LinkCheckUpdater;
 use KirchenImWeb\Updaters\SocialMediaUpdater;
 
-require __DIR__ . '/vendor/autoload.php';
-if (file_exists(__DIR__ . '/config.php')) {
-    require __DIR__ . '/config.php';
-}
+require __DIR__ . '/src/autoload.php';
 
 // Export into CSV and JSON.
 Exporter::getInstance()->export();
