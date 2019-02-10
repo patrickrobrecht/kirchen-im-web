@@ -5,16 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## Version 4.0 (unreleased)
 
 ### Added
 * Own page for privacy statement
 * Broken link checker to discover changed URLs
+* Admin page showing broken links and missing follower data
 
 ### Changed
 * Details: URLs based on the name of the church
+    (old id-based URLs redirect to the new ones)
 * Show recently added entries on home page instead of open data page
 * Don't mark HTTPS links with secure icon (only HTTP marked as non-secure)
+* Own column for follower update status (successful or failed)
 
 ### Fixed
 * Add Form: Fix geolocation
