@@ -3,8 +3,8 @@
 CREATE TABLE `churches`
 (
   `id`           INT(11)      NOT NULL AUTO_INCREMENT,
-  `slug`         VARCHAR(100) NULL     DEFAULT NULL,
   `name`         TEXT         NULL,
+  `slug`         VARCHAR(100) NULL     DEFAULT NULL,
   `street`       TEXT         NULL,
   `postalCode`   VARCHAR(10)  NULL     DEFAULT NULL,
   `city`         TEXT         NULL,
@@ -17,7 +17,9 @@ CREATE TABLE `churches`
   `hasChildren`  INT(1)       NOT NULL DEFAULT '0',
   `timestamp`    DATETIME     NULL     DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `slug` (`slug`)
+  UNIQUE INDEX `slug` (`slug`),
+  INDEX `FK_churches_churches` (`parentId`),
+  CONSTRAINT `FK_churches_churches` FOREIGN KEY (`parentId`) REFERENCES `churches` (`id`)
 );
 
 CREATE TABLE `followers`
