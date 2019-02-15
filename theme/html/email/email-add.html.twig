@@ -1,0 +1,9 @@
+{% extends 'email/email.html.twig' %}
+
+{% block main %}
+    <p>
+        <a href="{{ host ~ base_url ~ path_for(languageSlug ~ '-details', {'id': added.slug}) }}">
+            {{- added.name -}}
+        </a> wurde eingetragen.
+    </p>
+{% endblock %}

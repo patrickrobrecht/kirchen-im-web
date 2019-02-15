@@ -7,6 +7,13 @@ define('DATABASE_USERNAME', "");
 define('DATABASE_PASSWORD', "");
 define('DATABASE_NAME', "");
 
+// Mail
+define('MAIL_HOST', '');
+define('MAIL_USERNAME', '');
+define('MAIL_PASSWORD', '');
+define('MAIL_FROM', '');
+define('MAIL_TO', '');
+
 // Facebook's Graph API
 define('FACEBOOK_API_ID', "");
 define('FACEBOOK_API_SECRET', "");

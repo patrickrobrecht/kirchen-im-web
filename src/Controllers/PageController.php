@@ -3,6 +3,7 @@ namespace KirchenImWeb\Controllers;
 
 use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
+use KirchenImWeb\Helpers\Mailer;
 use KirchenImWeb\Helpers\Exporter;
 use KirchenImWeb\Helpers\ParameterChecker;
 use Psr\Container\ContainerInterface;
@@ -91,6 +92,12 @@ class PageController extends TwigController
         if ($check['correct']) {
             $added = Database::getInstance()->addChurch($check['data']);
             Exporter::getInstance()->export();
+            Mailer::getInstance()->sendMail(
+                'Kirchen im Web: Neuer Eintrag',
+                $this->twig->fetch('email/email-add.html.twig', [
+                    'added' => $added
+                ])
+            );
             $check['data'] = [];
         }
         return $this->addResponse($response, $check['data'], $added, $check['messages']);
