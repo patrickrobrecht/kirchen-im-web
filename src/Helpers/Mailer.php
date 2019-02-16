@@ -11,7 +11,6 @@ class Mailer extends AbstractHelper
     {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->SMTPDebug = 2;
         $mail->Host = MAIL_HOST;
         $mail->Port = 25;
         $mail->SMTPSecure = 'tls';
@@ -21,6 +20,7 @@ class Mailer extends AbstractHelper
 
         $mail->setFrom(MAIL_FROM);
         $mail->addAddress(MAIL_TO);
+        $mail->CharSet = 'UTF-8';
         $mail->Subject = $subject;
         $mail->msgHTML($bodyHTML);
         $mail->AltBody = $bodyText;

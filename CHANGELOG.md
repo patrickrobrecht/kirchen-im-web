@@ -5,12 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Version 4.0 (unreleased)
+
+## Version 3.5 (2019-02-16)
 
 ### Added
 * Own page for privacy statement
 * Broken link checker to discover changed URLs
 * Admin page showing broken links and missing follower data
+* Send e-mail notification to administrator when a new church is added
 
 ### Changed
 * Details: URLs based on the name of the church
