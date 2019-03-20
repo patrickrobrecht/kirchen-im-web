@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 * Comparison: Removed Google+ (API shutdown)
+* Admin page: Show manual checked URLs after 90 days again
 
 
 ## Version 3.5 (2019-02-16)

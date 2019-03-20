@@ -15,6 +15,7 @@ class Database extends AbstractHelper
 
     protected function __construct()
     {
+        parent::__construct();
         $options  = [
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_CLASS
@@ -193,7 +194,7 @@ class Database extends AbstractHelper
     {
         $statement = $this->connection->prepare('SELECT *
             FROM websites
-            WHERE statusCode != 200 AND notes NOT LIKE "ok%"
+            WHERE statusCode != 200 AND notesUpdate < (NOW() - INTERVAL 90 DAY)
             ORDER BY url');
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
