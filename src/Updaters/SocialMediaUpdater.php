@@ -78,8 +78,6 @@ class SocialMediaUpdater extends AbstractHelper
         switch ($network) {
             case 'facebook':
                 return $this->getFacebookLikes($url);
-            case 'googlePlus':
-                return $this->getGooglePlusOnes($url);
             case 'instagram':
                 return $this->getInstagramFollowers($url);
             case 'twitter':
@@ -125,31 +123,6 @@ class SocialMediaUpdater extends AbstractHelper
                 $json = json_decode($json);
                 if (isset($json->fan_count)) {
                     return $json->fan_count;
-                }
-            }
-            return false;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    /**
-     * Returns the number of Google+ subscribers.
-     *
-     * @param string $url the Google+ URL to check
-     *
-     * @return int|bool the number of +1s, or false on failure
-     */
-    private function getGooglePlusOnes($url)
-    {
-        try {
-            $id = substr($url, 24);
-            $json_url = 'https://www.googleapis.com/plus/v1/people/' . $id .'?key=' . GOOGLE_API_KEY;
-            $json = @file_get_contents($json_url);
-            if ($json) {
-                $json = json_decode($json);
-                if (isset($json->circledByCount)) {
-                    return intval($json->circledByCount);
                 }
             }
             return false;
