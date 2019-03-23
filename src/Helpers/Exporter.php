@@ -34,7 +34,11 @@ class Exporter extends AbstractHelper
     {
         $filename = $this->dataDirectory . '/data-' . date('Y-m-d') . '.json';
         $json = fopen($filename, 'w');
-        fwrite($json, stripslashes(json_encode($this->removeNullValues($entries), JSON_UNESCAPED_UNICODE)));
+        $content = json_encode(
+            $this->removeNullValues($entries),
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
+        );
+        fwrite($json, $content);
         fclose($json);
 
         copy($filename, $this->dataDirectory . '/data.json');
