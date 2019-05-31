@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bda1a6212cffa09f6a58504d65a36975",
+    "content-hash": "8cb6dc20fd8b46d670afa93b58c95b7c",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -181,23 +181,23 @@
         },
         {
             "name": "opencage/geocode",
-            "version": "2.0.3",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenCageData/php-opencage-geocode.git",
-                "reference": "7d3e71bbf3fd26d92efed9eafd522fcc18166caa"
+                "reference": "7fed059d27390712fd74a52daa60f36d34a5abcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenCageData/php-opencage-geocode/zipball/7d3e71bbf3fd26d92efed9eafd522fcc18166caa",
-                "reference": "7d3e71bbf3fd26d92efed9eafd522fcc18166caa",
+                "url": "https://api.github.com/repos/OpenCageData/php-opencage-geocode/zipball/7fed059d27390712fd74a52daa60f36d34a5abcf",
+                "reference": "7fed059d27390712fd74a52daa60f36d34a5abcf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5.7",
+                "phpunit/phpunit": "~7.0",
                 "squizlabs/php_codesniffer": "^2.7"
             },
             "type": "library",
@@ -224,7 +224,7 @@
                 "geocoding",
                 "opencagedata"
             ],
-            "time": "2019-04-26T22:23:41+00:00"
+            "time": "2019-05-09T22:40:38+00:00"
         },
         {
             "name": "phpfastcache/phpfastcache",
@@ -716,16 +716,16 @@
         },
         {
             "name": "raiym/instagram-php-scraper",
-            "version": "v0.8.28",
+            "version": "v0.8.30",
             "source": {
                 "type": "git",
                 "url": "https://github.com/postaddictme/instagram-php-scraper.git",
-                "reference": "d5aa635f961449e9f5eb888576777679bdecabb5"
+                "reference": "a3a5bba508c450ed97758069309e2430351e788e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/postaddictme/instagram-php-scraper/zipball/d5aa635f961449e9f5eb888576777679bdecabb5",
-                "reference": "d5aa635f961449e9f5eb888576777679bdecabb5",
+                "url": "https://api.github.com/repos/postaddictme/instagram-php-scraper/zipball/a3a5bba508c450ed97758069309e2430351e788e",
+                "reference": "a3a5bba508c450ed97758069309e2430351e788e",
                 "shasum": ""
             },
             "require": {
@@ -740,8 +740,8 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "InstagramScraper": "src"
+                "psr-4": {
+                    "InstagramScraper\\": "src/InstagramScraper/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -760,7 +760,7 @@
                 "instagram",
                 "scraper"
             ],
-            "time": "2019-02-14T06:16:02+00:00"
+            "time": "2019-05-21T04:08:45+00:00"
         },
         {
             "name": "slim/slim",
@@ -1058,16 +1058,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.9.0",
+            "version": "v2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "82a1c055c8ed4c4705023bfd0405f3c74db6e3ae"
+                "reference": "c344879ae57dc1487b1df3e3d8325936125ba2cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/82a1c055c8ed4c4705023bfd0405f3c74db6e3ae",
-                "reference": "82a1c055c8ed4c4705023bfd0405f3c74db6e3ae",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c344879ae57dc1487b1df3e3d8325936125ba2cc",
+                "reference": "c344879ae57dc1487b1df3e3d8325936125ba2cc",
                 "shasum": ""
             },
             "require": {
@@ -1083,7 +1083,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.9-dev"
+                    "dev-master": "2.11-dev"
                 }
             },
             "autoload": {
@@ -1121,7 +1121,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-04-28T06:57:38+00:00"
+            "time": "2019-05-31T06:21:42+00:00"
         }
     ],
     "packages-dev": [
