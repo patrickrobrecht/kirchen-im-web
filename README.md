@@ -125,6 +125,15 @@ To run all checks, use `composer cs`.
     [Leaflet](https://leafletjs.com/) and 
     [Tablesorter](https://mottie.github.io/tablesorter/)
 
+## How to deploy
+- Run `composer prod`.
+- Upload the following to the production server: 
+    - the directories `assets`, `images`, `lang`, `src`, 
+        `theme` and `vendor`
+    - the files `.htacess`, `*.png`, `browserconfig.xml`, `favicon.ico`
+        `config.php`, `cron.php`, `index.php` and `manifest.json`.
+- Create empty directories `cache` and `data`.
+
 
 # [kirchen-im-web.de](https://kirchen-im-web.de/de/) - Verzeichnis kirchlicher Web- und Social-Media-Auftritte
 

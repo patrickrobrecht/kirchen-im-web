@@ -53,7 +53,8 @@
       "npm run watch"
     ],
     "prod": [
-      "@composer install --optimize-autoloader --no-dev"
+      "@composer install --optimize-autoloader --no-dev",
+      "npm run postinstall"
     ]
   },
   "autoload": {
