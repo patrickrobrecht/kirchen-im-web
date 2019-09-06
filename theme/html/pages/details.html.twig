@@ -142,11 +142,14 @@
         <script src="{{ base_url() }}/assets/{{ 'lib/highcharts.js' | asset_version }}"></script>
         <script>
             {% if languageSlug == 'de' %}
+                {% set dateformat = '%A, %d.%m.%Y' %}
             Highcharts.setOptions({
                 lang: {
                     weekdays: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']
                 }
             });
+            {% else %}
+                {% set dateformat = '%A, %d/%m/%Y' %}
             {% endif %}
 
             $(function() {
@@ -176,7 +179,7 @@
                                 enabled: true
                             },
                             tooltip: {
-                                xDateFormat: '%A, %e.%m.%Y'
+                                xDateFormat: '{{ dateformat }}'
                             }
                         }
                     },
