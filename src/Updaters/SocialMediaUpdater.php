@@ -19,6 +19,7 @@ class SocialMediaUpdater extends AbstractHelper
     {
         // Create list of networks to compare (escaped, comma-separated)
         $networksToCompare = Configuration::getInstance()->networksToCompare;
+        $networksToCompare = array_diff($networksToCompare, ['facebook' => 'Facebook']);
         $networksToCompareAsStrings = [];
         foreach ($networksToCompare as $type => $typeName) {
             array_push($networksToCompareAsStrings, "'" . $type . "'");
