@@ -79,7 +79,6 @@ class Configuration extends AbstractHelper
             'rss' => 'RSS',
             'facebook' => 'Facebook',
             'flickr' => 'Flickr',
-            'googlePlus' => 'Google+',
             'instagram' => 'Instagram',
             'soundcloud' => 'Soundcloud',
             'twitter' => 'Twitter',
@@ -101,7 +100,6 @@ class Configuration extends AbstractHelper
             'rss' => '',
             'facebook' => 'https://www.facebook.com/',
             'flickr' => 'https://www.flickr.com/',
-            'googlePlus' => 'https://plus.google.com/',
             'instagram' => 'https://www.instagram.com/',
             'soundcloud' => 'https://soundcloud.com',
             'twitter' => 'https://twitter.com/',
@@ -118,7 +116,6 @@ class Configuration extends AbstractHelper
 
         $this->networksToCompareColors = [
             'facebook' => '#3b5998',
-            'googlePlus' => '#008000',
             'instagram' => '#383838',
             'twitter' => '#1da1f2',
             'youtube' => '#ff0000'

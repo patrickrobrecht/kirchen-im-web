@@ -21,7 +21,6 @@ function Map (translations) {
     var rssLayer = new L.LayerGroup();
     var facebookLayer = new L.LayerGroup();
     var flickrLayer = new L.LayerGroup();
-    var googleLayer = new L.LayerGroup();
     var instagramLayer = new L.LayerGroup();
     var soundcloudLayer = new L.LayerGroup();
     var twitterLayer = new L.LayerGroup();
@@ -107,10 +106,6 @@ function Map (translations) {
                 thisMarker.addTo(flickrLayer);
                 content = content + '<li><a href="' + v.flickr + '">Flickr</a></li>';
               }
-              if (v.googlePlus) {
-                thisMarker.addTo(googleLayer);
-                content = content + '<li><a href="' + v.googlePlus + '">Google+</a></li>';
-              }
               if (v.instagram) {
                 thisMarker.addTo(instagramLayer);
                 content = content + '<li><a href="' + v.instagram + '">Instagram</a></li>';
@@ -152,7 +147,6 @@ function Map (translations) {
         layers['RSS'] = rssLayer;
         layers['Facebook'] = facebookLayer;
         layers['Flickr'] = flickrLayer;
-        layers['Google+'] = googleLayer;
         layers['Instagram'] = instagramLayer;
         layers['Soundcloud'] = soundcloudLayer;
         layers['Twitter'] = twitterLayer;
