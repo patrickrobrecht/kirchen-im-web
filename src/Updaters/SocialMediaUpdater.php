@@ -1,6 +1,8 @@
 <?php
 namespace KirchenImWeb\Updaters;
 
+use DOMDocument;
+use InstagramScraper\Instagram;
 use KirchenImWeb\Helpers\AbstractHelper;
 use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
@@ -15,14 +17,13 @@ use TwitterAPIExchange;
 class SocialMediaUpdater extends AbstractHelper
 {
 
-    public function cron()
+    public function cron(): array
     {
         // Create list of networks to compare (escaped, comma-separated)
         $networksToCompare = Configuration::getInstance()->networksToCompare;
-        $networksToCompare = array_diff($networksToCompare, ['facebook' => 'Facebook']);
         $networksToCompareAsStrings = [];
         foreach ($networksToCompare as $type => $typeName) {
-            array_push($networksToCompareAsStrings, "'" . $type . "'");
+            $networksToCompareAsStrings[] = "'" . $type . "'";
         }
         $networksToCompareList = implode(', ', $networksToCompareAsStrings);
 
@@ -31,7 +32,7 @@ class SocialMediaUpdater extends AbstractHelper
         $urls = Database::getInstance()->getURLsForUpdate($networksToCompareList);
         $results = [];
         foreach ($urls as $row) {
-            array_push($results, $this->update($row));
+            $results[] = $this->update($row);
         }
         $duration = (microtime(true) - $time);
 
@@ -42,16 +43,16 @@ class SocialMediaUpdater extends AbstractHelper
         ];
     }
 
-    private function update($row)
+    private function update(array $row): array
     {
-        $websiteId = intval($row['websiteId']);
+        $websiteId = (int)$row['websiteId'];
         $url = $row['url'];
         $followersNew = $this->getFollowers($row['type'], $url);
         $data = [
-            'churchId' => intval($row['churchId']),
+            'churchId' => (int)$row['churchId'],
             'url' => $url,
             'followersNew' => $followersNew,
-            'followersOld' => is_null($row['followers']) ? null : intval($row['followers'])
+            'followersOld' => $row['followers'] === null ? null : (int)$row['followers']
         ];
 
         if ($followersNew >= 0) {
@@ -74,7 +75,7 @@ class SocialMediaUpdater extends AbstractHelper
      *
      * @return int|bool the follower count; false in case of errors.
      */
-    private function getFollowers($network, $url)
+    private function getFollowers(string $network, string $url)
     {
         switch ($network) {
             case 'facebook':
@@ -97,39 +98,48 @@ class SocialMediaUpdater extends AbstractHelper
      *
      * @return int|bool the number of likes, or false on failure
      */
-    private function getFacebookLikes($url)
+    private function getFacebookLikes(string $url)
     {
-        try {
-            $id = substr($url, 25); // 25 = strlen('https://www.facebook.com/')
-            if (SocialMediaUpdater::startsWith($id, 'groups/')) {
-                return false;
-            }
-            if (SocialMediaUpdater::startsWith($id, 'pages/')) {
-                $temp = explode('/', $id);
-                $id = end($temp);
-            }
+        $handle = curl_init($url);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_HEADER, true);
+        curl_setopt($handle, CURLOPT_USERAGENT, LinkCheck::USER_AGENT);
+        $htmlCode = curl_exec($handle);
 
-            $json_url ='https://graph.facebook.com/' . $id .
-                       '?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=fan_count';
-            $json = @file_get_contents($json_url);
-            if (!$json) {
-                $temp = explode('-', $id);
-                $id = str_replace('/', '', end($temp));
-                $json_url ='https://graph.facebook.com/' . $id .
-                           '?access_token='.FACEBOOK_API_ID.'|'.FACEBOOK_API_SECRET.'&fields=fan_count';
-                $json = @file_get_contents($json_url);
-            }
-
-            if ($json) {
-                $json = json_decode($json);
-                if (isset($json->fan_count)) {
-                    return $json->fan_count;
+        if ($htmlCode) {
+            $metaDescription = $this->getMetaDescription($htmlCode);
+            if ($metaDescription) {
+                preg_match('/Gefällt (?P<likes>\d+(.\d+)*) Mal/mu', $metaDescription, $match);
+                if (isset($match['likes'])) {
+                    $i = (int)str_replace('.', '', $match['likes']);
+                    if ($i > 0) {
+                        return $i;
+                    }
                 }
             }
-            return false;
-        } catch (Exception $e) {
-            return false;
         }
+        return false;
+    }
+
+    /**
+     * Extracts the meta description from the given HTML code.
+     *
+     * @param string $html the HTML.
+     *
+     * @return bool|string the meta description, or false on failure
+     */
+    private function getMetaDescription(string $html)
+    {
+        libxml_use_internal_errors(true);
+        $doc = new DOMDocument();
+        $doc->loadHTML($html);
+        foreach ($doc->getElementsByTagName('meta') as $node) {
+            /** @var $node \DOMNode */
+            if ('description' === strtolower($node->getAttribute('name'))) {
+                return $node->getAttribute('content');
+            }
+        }
+        return false;
     }
 
     /**
@@ -139,11 +149,11 @@ class SocialMediaUpdater extends AbstractHelper
      *
      * @return int|bool the number of +1s, or false on failure
      */
-    private function getInstagramFollowers($url)
+    private function getInstagramFollowers(string $url)
     {
         try {
             $name = str_replace('/', '', substr($url, 25));
-            $instagram = new \InstagramScraper\Instagram();
+            $instagram = new Instagram();
             $account = $instagram->getAccount($name);
             return $account->getFollowedByCount();
         } catch (Exception $e) {
@@ -158,7 +168,7 @@ class SocialMediaUpdater extends AbstractHelper
      *
      * @return int|bool the number of subscribers, or false on failure
      */
-    private function getTwitterFollower($url)
+    private function getTwitterFollower(string $url)
     {
         try {
             $name = substr($url, 20);
@@ -172,9 +182,9 @@ class SocialMediaUpdater extends AbstractHelper
             $json = $twitterAPI->setGetfield('?screen_name=' . $name)
                                ->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
                                ->performRequest();
-            $json = json_decode($json);
+            $json = json_decode($json, false);
             if (isset($json->followers_count)) {
-                return intval($json->followers_count);
+                return (int)$json->followers_count;
             }
             return false;
         } catch (Exception $e) {
@@ -189,12 +199,12 @@ class SocialMediaUpdater extends AbstractHelper
      *
      * @return int|bool the number of subscribers, or false on failure
      */
-    private function getYoutubeSubscribers($url)
+    private function getYoutubeSubscribers(string $url)
     {
         try {
             $username = substr($url, 24);
             $channelId = false;
-            if (SocialMediaUpdater::startsWith($username, 'channel/')) {
+            if (self::startsWith($username, 'channel/')) {
                 $temp = explode('/', $username);
                 $channelId = end($temp);
             } else {
@@ -202,7 +212,7 @@ class SocialMediaUpdater extends AbstractHelper
                             . '&type=channel&key=' . GOOGLE_API_KEY;
                 $json = @file_get_contents($json_url);
                 if ($json) {
-                    $json = json_decode($json);
+                    $json = json_decode($json, false);
                     if (isset($json->items[0]->id->channelId)) {
                         $channelId = $json->items[0]->id->channelId;
                     }
@@ -214,9 +224,9 @@ class SocialMediaUpdater extends AbstractHelper
                             . '&key=' . GOOGLE_API_KEY;
                 $json = @file_get_contents($json_url);
                 if ($json) {
-                    $json = json_decode($json);
+                    $json = json_decode($json, false);
                     if (isset($json->items[0]->statistics->subscriberCount)) {
-                        return intval($json->items[0]->statistics->subscriberCount);
+                        return (int)$json->items[0]->statistics->subscriberCount;
                     }
                 }
             }
@@ -234,9 +244,9 @@ class SocialMediaUpdater extends AbstractHelper
      * @param string $needle the needle
      * @return boolean true if and only if the haystack starts with needle
      */
-    private static function startsWith($haystack, $needle)
+    private static function startsWith($haystack, $needle): bool
     {
         // search backwards starting from haystack length characters from the end
-        return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+        return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
     }
 }
