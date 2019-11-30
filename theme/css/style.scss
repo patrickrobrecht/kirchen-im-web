@@ -57,10 +57,6 @@ a[href^="http://"]:after {
   content: url(../../images/icons/flickr.png) " ";
 }
 
-.googlePlus::before {
-  content: url(../../images/icons/googlePlus.png) " ";
-}
-
 .instagram::before {
   content: url(../../images/icons/instagram.png) " ";
 }
