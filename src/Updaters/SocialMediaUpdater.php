@@ -3,7 +3,6 @@ namespace KirchenImWeb\Updaters;
 
 use DOMDocument;
 use InstagramScraper\Instagram;
-use KirchenImWeb\Helpers\AbstractHelper;
 use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
 use Exception;
@@ -12,24 +11,16 @@ use TwitterAPIExchange;
 /**
  * Class SocialMediaUpdater
  *
- * @package KirchenImWeb\Helpers
+ * @package KirchenImWeb\Updaters
  */
-class SocialMediaUpdater extends AbstractHelper
+class SocialMediaUpdater
 {
 
     public function cron(): array
     {
-        // Create list of networks to compare (escaped, comma-separated)
-        $networksToCompare = Configuration::getInstance()->networksToCompare;
-        $networksToCompareAsStrings = [];
-        foreach ($networksToCompare as $type => $typeName) {
-            $networksToCompareAsStrings[] = "'" . $type . "'";
-        }
-        $networksToCompareList = implode(', ', $networksToCompareAsStrings);
-
         // Start update and measure time.
         $time = microtime(true);
-        $urls = Database::getInstance()->getURLsForUpdate($networksToCompareList);
+        $urls = Database::getInstance()->getURLsForUpdate(10);
         $results = [];
         foreach ($urls as $row) {
             $results[] = $this->update($row);
@@ -38,7 +29,7 @@ class SocialMediaUpdater extends AbstractHelper
 
         return [
             'updatedEntries' => $results,
-            'included' => $networksToCompare,
+            'included' => Configuration::getInstance()->networksToCompare,
             'duration' => $duration
         ];
     }
