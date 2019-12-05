@@ -1,4 +1,5 @@
 <?php
+
 namespace KirchenImWeb\Helpers;
 
 use PDO;
@@ -22,7 +23,7 @@ class Database extends AbstractHelper
         ];
         try {
             $this->connection = new PDO(
-                'mysql:host='.DATABASE_HOSTNAME.';dbname='.DATABASE_NAME.';charset=utf8',
+                'mysql:host=' . DATABASE_HOSTNAME . ';dbname=' . DATABASE_NAME . ';charset=utf8',
                 DATABASE_USERNAME,
                 DATABASE_PASSWORD,
                 $options
@@ -37,7 +38,7 @@ class Database extends AbstractHelper
         $websites = Configuration::getInstance()->websites;
         $query = 'SELECT id, slug, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
         foreach ($websites as $websiteId => $websiteName) {
-            $query .= ', ' .$websiteId . '.url AS ' . $websiteId;
+            $query .= ', ' . $websiteId . '.url AS ' . $websiteId;
         }
         $query .= ' FROM churches ';
         foreach ($websites as $websiteId => $websiteName) {
@@ -53,7 +54,7 @@ class Database extends AbstractHelper
         // Query churches
         $query = 'SELECT id, slug, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
         foreach ($websites as $websiteId => $websiteName) {
-            $query .= ', ' .$websiteId . '.url AS ' . $websiteId . ', '
+            $query .= ', ' . $websiteId . '.url AS ' . $websiteId . ', '
                       . $websiteId . '.followers AS ' . $websiteId . '_followers';
         }
         $query .= ' FROM churches ';
@@ -202,7 +203,7 @@ class Database extends AbstractHelper
 
         $query = 'SELECT id, slug, name, postalCode, city, country, denomination, churches.type';
         foreach ($showWebsites as $websiteId => $websiteName) {
-            $query .= ', ' .$websiteId . '.url AS ' . $websiteId;
+            $query .= ', ' . $websiteId . '.url AS ' . $websiteId;
         }
         $query .= ' FROM churches ';
 

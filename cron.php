@@ -1,4 +1,5 @@
 <?php
+
 use KirchenImWeb\Helpers\Exporter;
 use KirchenImWeb\Updaters\LinkCheckUpdater;
 use KirchenImWeb\Updaters\SocialMediaUpdater;

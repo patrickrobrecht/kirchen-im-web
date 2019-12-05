@@ -1,4 +1,5 @@
 <?php
+
 namespace KirchenImWeb\Controllers;
 
 use KirchenImWeb\Helpers\Configuration;

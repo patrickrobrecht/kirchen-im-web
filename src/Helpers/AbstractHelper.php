@@ -1,4 +1,5 @@
 <?php
+
 namespace KirchenImWeb\Helpers;
 
 /**
@@ -27,7 +28,7 @@ class AbstractHelper
     {
         static $instance = null;
         if (null === $instance) {
-            $instance = new static;
+            $instance = new static();
         }
         return $instance;
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace KirchenImWeb\Updaters;
 
 use DOMDocument;
@@ -46,7 +47,7 @@ class SocialMediaUpdater
             'followersOld' => $row['followers'] === null ? null : (int)$row['followers']
         ];
 
-        if ($followersNew >= 0) {
+        if ($followersNew && $followersNew > 0) {
             // Update follower number and the timestamp.
             Database::getInstance()->updateFollowers($websiteId, $followersNew);
             Database::getInstance()->addFollowers($websiteId, $followersNew);
@@ -97,7 +98,7 @@ class SocialMediaUpdater
         curl_setopt($handle, CURLOPT_USERAGENT, LinkCheck::USER_AGENT);
         $htmlCode = curl_exec($handle);
 
-        if ($htmlCode) {
+        if (curl_getinfo($handle, CURLINFO_RESPONSE_CODE) === 200 && $htmlCode) {
             $metaDescription = $this->getMetaDescription($htmlCode);
             if ($metaDescription) {
                 preg_match('/Gefällt (?P<likes>\d+(.\d+)*) Mal/mu', $metaDescription, $match);

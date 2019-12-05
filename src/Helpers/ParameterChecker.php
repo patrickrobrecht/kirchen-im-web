@@ -1,4 +1,5 @@
 <?php
+
 namespace KirchenImWeb\Helpers;
 
 use Exception;
@@ -17,8 +18,8 @@ class ParameterChecker extends AbstractHelper
     {
         $data = $request->getQueryParams();
         $filters = [];
-        $filters['ids'] = isset($data['ids']) ? $this->toIntArray($data['ids']): [];
-        $filters['parent'] = isset($data['parent']) ? intval($data['parent']): 0;
+        $filters['ids'] = isset($data['ids']) ? $this->toIntArray($data['ids']) : [];
+        $filters['parent'] = isset($data['parent']) ? intval($data['parent']) : 0;
         $filters['name'] = isset($data['name']) ? trim($data['name']) : '';
         $filters['postalCode'] =
             isset($_GET['postalCode']) && intval($_GET['postalCode']) > 0 ? $_GET['postalCode'] : '';
@@ -61,8 +62,10 @@ class ParameterChecker extends AbstractHelper
         $data = $request->getQueryParams();
         $websites = [];
         foreach (Configuration::getInstance()->websites as $websiteId => $websiteName) {
-            if ((isset($data['hasWebsiteType']) && $data['hasWebsiteType'] == $websiteId)
-                || (isset($data[$websiteId]) && $data[$websiteId] == 'show') ) {
+            if (
+                (isset($data['hasWebsiteType']) && $data['hasWebsiteType'] == $websiteId)
+                || (isset($data[$websiteId]) && $data[$websiteId] == 'show')
+            ) {
                 $websites[$websiteId] = $websiteName;
             }
         }

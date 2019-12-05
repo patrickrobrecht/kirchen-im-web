@@ -12,7 +12,7 @@ class LinkCheck
     private $httpStatusCode;
     private $redirectTarget;
 
-    const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0';
+    public const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0';
 
     /**
      * Checks the availability of the website with the given URL.
