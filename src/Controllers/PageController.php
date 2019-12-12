@@ -44,7 +44,7 @@ class PageController extends TwigController
         ]);
     }
 
-    public function search(Request $request, Response $response, array $args)
+    public function search(Request $request, Response $response, array $args): Response
     {
         $pc = ParameterChecker::getInstance();
         $filters = $pc->extractFilterParameters($request);
@@ -61,12 +61,12 @@ class PageController extends TwigController
         ]);
     }
 
-    public function comparison(Request $request, Response $response, array $args)
+    public function comparison(Request $request, Response $response, array $args): Response
     {
         $pc = ParameterChecker::getInstance();
         $filters = $pc->extractFilterParameters($request);
         $websites = Configuration::getInstance()->networksToCompare;
-        $this->twig->render($response, 'pages/table.html.twig', [
+        return $this->twig->render($response, 'pages/table.html.twig', [
             'title' => _('Vergleich kirchlicher Social-Media-Auftritte'),
             'headline' => _('Vergleich kirchlicher Social-Media-Auftritte'),
             // phpcs:ignore Generic.Files.LineLength.TooLong
@@ -79,13 +79,13 @@ class PageController extends TwigController
         ]);
     }
 
-    public function add(Request $request, Response $response, array $args)
+    public function add(Request $request, Response $response, array $args): Response
     {
         $data = ParameterChecker::getInstance()->parseAddFormPreSelectionParameters($request);
         return $this->addResponse($response, $data);
     }
 
-    public function addForm(Request $request, Response $response, array $args)
+    public function addForm(Request $request, Response $response, array $args): Response
     {
         $check = ParameterChecker::getInstance()->parseAddFormParameters($request);
         $added = [];
@@ -104,7 +104,7 @@ class PageController extends TwigController
         return $this->addResponse($response, $check['data'], $added, $check['messages']);
     }
 
-    private function addResponse(Response $response, array $data, array $added = [], array $messages = [])
+    private function addResponse(Response $response, array $data, array $added = [], array $messages = []): Response
     {
         return $this->twig->render($response, 'pages/add.html.twig', [
             'title' => _('Gemeinde eintragen'),
@@ -116,7 +116,7 @@ class PageController extends TwigController
         ]);
     }
 
-    public function stats(Request $request, Response $response, array $args)
+    public function stats(Request $request, Response $response, array $args): Response
     {
         $db = Database::getInstance();
         return $this->twig->render($response, 'pages/stats.html.twig', [
@@ -133,7 +133,7 @@ class PageController extends TwigController
 
     public function details(Request $request, Response $response, array $args)
     {
-        $id = intval($args['id']);
+        $id = (int)$args['id'];
         if ($id > 0) {
             // Redirect for old URL.
             $entry = Database::getInstance()->getEntry($id, true);
@@ -164,7 +164,7 @@ class PageController extends TwigController
         ]);
     }
 
-    public function privacy(Request $request, Response $response, array $args)
+    public function privacy(Request $request, Response $response, array $args): Response
     {
         return $this->twig->render($response, 'pages/privacy.html.twig', [
             'title' => _('Datenschutzerklärung'),
@@ -172,16 +172,16 @@ class PageController extends TwigController
         ]);
     }
 
-    public function data(Request $request, Response $response, array $args)
+    public function data(Request $request, Response $response, array $args): Response
     {
         return $this->twig->render($response, 'pages/data.html.twig', [
             'title' => _('Offene Daten')
         ]);
     }
 
-    public function error(Request $request, Response $response, array $args)
+    public function error(Request $request, Response $response, array $args): Response
     {
-        if (substr($request->getRequestTarget(), 0, 3) == '/en') {
+        if (strpos($request->getRequestTarget(), '/en') === 0) {
             $this->setLanguage('en_US', $request);
         } else {
             $this->setLanguage('de_DE', $request);
@@ -195,13 +195,13 @@ class PageController extends TwigController
         ])->withStatus(404);
     }
 
-    public function opensearch(Request $request, Response $response, array $args)
+    public function opensearch(Request $request, Response $response, array $args): Response
     {
         return $this->twig->render($response, 'pages/opensearch.xml.twig')
                           ->withHeader('Content-Type', 'text/xml; charset=UTF-8');
     }
 
-    public function admin(Request $request, Response $response, array $args)
+    public function admin(Request $request, Response $response, array $args): Response
     {
         $this->setLanguage('de_DE', $request);
         $db = Database::getInstance();

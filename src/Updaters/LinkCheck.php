@@ -35,7 +35,7 @@ class LinkCheck
      * @param string $url the URL to check
      * @param bool $useHead true for a HEAD request, false for a GET request
      */
-    private function check(string $url, $useHead = true)
+    private function check(string $url, $useHead = true): void
     {
         $handle = curl_init($url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
@@ -53,7 +53,7 @@ class LinkCheck
      *
      * @return int the status code
      */
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->httpStatusCode;
     }
@@ -63,7 +63,7 @@ class LinkCheck
      *
      * @return string the target URL
      */
-    public function getRedirectTarget()
+    public function getRedirectTarget(): string
     {
         return $this->redirectTarget;
     }

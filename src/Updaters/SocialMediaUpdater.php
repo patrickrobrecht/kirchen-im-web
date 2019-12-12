@@ -98,36 +98,58 @@ class SocialMediaUpdater
         curl_setopt($handle, CURLOPT_USERAGENT, LinkCheck::USER_AGENT);
         $htmlCode = curl_exec($handle);
 
-        if (curl_getinfo($handle, CURLINFO_RESPONSE_CODE) === 200 && $htmlCode) {
-            $metaDescription = $this->getMetaDescription($htmlCode);
-            if ($metaDescription) {
-                preg_match('/Gefällt (?P<likes>\d+(.\d+)*) Mal/mu', $metaDescription, $match);
-                if (isset($match['likes'])) {
-                    $i = (int)str_replace('.', '', $match['likes']);
-                    if ($i > 0) {
-                        return $i;
-                    }
-                }
+        if ($htmlCode && curl_getinfo($handle, CURLINFO_RESPONSE_CODE) === 200) {
+            $followerCount = $this->extractFollowerCountFromMeta($htmlCode, 'property', 'og:description');
+            if ($followerCount) {
+                return $followerCount;
             }
+
+            return $this->extractFollowerCountFromMeta($htmlCode, 'name', 'description');
         }
         return false;
     }
 
     /**
-     * Extracts the meta description from the given HTML code.
+     * Extracts the follower count from the meta element with the given name.
      *
-     * @param string $html the HTML.
+     * @param string $metaKey the attribute to compare
+     * @param string $metaValue the attribute to expect
+     *
+     * @return bool|int
+     */
+    private function extractFollowerCountFromMeta(string $html, string $metaKey, string $metaValue)
+    {
+        $metaContent = $this->getMetaContent($html, $metaKey, $metaValue);
+        if ($metaContent) {
+            preg_match('/Gefällt (?P<likes>\d+(.\d+)*) Mal/mu', $metaContent, $match);
+            if (isset($match['likes'])) {
+                $i = (int)str_replace('.', '', $match['likes']);
+                if ($i > 0) {
+                    return $i;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Extracts the first meta content element with the given attribute from the given HTML code.
+     *
+     * @param string $html the HTML
+     * @param string $metaKey the attribute to compare
+     * @param string $metaValue the attribute to expect
      *
      * @return bool|string the meta description, or false on failure
      */
-    private function getMetaDescription(string $html)
+    private function getMetaContent(string $html, string $metaKey, string $metaValue)
     {
         libxml_use_internal_errors(true);
         $doc = new DOMDocument();
         $doc->loadHTML($html);
         foreach ($doc->getElementsByTagName('meta') as $node) {
             /** @var $node \DOMNode */
-            if ('description' === strtolower($node->getAttribute('name'))) {
+            if ($metaValue === strtolower($node->getAttribute($metaKey))) {
                 return $node->getAttribute('content');
             }
         }

@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Mailer extends AbstractHelper
 {
-    public function sendMail($subject, $bodyHTML, $bodyText = '')
+    public function sendMail($subject, $bodyHTML, $bodyText = ''): ?bool
     {
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -18,14 +18,13 @@ class Mailer extends AbstractHelper
         $mail->Username = MAIL_USERNAME;
         $mail->Password = MAIL_PASSWORD;
 
-        $mail->setFrom(MAIL_FROM);
-        $mail->addAddress(MAIL_TO);
-        $mail->CharSet = 'UTF-8';
-        $mail->Subject = $subject;
-        $mail->msgHTML($bodyHTML);
-        $mail->AltBody = $bodyText;
-
         try {
+            $mail->setFrom(MAIL_FROM);
+            $mail->addAddress(MAIL_TO);
+            $mail->CharSet = 'UTF-8';
+            $mail->Subject = $subject;
+            $mail->msgHTML($bodyHTML);
+            $mail->AltBody = $bodyText;
             return $mail->send();
         } catch (Exception $exception) {
             return false;

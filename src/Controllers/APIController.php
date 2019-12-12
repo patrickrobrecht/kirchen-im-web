@@ -32,17 +32,17 @@ class APIController
         return $response->withJson(Exporter::getInstance()->removeNullValues($entries));
     }
 
-    public function church(Request $request, Response $response, array $args)
+    public function church(Request $request, Response $response, array $args): Response
     {
         $entry = Database::getInstance()->getEntry($args['id']);
         if ($entry) {
             return $response->withJson(Exporter::getInstance()->removeNullValues($entry));
-        } else {
-            return $response->withStatus(404);
         }
+
+        return $response->withStatus(404);
     }
 
-    public function children(Request $request, Response $response, array $args)
+    public function children(Request $request, Response $response, array $args): Response
     {
         $entry = Database::getInstance()->getEntry($args['id']);
         if ($entry) {
@@ -54,8 +54,8 @@ class APIController
                 Configuration::getInstance()->websites
             );
             return $response->withJson(Exporter::getInstance()->removeNullValues($children));
-        } else {
-            return $response->withStatus(404);
         }
+
+        return $response->withStatus(404);
     }
 }
