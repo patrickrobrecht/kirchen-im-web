@@ -322,8 +322,8 @@ class Database extends AbstractHelper
         $networksToCompareList = $this->getNetworksToCompareList();
         $statement = $this->connection->prepare('SELECT websiteId, churchId, url, type, followers, followersLastUpdate
             FROM websites
-            WHERE type IN (' . $networksToCompareList . ')
-            ORDER BY followersLastUpdate 
+            WHERE type IN (' . $networksToCompareList . ') AND followersStatus != 2
+            ORDER BY followersLastUpdate
             LIMIT :maxResults');
         $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
         $statement->execute();
@@ -495,7 +495,7 @@ class Database extends AbstractHelper
         $churchId = $this->connection->lastInsertId();
 
         // Set parent id.
-        if ($data['parentId'] != 0) {
+        if ($data['parentId'] !== 0) {
             $statement = $this->connection->prepare('UPDATE churches SET parentId = :parentId
 				WHERE id = :id');
             $statement->bindParam(':parentId', $data['parentId'], PDO::PARAM_INT);
