@@ -124,16 +124,16 @@
                     {% trans 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' %}
                 </p>
                 {% for id, website in config.websites %}
-                    {% set urlPrefix = config.websitesStartOfURL[id] %}
+                    {% set prefix = config.websitesStartOfURL[id] %}
                     {% set urlPattern = urlPrefix ? urlPrefix ~ '.+' : 'https?://.+' %}
                     <div class="col-12 col-xl-6">
                         <div class="form-group">
                             <label class="{{ id }}" for="{{ id }}URL">{{ website|trans }}</label>
                             <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" pattern="{{ urlPattern }}" placeholder="{{ urlPrefix }}" value="{{ data.urls[id] }}">
                             <div class="invalid-feedback">
-                                {% if urlPrefix %}
+                                {% if prefix %}
                                     {% trans %}
-                                        URL muss mit {{ urlPrefix }} beginnen!
+                                        URL muss mit {{ prefix }} beginnen!
                                     {% endtrans %}
                                 {% else %}
                                     {% trans 'Bitte eine vollständige URL eingeben (mit http oder https).' %}
