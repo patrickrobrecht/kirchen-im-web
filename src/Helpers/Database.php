@@ -1,4 +1,5 @@
 <?php
+
 namespace KirchenImWeb\Helpers;
 
 use PDO;
@@ -22,7 +23,7 @@ class Database extends AbstractHelper
         ];
         try {
             $this->connection = new PDO(
-                'mysql:host='.DATABASE_HOSTNAME.';dbname='.DATABASE_NAME.';charset=utf8',
+                'mysql:host=' . DATABASE_HOSTNAME . ';dbname=' . DATABASE_NAME . ';charset=utf8',
                 DATABASE_USERNAME,
                 DATABASE_PASSWORD,
                 $options
@@ -32,12 +33,12 @@ class Database extends AbstractHelper
         }
     }
 
-    public function getEntries()
+    public function getEntries(): array
     {
         $websites = Configuration::getInstance()->websites;
         $query = 'SELECT id, slug, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
         foreach ($websites as $websiteId => $websiteName) {
-            $query .= ', ' .$websiteId . '.url AS ' . $websiteId;
+            $query .= ', ' . $websiteId . '.url AS ' . $websiteId;
         }
         $query .= ' FROM churches ';
         foreach ($websites as $websiteId => $websiteName) {
@@ -48,12 +49,12 @@ class Database extends AbstractHelper
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getFilteredEntries($filters, $websites, $compare = false)
+    public function getFilteredEntries($filters, $websites, $compare = false): array
     {
         // Query churches
         $query = 'SELECT id, slug, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
         foreach ($websites as $websiteId => $websiteName) {
-            $query .= ', ' .$websiteId . '.url AS ' . $websiteId . ', '
+            $query .= ', ' . $websiteId . '.url AS ' . $websiteId . ', '
                       . $websiteId . '.followers AS ' . $websiteId . '_followers';
         }
         $query .= ' FROM churches ';
@@ -67,48 +68,46 @@ class Database extends AbstractHelper
         // ... and apply the filters
         $conditions = [];
         if (isset($filters['ids']) && $filters['ids'] && count($filters['ids']) > 0) {
-            array_push($conditions, 'id IN (' . implode(', ', $filters['ids']) . ') ');
+            $conditions[] = 'id IN (' . implode(', ', $filters['ids']) . ') ';
         }
         if (isset($filters['parent']) && $filters['parent'] > 0) {
             $children = $this->getChildrenOfEntry(
                 $filters['parent'],
-                Database::getOption($filters, 'childrenRecursive')
+                self::getOption($filters, 'childrenRecursive')
             );
             $childrenIds = array_merge(
-                Database::getOption($filters, 'includeSelf') ? [$filters['parent']] : [],
-                Database::extractIds($children)
+                self::getOption($filters, 'includeSelf') ? [$filters['parent']] : [],
+                self::extractIds($children)
             );
-            array_push($conditions, 'id IN (' . implode(', ', $childrenIds) . ') ');
+            $conditions[] = 'id IN (' . implode(', ', $childrenIds) . ') ';
         }
-        if (isset($filters['name']) && $filters['name'] != '') {
-            array_push($conditions, 'name LIKE :name ');
+        if (isset($filters['name']) && $filters['name'] !== '') {
+            $conditions[] = 'name LIKE :name ';
         }
         if (isset($filters['postalCode']) && $filters['postalCode'] != 0) {
-            array_push($conditions, 'postalCode = :postalCode ');
+            $conditions[] = 'postalCode = :postalCode ';
         }
-        if (isset($filters['city']) && $filters['city'] != '') {
-            array_push($conditions, 'city LIKE :city ');
+        if (isset($filters['city']) && $filters['city'] !== '') {
+            $conditions[] = 'city LIKE :city ';
         }
-        if (isset($filters['country']) && $filters['country'] != '') {
-            array_push($conditions, 'country = :country ');
+        if (isset($filters['country']) && $filters['country'] !== '') {
+            $conditions[] = 'country = :country ';
         }
-        if (isset($filters['denomination']) && $filters['denomination'] != '') {
-            array_push($conditions, 'denomination = :denomination ');
+        if (isset($filters['denomination']) && $filters['denomination'] !== '') {
+            $conditions[] = 'denomination = :denomination ';
         }
-        if (isset($filters['type']) && $filters['type'] != '') {
-            array_push($conditions, 'churches.type = :ctype ');
+        if (isset($filters['type']) && $filters['type'] !== '') {
+            $conditions[] = 'churches.type = :ctype ';
         }
-        if (isset($filters['hasWebsiteType']) && $filters['hasWebsiteType'] != '') {
-            array_push($conditions, 'EXISTS (SELECT * FROM websites WHERE id = churchId AND type = :wtype) ');
+        if (isset($filters['hasWebsiteType']) && $filters['hasWebsiteType'] !== '') {
+            $conditions[] = 'EXISTS (SELECT * FROM websites WHERE id = churchId AND type = :wtype) ';
         }
         if ($compare) {
             // restrict to churches with at least one profile with followers set
             $compare_conditions = [];
             foreach (Configuration::getInstance()->networksToCompare as $websiteId => $websiteName) {
-                array_push(
-                    $compare_conditions,
-                    '(' . $websiteId . '.followers IS NOT NULL AND ' . $websiteId . '.followers > 0) '
-                );
+                $compare_conditions[] =
+                    '(' . $websiteId . '.followers IS NOT NULL AND ' . $websiteId . '.followers > 0) ';
             }
             if (sizeof($compare_conditions) > 0) {
                 $only_socialmedia_compare_condition = '';
@@ -117,7 +116,7 @@ class Database extends AbstractHelper
                 }
                 $only_socialmedia_compare_condition =
                     preg_replace('/ OR/', '(', $only_socialmedia_compare_condition, 1) . ')';
-                array_push($conditions, $only_socialmedia_compare_condition);
+                $conditions[] = $only_socialmedia_compare_condition;
             }
         }
 
@@ -134,27 +133,27 @@ class Database extends AbstractHelper
         }
 
         $statement = $this->connection->prepare($query);
-        if (isset($filters['name']) && $filters['name'] != '') {
+        if (isset($filters['name']) && $filters['name'] !== '') {
             $name = '%' . $filters['name'] . '%';
             $statement->bindParam(':name', $name);
         }
         if (isset($filters['postalCode']) && $filters['postalCode'] != 0) {
             $statement->bindParam(':postalCode', $filters['postalCode']);
         }
-        if (isset($filters['city']) && $filters['city'] != '') {
+        if (isset($filters['city']) && $filters['city'] !== '') {
             $city = '%' . $filters['city'] . '%';
             $statement->bindParam(':city', $city);
         }
-        if (isset($filters['country']) && $filters['country'] != '') {
+        if (isset($filters['country']) && $filters['country'] !== '') {
             $statement->bindParam(':country', $filters['country']);
         }
-        if (isset($filters['denomination']) && $filters['denomination'] != '') {
+        if (isset($filters['denomination']) && $filters['denomination'] !== '') {
             $statement->bindParam(':denomination', $filters['denomination']);
         }
-        if (isset($filters['type']) && $filters['type'] != '') {
+        if (isset($filters['type']) && $filters['type'] !== '') {
             $statement->bindParam(':ctype', $filters['type']);
         }
-        if (isset($filters['hasWebsiteType']) && $filters['hasWebsiteType'] != '') {
+        if (isset($filters['hasWebsiteType']) && $filters['hasWebsiteType'] !== '') {
             $statement->bindParam(':wtype', $filters['hasWebsiteType']);
         }
 
@@ -165,14 +164,14 @@ class Database extends AbstractHelper
 
     private static function getOption($filters, $name)
     {
-        return isset($filters['options'][$name]) ? $filters['options'][$name] : false;
+        return $filters['options'][$name] ?? false;
     }
 
     private static function extractIds($entries)
     {
         $ids = [];
         foreach ($entries as $entry) {
-            array_push($ids, $entry['id']);
+            $ids[] = $entry['id'];
             if (isset($entry['children'])) {
                 $ids = array_merge($ids, Database::extractIds($entry['children']));
             }
@@ -180,33 +179,31 @@ class Database extends AbstractHelper
         return $ids;
     }
 
-    public function getWebsitesWithMissingFollowers()
+    public function getWebsitesWithMissingFollowers(): array
     {
-        $statement = $this->connection->prepare('SELECT *
+        $statement = $this->connection->query('SELECT *
             FROM websites
             WHERE followersStatus = 0
             ORDER BY type, url');
-        $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getErrorWebsitesByStatusCode()
+    public function getErrorWebsitesByStatusCode(): array
     {
-        $statement = $this->connection->prepare('SELECT *
+        $statement = $this->connection->query('SELECT *
             FROM websites
             WHERE statusCode != 200 AND notesUpdate < (NOW() - INTERVAL 90 DAY)
             ORDER BY url');
-        $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getRecentlyAddedEntries()
+    public function getRecentlyAddedEntries(): array
     {
         $showWebsites = Configuration::getInstance()->preselectedWebsites;
 
         $query = 'SELECT id, slug, name, postalCode, city, country, denomination, churches.type';
         foreach ($showWebsites as $websiteId => $websiteName) {
-            $query .= ', ' .$websiteId . '.url AS ' . $websiteId;
+            $query .= ', ' . $websiteId . '.url AS ' . $websiteId;
         }
         $query .= ' FROM churches ';
 
@@ -218,13 +215,11 @@ class Database extends AbstractHelper
 
         $query .= ' ORDER BY churches.timestamp DESC, id DESC LIMIT 6';
 
-        $statement = $this->connection->prepare($query);
-        $statement->execute();
-
+        $statement = $this->connection->query($query);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getParentEntries()
+    public function getParentEntries(): array
     {
         $statement = $this->connection->query('SELECT id, slug, name FROM churches
 			WHERE hasChildren = 1
@@ -234,7 +229,7 @@ class Database extends AbstractHelper
 
     public function getEntry($id, $childrenRecursive = false)
     {
-        $id = intval($id);
+        $id = (int)$id;
 
         // Query for the entry itself
         $statement = $this->connection->prepare('SELECT * FROM churches
@@ -257,14 +252,14 @@ class Database extends AbstractHelper
         // Query for the websites
         $statement = $this->connection->prepare('SELECT websiteId, url, type, followers FROM websites
             WHERE churchId = :id
-            ORDER BY type ASC');
+            ORDER BY type');
         $statement->bindParam(':id', $id);
         $statement->execute();
         $data['websites'] = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         // Queries for the followers history of the social media entries.
         foreach ($data['websites'] as $key => $website) {
-            if (in_array($website['type'], array_keys(Configuration::getInstance()->networksToCompare))) {
+            if (array_key_exists($website['type'], Configuration::getInstance()->networksToCompare)) {
                 $data['websites'][$key]['followerHistory'] = $this->getFollowerHistory($website['websiteId']);
             }
             unset($data['websites'][$key]['websiteId']);
@@ -284,15 +279,15 @@ class Database extends AbstractHelper
         $statement->bindParam(':parentId', $parentId);
         $statement->execute();
         $parentData = $statement->fetch(PDO::FETCH_ASSOC);
-        array_push($parents, [
-            'id' => $parentId,
+        $parents[] = [
+            'id'   => $parentId,
             'slug' => $parentData['slug'],
             'name' => $parentData['name']
-        ]);
+        ];
         return $this->getParentsOfEntry($parentData['parentId'], $parents);
     }
 
-    private function getChildrenOfEntry($parentId, $recursive)
+    private function getChildrenOfEntry($parentId, $recursive): array
     {
         $statement = $this->connection->prepare('SELECT id, slug, name
             FROM churches
@@ -310,7 +305,7 @@ class Database extends AbstractHelper
         return $children;
     }
 
-    public function getAllChurchesWithLastUpdate()
+    public function getAllChurchesWithLastUpdate(): array
     {
         $statement = $this->connection->query('SELECT id, slug, IFNULL(lastFollowerUpdate, timestamp) AS lastUpdate
             FROM churches
@@ -322,23 +317,25 @@ class Database extends AbstractHelper
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getURLsForUpdate($networksToCompareList, int $limit = 10)
+    public function getURLsForUpdate(int $limit): array
     {
+        $networksToCompareList = $this->getNetworksToCompareList();
         $statement = $this->connection->prepare('SELECT websiteId, churchId, url, type, followers, followersLastUpdate
             FROM websites
-            WHERE type IN (' . $networksToCompareList . ')
-            ORDER BY followersLastUpdate 
+            WHERE type IN (' . $networksToCompareList . ') AND followersStatus != 2
+            ORDER BY followersLastUpdate
             LIMIT :maxResults');
         $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getWebsitesToCheck(int $limit = 25)
+    public function getWebsitesToCheck(int $limit): array
     {
+        $networksToCompareList = $this->getNetworksToCompareList();
         $statement = $this->connection->prepare('SELECT websiteId, url
             FROM websites
-            WHERE lastCheck IS NULL OR lastCheck <= CURDATE()
+            WHERE lastCheck IS NULL OR lastCheck <= CURDATE() AND type NOT IN (' . $networksToCompareList . ')
             ORDER BY lastCheck
             LIMIT :maxResults');
         $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
@@ -346,7 +343,17 @@ class Database extends AbstractHelper
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function updateWebsiteCheck($websiteId, $statusCode, $redirectTarget)
+    private function getNetworksToCompareList(): string
+    {
+        $networksToCompare = Configuration::getInstance()->networksToCompare;
+        $networksToCompareAsStrings = [];
+        foreach ($networksToCompare as $type => $typeName) {
+            $networksToCompareAsStrings[] = "'" . $type . "'";
+        }
+        return implode(', ', $networksToCompareAsStrings);
+    }
+
+    public function updateWebsiteCheck($websiteId, $statusCode, $redirectTarget): bool
     {
         $statement = $this->connection->prepare('UPDATE websites
             SET statusCode = :statusCode,
@@ -359,7 +366,7 @@ class Database extends AbstractHelper
         return $statement->execute();
     }
 
-    public function updateFollowers($websiteId, $followers)
+    public function updateFollowers($websiteId, $followers): bool
     {
         if ($followers === false) {
             $statement = $this->connection->prepare('UPDATE websites
@@ -378,7 +385,7 @@ class Database extends AbstractHelper
         return $statement->execute();
     }
 
-    public function addFollowers($websiteId, $followers)
+    public function addFollowers($websiteId, $followers): bool
     {
         $statement = $this->connection->prepare('INSERT INTO followers 
 			    (websiteId, followers, date)
@@ -388,7 +395,7 @@ class Database extends AbstractHelper
         return $statement->execute();
     }
 
-    private function getFollowerHistory($websiteId)
+    private function getFollowerHistory($websiteId): array
     {
         $statement = $this->connection->prepare('SELECT followers, date FROM followers
 			WHERE websiteId = :websiteId');
@@ -404,7 +411,7 @@ class Database extends AbstractHelper
         return $statementTotal->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getStatsByCountry()
+    public function getStatsByCountry(): array
     {
         $queryByCountry = 'SELECT count(*) AS count, country as countryCode
             FROM churches
@@ -414,28 +421,28 @@ class Database extends AbstractHelper
         return $statementByCountry->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getStatsByDenomination()
+    public function getStatsByDenomination(): array
     {
         $queryByDenomination = 'SELECT count(*) AS count, denomination FROM churches GROUP BY denomination';
         $statementByDenomination = $this->connection->query($queryByDenomination);
         return $statementByDenomination->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getStatsByType()
+    public function getStatsByType(): array
     {
         $queryByType = 'SELECT count(*) AS count, type FROM churches GROUP BY type ORDER BY count DESC';
         $statementByType = $this->connection->query($queryByType);
         return $statementByType->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getStatsByWebsite()
+    public function getStatsByWebsite(): array
     {
         $queryByWebsite = 'SELECT count(*) AS count, type FROM websites GROUP BY type ORDER BY count DESC';
         $statementByWebsite = $this->connection->query($queryByWebsite);
         return $statementByWebsite->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getStatsHTTPS()
+    public function getStatsHTTPS(): array
     {
         $queryByWebsiteHTTPS = 'SELECT w1.type, IFNULL(count, 0) as count, IFNULL(countHTTPS, 0) as countHTTPS  
             FROM (
@@ -488,7 +495,7 @@ class Database extends AbstractHelper
         $churchId = $this->connection->lastInsertId();
 
         // Set parent id.
-        if ($data['parentId'] != 0) {
+        if ($data['parentId'] !== 0) {
             $statement = $this->connection->prepare('UPDATE churches SET parentId = :parentId
 				WHERE id = :id');
             $statement->bindParam(':parentId', $data['parentId'], PDO::PARAM_INT);
@@ -506,10 +513,10 @@ class Database extends AbstractHelper
             $statement->execute();
         }
 
-        return $this->getEntry(intval($churchId));
+        return $this->getEntry((int)$churchId);
     }
 
-    private function createSlug($name)
+    private function createSlug($name): string
     {
         $name = mb_strtolower($name, 'UTF-8');
         $name = str_replace([' ', '/', '(', ')'], '-', $name);
@@ -532,7 +539,7 @@ class Database extends AbstractHelper
         return $slug;
     }
 
-    public function getIDForSlug($slug)
+    public function getIDForSlug(string $slug)
     {
         $statement = $this->connection->prepare('
 			SELECT id FROM churches
@@ -540,14 +547,13 @@ class Database extends AbstractHelper
         $statement->bindParam(':slug', $slug);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result ? intval($result['id']) : false;
+        return $result ? (int)$result['id'] : false;
     }
 
-    public function getSettings()
+    public function getSettings(): array
     {
-        $statement = $this->connection->prepare('SELECT name, value
+        $statement = $this->connection->query('SELECT name, value
 			FROM settings');
-        $statement->execute();
         return $statement->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 }

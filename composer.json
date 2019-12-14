@@ -15,8 +15,10 @@
   "require": {
     "php": "^7.1",
     "ext-curl": "*",
+    "ext-dom": "*",
     "ext-gettext": "*",
     "ext-json": "*",
+    "ext-libxml": "*",
     "ext-pdo": "*",
     "j7mbo/twitter-api-php": "^1.0",
     "opencage/geocode": "^2.1",

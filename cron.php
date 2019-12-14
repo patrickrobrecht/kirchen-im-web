@@ -1,4 +1,5 @@
 <?php
+
 use KirchenImWeb\Helpers\Exporter;
 use KirchenImWeb\Updaters\LinkCheckUpdater;
 use KirchenImWeb\Updaters\SocialMediaUpdater;
@@ -13,5 +14,6 @@ $l = new LinkCheckUpdater();
 $l->check();
 
 // Get follower data.
+$s = new SocialMediaUpdater();
 header('Content-Type: application/json;charset=utf-8');
-echo json_encode(SocialMediaUpdater::getInstance()->cron());
+echo json_encode($s->cron());

@@ -1,4 +1,5 @@
 <?php
+
 namespace KirchenImWeb\Helpers;
 
 /**
@@ -24,6 +25,8 @@ class Configuration extends AbstractHelper
 
     protected function __construct()
     {
+        parent::__construct();
+
         $this->countries = [
             'DE' => _('Deutschland'),
             'LI' => _('Liechtenstein'),

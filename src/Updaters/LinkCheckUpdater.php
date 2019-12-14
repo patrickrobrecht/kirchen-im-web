@@ -11,9 +11,9 @@ use KirchenImWeb\Helpers\Database;
  */
 class LinkCheckUpdater
 {
-    public function check()
+    public function check(): void
     {
-        $websites = Database::getInstance()->getWebsitesToCheck();
+        $websites = Database::getInstance()->getWebsitesToCheck(10);
         foreach ($websites as $website) {
             $l = new LinkCheck($website['url']);
             Database::getInstance()->updateWebsiteCheck(

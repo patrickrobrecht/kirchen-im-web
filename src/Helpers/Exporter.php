@@ -1,5 +1,8 @@
 <?php
+
 namespace KirchenImWeb\Helpers;
+
+use RuntimeException;
 
 /**
  * Class Exporter
@@ -12,10 +15,11 @@ class Exporter extends AbstractHelper
 
     public function __construct()
     {
+        parent::__construct();
         $this->dataDirectory = dirname(__FILE__, 3) . '/data';
     }
 
-    public function export()
+    public function export(): void
     {
         $this->checkDataDirectory();
         $entries = Database::getInstance()->getEntries();
@@ -23,17 +27,17 @@ class Exporter extends AbstractHelper
         $this->createCSV($entries, Configuration::getInstance()->websites);
     }
 
-    private function checkDataDirectory()
+    private function checkDataDirectory(): void
     {
-        if (!file_exists($this->dataDirectory) || !is_dir($this->dataDirectory)) {
-            mkdir($this->dataDirectory);
+        if (! file_exists($this->dataDirectory) && ! mkdir($this->dataDirectory) && ! is_dir($this->dataDirectory)) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $this->dataDirectory));
         }
     }
 
-    private function createJSON(array $entries)
+    private function createJSON(array $entries): void
     {
         $filename = $this->dataDirectory . '/data-' . date('Y-m-d') . '.json';
-        $json = fopen($filename, 'w');
+        $json = fopen($filename, 'wb');
         $content = json_encode(
             $this->removeNullValues($entries),
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
@@ -44,11 +48,11 @@ class Exporter extends AbstractHelper
         copy($filename, $this->dataDirectory . '/data.json');
     }
 
-    private function createCSV(array $entries, array $websites)
+    private function createCSV(array $entries, array $websites): void
     {
         $filename = $this->dataDirectory . '/data-' . date('Y-m-d') . '.csv';
 
-        $file = fopen($filename, 'w');
+        $file = fopen($filename, 'wb');
         $headline = 'id;lat;lon;Name;Straße;PLZ;Ort;Land;Konfession;Typ';
         foreach ($websites as $websiteId => $websiteName) {
             $headline .= ';' . $websiteName;
@@ -57,7 +61,7 @@ class Exporter extends AbstractHelper
 
         foreach ($entries as $row) {
             unset($row['slug']);
-            $data = implode(";", $row);
+            $data = implode(';', $row);
             fwrite($file, $data . "\n");
         }
         fclose($file);

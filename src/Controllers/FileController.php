@@ -20,14 +20,14 @@ class FileController extends TwigController
         parent::__construct($container);
     }
 
-    public function robots(Request $request, Response $response, array $args)
+    public function robots(Request $request, Response $response, array $args): Response
     {
         return $this->twig->render($response, 'files/robots.txt.twig', [
             'production' => PRODUCTION
         ])->withHeader('Content-Type', 'text/plain; charset=UTF-8');
     }
 
-    public function sitemap(Request $request, Response $response, array $args)
+    public function sitemap(Request $request, Response $response, array $args): Response
     {
         return $this->twig->render($response, 'files/sitemap.xml.twig', [
             'churches' => Database::getInstance()->getAllChurchesWithLastUpdate()

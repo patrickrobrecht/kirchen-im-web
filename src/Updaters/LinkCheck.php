@@ -12,7 +12,7 @@ class LinkCheck
     private $httpStatusCode;
     private $redirectTarget;
 
-    const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0';
+    public const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0';
 
     /**
      * Checks the availability of the website with the given URL.
@@ -35,7 +35,7 @@ class LinkCheck
      * @param string $url the URL to check
      * @param bool $useHead true for a HEAD request, false for a GET request
      */
-    private function check(string $url, $useHead = true)
+    private function check(string $url, $useHead = true): void
     {
         $handle = curl_init($url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
@@ -53,7 +53,7 @@ class LinkCheck
      *
      * @return int the status code
      */
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->httpStatusCode;
     }
@@ -63,7 +63,7 @@ class LinkCheck
      *
      * @return string the target URL
      */
-    public function getRedirectTarget()
+    public function getRedirectTarget(): string
     {
         return $this->redirectTarget;
     }

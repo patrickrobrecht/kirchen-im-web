@@ -38,7 +38,7 @@ class TwigController
 
         // Add I18n extension for Twig and init textdomain and set default language.
         $this->twig->addExtension(new Twig_Extensions_Extension_I18n());
-        $textdomain = "kirchen-im-web";
+        $textdomain = 'kirchen-im-web';
         bindtextdomain($textdomain, 'lang');
         bind_textdomain_codeset($textdomain, 'UTF-8');
         textdomain($textdomain);
