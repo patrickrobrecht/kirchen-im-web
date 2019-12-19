@@ -76,8 +76,6 @@ class SocialMediaUpdater
                 return $this->getInstagramFollowers($url);
             case 'twitter':
                 return $this->getTwitterFollower($url);
-            case 'youtube':
-                return $this->getYoutubeSubscribers($url);
             default:
                 return false;
         }
@@ -200,51 +198,6 @@ class SocialMediaUpdater
             if (isset($json->followers_count)) {
                 return (int)$json->followers_count;
             }
-            return false;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    /**
-     * Returns the number of YouTube subscribers of the given URL.
-     *
-     * @param string $url the YouTube URL to check
-     *
-     * @return int|bool the number of subscribers, or false on failure
-     */
-    private function getYoutubeSubscribers(string $url)
-    {
-        try {
-            $username = substr($url, 24);
-            $channelId = false;
-            if (self::startsWith($username, 'channel/')) {
-                $temp = explode('/', $username);
-                $channelId = end($temp);
-            } else {
-                $json_url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $username
-                            . '&type=channel&key=' . GOOGLE_API_KEY;
-                $json = @file_get_contents($json_url);
-                if ($json) {
-                    $json = json_decode($json, false);
-                    if (isset($json->items[0]->id->channelId)) {
-                        $channelId = $json->items[0]->id->channelId;
-                    }
-                }
-            }
-
-            if ($channelId) {
-                $json_url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' . $channelId
-                            . '&key=' . GOOGLE_API_KEY;
-                $json = @file_get_contents($json_url);
-                if ($json) {
-                    $json = json_decode($json, false);
-                    if (isset($json->items[0]->statistics->subscriberCount)) {
-                        return (int)$json->items[0]->statistics->subscriberCount;
-                    }
-                }
-            }
-
             return false;
         } catch (Exception $e) {
             return false;

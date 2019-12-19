@@ -92,8 +92,8 @@ class Configuration extends AbstractHelper
         $this->preselectedWebsites = [
             'web' => _('Webauftritt'),
             'facebook' => 'Facebook',
+            'instagram' => 'Instagram',
             'twitter' => 'Twitter',
-            'youtube' => 'YouTube',
         ];
 
         // Must contain the beginning of a URL for the website type.
@@ -114,14 +114,12 @@ class Configuration extends AbstractHelper
             'facebook' => 'Facebook',
             'instagram' => 'Instagram',
             'twitter' => 'Twitter',
-            'youtube' => 'YouTube'
         ];
 
         $this->networksToCompareColors = [
             'facebook' => '#3b5998',
             'instagram' => '#383838',
             'twitter' => '#1da1f2',
-            'youtube' => '#ff0000'
         ];
 
         $this->sortOptions = [
