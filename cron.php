@@ -16,4 +16,4 @@ $l->check();
 // Get follower data.
 $s = new SocialMediaUpdater();
 header('Content-Type: application/json;charset=utf-8');
-echo json_encode($s->cron());
+echo json_encode($s->cron(), JSON_THROW_ON_ERROR, 512);

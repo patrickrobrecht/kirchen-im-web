@@ -116,7 +116,7 @@ Returns the (direct) children of the church with the given id in JSON.
     checked by [eslint](https://eslint.org/)
     - `npm run csJS` to run a check for compliance with the guidelines
     - `npm run fixJS` applies fixes for violations automatically.
-- PHP: [PSR2](https://www.php-fig.org/psr/psr-2/)
+- PHP: [PSR12](https://www.php-fig.org/psr/psr-12/)
     - `composer csPHP` to run a check for compliance with the guidelines
     - `composer fixPHP` applies fixes for violations automatically.
 

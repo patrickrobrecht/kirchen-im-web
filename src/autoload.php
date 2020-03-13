@@ -1,4 +1,5 @@
 <?php
+
 // Load classes.
 require __DIR__ . '/../vendor/autoload.php';
 

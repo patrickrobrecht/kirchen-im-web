@@ -1,4 +1,5 @@
 <?php
+
 // Rename to config.php and enter the credentials.
 
 // database connection

@@ -13,7 +13,7 @@
   },
   "license": "GPL-3.0",
   "require": {
-    "php": "^7.1",
+    "php": "^7.4",
     "ext-curl": "*",
     "ext-dom": "*",
     "ext-gettext": "*",
@@ -30,7 +30,7 @@
     "twig/extensions": "^1.5"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.4"
+    "squizlabs/php_codesniffer": "^3.5"
   },
   "scripts": {
     "post-install-cmd": [
@@ -48,7 +48,12 @@
     "csPHP": [
       "phpcs"
     ],
-    "fixPHP": [
+    "csfix": [
+      "@csfixPHP",
+      "npm run fixCSS",
+      "npm run fixJS"
+    ],
+    "csfixPHP": [
       "phpcbf"
     ],
     "dev": [
