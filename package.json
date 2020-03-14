@@ -21,6 +21,7 @@
     "jquery": "^3.4.1",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
+    "minimist": ">=1.2.5",
     "stylelint": "^13.2.1",
     "stylelint-config-recommended": "^3.0.0",
     "tablesorter": "^2.31.3"
