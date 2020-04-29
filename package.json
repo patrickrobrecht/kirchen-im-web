@@ -18,7 +18,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-stylelint": "^13.0.0",
     "highcharts": "^8.0.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "minimist": ">=1.2.5",
