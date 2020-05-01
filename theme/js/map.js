@@ -144,14 +144,14 @@ function Map (translations) {
         layers[t.others] = othersLayer;
         layers[t.web] = webLayer;
         layers[t.blog] = blogLayer;
-        layers.RSS = rssLayer;
-        layers.Facebook = facebookLayer;
-        layers.Flickr = flickrLayer;
-        layers.Instagram = instagramLayer;
-        layers.Soundcloud = soundcloudLayer;
-        layers.Twitter = twitterLayer;
-        layers.Vimeo = vimeoLayer;
-        layers.YouTube = youtubeLayer;
+        layers['RSS'] = rssLayer;
+        layers['Facebook'] = facebookLayer;
+        layers['Flickr'] = flickrLayer;
+        layers['Instagram'] = instagramLayer;
+        layers['Soundcloud'] = soundcloudLayer;
+        layers['Twitter'] = twitterLayer;
+        layers['Vimeo'] = vimeoLayer;
+        layers['YouTube'] = youtubeLayer;
         L.control.layers(layers).addTo(map);
 
         // Add cluster.
