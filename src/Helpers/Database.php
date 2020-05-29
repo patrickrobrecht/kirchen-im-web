@@ -322,7 +322,7 @@ class Database extends AbstractHelper
         $networksToCompareList = $this->getNetworksToCompareList();
         $statement = $this->connection->prepare('SELECT websiteId, churchId, url, type, followers, followersLastUpdate
             FROM websites
-            WHERE type IN (' . $networksToCompareList . ') AND followersStatus != 2
+            WHERE type IN (' . $networksToCompareList . ') AND (followersStatus is NULL OR followersStatus != 2)
             ORDER BY followersLastUpdate
             LIMIT :maxResults');
         $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
