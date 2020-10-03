@@ -21,9 +21,11 @@
     "jquery": "^3.5.1",
     "leaflet": "^1.7.1",
     "leaflet.markercluster": "^1.4.1",
+    "minimist": "^1.2.5",
     "stylelint": "^13.7.2",
     "stylelint-config-recommended": "^3.0.0",
-    "tablesorter": "^2.31.3"
+    "tablesorter": "^2.31.3",
+    "yargs-parser": "latest"
   },
   "scripts": {
     "postinstall": "npm run copy && npm run build",
