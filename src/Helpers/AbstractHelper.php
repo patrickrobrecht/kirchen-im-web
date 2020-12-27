@@ -19,11 +19,6 @@ class AbstractHelper
     {
     }
 
-    // No wakeups.
-    private function __wakeup()
-    {
-    }
-
     public static function getInstance()
     {
         static $instance = null;

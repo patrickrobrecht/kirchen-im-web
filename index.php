@@ -5,6 +5,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use KirchenImWeb\Controllers\APIController;
 use KirchenImWeb\Controllers\FileController;
 use KirchenImWeb\Controllers\PageController;
+use Slim\App;
 
 require __DIR__ . '/src/autoload.php';
 
@@ -14,25 +15,25 @@ $debug = defined('DEBUG') && DEBUG;
 $settings['debug'] = $debug;
 $settings['displayErrorDetails'] = $debug;
 
-$notFoundHandler = function ($c) {
-    return function (Request $request, Response $response) use ($c) {
+$notFoundHandler = static function ($c) {
+    return static function (Request $request, Response $response) use ($c) {
         return $c->PageController->error($request, $response, []);
     };
 };
 
-$app = new \Slim\App([
+$app = new App([
     'settings'        => $settings,
     'notFoundHandler' => $notFoundHandler
 ]);
 
 $container = $app->getContainer();
-$container['APIController'] = function ($container) {
+$container['APIController'] = static function ($container) {
     return new APIController($container);
 };
-$container['FileController'] = function ($container) {
+$container['FileController'] = static function ($container) {
     return new FileController($container);
 };
-$container['PageController'] = function ($container) {
+$container['PageController'] = static function ($container) {
     return new PageController($container);
 };
 

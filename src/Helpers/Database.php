@@ -84,7 +84,7 @@ class Database extends AbstractHelper
         if (isset($filters['name']) && $filters['name'] !== '') {
             $conditions[] = 'name LIKE :name ';
         }
-        if (isset($filters['postalCode']) && $filters['postalCode'] != 0) {
+        if (isset($filters['postalCode']) && $filters['postalCode'] !== '') {
             $conditions[] = 'postalCode = :postalCode ';
         }
         if (isset($filters['city']) && $filters['city'] !== '') {
@@ -299,7 +299,7 @@ class Database extends AbstractHelper
 
         if ($recursive) {
             foreach ($children as $key => $value) {
-                $children[$key]['children'] = $this->getChildrenOfEntry($value{'id'}, true);
+                $children[$key]['children'] = $this->getChildrenOfEntry($value['id'], true);
             }
         }
         return $children;
