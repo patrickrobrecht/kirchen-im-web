@@ -92,7 +92,7 @@ class PageController extends TwigController
 
         if ($check['correct']) {
             $added = Database::getInstance()->addChurch($check['data']);
-            Exporter::getInstance()->export();
+            Exporter::run(Database::getInstance());
             Mailer::getInstance()->sendMail(
                 'Kirchen im Web: Neuer Eintrag',
                 $this->twig->fetch('email/email-add.html.twig', [

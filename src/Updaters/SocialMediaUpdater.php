@@ -16,30 +16,38 @@ use TwitterAPIExchange;
  */
 class SocialMediaUpdater
 {
+    /**
+     * @var Database
+     */
+    private $database;
 
-    public function cron(): array
+    public function __construct(Database $database, int $count)
     {
-        // Start update and measure time.
-        $time = microtime(true);
-        $urls = Database::getInstance()->getURLsForUpdate(10);
-        $results = [];
-        foreach ($urls as $row) {
-            $results[] = $this->update($row);
-        }
-        $duration = (microtime(true) - $time);
+        $this->database = $database;
 
-        return [
-            'updatedEntries' => $results,
-            'included' => Configuration::getInstance()->networksToCompare,
-            'duration' => $duration
-        ];
+        echo sprintf(
+            'SOCIAL MEDIA UPDATER: %d entries for networks %s.',
+            $count,
+            implode(', ', Configuration::getInstance()->networksToCompare)
+        ) . PHP_EOL;
+
+        $urls = $this->database->getSocialMediaForUpdate($count);
+        foreach ($urls as $row) {
+            $data = $this->update($row);
+            echo sprintf(
+                '%s - old: %d - new: %d',
+                $data['url'],
+                $data['followersOld'],
+                $data['followersNew']
+            ) . PHP_EOL;
+        }
     }
 
     private function update(array $row): array
     {
         $websiteId = (int)$row['websiteId'];
         $url = $row['url'];
-        $followersNew = $this->getFollowers($row['type'], $url);
+        $followersNew = self::getFollowers($row['type'], $url);
         $data = [
             'churchId' => (int)$row['churchId'],
             'url' => $url,
@@ -49,11 +57,11 @@ class SocialMediaUpdater
 
         if ($followersNew && $followersNew > 0) {
             // Update follower number and the timestamp.
-            Database::getInstance()->updateFollowers($websiteId, $followersNew);
-            Database::getInstance()->addFollowers($websiteId, $followersNew);
+            $this->database->updateFollowers($websiteId, $followersNew);
+            $this->database->addFollowers($websiteId, $followersNew);
         } else {
             // Update the timestamp.
-            Database::getInstance()->updateFollowers($websiteId, false);
+            $this->database->updateFollowers($websiteId, false);
         }
 
         return $data;
@@ -67,15 +75,15 @@ class SocialMediaUpdater
      *
      * @return int|bool the follower count; false in case of errors.
      */
-    private function getFollowers(string $network, string $url)
+    private static function getFollowers(string $network, string $url)
     {
         switch ($network) {
             case 'facebook':
-                return $this->getFacebookLikes($url);
+                return self::getFacebookLikes($url);
             case 'instagram':
-                return $this->getInstagramFollowers($url);
+                return self::getInstagramFollowers($url);
             case 'twitter':
-                return $this->getTwitterFollower($url);
+                return self::getTwitterFollower($url);
             default:
                 return false;
         }
@@ -88,21 +96,21 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of likes, or false on failure
      */
-    private function getFacebookLikes(string $url)
+    private static function getFacebookLikes(string $url)
     {
         $handle = curl_init($url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_HEADER, true);
-        curl_setopt($handle, CURLOPT_USERAGENT, LinkCheck::USER_AGENT);
+        curl_setopt($handle, CURLOPT_USERAGENT, LinkChecker::USER_AGENT);
         $htmlCode = curl_exec($handle);
 
         if ($htmlCode && curl_getinfo($handle, CURLINFO_RESPONSE_CODE) === 200) {
-            $followerCount = $this->extractFollowerCountFromMeta($htmlCode, 'property', 'og:description');
+            $followerCount = self::extractFollowerCountFromMeta($htmlCode, 'property', 'og:description');
             if ($followerCount) {
                 return $followerCount;
             }
 
-            return $this->extractFollowerCountFromMeta($htmlCode, 'name', 'description');
+            return self::extractFollowerCountFromMeta($htmlCode, 'name', 'description');
         }
         return false;
     }
@@ -115,9 +123,9 @@ class SocialMediaUpdater
      *
      * @return bool|int
      */
-    private function extractFollowerCountFromMeta(string $html, string $metaKey, string $metaValue)
+    private static function extractFollowerCountFromMeta(string $html, string $metaKey, string $metaValue)
     {
-        $metaContent = $this->getMetaContent($html, $metaKey, $metaValue);
+        $metaContent = self::getMetaContent($html, $metaKey, $metaValue);
         if ($metaContent) {
             preg_match('/Gefällt (?P<likes>\d+(.\d+)*) Mal/mu', $metaContent, $match);
             if (isset($match['likes'])) {
@@ -140,7 +148,7 @@ class SocialMediaUpdater
      *
      * @return bool|string the meta description, or false on failure
      */
-    private function getMetaContent(string $html, string $metaKey, string $metaValue)
+    private static function getMetaContent(string $html, string $metaKey, string $metaValue)
     {
         libxml_use_internal_errors(true);
         $doc = new DOMDocument();
@@ -161,7 +169,7 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of +1s, or false on failure
      */
-    private function getInstagramFollowers(string $url)
+    private static function getInstagramFollowers(string $url)
     {
         try {
             $name = str_replace('/', '', substr($url, 25));
@@ -180,7 +188,7 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of subscribers, or false on failure
      */
-    private function getTwitterFollower(string $url)
+    private static function getTwitterFollower(string $url)
     {
         try {
             $name = substr($url, 20);
@@ -204,16 +212,8 @@ class SocialMediaUpdater
         }
     }
 
-    /**
-     * Tests whether the given haystack starts with needle.
-     *
-     * @param string $haystack the haystack
-     * @param string $needle the needle
-     * @return boolean true if and only if the haystack starts with needle
-     */
-    private static function startsWith($haystack, $needle): bool
+    public static function run(Database $database, int $count): void
     {
-        // search backwards starting from haystack length characters from the end
-        return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+        new SocialMediaUpdater($database, $count);
     }
 }

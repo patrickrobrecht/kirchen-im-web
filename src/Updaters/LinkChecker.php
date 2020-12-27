@@ -2,12 +2,14 @@
 
 namespace KirchenImWeb\Updaters;
 
+use KirchenImWeb\Helpers\Database;
+
 /**
  * Utility for checking the availability of the website with the given URL.
  *
  * @package KirchenImWeb\Updaters
  */
-class LinkCheck
+class LinkChecker
 {
     private $httpStatusCode;
     private $redirectTarget;
@@ -66,5 +68,25 @@ class LinkCheck
     public function getRedirectTarget(): string
     {
         return $this->redirectTarget;
+    }
+
+    public static function run(Database $database, int $count): void
+    {
+        echo sprintf('LINK CHECKER: %d entries', $count) . PHP_EOL;
+        $websites = $database->getWebsitesToCheck($count);
+        foreach ($websites as $website) {
+            $check = new LinkChecker($website['url']);
+            $database->updateWebsiteCheck(
+                $website['websiteId'],
+                $check->getStatusCode(),
+                $check->getRedirectTarget()
+            );
+            echo sprintf(
+                '%s - code: %d - target: %d',
+                $website['url'],
+                $check->getStatusCode(),
+                $check->getRedirectTarget()
+            ) . PHP_EOL;
+        }
     }
 }

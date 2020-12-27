@@ -29,14 +29,14 @@ class APIController
         $filters = ParameterChecker::getInstance()->extractFilterParameters($request);
         $websites = Configuration::getInstance()->websites;
         $entries = Database::getInstance()->getFilteredEntries($filters, $websites);
-        return $response->withJson(Exporter::getInstance()->removeNullValues($entries));
+        return $response->withJson(Exporter::removeNullValues($entries));
     }
 
     public function church(Request $request, Response $response, array $args): Response
     {
         $entry = Database::getInstance()->getEntry($args['id']);
         if ($entry) {
-            return $response->withJson(Exporter::getInstance()->removeNullValues($entry));
+            return $response->withJson(Exporter::removeNullValues($entry));
         }
 
         return $response->withStatus(404);
@@ -53,7 +53,7 @@ class APIController
                 ],
                 Configuration::getInstance()->websites
             );
-            return $response->withJson(Exporter::getInstance()->removeNullValues($children));
+            return $response->withJson(Exporter::removeNullValues($children));
         }
 
         return $response->withStatus(404);

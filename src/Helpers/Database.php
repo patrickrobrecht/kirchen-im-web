@@ -14,7 +14,7 @@ class Database extends AbstractHelper
 {
     private $connection;
 
-    protected function __construct()
+    public function __construct()
     {
         parent::__construct();
         $options  = [
@@ -317,7 +317,7 @@ class Database extends AbstractHelper
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getURLsForUpdate(int $limit): array
+    public function getSocialMediaForUpdate(int $limit): array
     {
         $networksToCompareList = $this->getNetworksToCompareList();
         $statement = $this->connection->prepare('SELECT websiteId, churchId, url, type, followers, followersLastUpdate
@@ -335,7 +335,7 @@ class Database extends AbstractHelper
         $networksToCompareList = $this->getNetworksToCompareList();
         $statement = $this->connection->prepare('SELECT websiteId, url
             FROM websites
-            WHERE lastCheck IS NULL OR lastCheck <= CURDATE() AND type NOT IN (' . $networksToCompareList . ')
+            WHERE type NOT IN (' . $networksToCompareList . ') AND (lastCheck IS NULL OR lastCheck <= CURDATE()) 
             ORDER BY lastCheck
             LIMIT :maxResults');
         $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);

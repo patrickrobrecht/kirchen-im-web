@@ -126,9 +126,9 @@ To run all checks, use `composer cs`.
 * [HTML5 and CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss), based on
     [Bootstrap 4](https://getbootstrap.com/)
 * [PHP](https://secure.php.net/) with libraries
+    [Instagram PHP Scraper](https://github.com/postaddictme/instagram-php-scraper)
     [Slim](https://www.slimframework.com/), 
-    [Twig](https://twig.symfony.com/),
-    [instagram-php-scraper](https://github.com/postaddictme/instagram-php-scraper)
+    [Twig](https://twig.symfony.com/)
     and [twitter-api-php](https://github.com/J7mbo/twitter-api-php)
 * JavaScript, especially the libraries 
     [jQuery](https://jquery.com/),

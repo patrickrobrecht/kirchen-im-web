@@ -9,37 +9,27 @@ use RuntimeException;
  *
  * @package KirchenImWeb\Helpers
  */
-class Exporter extends AbstractHelper
+class Exporter
 {
+    /**
+     * @var string
+     */
     private $dataDirectory;
 
     public function __construct()
     {
-        parent::__construct();
         $this->dataDirectory = dirname(__FILE__, 3) . '/data';
-    }
-
-    public function export(): void
-    {
-        $this->checkDataDirectory();
-        $entries = Database::getInstance()->getEntries();
-        $this->createJSON($entries);
-        $this->createCSV($entries, Configuration::getInstance()->websites);
-    }
-
-    private function checkDataDirectory(): void
-    {
-        if (! file_exists($this->dataDirectory) && ! mkdir($this->dataDirectory) && ! is_dir($this->dataDirectory)) {
+        if (!file_exists($this->dataDirectory) && !mkdir($this->dataDirectory) && !is_dir($this->dataDirectory)) {
             throw new RuntimeException(sprintf('Directory "%s" was not created', $this->dataDirectory));
         }
     }
 
     private function createJSON(array $entries): void
     {
-        $filename = $this->dataDirectory . '/data-' . date('Y-m-d') . '.json';
+        $filename = $this->dataDirectory . '/data-temp.json';
         $json = fopen($filename, 'wb');
         $content = json_encode(
-            $this->removeNullValues($entries),
+            self::removeNullValues($entries),
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
         );
         fwrite($json, $content);
@@ -50,7 +40,7 @@ class Exporter extends AbstractHelper
 
     private function createCSV(array $entries, array $websites): void
     {
-        $filename = $this->dataDirectory . '/data-' . date('Y-m-d') . '.csv';
+        $filename = $this->dataDirectory . '/data-temp.csv';
 
         $file = fopen($filename, 'wb');
         $headline = 'id;lat;lon;Name;Straße;PLZ;Ort;Land;Konfession;Typ';
@@ -69,15 +59,24 @@ class Exporter extends AbstractHelper
         copy($filename, $this->dataDirectory . '/data.csv');
     }
 
-    public function removeNullValues($data)
+    public static function removeNullValues($data)
     {
         foreach ($data as $id => $row) {
             if (null === $data[$id]) {
                 unset($data[$id]);
             } elseif (is_array($data[$id])) {
-                $data[$id] = $this->removeNullValues($data[$id]);
+                $data[$id] = self::removeNullValues($data[$id]);
             }
         }
         return $data;
+    }
+
+    public static function run(Database $database): void
+    {
+        $entries = $database->getEntries();
+
+        $exporter = new self();
+        $exporter->createJSON($entries);
+        $exporter->createCSV($entries, Configuration::getInstance()->websites);
     }
 }

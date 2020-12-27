@@ -1,19 +1,35 @@
 <?php
 
+use KirchenImWeb\Helpers\Database;
 use KirchenImWeb\Helpers\Exporter;
-use KirchenImWeb\Updaters\LinkCheckUpdater;
+use KirchenImWeb\Updaters\LinkChecker;
 use KirchenImWeb\Updaters\SocialMediaUpdater;
 
 require __DIR__ . '/src/autoload.php';
 
-// Export into CSV and JSON.
-Exporter::getInstance()->export();
+$time = microtime(true);
+$args = getopt('l:s:');
 
-// Check for broken links.
-$l = new LinkCheckUpdater();
-$l->check();
+$database = new Database();
+Exporter::run($database);
 
-// Get follower data.
-$s = new SocialMediaUpdater();
-header('Content-Type: application/json;charset=utf-8');
-echo json_encode($s->cron(), JSON_THROW_ON_ERROR, 512);
+if (isset($args['l'])) {
+    $count = (int)$args['l'];
+    if ($count === 0) {
+        echo 'Invalid argument -l.' . PHP_EOL;
+    } else {
+        LinkChecker::run($database, $count);
+    }
+}
+
+if (isset($args['s'])) {
+    $count = (int)$args['s'];
+    if ($count === 0) {
+        echo 'Invalid argument -s.' . PHP_EOL;
+    } else {
+        SocialMediaUpdater::run($database, $count);
+    }
+}
+
+$duration = (microtime(true) - $time);
+echo sprintf('Executed in %.2f seconds.', $duration) . PHP_EOL;
