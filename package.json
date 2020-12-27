@@ -1,13 +1,13 @@
 {
   "devDependencies": {
-    "bootstrap": "^4.5.2",
+    "bootstrap": "^4.5.3",
     "del": "^6.0.0",
-    "eslint": "^7.10.0",
-    "eslint-config-standard": "^14.1.1",
+    "eslint": "^7.16.0",
+    "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-standard": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-cli": "^2.3.0",
@@ -17,15 +17,13 @@
     "gulp-rev": "^9.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-stylelint": "^13.0.0",
-    "highcharts": "^8.2.0",
+    "highcharts": "^8.2.2",
     "jquery": "^3.5.1",
     "leaflet": "^1.7.1",
     "leaflet.markercluster": "^1.4.1",
-    "minimist": "^1.2.5",
-    "stylelint": "^13.7.2",
+    "stylelint": "^13.8.0",
     "stylelint-config-recommended": "^3.0.0",
-    "tablesorter": "^2.31.3",
-    "yargs-parser": "latest"
+    "tablesorter": "^2.31.3"
   },
   "scripts": {
     "postinstall": "npm run copy && npm run build",

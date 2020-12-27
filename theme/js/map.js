@@ -2,50 +2,49 @@
 function Map (translations) {
   this.translations = translations;
   this.load = function (mapId, baseUrl, dataPath, language) {
-    var t = this.translations;
-    var detailsUrlPrefix = baseUrl + '/' + language;
-    var map;
-    var markerArray = [];
+    const t = this.translations;
+    const detailsUrlPrefix = baseUrl + '/' + language;
+    const markerArray = [];
     // the layers
     /* global L */
     /* eslint no-undef: "error" */
-    var allLayer = new L.LayerGroup();
-    var oldCatholicLayer = new L.LayerGroup();
-    var anglicanLayer = new L.LayerGroup();
-    var protestantLayer = new L.LayerGroup();
-    var freeChurchesLayer = new L.LayerGroup();
-    var catholicLayer = new L.LayerGroup();
-    var othersLayer = new L.LayerGroup();
-    var webLayer = new L.LayerGroup();
-    var blogLayer = new L.LayerGroup();
-    var rssLayer = new L.LayerGroup();
-    var facebookLayer = new L.LayerGroup();
-    var flickrLayer = new L.LayerGroup();
-    var instagramLayer = new L.LayerGroup();
-    var soundcloudLayer = new L.LayerGroup();
-    var twitterLayer = new L.LayerGroup();
-    var vimeoLayer = new L.LayerGroup();
-    var youtubeLayer = new L.LayerGroup();
+    const allLayer = new L.LayerGroup();
+    const oldCatholicLayer = new L.LayerGroup();
+    const anglicanLayer = new L.LayerGroup();
+    const protestantLayer = new L.LayerGroup();
+    const freeChurchesLayer = new L.LayerGroup();
+    const catholicLayer = new L.LayerGroup();
+    const othersLayer = new L.LayerGroup();
+    const webLayer = new L.LayerGroup();
+    const blogLayer = new L.LayerGroup();
+    const rssLayer = new L.LayerGroup();
+    const facebookLayer = new L.LayerGroup();
+    const flickrLayer = new L.LayerGroup();
+    const instagramLayer = new L.LayerGroup();
+    const soundcloudLayer = new L.LayerGroup();
+    const twitterLayer = new L.LayerGroup();
+    const vimeoLayer = new L.LayerGroup();
+    const youtubeLayer = new L.LayerGroup();
     // the icons
-    var oldCatholicIcon = L.icon({ iconUrl: baseUrl + '/images/markers/orange.png' });
-    var anglicanIcon = L.icon({ iconUrl: baseUrl + '/images/markers/green.png' });
-    var protestantIcon = L.icon({ iconUrl: baseUrl + '/images/markers/purple.png' });
-    var freeChurchesIcon = L.icon({ iconUrl: baseUrl + '/images/markers/blue.png' });
-    var catholicIcon = L.icon({ iconUrl: baseUrl + '/images/markers/yellow.png' });
-    var othersIcon = L.icon({ iconUrl: baseUrl + '/images/markers/red.png' });
+    const oldCatholicIcon = L.icon({ iconUrl: baseUrl + '/images/markers/orange.png' });
+    const anglicanIcon = L.icon({ iconUrl: baseUrl + '/images/markers/green.png' });
+    const protestantIcon = L.icon({ iconUrl: baseUrl + '/images/markers/purple.png' });
+    const freeChurchesIcon = L.icon({ iconUrl: baseUrl + '/images/markers/blue.png' });
+    const catholicIcon = L.icon({ iconUrl: baseUrl + '/images/markers/yellow.png' });
+    const othersIcon = L.icon({ iconUrl: baseUrl + '/images/markers/red.png' });
 
     // Create a map in the container with the given id, set the view to a given place and zoom.
-    map = L.map(mapId, { center: L.latLng(50, 10), zoom: 6 });
+    const map = L.map(mapId, { center: L.latLng(50, 10), zoom: 6 });
     // Add an OpenStreetMap tile layer.
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
     }).addTo(map);
-    var markerCluster = L.markerClusterGroup({ maxClusterRadius: 80, chunkedLoading: true });
+    const markerCluster = L.markerClusterGroup({ maxClusterRadius: 80, chunkedLoading: true });
     /* global $ */
     /* eslint no-undef: "error" */
     $.getJSON(baseUrl + dataPath,
       function (data) {
-        var title, denomination, icon, denominationLayer, content, thisMarker;
+        let title, denomination, icon, denominationLayer, content, thisMarker;
         $.each(data,
           function (i, v) {
             // Read the JSON data.
@@ -134,7 +133,7 @@ function Map (translations) {
           });
 
         // Add control for the layers.
-        var layers = {};
+        const layers = {};
         layers[t.all] = allLayer;
         layers[t.oldCatholic] = oldCatholicLayer;
         layers[t.anglican] = anglicanLayer;
