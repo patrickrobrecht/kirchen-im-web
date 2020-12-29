@@ -15,6 +15,10 @@ define('MAIL_PASSWORD', '');
 define('MAIL_FROM', '');
 define('MAIL_TO', '');
 
+// Instagram
+define('INSTAGRAM_USERNAME', '');
+define('INSTAGRAM_PASSWORD', '');
+
 // Twitter API
 define('TWITTER_API_TOKEN', '');
 define('TWITTER_API_TOKEN_SECRET', '');

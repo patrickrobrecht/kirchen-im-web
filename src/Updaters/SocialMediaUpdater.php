@@ -3,10 +3,12 @@
 namespace KirchenImWeb\Updaters;
 
 use DOMDocument;
+use Exception;
+use GuzzleHttp\Client;
 use InstagramScraper\Instagram;
 use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
-use Exception;
+use Phpfastcache\Helper\Psr16Adapter;
 use TwitterAPIExchange;
 
 /**
@@ -20,6 +22,11 @@ class SocialMediaUpdater
      * @var Database
      */
     private $database;
+
+    /**
+     * @var Instagram
+     */
+    private $instagram;
 
     public function __construct(Database $database, int $count)
     {
@@ -47,7 +54,7 @@ class SocialMediaUpdater
     {
         $websiteId = (int)$row['websiteId'];
         $url = $row['url'];
-        $followersNew = self::getFollowers($row['type'], $url);
+        $followersNew = $this->getFollowers($row['type'], $url);
         $data = [
             'churchId' => (int)$row['churchId'],
             'url' => $url,
@@ -75,13 +82,13 @@ class SocialMediaUpdater
      *
      * @return int|bool the follower count; false in case of errors.
      */
-    private static function getFollowers(string $network, string $url)
+    private function getFollowers(string $network, string $url)
     {
         switch ($network) {
             case 'facebook':
                 return self::getFacebookLikes($url);
             case 'instagram':
-                return self::getInstagramFollowers($url);
+                return $this->getInstagramFollowers($url);
             case 'twitter':
                 return self::getTwitterFollower($url);
             default:
@@ -167,18 +174,40 @@ class SocialMediaUpdater
      *
      * @param string $url the Instagram to check
      *
-     * @return int|bool the number of +1s, or false on failure
+     * @return int|bool the number of followers, or false on failure
      */
-    private static function getInstagramFollowers(string $url)
+    private function getInstagramFollowers(string $url)
     {
         try {
             $name = str_replace('/', '', substr($url, 25));
-            $instagram = new Instagram();
+            $instagram = $this->getInstagram();
+            if (!$instagram) {
+                return false;
+            }
             $account = $instagram->getAccount($name);
             return $account->getFollowedByCount();
         } catch (Exception $e) {
             return false;
         }
+    }
+
+    private function getInstagram(): ?Instagram
+    {
+        if (!$this->instagram) {
+            $this->instagram = Instagram::withCredentials(
+                new Client(),
+                INSTAGRAM_USERNAME,
+                INSTAGRAM_PASSWORD,
+                new Psr16Adapter('Files')
+            );
+            $this->instagram->setUserAgent(LinkChecker::USER_AGENT);
+            try {
+                $this->instagram->login();
+                $this->instagram->saveSession();
+            } catch (Exception $e) {
+            }
+        }
+        return $this->instagram;
     }
 
     /**

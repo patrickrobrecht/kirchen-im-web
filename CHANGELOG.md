@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version 3.7 (unreleased)
 
 ### Changed
+* Updated dependencies
 * Make number of updated URLs in LinkChecker and SocialMediaUpdater configurable
+
+### Fixed
+* Fix update of Instagram follower count
 
 
 ## Version 3.6.3 (2019-12-19)
