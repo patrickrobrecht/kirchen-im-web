@@ -317,14 +317,14 @@ class Database extends AbstractHelper
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getSocialMediaForUpdate(int $limit): array
+    public function getSocialMediaForUpdate(string $type, int $limit): array
     {
-        $networksToCompareList = $this->getNetworksToCompareList();
         $statement = $this->connection->prepare('SELECT websiteId, churchId, url, type, followers, followersLastUpdate
             FROM websites
-            WHERE type IN (' . $networksToCompareList . ') AND (followersStatus is NULL OR followersStatus != 2)
+            WHERE type = :type AND (followersStatus is NULL OR followersStatus != 2)
             ORDER BY followersLastUpdate
             LIMIT :maxResults');
+        $statement->bindParam(':type', $type);
         $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);

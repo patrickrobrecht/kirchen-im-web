@@ -1,5 +1,6 @@
 <?php
 
+use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
 use KirchenImWeb\Helpers\Exporter;
 use KirchenImWeb\Updaters\LinkChecker;
@@ -8,26 +9,28 @@ use KirchenImWeb\Updaters\SocialMediaUpdater;
 require __DIR__ . '/src/autoload.php';
 
 $time = microtime(true);
-$args = getopt('l:s:');
+
+$socialMediaNetworks = array_keys(Configuration::getInstance()->networksToCompare);
+$argumentNamesForSocialMedia = array_map(static fn($i) => $i . ':', $socialMediaNetworks);
+$args = getopt('', array_merge(['links:'], $argumentNamesForSocialMedia));
 
 $database = new Database();
 Exporter::run($database);
 
-if (isset($args['l'])) {
-    $count = (int)$args['l'];
-    if ($count === 0) {
-        echo 'Invalid argument -l.' . PHP_EOL;
-    } else {
+if (isset($args['links'])) {
+    $count = (int)$args['links'];
+    if ($count > 0) {
         LinkChecker::run($database, $count);
     }
 }
 
-if (isset($args['s'])) {
-    $count = (int)$args['s'];
-    if ($count === 0) {
-        echo 'Invalid argument -s.' . PHP_EOL;
-    } else {
-        SocialMediaUpdater::run($database, $count);
+$socialMediaUpdater = new SocialMediaUpdater($database);
+foreach ($socialMediaNetworks as $network) {
+    if (isset($args[$network])) {
+        $count = (int)$args[$network];
+        if ($count > 0) {
+            $socialMediaUpdater->updateNetwork($network, $count);
+        }
     }
 }
 

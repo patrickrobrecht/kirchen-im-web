@@ -6,7 +6,6 @@ use DOMDocument;
 use Exception;
 use GuzzleHttp\Client;
 use InstagramScraper\Instagram;
-use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
 use Phpfastcache\Helper\Psr16Adapter;
 use TwitterAPIExchange;
@@ -28,17 +27,16 @@ class SocialMediaUpdater
      */
     private $instagram;
 
-    public function __construct(Database $database, int $count)
+    public function __construct(Database $database)
     {
         $this->database = $database;
+    }
 
-        echo sprintf(
-            'SOCIAL MEDIA UPDATER: %d entries for networks %s.',
-            $count,
-            implode(', ', Configuration::getInstance()->networksToCompare)
-        ) . PHP_EOL;
+    public function updateNetwork(string $network, int $count): void
+    {
+        echo sprintf('SOCIAL MEDIA UPDATER: %d entries for %s.', $count, $network) . PHP_EOL;
 
-        $urls = $this->database->getSocialMediaForUpdate($count);
+        $urls = $this->database->getSocialMediaForUpdate($network, $count);
         foreach ($urls as $row) {
             $data = $this->update($row);
             echo sprintf(
