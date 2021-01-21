@@ -27,6 +27,11 @@ class SocialMediaUpdater
      */
     private $instagram;
 
+    /**
+     * @var TwitterAPIExchange
+     */
+    private $twitter;
+
     public function __construct(Database $database)
     {
         $this->database = $database;
@@ -88,7 +93,7 @@ class SocialMediaUpdater
             case 'instagram':
                 return $this->getInstagramFollowers($url);
             case 'twitter':
-                return self::getTwitterFollower($url);
+                return $this->getTwitterFollower($url);
             default:
                 return false;
         }
@@ -215,17 +220,14 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of subscribers, or false on failure
      */
-    private static function getTwitterFollower(string $url)
+    private function getTwitterFollower(string $url)
     {
         try {
             $name = substr($url, 20);
-            $settings = [
-                'oauth_access_token' => TWITTER_API_TOKEN,
-                'oauth_access_token_secret' => TWITTER_API_TOKEN_SECRET,
-                'consumer_key' => TWITTER_API_CONSUMER_KEY,
-                'consumer_secret' => TWITTER_API_CONSUMER_SECRET
-            ];
-            $twitterAPI = new TwitterAPIExchange($settings);
+            $twitterAPI = $this->getTwitter();
+            if (!$twitterAPI) {
+                return false;
+            }
             $json = $twitterAPI->setGetfield('?screen_name=' . $name)
                                ->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
                                ->performRequest();
@@ -239,8 +241,18 @@ class SocialMediaUpdater
         }
     }
 
-    public static function run(Database $database, int $count): void
+    private function getTwitter(): ?TwitterAPIExchange
     {
-        new SocialMediaUpdater($database, $count);
+        if (!$this->twitter) {
+            $this->twitter = new TwitterAPIExchange(
+                [
+                    'oauth_access_token' => TWITTER_API_TOKEN,
+                    'oauth_access_token_secret' => TWITTER_API_TOKEN_SECRET,
+                    'consumer_key' => TWITTER_API_CONSUMER_KEY,
+                    'consumer_secret' => TWITTER_API_CONSUMER_SECRET
+                ]
+            );
+        }
+        return $this->twitter;
     }
 }

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Updated dependencies
 * Make number of updated URLs in LinkChecker and SocialMediaUpdater configurable
+* Reuse Instagram and Twitter connection
 
 ### Fixed
 * Fix update of Instagram follower count
