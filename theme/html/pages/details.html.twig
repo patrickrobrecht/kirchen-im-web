@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for website in entry.websiteTypes %}
+                    {% for website in entry.websites %}
                         <tr>
                             <td><a class="{{ website.type }}" href="{{ website.url }}">{{ config.websiteTypes[website.type] }}</a></td>
                             <td class="number">{% if website.followers > 0 %}{{ macros.number_format(website.followers, languageSlug) }}{% endif %}</td>
