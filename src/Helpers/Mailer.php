@@ -5,9 +5,9 @@ namespace KirchenImWeb\Helpers;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
-class Mailer extends AbstractHelper
+class Mailer
 {
-    public function sendMail($subject, $bodyHTML, $bodyText = ''): ?bool
+    public static function sendMail($subject, $bodyHTML, $bodyText = ''): ?bool
     {
         $mail = new PHPMailer();
         $mail->isSMTP();

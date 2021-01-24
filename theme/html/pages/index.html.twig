@@ -53,7 +53,7 @@
                                 </div>
                                 <small class="text-muted">{{ entry.denomination|trans }} | {{ entry.type }} | {{ entry.city }}</small>
                                 <div class="py-1 mx-n1">
-                                    {% for id, name in config.websites %}
+                                    {% for id, name in config.websiteTypes %}
                                         {% if entry[id] %}
                                             <a class="px-1" href="{{ entry[id] }}" title="{{ name|trans }}">
                                                 <img src="{{ base_url }}/images/icons/{{ id }}.png" alt="{{ name|trans }}">

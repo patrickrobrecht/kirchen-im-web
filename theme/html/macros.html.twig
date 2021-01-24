@@ -11,8 +11,8 @@
             'freeChurches': "{% trans 'freikirchlich' %}",
             'catholic': "{% trans 'katholisch' %}",
             'others': "{% trans 'andere Konfession' %}",
-            'web': "{{ config.websites['web'] }}",
-            'blog': "{{ config.websites['blog'] }}"
+            'web': "{{ config.websiteTypes['web'] }}",
+            'blog': "{{ config.websiteTypes['blog'] }}"
         });
         map.load('{{ mapId }}', '{{ base_url() }}', '{{ dataPath|raw }}', '{{ languageSlug }}');
     </script>

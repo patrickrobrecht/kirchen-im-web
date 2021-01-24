@@ -10,13 +10,20 @@ use PDOException;
  *
  * @package KirchenImWeb\Helpers
  */
-class Database extends AbstractHelper
+class Database
 {
+    /**
+     * @var Database
+     */
+    private static $instance = null;
+
+    /**
+     * @var PDO
+     */
     private $connection;
 
     public function __construct()
     {
-        parent::__construct();
         $options  = [
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_CLASS
@@ -35,7 +42,7 @@ class Database extends AbstractHelper
 
     public function getEntries(): array
     {
-        $websites = Configuration::getInstance()->websites;
+        $websites = Configuration::getWebsiteTypes();
         $query = 'SELECT id, slug, lat, lon, name, street, postalCode, city, country, denomination, churches.type';
         foreach ($websites as $websiteId => $websiteName) {
             $query .= ', ' . $websiteId . '.url AS ' . $websiteId;
@@ -105,7 +112,7 @@ class Database extends AbstractHelper
         if ($compare) {
             // restrict to churches with at least one profile with followers set
             $compare_conditions = [];
-            foreach (Configuration::getInstance()->networksToCompare as $websiteId => $websiteName) {
+            foreach (Configuration::getWebsiteTypesToCompare() as $websiteId => $websiteName) {
                 $compare_conditions[] =
                     '(' . $websiteId . '.followers IS NOT NULL AND ' . $websiteId . '.followers > 0) ';
             }
@@ -173,7 +180,7 @@ class Database extends AbstractHelper
         foreach ($entries as $entry) {
             $ids[] = $entry['id'];
             if (isset($entry['children'])) {
-                $ids = array_merge($ids, Database::extractIds($entry['children']));
+                $ids = array_merge($ids, self::extractIds($entry['children']));
             }
         }
         return $ids;
@@ -199,7 +206,7 @@ class Database extends AbstractHelper
 
     public function getRecentlyAddedEntries(): array
     {
-        $showWebsites = Configuration::getInstance()->preselectedWebsites;
+        $showWebsites = Configuration::getPreselectedWebsiteTypes();
 
         $query = 'SELECT id, slug, name, postalCode, city, country, denomination, churches.type';
         foreach ($showWebsites as $websiteId => $websiteName) {
@@ -259,7 +266,7 @@ class Database extends AbstractHelper
 
         // Queries for the followers history of the social media entries.
         foreach ($data['websites'] as $key => $website) {
-            if (array_key_exists($website['type'], Configuration::getInstance()->networksToCompare)) {
+            if (array_key_exists($website['type'], Configuration::getWebsiteTypesToCompare())) {
                 $data['websites'][$key]['followerHistory'] = $this->getFollowerHistory($website['websiteId']);
             }
             unset($data['websites'][$key]['websiteId']);
@@ -345,9 +352,8 @@ class Database extends AbstractHelper
 
     private function getNetworksToCompareList(): string
     {
-        $networksToCompare = Configuration::getInstance()->networksToCompare;
         $networksToCompareAsStrings = [];
-        foreach ($networksToCompare as $type => $typeName) {
+        foreach (Configuration::getWebsiteTypesToCompare() as $type => $typeName) {
             $networksToCompareAsStrings[] = "'" . $type . "'";
         }
         return implode(', ', $networksToCompareAsStrings);
@@ -555,5 +561,16 @@ class Database extends AbstractHelper
         $statement = $this->connection->query('SELECT name, value
 			FROM settings');
         return $statement->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
+
+    /**
+     * @return static
+     */
+    public static function getInstance()
+    {
+        if (null === self::$instance) {
+            self::$instance = new static();
+        }
+        return self::$instance;
     }
 }

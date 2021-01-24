@@ -123,8 +123,8 @@
                     {% trans 'Bitte achten Sie darauf, nur öffentliche Webauftritte und Social-Media-Auftritte (d.h. keine Facebook-Gruppen, sondern nur öffentliche Facebook-Seiten) anzugeben.' %}
                     {% trans 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' %}
                 </p>
-                {% for id, website in config.websites %}
-                    {% set prefix = config.websitesStartOfURL[id] %}
+                {% for id, website in config.websiteTypes %}
+                    {% set prefix = config.startOfWebsiteURL[id] %}
                     {% set urlPattern = urlPrefix ? urlPrefix ~ '.+' : 'https?://.+' %}
                     <div class="col-12 col-xl-6">
                         <div class="form-group">

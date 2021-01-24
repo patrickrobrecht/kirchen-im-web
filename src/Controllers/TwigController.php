@@ -47,6 +47,16 @@ class TwigController
         $this->twig->offsetSet('domain', $_SERVER['HTTP_HOST']);
         $this->twig->offsetSet('host', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']);
         $this->twig->offsetSet('currentPath', $container['request']->getUri()->getPath());
-        $this->twig->offsetSet('config', Configuration::getInstance());
+        $this->twig->offsetSet('config', [
+            'countries' => Configuration::getCountries(),
+            'denominations' => Configuration::getDenominations(),
+            'types' => Configuration::getTypes(),
+            'websiteTypes' => Configuration::getWebsiteTypes(),
+            'startOfWebsiteURL' => Configuration::getStartOfWebsiteURL(),
+            'websitesTypesToCompare' => Configuration::getWebsiteTypesToCompare(),
+            'websitesToCompareColors' => Configuration::getWebsitesToCompareColors(),
+            'sortOptions' => Configuration::getSortOptions(),
+            'languages' => Configuration::getLanguages(),
+        ]);
     }
 }

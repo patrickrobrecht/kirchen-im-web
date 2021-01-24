@@ -46,9 +46,8 @@ class PageController extends TwigController
 
     public function search(Request $request, Response $response, array $args): Response
     {
-        $pc = ParameterChecker::getInstance();
-        $filters = $pc->extractFilterParameters($request);
-        $websites = $pc->extractFilterWebsites($request);
+        $filters = ParameterChecker::extractFilterParameters($request);
+        $websites = ParameterChecker::extractFilterWebsites($request);
         return $this->twig->render($response, 'pages/table.html.twig', [
             'title' => _('Suche'),
             'headline' => _('Kirchliche Web- und Social-Media-Auftritte'),
@@ -56,16 +55,15 @@ class PageController extends TwigController
             'compare' => false,
             'filters' => $filters,
             'websites' => $websites,
-            'sort' => $pc->extractSort($request, 'city'),
+            'sort' => ParameterChecker::extractSort($request, 'city'),
             'entries' => Database::getInstance()->getFilteredEntries($filters, $websites)
         ]);
     }
 
     public function comparison(Request $request, Response $response, array $args): Response
     {
-        $pc = ParameterChecker::getInstance();
-        $filters = $pc->extractFilterParameters($request);
-        $websites = Configuration::getInstance()->networksToCompare;
+        $filters = ParameterChecker::extractFilterParameters($request);
+        $websites = Configuration::getWebsiteTypesToCompare();
         return $this->twig->render($response, 'pages/table.html.twig', [
             'title' => _('Vergleich kirchlicher Social-Media-Auftritte'),
             'headline' => _('Vergleich kirchlicher Social-Media-Auftritte'),
@@ -74,26 +72,26 @@ class PageController extends TwigController
             'compare' => true,
             'filters' => $filters,
             'websites' => $websites,
-            'sort' => $pc->extractSort($request, 'facebook'),
+            'sort' => ParameterChecker::extractSort($request, 'facebook'),
             'entries' => Database::getInstance()->getFilteredEntries($filters, $websites, true)
         ]);
     }
 
     public function add(Request $request, Response $response, array $args): Response
     {
-        $data = ParameterChecker::getInstance()->parseAddFormPreSelectionParameters($request);
+        $data = ParameterChecker::parseAddFormPreSelectionParameters($request);
         return $this->addResponse($response, $data);
     }
 
     public function addForm(Request $request, Response $response, array $args): Response
     {
-        $check = ParameterChecker::getInstance()->parseAddFormParameters($request);
+        $check = ParameterChecker::parseAddFormParameters($request);
         $added = [];
 
         if ($check['correct']) {
             $added = Database::getInstance()->addChurch($check['data']);
             Exporter::run(Database::getInstance());
-            Mailer::getInstance()->sendMail(
+            Mailer::sendMail(
                 'Kirchen im Web: Neuer Eintrag',
                 $this->twig->fetch('email/email-add.html.twig', [
                     'added' => $added
