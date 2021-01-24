@@ -26,8 +26,8 @@ class APIController
 
     public function churches(Request $request, Response $response, array $args)
     {
-        $filters = ParameterChecker::getInstance()->extractFilterParameters($request);
-        $websites = Configuration::getInstance()->websites;
+        $filters = ParameterChecker::extractFilterParameters($request);
+        $websites = Configuration::getWebsiteTypes();
         $entries = Database::getInstance()->getFilteredEntries($filters, $websites);
         return $response->withJson(Exporter::removeNullValues($entries));
     }
@@ -49,9 +49,9 @@ class APIController
             $children = Database::getInstance()->getFilteredEntries(
                 [
                     'parent' => $args['id'],
-                    'options' => ParameterChecker::getInstance()->extractOptions('')
+                    'options' => ParameterChecker::extractOptions('')
                 ],
-                Configuration::getInstance()->websites
+                Configuration::getWebsiteTypes()
             );
             return $response->withJson(Exporter::removeNullValues($children));
         }

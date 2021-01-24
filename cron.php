@@ -10,7 +10,7 @@ require __DIR__ . '/src/autoload.php';
 
 $time = microtime(true);
 
-$socialMediaNetworks = array_keys(Configuration::getInstance()->networksToCompare);
+$socialMediaNetworks = array_keys(Configuration::getWebsiteTypesToCompare());
 $argumentNamesForSocialMedia = array_map(static fn($i) => $i . ':', $socialMediaNetworks);
 $args = getopt('', array_merge(['links:'], $argumentNamesForSocialMedia));
 

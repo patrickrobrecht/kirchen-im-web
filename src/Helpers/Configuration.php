@@ -7,134 +7,135 @@ namespace KirchenImWeb\Helpers;
  *
  * @package KirchenImWeb\Helpers
  */
-class Configuration extends AbstractHelper
+class Configuration
 {
-    // Countries.
-    public $countries;
-    public $denominations;
-    public $denominations_colors;
-    public $types;
-    public $defaultType;
-    public $websites;
-    public $preselectedWebsites;
-    public $websitesStartOfURL;
-    public $networksToCompare;
-    public $networksToCompareColors;
-    public $sortOptions;
-    public $languages_slugs;
-
-    protected function __construct()
+    public static function getCountries(): array
     {
-        parent::__construct();
-
-        $this->countries = [
+        return [
             'DE' => _('Deutschland'),
             'LI' => _('Liechtenstein'),
             'LU' => _('Luxemburg'),
             'AT' => _('Österreich'),
-            'CH' => _('Schweiz')
+            'CH' => _('Schweiz'),
         ];
+    }
 
-        $this->denominations = [
+    public static function getDenominations(): array
+    {
+        return [
             'alt-katholisch' => _('alt-katholisch'),
-            'anglikanisch' => _('anglikanisch'),
-            'evangelisch' => _('evangelisch'),
-            'freikirchlich' => _('freikirchlich'),
-            'katholisch' => _('katholisch'),
-            'ökumenisch' => _('ökumenisch')
+            'anglikanisch'   => _('anglikanisch'),
+            'evangelisch'    => _('evangelisch'),
+            'freikirchlich'  => _('freikirchlich'),
+            'katholisch'     => _('katholisch'),
+            'ökumenisch'     => _('ökumenisch'),
         ];
+    }
 
-        $this->denominations_colors = [
-            'alt-katholisch' => 'orange',
-            'anglikanisch' => 'green',
-            'evangelisch' => 'purple',
-            'freikirchlich' => 'blue',
-            'katholisch' => 'yellow',
-            'ökumenisch' => 'red'
-        ];
-
-        $this->types = [
+    public static function getTypes(): array
+    {
+        return [
             'Bildungseinrichtung' => _('Bildungseinrichtung'),
-            'Bischofskonferenz' => _('Bischofskonferenz'),
-            'Bistum' => _('Bistum'),
-            'Citykirche' => _('Citykirche'),
-            'Dekanat' => _('Dekanat'),
-            'Jugend' => _('Jugend'),
-            'Gemeindeverband' => _('Gemeindeverband'),
-            'Hilfswerk' => _('Hilfswerk'),
-            'Internetportal' => _('Internetportal'),
-            'Kirchengemeinde' => _('Kirchengemeinde'),
-            'Kirchenkreis' => _('Kirchenkreis'),
-            'Kloster' => _('Kloster'),
-            'Laienorganisation' => _('Laienorganisation'),
-            'Landeskirche' => _('Landeskirche'),
-            'Museum' => _('Museum'),
-            'Pastoraler Raum' => _('Pastoraler Raum/ Pfarreiengemeinschaft/ Seelsorgeeinheit'),
-            'Pfarrei' => _('Pfarrei'),
-            'Pfarrvikarie' => _('Pfarrvikarie'),
-            'andere' => _('andere')
+            'Bischofskonferenz'   => _('Bischofskonferenz'),
+            'Bistum'              => _('Bistum'),
+            'Citykirche'          => _('Citykirche'),
+            'Dekanat'             => _('Dekanat'),
+            'Jugend'              => _('Jugend'),
+            'Gemeindeverband'     => _('Gemeindeverband'),
+            'Hilfswerk'           => _('Hilfswerk'),
+            'Internetportal'      => _('Internetportal'),
+            'Kirchengemeinde'     => _('Kirchengemeinde'),
+            'Kirchenkreis'        => _('Kirchenkreis'),
+            'Kloster'             => _('Kloster'),
+            'Laienorganisation'   => _('Laienorganisation'),
+            'Landeskirche'        => _('Landeskirche'),
+            'Museum'              => _('Museum'),
+            'Pastoraler Raum'     => _('Pastoraler Raum/ Pfarreiengemeinschaft/ Seelsorgeeinheit'),
+            'Pfarrei'             => _('Pfarrei'),
+            'Pfarrvikarie'        => _('Pfarrvikarie'),
+            'andere'              => _('andere'),
         ];
-        $this->defaultType = 'Kirchengemeinde';
+    }
 
-        $this->websites = [
-            'web' => _('Webauftritt'),
-            'blog' => _('Blog'),
-            'rss' => 'RSS',
-            'facebook' => 'Facebook',
-            'flickr' => 'Flickr',
-            'instagram' => 'Instagram',
+    public static function getWebsiteTypes(): array
+    {
+        return [
+            'web'        => _('Webauftritt'),
+            'blog'       => _('Blog'),
+            'rss'        => 'RSS',
+            'facebook'   => 'Facebook',
+            'flickr'     => 'Flickr',
+            'instagram'  => 'Instagram',
             'soundcloud' => 'Soundcloud',
-            'twitter' => 'Twitter',
-            'vimeo' => 'Vimeo',
-            'youtube' => 'YouTube',
+            'twitter'    => 'Twitter',
+            'vimeo'      => 'Vimeo',
+            'youtube'    => 'YouTube',
         ];
+    }
 
-        $this->preselectedWebsites = [
-            'web' => _('Webauftritt'),
-            'facebook' => 'Facebook',
+    public static function getPreselectedWebsiteTypes(): array
+    {
+        return [
+            'web'       => _('Webauftritt'),
+            'facebook'  => 'Facebook',
             'instagram' => 'Instagram',
-            'twitter' => 'Twitter',
+            'twitter'   => 'Twitter',
         ];
+    }
 
-        // Must contain the beginning of a URL for the website type.
-        $this->websitesStartOfURL = [
-            'web' => '',
-            'blog' => '',
-            'rss' => '',
-            'facebook' => 'https://www.facebook.com/',
-            'flickr' => 'https://www.flickr.com/',
-            'instagram' => 'https://www.instagram.com/',
+    public static function getStartOfWebsiteURL(): array
+    {
+        return [
+            'web'        => '',
+            'blog'       => '',
+            'rss'        => '',
+            'facebook'   => 'https://www.facebook.com/',
+            'flickr'     => 'https://www.flickr.com/',
+            'instagram'  => 'https://www.instagram.com/',
             'soundcloud' => 'https://soundcloud.com',
-            'twitter' => 'https://twitter.com/',
-            'vimeo' => 'https://vimeo.com/',
-            'youtube' => 'https://www.youtube.com/',
+            'twitter'    => 'https://twitter.com/',
+            'vimeo'      => 'https://vimeo.com/',
+            'youtube'    => 'https://www.youtube.com/',
         ];
+    }
 
-        $this->networksToCompare = [
-            'facebook' => 'Facebook',
+    public static function getWebsiteTypesToCompare(): array
+    {
+        return [
+            'facebook'  => 'Facebook',
             'instagram' => 'Instagram',
-            'twitter' => 'Twitter',
+            'twitter'   => 'Twitter',
         ];
+    }
 
-        $this->networksToCompareColors = [
-            'facebook' => '#3b5998',
+    public static function getWebsitesToCompareColors(): array
+    {
+        return [
+            'facebook'  => '#3b5998',
             'instagram' => '#383838',
-            'twitter' => '#1da1f2',
+            'twitter'   => '#1da1f2',
         ];
+    }
 
-        $this->sortOptions = [
-            'name' => _('Name'),
-            'postalCode' => _('PLZ'),
-            'city' => _('Ort'),
-            'country' => _('Land'),
+    public static function getSortOptions(): array
+    {
+        $sortOptions = [
+            'name'         => _('Name'),
+            'postalCode'   => _('PLZ'),
+            'city'         => _('Ort'),
+            'country'      => _('Land'),
             'denomination' => _('Konfession'),
-            'type' => _('Gemeindetyp')
+            'type'         => _('Gemeindetyp'),
         ];
-        $this->sortOptions = array_merge($this->sortOptions, $this->networksToCompare);
 
-        $this->languages_slugs = [
+        return array_merge($sortOptions, self::getWebsiteTypesToCompare());
+    }
+
+    public static function getLanguages(): array
+    {
+        return [
             'de_DE' => 'de',
-            'en_US' => 'en'
+            'en_US' => 'en',
         ];
     }
 }

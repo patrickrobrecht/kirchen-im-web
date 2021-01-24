@@ -61,7 +61,7 @@
                     <label for="hasWebsiteType">{% trans 'nur Gemeinden mit' %}</label>
                     <select class="form-control" id="hasWebsiteType" name="hasWebsiteType">
                         <option value="">{% trans 'bitte auswählen' %}</option>
-                        {% for value, name in config.websites %}
+                        {% for value, name in config.websiteTypes %}
                             <option value="{{ value }}" {% if value == filters.hasWebsiteType %}selected{% endif %}>{{ name|trans }}</option>
                         {% endfor %}
                     </select>
@@ -82,7 +82,7 @@
                     <div class="form-group">
                         <label >{% trans 'Anzeige' %}</label>
                         <div>
-                            {% for id, name in config.websites %}
+                            {% for id, name in config.websiteTypes %}
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" id="{{ id }}" name="{{ id }}" type="checkbox" value="show" {% if websites[id] is defined %}checked{% endif %}>
                                     <label class="form-check-label" for="{{ id }}">&nbsp;{{ name|trans }}</label>

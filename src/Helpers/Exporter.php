@@ -77,6 +77,6 @@ class Exporter
 
         $exporter = new self();
         $exporter->createJSON($entries);
-        $exporter->createCSV($entries, Configuration::getInstance()->websites);
+        $exporter->createCSV($entries, Configuration::getWebsiteTypes());
     }
 }

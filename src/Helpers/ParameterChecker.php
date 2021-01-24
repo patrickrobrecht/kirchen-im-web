@@ -11,14 +11,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  *
  * @package KirchenImWeb\Helpers
  */
-class ParameterChecker extends AbstractHelper
+class ParameterChecker
 {
-
-    public function extractFilterParameters(Request $request): array
+    public static function extractFilterParameters(Request $request): array
     {
         $data = $request->getQueryParams();
         $filters = [];
-        $filters['ids'] = isset($data['ids']) ? $this->toIntArray($data['ids']) : [];
+        $filters['ids'] = isset($data['ids']) ? self::toIntArray($data['ids']) : [];
         $filters['parent'] = isset($data['parent']) ? (int)$data['parent'] : 0;
         $filters['name'] = isset($data['name']) ? trim($data['name']) : '';
         $filters['postalCode'] =
@@ -28,11 +27,11 @@ class ParameterChecker extends AbstractHelper
         $filters['denomination'] = isset($_GET['denomination']) ? trim($_GET['denomination']) : '';
         $filters['type'] = isset($_GET['type']) ? trim($_GET['type']) : '';
         $filters['hasWebsiteType'] = isset($_GET['hasWebsiteType']) ? trim($_GET['hasWebsiteType']) : '';
-        $filters['options'] = $this->extractOptions($data['options'] ?? '');
+        $filters['options'] = self::extractOptions($data['options'] ?? '');
         return $filters;
     }
 
-    public function extractOptions($optionString): array
+    public static function extractOptions($optionString): array
     {
         $optionArray = explode(',', $optionString);
         $options = [];
@@ -42,7 +41,7 @@ class ParameterChecker extends AbstractHelper
         return $options;
     }
 
-    private function toIntArray($s)
+    private static function toIntArray($s)
     {
         $array = explode(',', $s);
         $intArray = [];
@@ -57,11 +56,11 @@ class ParameterChecker extends AbstractHelper
         return $intArray;
     }
 
-    public function extractFilterWebsites(Request $request)
+    public static function extractFilterWebsites(Request $request): array
     {
         $data = $request->getQueryParams();
         $websites = [];
-        foreach (Configuration::getInstance()->websites as $websiteId => $websiteName) {
+        foreach (Configuration::getWebsiteTypes() as $websiteId => $websiteName) {
             if (
                 (isset($data['hasWebsiteType']) && $data['hasWebsiteType'] === $websiteId)
                 || (isset($data[$websiteId]) && $data[$websiteId] === 'show')
@@ -71,17 +70,17 @@ class ParameterChecker extends AbstractHelper
         }
         // If no website type is selected, use default.
         if (sizeof($websites) === 0) {
-            $websites = Configuration::getInstance()->preselectedWebsites;
+            $websites = Configuration::getPreselectedWebsiteTypes();
         }
         return $websites;
     }
 
-    public function extractSort(Request $request, $default = ''): array
+    public static function extractSort(Request $request, $default = ''): array
     {
         $data = $request->getQueryParams();
         $sort = isset($data['sort']) ? trim($data['sort']) : $default;
         $sortColumnId = -1;
-        $columns = Configuration::getInstance()->sortOptions;
+        $columns = Configuration::getSortOptions();
         if (array_key_exists($sort, $columns)) {
             $sortColumnId = array_search($sort, array_keys($columns), true);
         }
@@ -92,7 +91,7 @@ class ParameterChecker extends AbstractHelper
         ];
     }
 
-    public function parseAddFormPreSelectionParameters(Request $request)
+    public static function parseAddFormPreSelectionParameters(Request $request): array
     {
         $params = $request->getQueryParams();
 
@@ -110,7 +109,7 @@ class ParameterChecker extends AbstractHelper
         return $data;
     }
 
-    public function parseAddFormParameters(Request $request): array
+    public static function parseAddFormParameters(Request $request): array
     {
         $post = $request->getParsedBody();
 
@@ -137,35 +136,35 @@ class ParameterChecker extends AbstractHelper
         // Check the data.
         $dataCorrect = true;
         $messages = [];
-        if ($this->isNullOrEmptyString($data['name'])) {
+        if (self::isNullOrEmptyString($data['name'])) {
             $dataCorrect = false;
             $messages[]  = _('Bitte einen gültigen Namen angeben!');
         }
-        if ($this->isNullOrEmptyString($data['street'])) {
+        if (self::isNullOrEmptyString($data['street'])) {
             $dataCorrect = false;
             $messages[]  = _('Bitte die Straße angeben!');
         }
-        if ($this->isNullOrEmptyString($data['city'])) {
+        if (self::isNullOrEmptyString($data['city'])) {
             $dataCorrect = false;
             $messages[]  = _('Bitte einen Ort angeben!');
         }
-        if (!$this->isCountryCode($data['countryCode'])) {
+        if (!self::isCountryCode($data['countryCode'])) {
             $dataCorrect = false;
             $messages[]  = _('Bitte ein Land auswählen!');
         }
-        if (!$this->isPostalCode($data['postalCode'], $data['countryCode'])) {
+        if (!self::isPostalCode($data['postalCode'], $data['countryCode'])) {
             $dataCorrect = false;
             $messages[]  = _('Bitte eine Postleitzahl angeben!');
         }
-        if (!$this->isDenomination($data['denomination'])) {
+        if (!self::isDenomination($data['denomination'])) {
             $dataCorrect = false;
             $messages[]  = _('Bitte eine Konfession auswählen!');
         }
-        if (!$this->isType($data['type'])) {
+        if (!self::isType($data['type'])) {
             $dataCorrect = false;
             $messages[]  = _('Bitte einen Gemeindetyp auswählen!');
         }
-        if (!$this->isParentId($data['parentId'])) {
+        if (!self::isParentId($data['parentId'])) {
             $dataCorrect = false;
             $messages[]  = _('Bitte keine oder eine gültige nächsthöhere Ebene auswählen!');
         }
@@ -176,7 +175,7 @@ class ParameterChecker extends AbstractHelper
         }
 
         if ($dataCorrect) {
-            $geolocation = self::getInstance()->getGeolocation(
+            $geolocation = self::getGeolocation(
                 $data['street'],
                 $data['city'],
                 $data['countryCode']
@@ -186,21 +185,21 @@ class ParameterChecker extends AbstractHelper
         }
 
         // Parse URLs.
-        $c = Configuration::getInstance();
         $urls = [];
         $urlsCorrect = true;
-        foreach ($c->websites as $website_id => $websiteName) {
+        foreach (Configuration::getWebsiteTypes() as $website_id => $websiteName) {
             if (isset($_POST[$website_id . 'URL'])) {
+                $startOfURL = Configuration::getStartOfWebsiteURL()[$website_id];
                 $url = trim($_POST[$website_id . 'URL']);
                 if ($url !== '') {
-                    if ($this->isValidURL($url, $c->websitesStartOfURL[$website_id])) {
+                    if (self::isValidURL($url, $startOfURL)) {
                         $urls[$website_id] = $url;
                     } else {
                         // a submitted URL is invalid.
                         $messages[]  = sprintf(
                             _('Bitte eine gültige oder keine URL für %s angeben, diese muss mit %s beginnen.'),
-                            $c->websites[$website_id],
-                            $c->websitesStartOfURL[$website_id]
+                            Configuration::getWebsiteTypes()[$website_id],
+                            $startOfURL
                         );
                         $urlsCorrect = false;
                     }
@@ -222,7 +221,7 @@ class ParameterChecker extends AbstractHelper
      * @param string $str
      * @return boolean
      */
-    private function isNullOrEmptyString($str): bool
+    private static function isNullOrEmptyString($str): bool
     {
         return (!isset($str) || trim($str) === '');
     }
@@ -234,7 +233,7 @@ class ParameterChecker extends AbstractHelper
      * @param string $countryCode
      * @return number
      */
-    private function isPostalCode($postalCode, $countryCode)
+    private static function isPostalCode($postalCode, $countryCode)
     {
         switch ($countryCode) {
             case 'DE':
@@ -254,24 +253,26 @@ class ParameterChecker extends AbstractHelper
      * Tests whether the given variable is a valid country code.
      *
      * @param string $countryCode
+     *
      * @return boolean
      */
-    private function isCountryCode($countryCode): bool
+    private static function isCountryCode(string $countryCode): bool
     {
-        return !$this->isNullOrEmptyString($countryCode)
-               && array_key_exists($countryCode, Configuration::getInstance()->countries);
+        return !self::isNullOrEmptyString($countryCode)
+               && array_key_exists($countryCode, Configuration::getCountries());
     }
 
     /**
      * Tests whether the given variable is a valid denomination.
      *
      * @param string $denomination
+     *
      * @return boolean
      */
-    private function isDenomination($denomination): bool
+    private static function isDenomination(string $denomination): bool
     {
-        return !$this->isNullOrEmptyString($denomination)
-               && array_key_exists($denomination, Configuration::getInstance()->denominations);
+        return !self::isNullOrEmptyString($denomination)
+               && array_key_exists($denomination, Configuration::getDenominations());
     }
 
     /**
@@ -280,9 +281,10 @@ class ParameterChecker extends AbstractHelper
      * @param string $type
      * @return boolean
      */
-    private function isType($type): bool
+    private static function isType($type): bool
     {
-        return !$this->isNullOrEmptyString($type) && array_key_exists($type, Configuration::getInstance()->types);
+        return !self::isNullOrEmptyString($type)
+               && array_key_exists($type, Configuration::getTypes());
     }
 
     /**
@@ -291,7 +293,7 @@ class ParameterChecker extends AbstractHelper
      * @param number $parentId
      * @return boolean
      */
-    private function isParentId($parentId): bool
+    private static function isParentId($parentId): bool
     {
         return $parentId === 'none' || Database::getInstance()->getEntry($parentId) !== false;
     }
@@ -302,7 +304,7 @@ class ParameterChecker extends AbstractHelper
      * @param string $url
      * @return boolean
      */
-    private function isURL($url): bool
+    private static function isURL($url): bool
     {
         return ($url && is_string($url) && $url !== ''
                 && preg_match('/^http(s)?:\/\/[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $url));
@@ -315,9 +317,9 @@ class ParameterChecker extends AbstractHelper
      * @param string $startsWith
      * @return boolean
      */
-    private function isValidURL($url, $startsWith = ''): bool
+    private static function isValidURL($url, $startsWith = ''): bool
     {
-        return $this->isURL($url) && $this->startsWith($url, $startsWith);
+        return self::isURL($url) && self::startsWith($url, $startsWith);
     }
 
     /**
@@ -327,20 +329,20 @@ class ParameterChecker extends AbstractHelper
      * @param string $needle
      * @return boolean
      */
-    private function startsWith($haystack, $needle): bool
+    private static function startsWith($haystack, $needle): bool
     {
         // search backwards starting from haystack length characters from the end
         return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
     }
 
-    private function getGeolocation($street, $city, $countryCode): array
+    private static function getGeolocation($street, $city, $countryCode): array
     {
         $geocoder = new Geocoder(OPENCAGE_API_KEY);
         try {
             $result = $geocoder->geocode(
                 $street . ', ' . $city,
                 [
-                    'countrycode' => strtolower(Configuration::getInstance()->countries[$countryCode])
+                    'countrycode' => strtolower(Configuration::getCountries()[$countryCode])
                 ]
             );
 

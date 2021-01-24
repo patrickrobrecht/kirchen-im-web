@@ -42,9 +42,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for website in entry.websites %}
+                    {% for website in entry.websiteTypes %}
                         <tr>
-                            <td><a class="{{ website.type }}" href="{{ website.url }}">{{ config.websites[website.type] }}</a></td>
+                            <td><a class="{{ website.type }}" href="{{ website.url }}">{{ config.websiteTypes[website.type] }}</a></td>
                             <td class="number">{% if website.followers > 0 %}{{ macros.number_format(website.followers, languageSlug) }}{% endif %}</td>
                         </tr>
                     {% endfor %}
@@ -186,13 +186,13 @@
                     series: [
                         {% for website in entry.websites if website.followerHistory %}
                         {
-                            name: '{{ config.websites[website.type] }}',
+                            name: '{{ config.websiteTypes[website.type] }}',
                             data: [
                                 {% for row in website.followerHistory %}
                                 [Date.UTC({{ row.date|date('Y') }}, {{ row.date|date('m') - 1 }}, {{ row.date|date('d') + 0 }}), {{ row.followers }}],
                                 {% endfor %}
                             ],
-                            color: '{{ config.networksToCompareColors[website.type] }}'
+                            color: '{{ config.websitesToCompareColors[website.type] }}'
                         },
                         {% endfor %}
                     ],
