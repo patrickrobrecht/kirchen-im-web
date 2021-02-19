@@ -11,8 +11,8 @@ use KirchenImWeb\Helpers\Database;
  */
 class LinkChecker
 {
-    private $httpStatusCode;
-    private $redirectTarget;
+    private ?int $httpStatusCode;
+    private ?string $redirectTarget;
 
     public const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0';
 
