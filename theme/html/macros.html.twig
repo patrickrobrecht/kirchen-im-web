@@ -1,50 +1,50 @@
 {% macro map(mapId, dataPath, languageSlug, config) %}
-    <script src="{{ base_url() }}/assets/{{ 'lib/leaflet.js' | asset_version }}"></script>
-    <script src="{{ base_url() }}/assets/{{ 'lib/leaflet.markercluster.js' | asset_version }}"></script>
-    <script src="{{ base_url() }}/assets/{{ 'js/map.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}/assets/{{ 'lib/leaflet.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}/assets/{{ 'lib/leaflet.markercluster.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}/assets/{{ 'js/map.js' | asset_version }}"></script>
     <script>
         var map = new Map({
-            'all': '{% trans 'alle' %}',
-            'oldCatholic': "{% trans 'alt-katholisch' %}",
-            'anglican': "{% trans 'anglikanisch' %}",
-            'protestant': "{% trans 'evangelisch' %}",
-            'freeChurches': "{% trans 'freikirchlich' %}",
-            'catholic': "{% trans 'katholisch' %}",
-            'others': "{% trans 'andere Konfession' %}",
+            'all': '{{ 'alle' | trans }}',
+            'oldCatholic': "{{ 'alt-katholisch' | trans }}",
+            'anglican': "{{ 'anglikanisch' | trans }}",
+            'protestant': "{{ 'evangelisch' | trans }}",
+            'freeChurches': "{{ 'freikirchlich' | trans }}",
+            'catholic': "{{ 'katholisch' | trans }}",
+            'others': "{{ 'andere Konfession' | trans }}",
             'web': "{{ config.websiteTypes['web'] }}",
             'blog': "{{ config.websiteTypes['blog'] }}"
         });
-        map.load('{{ mapId }}', '{{ base_url() }}', '{{ dataPath|raw }}', '{{ languageSlug }}');
+        map.load('{{ mapId }}', '{{ base_path() }}', '{{ dataPath|raw }}', '{{ languageSlug }}');
     </script>
 {% endmacro %}
 
-{% macro menu(items, currentPath) %}
-    {% if base_url() == '' %}
-        {% set current_url = currentPath %}
+{% macro menu(items) %}
+    {% if base_path() == '' %}
+        {% set current_url = current_url() %}
     {% else %}
-        {% set current_url = base_url() ~ '/' ~ currentPath %}
+        {% set current_url = base_path() ~ '/' ~ current_url() %}
     {% endif %}
 
     {% for item in items %}
         {% if item.args %}
-            {% set url = path_for(item.path, item.args) %}
+            {% set url = url_for(item.path, item.args) %}
         {% else %}
-            {% set url = path_for(item.path) %}
+            {% set url = url_for(item.path) %}
         {% endif %}
         {% set text = item.text %}
 
         {% if url == current_url %}
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url }}">{% trans text %}</a> <span class="sr-only">{% trans '(aktuelle Seite)' %}</span>
+                <a class="nav-link active" href="{{ url }}">{{ text|trans }}</a> <span class="sr-only">{{ '(aktuelle Seite)' | trans }}</span>
             </li>
         {% else %}
             {% if item.class %}
                 <li class="nav-item">
-                    <a class="nav-link {{ item.class }}" href="{{ url }}">{% trans text %}</a>
+                    <a class="nav-link {{ item.class }}" href="{{ url }}">{{ text|trans }}</a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url }}">{% trans text %}</a>
+                    <a class="nav-link" href="{{ url }}">{{ text|trans }}</a>
                 </li>
             {% endif %}
         {% endif %}
@@ -72,7 +72,7 @@
     {% if entry.children|length > 0 %}
         <ol>
             {% for child in entry.children %}
-                <li><a href="{{ path_for(languageSlug ~ '-details', {'id': child.slug}) }}">
+                <li><a href="{{ url_for(languageSlug ~ '-details', {'id': child.slug}) }}">
                         {{- child.name -}}</a>
                     {% import _self as macros %}
                     {{ macros.churchHierarchy(child, languageSlug) }}

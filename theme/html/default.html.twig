@@ -1,48 +1,48 @@
 {% import 'macros.html.twig' as macros %}
-{% spaceless %}
+{% apply spaceless %}
 <!DOCTYPE html>
 <html lang="{{ language }}">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     {% block metadata %}
-        <title>{{ title|trans }} | {{ 'Kirchliche Web- und Social-Media-Auftritte'|trans }}</title>
+        <title>{{ title|trans }} | {{ 'Kirchliche Web- und Social-Media-Auftritte' | trans }}</title>
         {% if description %}
             <meta name="description" content="{{ description|trans }}">
         {% endif %}
     {% endblock %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ base_url() }}/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ base_url() }}/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ base_url() }}/favicon-16x16.png">
-    <link rel="manifest" href="{{ base_url() }}/manifest.json">
-    <link rel="mask-icon" href="{{ base_url() }}/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path() }}/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ base_path() }}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ base_path() }}/favicon-16x16.png">
+    <link rel="manifest" href="{{ base_path() }}/manifest.json">
+    <link rel="mask-icon" href="{{ base_path() }}/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
-    <link rel="search" type="application/opensearchdescription+xml" href="{{ base_url() ~ path_for(languageSlug ~ '-opensearch') }}" title="{% trans 'Kirchen im Web' %}">
+    <link rel="search" type="application/opensearchdescription+xml" href="{{ base_path() ~ url_for(languageSlug ~ '-opensearch') }}" title="{{ 'Kirchen im Web' | trans }}">
     {% block head_styles %}
-        <link rel="stylesheet" href="{{ base_url() }}/assets/{{ 'css/style.css' | asset_version }}">
+        <link rel="stylesheet" href="{{ base_path() }}/assets/{{ 'css/style.css' | asset_version }}">
     {% endblock %}
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ path_for(languageSlug ~ '-home') }}">{% trans 'Kirchen im Web' %}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav" aria-controls="header-nav" aria-expanded="false" aria-label="{% trans 'Menü umschalten' %}">
+            <a class="navbar-brand" href="{{ url_for(languageSlug ~ '-home') }}">{{ 'Kirchen im Web' | trans }}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav" aria-controls="header-nav" aria-expanded="false" aria-label="{{ 'Menü umschalten' | trans }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="header-nav">
                 <ul class="navbar-nav mr-auto">
-                    {{ macros.menu(headerMenu, currentPath) }}
+                    {{ macros.menu(headerMenu) }}
                 </ul>
-                <form class="form-inline d-none d-xl-block" action="{{ path_for(languageSlug ~ '-search') }}">
+                <form class="form-inline d-none d-xl-block" action="{{ url_for(languageSlug ~ '-search') }}">
                     <div class="input-group">
-                        <input name="name" class="form-control" type="search" placeholder="{% trans 'Suche' %}" aria-label="{% trans 'Suche' %}">
+                        <input name="name" class="form-control" type="search" placeholder="{{ 'Suche' | trans }}" aria-label="{{ 'Suche' | trans }}}">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="submit">{% trans 'Suche' %}</button>
+                            <button class="btn btn-secondary" type="submit">{{ 'Suche' | trans }}</button>
                         </div>
                     </div>
                 </form>
-                <a class="btn btn-primary ml-md-3" href="{{ path_for(languageSlug ~ '-add') }}">{% trans 'Eintragen' %}</a>
+                <a class="btn btn-primary ml-md-3" href="{{ url_for(languageSlug ~ '-add') }}">{{ 'Eintragen' | trans }}</a>
             </div>
         </nav>
     </header>
@@ -65,11 +65,11 @@
         </nav>
     </footer>
     {% block footer_scripts %}
-        <script src="{{ base_url() }}/assets/{{ 'lib/jquery.min.js' | asset_version }}"></script>
-        <script src="{{ base_url() }}/assets/{{ 'lib/bootstrap.min.js' | asset_version }}"></script>
+        <script src="{{ base_path() }}/assets/{{ 'lib/jquery.min.js' | asset_version }}"></script>
+        <script src="{{ base_path() }}/assets/{{ 'lib/bootstrap.min.js' | asset_version }}"></script>
     {% endblock %}
     {% block structured_data %}
     {% endblock %}
 </body>
 </html>
-{% endspaceless %}
+{% endapply %}

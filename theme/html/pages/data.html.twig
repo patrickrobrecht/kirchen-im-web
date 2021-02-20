@@ -2,13 +2,13 @@
 
 {% block main %}
     <article id="download">
-        <h2>{% trans 'Download' %}</h2>
-        <p>{% trans 'Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden.' %}</p>
+        <h2>{{ 'Download' | trans }}</h2>
+        <p>{{ 'Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden.' | trans }}</p>
         <ul>
-            <li><a href="/data/data.json">{% trans 'Download JSON' %}</a></li>
-            <li><a href="/data/data.csv">{% trans 'Download csv' %}</a>
-                ({% trans 'Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten' %})</li>
+            <li><a href="/data/data.json">{{ 'Download JSON' | trans }}</a></li>
+            <li><a href="/data/data.csv">{{ 'Download csv' | trans }}</a>
+                ({{ 'Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten' | trans }})</li>
         </ul>
-        <p>{% trans 'Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert.' %}</p>
+        <p>{{ 'Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert.' | trans }}</p>
     </article>
 {% endblock %}

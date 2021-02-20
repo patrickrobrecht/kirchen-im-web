@@ -12,24 +12,25 @@ use Psr\Http\Message\ResponseInterface as Response;
  *
  * @package KirchenImWeb\Controllers
  */
-class FileController extends TwigController
+class FileController
 {
+    private ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
     {
-        parent::__construct($container);
+        $this->container = $container;
     }
 
     public function robots(Request $request, Response $response, array $args): Response
     {
-        return $this->twig->render($response, 'files/robots.txt.twig', [
+        return $this->container->get('view')->render($response, 'files/robots.txt.twig', [
             'production' => PRODUCTION
         ])->withHeader('Content-Type', 'text/plain; charset=UTF-8');
     }
 
     public function sitemap(Request $request, Response $response, array $args): Response
     {
-        return $this->twig->render($response, 'files/sitemap.xml.twig', [
+        return $this->container->get('view')->render($response, 'files/sitemap.xml.twig', [
             'churches' => Database::getInstance()->getAllChurchesWithLastUpdate()
         ])->withHeader('Content-Type', 'text/xml; charset=UTF-8');
     }

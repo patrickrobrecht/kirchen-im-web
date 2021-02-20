@@ -23,7 +23,7 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script src="{{ base_url() }}/assets/{{ 'lib/jquery.tablesorter.min.js' | asset_version }}"></script>
+    <script src="{{ base_path()() }}/assets/{{ 'lib/jquery.tablesorter.min.js' | asset_version }}"></script>
     <script>
         $(function(){
             $("table").tablesorter();

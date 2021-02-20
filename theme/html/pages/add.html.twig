@@ -2,12 +2,9 @@
 
 {% block main %}
     {% if added %}
-        {% set name = added.name %}
         <p class="alert alert-success">
-            <a href="{{ path_for(languageSlug ~ '-details', {'id': added.slug}) }}">
-                {% trans %}
-                    {{ name }} wurde eingetragen.
-                {% endtrans %}
+            <a href="{{ url_for(languageSlug ~ '-details', {'id': added.slug}) }}">
+                {{ '%name% wurde eingetragen' | trans({'%name': added.name}) }}
             </a>
         </p>
     {% endif %}
@@ -20,44 +17,44 @@
         </ul>
     {% endif %}
 
-    <form action="{{ path_for(languageSlug ~ '-add-form') }}" method="post" class="row">
+    <form action="{{ url_for(languageSlug ~ '-add-form') }}" method="post" class="row">
         <fieldset class="col-12 col-lg-6">
-            <legend>{% trans 'Adresse, Konfession und Hierarchie' %}</legend>
+            <legend>{{ 'Adresse, Konfession und Hierarchie' | trans }}</legend>
             <div class="form-row">
-                <p class="alert alert-primary">{% trans 'Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.' %}
-                    <strong>{% trans 'Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem Ausfüllen, ob die Gemeinde bereits aufgeführt ist' %}</strong>
-                    (<a href="{{ path_for(languageSlug ~ '-map') }}">{% trans 'Karte' %}</a>
-                    {% trans 'oder' %}
-                    <a href="{{ path_for(languageSlug ~ '-search') }}">{% trans 'Suche' %}</a>).</p>
+                <p class="alert alert-primary">{{ 'Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.' | trans }}
+                    <strong>{{ 'Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem Ausfüllen, ob die Gemeinde bereits aufgeführt ist' | trans }}</strong>
+                    (<a href="{{ url_for(languageSlug ~ '-map') }}">{{ 'Karte' | trans }}</a>
+                    {{ 'oder' | trans }}
+                    <a href="{{ url_for(languageSlug ~ '-search') }}">{{ 'Suche' | trans }}</a>).</p>
                 <div class="col-12 col-sm-6">
                     <div class="form-group">
-                        <label for="name">{% trans 'Name' %}</label>
+                        <label for="name">{{ 'Name' | trans }}</label>
                         <input class="form-control" id="name" name="name" type="text" required value="{{ data.name }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
                     <div class="form-group">
-                        <label for="street">{% trans 'Straße' %}, <abbr title="{% trans 'Hausnummer' %}">{% trans 'Nr.' %}</abbr></label>
+                        <label for="street">{{ 'Straße' | trans }}, <abbr title="{{ 'Hausnummer' | trans }}">{{ 'Nr.' | trans }}</abbr></label>
                         <input class="form-control" id="street" name="street" type="text" required value="{{ data.street }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="form-group">
-                        <label for="postalCode">{% trans 'PLZ' %}</label>
+                        <label for="postalCode">{{ 'PLZ' | trans }}</label>
                         <input class="form-control" id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" required value="{{ data.postalCode }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-5">
                     <div class="form-group">
-                        <label for="city">{% trans 'Ort' %}</label>
+                        <label for="city">{{ 'Ort' | trans }}</label>
                         <input class="form-control" id="city" name="city" type="text" required value="{{ data.city }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="form-group">
-                        <label for="countryCode">{% trans 'Land' %}</label>
+                        <label for="countryCode">{{ 'Land' | trans }}</label>
                         <select class="form-control" id="countryCode" name="countryCode" required>
-                            <option value="">{% trans 'bitte auswählen' %}</option>
+                            <option value="">{{ 'bitte auswählen' | trans }}</option>
                             {% for value, name in config.countries %}
                                 <option value="{{ value }}" class="{{ value|lower }}" {% if value == data.countryCode %}selected{% endif %}>{{ name }}</option>
                             {% endfor %}
@@ -68,9 +65,9 @@
             <div class="form-row">
                 <div class="col-12 col-sm-6">
                     <div class="form-group">
-                        <label for="denomination">{% trans 'Konfession' %}</label>
+                        <label for="denomination">{{ 'Konfession' | trans }}</label>
                         <select class="form-control" id="denomination" name="denomination" required>
-                            <option value="">{% trans 'bitte auswählen' %}</option>
+                            <option value="">{{ 'bitte auswählen' | trans }}</option>
                             {% for value, name in config.denominations %}
                                 <option value="{{ value }}" {% if value == data.denomination %}selected{% endif %}>{{ name }}</option>
                             {% endfor %}
@@ -79,9 +76,9 @@
                 </div>
                 <div class="col-12 col-sm-6">
                     <div class="form-group">
-                        <label for="type">{% trans 'Gemeindetyp' %}</label>
+                        <label for="type">{{ 'Gemeindetyp' | trans }}</label>
                         <select class="form-control" id="type" name="type" required>
-                            <option value="">{% trans 'bitte auswählen' %}</option>
+                            <option value="">{{ 'bitte auswählen' | trans }}</option>
                             {% for value, name in config.types %}
                                 <option value="{{ value }}" {% if value == data.type %}selected{% endif %}>{{ name }}</option>
                             {% endfor %}
@@ -90,16 +87,16 @@
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="parentId">{% trans 'nächsthöhere Ebene' %}</label>
+                        <label for="parentId">{{ 'nächsthöhere Ebene' | trans }}</label>
                         <select class="form-control" id="parentId" name="parentId" aria-describedby="parentHelp">
-                            <option value="none">{% trans 'keine' %}</option>
+                            <option value="none">{{ 'keine' | trans }}</option>
                             {% for parent in parents %}
                                 <option value="{{ parent.id }}" {% if parent.id == data.parentId %}selected{% endif %}>{{ parent.name }}</option>
                             {% endfor %}
                         </select>
                         <small id="parentHelp" class="form-text text-muted">
-                            {% trans 'Die nächsthöhere Ebene ist bei katholischen Pfarreien und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen Kirchengemeinden entsprechend der Kirchenkreis bzw. die Landeskirche.' %}
-                            {% trans 'Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor angelegt werden (hierbei ein Häkchen bei "hat übergeordnete Ebene" nicht vergessen).' %}
+                            {{ 'Die nächsthöhere Ebene ist bei katholischen Pfarreien und Pfarrvikarien das Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen Kirchengemeinden entsprechend der Kirchenkreis bzw. die Landeskirche.' | trans }}
+                            {{ 'Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor angelegt werden (hierbei ein Häkchen bei "hat übergeordnete Ebene" nicht vergessen).' | trans }}
                         </small>
                     </div>
                 </div>
@@ -107,21 +104,21 @@
                     <div class="form-group">
                         <div class="form-check">
                             <input class="form-check-input" id="hasChildren" name="hasChildren" type="checkbox" aria-describedby="hasChildrenHelp">
-                            <label class="form-check-label" for="hasChildren"> {% trans 'hat untergeordnete Ebene' %}</label>
+                            <label class="form-check-label" for="hasChildren"> {{ 'hat untergeordnete Ebene' | trans }}</label>
                         </div>
                         <small id="hasChildrenHelp" class="form-text text-muted">
-                            {% trans 'Der Haken ist zu setzen, wenn die Gemeinde selbst unter "nächsthöhere Ebene" aufgeführt werden soll (also bei Dekanaten und bei Kirchenkreisen). Bei Kirchengemeinden darf der Haken nicht gesetzt werden!' %}
+                            {{ 'Der Haken ist zu setzen, wenn die Gemeinde selbst unter "nächsthöhere Ebene" aufgeführt werden soll (also bei Dekanaten und bei Kirchenkreisen). Bei Kirchengemeinden darf der Haken nicht gesetzt werden!' | trans }}
                         </small>
                     </div>
                 </div>
             </div>
         </fieldset>
         <fieldset class="col-12 col-lg-6">
-            <legend>{% trans 'Webauftritte und Social-Media-Profile' %}</legend>
+            <legend>{{ 'Webauftritte und Social-Media-Profile' | trans }}</legend>
             <div class="form-row">
                 <p class="alert alert-primary">
-                    {% trans 'Bitte achten Sie darauf, nur öffentliche Webauftritte und Social-Media-Auftritte (d.h. keine Facebook-Gruppen, sondern nur öffentliche Facebook-Seiten) anzugeben.' %}
-                    {% trans 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' %}
+                    {{ 'Bitte achten Sie darauf, nur öffentliche Webauftritte und Social-Media-Auftritte (d.h. keine Facebook-Gruppen, sondern nur öffentliche Facebook-Seiten) anzugeben.' | trans }}
+                    {{ 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' | trans }}
                 </p>
                 {% for id, website in config.websiteTypes %}
                     {% set prefix = config.startOfWebsiteURL[id] %}
@@ -132,31 +129,29 @@
                             <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" pattern="{{ urlPattern }}" placeholder="{{ urlPrefix }}" value="{{ data.urls[id] }}">
                             <div class="invalid-feedback">
                                 {% if prefix %}
-                                    {% trans %}
-                                        URL muss mit {{ prefix }} beginnen!
-                                    {% endtrans %}
+                                    {{ 'URL muss mit %prefix% beginnen' | trans({'%prefix%': prefix}) }}
                                 {% else %}
-                                    {% trans 'Bitte eine vollständige URL eingeben (mit http oder https).' %}
+                                    {{ 'Bitte eine vollständige URL eingeben (mit http oder https).' | trans }}
                                 {% endif %}
                             </div>
                             <div class="valid-feedback">
-                                {% trans 'Gültige URL.' %}
+                                {{ 'Gültige URL.' | trans }}
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
             <p class="alert alert-primary">
-                <strong>{% trans 'Bitte achten Sie darauf, dieses Formular nur einmal mit denselben Daten abzuschicken' %}</strong>
-                ({% trans 'sonst erzeugen Sie mehrere identische Einträge' %}).
-                {% trans 'Bei Fehlern in Einträgen wenden Sie sich bitte an ' %} kontakt [ät] kirchen-im-web [punkt] de.
+                <strong>{{ 'Bitte achten Sie darauf, dieses Formular nur einmal mit denselben Daten abzuschicken' | trans }}</strong>
+                ({{ 'sonst erzeugen Sie mehrere identische Einträge' | trans }}).
+                {{ 'Bei Fehlern in Einträgen wenden Sie sich bitte an ' | trans }} kontakt [ät] kirchen-im-web [punkt] de.
             </p>
-            <button class="btn btn-primary btn-block" type="submit">{% trans 'Gemeinde hinzufügen' %}</button>
+            <button class="btn btn-primary btn-block" type="submit">{{ 'Gemeinde hinzufügen' | trans }}</button>
         </fieldset>
     </form>
 {% endblock %}
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script src="{{ base_url() }}/assets/{{ 'js/add.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}/assets/{{ 'js/add.js' | asset_version }}"></script>
 {% endblock %}

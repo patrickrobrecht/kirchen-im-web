@@ -4,11 +4,11 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ base_url() }}/assets/{{ 'lib/leaflet-bundle.css' | asset_version }}">
+    <link rel="stylesheet" href="{{ base_path() }}/assets/{{ 'lib/leaflet-bundle.css' | asset_version }}">
 {% endblock %}
 
 {% block main %}
-    <p>{% trans 'Alt-katholische Kirchen werden orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.' %}</p>
+    <p>{{ 'Alt-katholische Kirchen werden orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.' | trans }}</p>
 
     <div class="mx-auto">
         <ul class="list-unstyled row">
@@ -24,7 +24,7 @@
     </div>
 
     <div id="map">
-        <p>{% trans 'Bitte warten. Die Karte wird geladen.' %}</p>
+        <p>{{ 'Bitte warten. Die Karte wird geladen.' | trans }}</p>
     </div>
 {% endblock %}
 

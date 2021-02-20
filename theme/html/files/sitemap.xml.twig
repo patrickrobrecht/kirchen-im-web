@@ -4,14 +4,14 @@
         {% set pages = ['home', 'map', 'search', 'comparison', 'add', 'stats', 'legal', 'data'] %}
         {% for page in pages %}
             <url>
-                <loc>{{ host ~ base_url ~ path_for(lang ~ '-' ~ page) }}</loc>
+                <loc>{{ host ~ base_path ~ url_for(lang ~ '-' ~ page) }}</loc>
                 <changefreq>monthly</changefreq>
             </url>
         {% endfor %}
 
         {% for church in churches %}
             <url>
-                <loc>{{ host ~ base_url ~ path_for(lang ~ '-details', {'id': church.slug}) }}</loc>
+                <loc>{{ host ~ base_path() ~ url_for(lang ~ '-details', {'id': church.slug}) }}</loc>
                 <changefreq>monthly</changefreq>
                 <lastmod>{{ church.lastUpdate|date('c') }}</lastmod>
             </url>
