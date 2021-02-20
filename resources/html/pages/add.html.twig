@@ -4,7 +4,7 @@
     {% if added %}
         <p class="alert alert-success">
             <a href="{{ url_for(languageSlug ~ '-details', {'id': added.slug}) }}">
-                {{ '%name% wurde eingetragen' | trans({'%name': added.name}) }}
+                {{ '%name% wurde eingetragen.' | trans({'%name': added.name}) }}
             </a>
         </p>
     {% endif %}
@@ -129,7 +129,7 @@
                             <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" pattern="{{ urlPattern }}" placeholder="{{ urlPrefix }}" value="{{ data.urls[id] }}">
                             <div class="invalid-feedback">
                                 {% if prefix %}
-                                    {{ 'URL muss mit %prefix% beginnen' | trans({'%prefix%': prefix}) }}
+                                    {{ 'URL muss mit %prefix% beginnen.' | trans({'%prefix%': prefix}) }}
                                 {% else %}
                                     {{ 'Bitte eine vollständige URL eingeben (mit http oder https).' | trans }}
                                 {% endif %}

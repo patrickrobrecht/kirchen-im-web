@@ -76,12 +76,10 @@ return [
         return $twig;
     },
 
-    Translator::class => static function (ContainerInterface $container) {
-        $translator = new Translator('en_US', new MessageFormatter(new IdentityTranslator()));
-
+    Translator::class => static function () {
+        $translator = new Translator('de_DE', new MessageFormatter(new IdentityTranslator()));
         $translator->addLoader('mo', new MoFileLoader());
-        $translator->addResource('mo', __DIR__ . '/lang/en_US/LC_MESSAGES/kirchen-im-web.mo', 'en_US');
-
+        $translator->addResource('mo', __DIR__ . '/../resources/lang/messages.en_US.mo', 'en_US');
         return $translator;
     },
 ];

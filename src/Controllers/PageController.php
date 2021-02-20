@@ -285,9 +285,4 @@ class PageController
         $this->container->get(Twig::class)->offsetSet('headerMenu', $headerMenuItems);
         $this->container->get(Twig::class)->offsetSet('footerMenu', $footerMenuItems);
     }
-
-    public function getLanguage(): string
-    {
-        return $this->language;
-    }
 }

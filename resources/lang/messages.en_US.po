@@ -1,74 +1,204 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kirchen-im-web\n"
-"POT-Creation-Date: 2019-12-14 16:46+0100\n"
-"PO-Revision-Date: 2019-12-14 16:47+0100\n"
+"POT-Creation-Date: 2021-02-20 20:54+0100\n"
+"PO-Revision-Date: 2021-02-20 20:56+0100\n"
 "Last-Translator: Patrick Robrecht\n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
-"X-Poedit-Basepath: ../../..\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;trans\n"
 "X-Poedit-SearchPath-0: cache\n"
 "X-Poedit-SearchPath-1: src\n"
 
-#: cache/03/03a5779a4429b4c3202a3ca851b130fc5f19f7dcf8dafbc3fa21b4dd39ae88d0.php:88
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:358
+#: cache/41/4100ba87b35904d86ec96753366a03c89b465307c780e0df6bc7276f70c2fe4b.php:53
+msgid "Download"
+msgstr "Download"
+
+#: cache/41/4100ba87b35904d86ec96753366a03c89b465307c780e0df6bc7276f70c2fe4b.php:57
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:145
+msgid ""
+"Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die "
+"Daten können auch für andere Projekte verwendet werden."
+msgstr ""
+"The data is available in a free and open format, i. e. the data may be used "
+"for other projects, too."
+
+#: cache/41/4100ba87b35904d86ec96753366a03c89b465307c780e0df6bc7276f70c2fe4b.php:62
+msgid "Download JSON"
+msgstr "Download JSON"
+
+#: cache/41/4100ba87b35904d86ec96753366a03c89b465307c780e0df6bc7276f70c2fe4b.php:66
+msgid "Download csv"
+msgstr "Download csv"
+
+#: cache/41/4100ba87b35904d86ec96753366a03c89b465307c780e0df6bc7276f70c2fe4b.php:70
+msgid "Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten"
+msgstr "separator: semicolon because some of the names contain commas"
+
+#: cache/41/4100ba87b35904d86ec96753366a03c89b465307c780e0df6bc7276f70c2fe4b.php:75
+msgid "Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert."
+msgstr "Hint: The data is exported into both formats daily."
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:60
+msgid "Auf kirchen-im-web.de ist aktuell eine Gemeinde erfasst."
+msgstr "Currently one church is registered at kirchen-im-web.de."
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:66
+msgid "Auf kirchen-im-web.de sind aktuell %count% Gemeinden erfasst."
+msgstr "Currently %count% churches are registered at kirchen-im-web.de."
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:76
+msgid "Inhalt"
+msgstr "Table of Contents"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:81
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:105
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:456
+msgid "Einträge nach Konfessionen"
+msgstr "Entries according to denomination"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:85
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:167
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:510
+msgid "Einträge nach Ländern"
+msgstr "Entries according to countries"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:89
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:229
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:553
+msgid "Einträge nach Gemeindetypen"
+msgstr "Entries according to type"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:93
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:289
+msgid "Einträge nach Webauftritten/Social-Media-Auftritten"
+msgstr "Entries according to Websites/social networks"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:97
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:353
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:672
+msgid "Verschlüssung der Webauftritte"
+msgstr "Encryption of Websites"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:117
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:223
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:134
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:370
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:312
+#: src/Helpers/Configuration.php:127
+msgid "Konfession"
+msgstr "Denomination"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:121
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:183
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:245
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:305
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:468
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:519
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:562
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:624
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:641
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:700
+msgid "Anzahl der Einträge"
+msgstr "Number of entries"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:179
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:184
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:99
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:366
+#: src/Helpers/Configuration.php:126
+msgid "Land"
+msgstr "Country"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:241
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:258
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:169
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:374
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:326
+#: src/Helpers/Configuration.php:128
+msgid "Gemeindetyp"
+msgstr "Type"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:301
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:365
+msgid "Webauftritt/Netzwerk"
+msgstr "Website/network"
+
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:369
+#: cache/e0/e05f630f8ced94c6b7201be49b06622b3ac3d699b66fdf7cbd712b1c305ef2a2.php:88
 msgid "alle"
 msgstr "all"
 
-#: cache/03/03a5779a4429b4c3202a3ca851b130fc5f19f7dcf8dafbc3fa21b4dd39ae88d0.php:92
-#: src/Helpers/Configuration.php:39
-msgid "alt-katholisch"
-msgstr "Old Catholic"
+#: cache/4a/4a3df3b0871d77dd4274d390a44d976a3e92d38bf5f41e4b789c2bedd7364702.php:596
+msgid "Gemeinden mit Webauftritt/Social-Media-Profilen"
+msgstr "Churches with Website/Social Networks"
 
-#: cache/03/03a5779a4429b4c3202a3ca851b130fc5f19f7dcf8dafbc3fa21b4dd39ae88d0.php:96
-#: src/Helpers/Configuration.php:40
-msgid "anglikanisch"
-msgstr "Anglican"
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:53
+msgid "Entwickler"
+msgstr "Developers"
 
-#: cache/03/03a5779a4429b4c3202a3ca851b130fc5f19f7dcf8dafbc3fa21b4dd39ae88d0.php:100
-#: src/Helpers/Configuration.php:41
-msgid "evangelisch"
-msgstr "Protestant"
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:57
+msgid "Idee"
+msgstr "Idea"
 
-#: cache/03/03a5779a4429b4c3202a3ca851b130fc5f19f7dcf8dafbc3fa21b4dd39ae88d0.php:104
-#: src/Helpers/Configuration.php:42
-msgid "freikirchlich"
-msgstr "free churches"
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:62
+msgid "Technische Umsetzung"
+msgstr "Implementation"
 
-#: cache/03/03a5779a4429b4c3202a3ca851b130fc5f19f7dcf8dafbc3fa21b4dd39ae88d0.php:108
-#: src/Helpers/Configuration.php:43
-msgid "katholisch"
-msgstr "Catholic"
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:67
+msgid "Daten: viele Leute, die Daten über unser Formular hinzugefügt haben"
+msgstr "Data: many people who added churches using our form"
 
-#: cache/03/03a5779a4429b4c3202a3ca851b130fc5f19f7dcf8dafbc3fa21b4dd39ae88d0.php:112
-msgid "andere Konfession"
-msgstr "other denomination"
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:71
+msgid ""
+"Für die Korrektur falscher Daten wenden Sie sich bitte an Patrick Robrecht:"
+msgstr "For the correction of wrong data please contact Patrick Robrecht:"
 
-#: cache/03/03a5779a4429b4c3202a3ca851b130fc5f19f7dcf8dafbc3fa21b4dd39ae88d0.php:209
-msgid "(aktuelle Seite)"
-msgstr "(current page)"
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:76
+msgid "Möchten Sie bei der Weiterentwicklung mithelfen?"
+msgstr "You want to help us in further development?"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:64
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:80
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:124
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:173
+msgid "Dann schreiben Sie uns!"
+msgstr "Contact us!"
+
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:87
+msgid "Lizenzen"
+msgstr "Licences"
+
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:91
+msgid "kirchen-im-web.de ist Open Source:"
+msgstr "kirchen-im-web.de is open source:"
+
+#: cache/52/52f7cd4d83b8f4578fed483c1b49785ba91a9ab1c14852ea140949da4e08e83b.php:103
+#: src/Controllers/PageController.php:162
+msgid "Impressum"
+msgstr "Legal notice"
+
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:61
 msgid "%name% wurde eingetragen."
 msgstr "%name% has been added."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:105
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:203
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:101
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:203
 msgid "Adresse, Konfession und Hierarchie"
 msgstr "Address, denomination and hierarchy"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:110
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:106
 #: src/Controllers/PageController.php:111
 msgid "Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen."
 msgstr "Here you can add your church to kirchen-im-web.de."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:113
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:110
 msgid ""
 "Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem "
 "Ausfüllen, ob die Gemeinde bereits aufgeführt ist"
@@ -76,103 +206,77 @@ msgstr ""
 "To avoid duplicates please check up whether the church is already in the "
 "directory before you submit this form"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:119
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:59
-#: src/Controllers/PageController.php:41 src/Controllers/PageController.php:231
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:116
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:59
+#: src/Controllers/PageController.php:43 src/Controllers/PageController.php:235
 msgid "Karte"
 msgstr "Map"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:123
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:120
 msgid "oder"
 msgstr "or"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:128
-#: cache/8d/8dab257ffa791b10636d6a2906d5cb83addb2aec7a4d517b13d3ec10ed6b2c53.php:119
-#: cache/8d/8dab257ffa791b10636d6a2906d5cb83addb2aec7a4d517b13d3ec10ed6b2c53.php:121
-#: cache/8d/8dab257ffa791b10636d6a2906d5cb83addb2aec7a4d517b13d3ec10ed6b2c53.php:126
-#: src/Controllers/PageController.php:53 src/Controllers/PageController.php:234
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:126
+#: cache/72/724aff27b0131080b7393418a069b32727d38b540ebd63c4b1141444fe66b33b.php:119
+#: cache/72/724aff27b0131080b7393418a069b32727d38b540ebd63c4b1141444fe66b33b.php:121
+#: cache/72/724aff27b0131080b7393418a069b32727d38b540ebd63c4b1141444fe66b33b.php:126
+#: src/Controllers/PageController.php:54 src/Controllers/PageController.php:238
 msgid "Suche"
 msgstr "Search"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:134
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:61
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:343
-#: src/Helpers/Configuration.php:128
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:132
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:61
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:354
+#: src/Helpers/Configuration.php:123
 msgid "Name"
 msgstr "Name"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:146
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:144
 msgid "Straße"
 msgstr "Street"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:148
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:146
 msgid "Hausnummer"
 msgstr "house number"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:150
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:148
 msgid "Nr."
 msgstr "no."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:162
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:73
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:347
-#: src/Helpers/Configuration.php:129
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:160
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:73
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:358
+#: src/Helpers/Configuration.php:124
 msgid "PLZ"
 msgstr "Postal code"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:174
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:87
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:351
-#: src/Helpers/Configuration.php:130
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:172
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:87
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:362
+#: src/Helpers/Configuration.php:125
 msgid "Ort"
 msgstr "City"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:186
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:168
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:99
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:355
-#: src/Helpers/Configuration.php:131
-msgid "Land"
-msgstr "Country"
-
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:191
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:230
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:265
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:104
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:139
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:174
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:209
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:189
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:228
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:263
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:104
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:139
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:174
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:209
 msgid "bitte auswählen"
 msgstr "select please"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:225
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:106
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:312
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:134
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:359
-#: src/Helpers/Configuration.php:132
-msgid "Konfession"
-msgstr "Denomination"
-
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:260
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:230
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:326
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:169
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:363
-#: src/Helpers/Configuration.php:133
-msgid "Gemeindetyp"
-msgstr "Type"
-
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:295
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:293
 msgid "nächsthöhere Ebene"
 msgstr "superior level"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:300
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:369
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:298
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:369
 msgid "keine"
 msgstr "none"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:327
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:325
 msgid ""
 "Die nächsthöhere Ebene ist bei katholischen Pfarreien und Pfarrvikarien das "
 "Dekanat, bei Dekanaten das zugehörige Bistum bzw. bei evangelischen "
@@ -182,7 +286,7 @@ msgstr ""
 "diocese respectively for other churches the church district, for church "
 "districts the regional church."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:330
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:329
 msgid ""
 "Existiert noch kein Eintrag für die nächsthöhere Ebene, sollte dieser zuvor "
 "angelegt werden (hierbei ein Häkchen bei \"hat übergeordnete Ebene\" nicht "
@@ -191,11 +295,11 @@ msgstr ""
 "If an entry for the superior authority does not exist yet, please create one "
 "before (do not forget to check \"has subordinate level\")."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:341
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:340
 msgid "hat untergeordnete Ebene"
 msgstr "has a subordinate level"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:347
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:346
 msgid ""
 "Der Haken ist zu setzen, wenn die Gemeinde selbst unter \"nächsthöhere Ebene"
 "\" aufgeführt werden soll (also bei Dekanaten und bei Kirchenkreisen). Bei "
@@ -205,13 +309,13 @@ msgstr ""
 "\" (i. e. if the church is a deanery or church district). The checkbox must "
 "not be checked for parishes!"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:357
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:81
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:140
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:356
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:81
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:140
 msgid "Webauftritte und Social-Media-Profile"
 msgstr "Websites and social media profiles"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:363
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:362
 msgid ""
 "Bitte achten Sie darauf, nur öffentliche Webauftritte und Social-Media-"
 "Auftritte (d.h. keine Facebook-Gruppen, sondern nur öffentliche Facebook-"
@@ -220,7 +324,7 @@ msgstr ""
 "Please only submit public websites and social network pages (i. e. no "
 "Facebook groups, but only public Facebook pages)."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:366
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:366
 msgid ""
 "Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie "
 "bitte die URL mit https."
@@ -228,38 +332,57 @@ msgstr ""
 "If a website can be accessed encrypted (i. e. with https), please enter the "
 "URL with https."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:409
-msgid "URL muss mit %prefix% beginnen!"
-msgstr "URL must start with %prefix%!"
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:409
+msgid "URL muss mit %prefix% beginnen."
+msgstr "URL must start with %prefix%."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:416
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:415
 msgid "Bitte eine vollständige URL eingeben (mit http oder https)."
 msgstr "Please enter a valid URL (including http or https)."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:425
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:424
 msgid "Gültige URL."
 msgstr "Valid URL."
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:440
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:439
 msgid ""
 "Bitte achten Sie darauf, dieses Formular nur einmal mit denselben Daten "
 "abzuschicken"
 msgstr "Please only send this form once with the same data"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:444
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:443
 msgid "sonst erzeugen Sie mehrere identische Einträge"
 msgstr "otherwise you create multiple identical entries"
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:448
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:447
 msgid "Bei Fehlern in Einträgen wenden Sie sich bitte an "
 msgstr "In the case of errors in entries please contact "
 
-#: cache/32/324a38a388241fab9ed77529d5d0a35e2dc6e7c6406ec8da73b4be3b2fd40683.php:453
+#: cache/55/553d6f9e97d2efcbc9e3f7ee9f44057b10c250ff398b30d2f0f81cab5bc72346.php:452
 msgid "Gemeinde hinzufügen"
 msgstr "Add Church"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:67
-#: cache/e7/e790fa3a9c47166553af66f9634ac8ccbada371205b4b096d7f01663d040a605.php:73
+#: cache/72/724aff27b0131080b7393418a069b32727d38b540ebd63c4b1141444fe66b33b.php:82
+#: cache/72/724aff27b0131080b7393418a069b32727d38b540ebd63c4b1141444fe66b33b.php:96
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:75
+msgid "Kirchen im Web"
+msgstr "Churches online"
+
+#: cache/72/724aff27b0131080b7393418a069b32727d38b540ebd63c4b1141444fe66b33b.php:100
+msgid "Menü umschalten"
+msgstr "Toggle menu"
+
+#: cache/72/724aff27b0131080b7393418a069b32727d38b540ebd63c4b1141444fe66b33b.php:135
+msgid "Eintragen"
+msgstr "Add church"
+
+#: cache/72/724aff27b0131080b7393418a069b32727d38b540ebd63c4b1141444fe66b33b.php:197
+#: src/Controllers/PageController.php:55 src/Controllers/PageController.php:191
+msgid "Kirchliche Web- und Social-Media-Auftritte"
+msgstr "Churchy Websites and Social Media Pages"
+
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:67
+#: cache/d3/d3580169d6752fc3a963ae80a5a24c31c7ec09f3919292c9b6a568569bf81f97.php:73
 msgid ""
 "Alt-katholische Kirchen werden orange, anglikanische grün, evangelische "
 "lila, freikirchliche blau, katholische gelb und andere/ökumenische rot "
@@ -269,11 +392,11 @@ msgstr ""
 "Protestant ones in purple, free churches in blue, Catholic ones in yellow "
 "and others/oecumenic ones in red."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:74
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:74
 msgid "Über das Projekt"
 msgstr "About the project"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:78
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:78
 msgid ""
 "Wir wollen zeigen, dass viele Kirchengemeinden, Landeskirchen und Bistümer "
 "auch im Web gute Öffentlichtkeitsarbeit machen und stellen diese mit ihren "
@@ -283,7 +406,7 @@ msgstr ""
 "good job in public Relations and present those with their websites and "
 "social network pages."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:81
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:82
 msgid ""
 "kirchen-im-web.de vergleicht auch die Follower-Zahlen der Social-Media-"
 "Auftritte."
@@ -291,18 +414,18 @@ msgstr ""
 "kirchen-im-web.de also compares the follower numbers of the social network "
 "pages."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:86
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:87
 msgid "Wie trage ich (m)eine Gemeinde ein?"
 msgstr "How to I register a / my church?"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:90
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:91
 msgid ""
 "Für das Verzeichnis benötigen wir die Adressen sowie die Webauftritte und "
 "Social-Media-Profile."
 msgstr ""
 "For the directory we need the addresses, the websites and social media pages."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:93
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:95
 msgid ""
 "Da es sich hierbei um öffentlich verfügbare Informationen handelt, müssen "
 "diese „nur“ zusammengetragen und gepflegt werden."
@@ -310,19 +433,19 @@ msgstr ""
 "Because this is public available Information, this has only to be collected "
 "and maintained."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:96
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:99
 msgid "Dabei kann jeder mithelfen, der ein wenig Zeit und Lust mitbringt:"
 msgstr "Everyone who wants to spend a little time on this can help:"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:101
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:104
 msgid "Sie möchten Ihre (oder auch eine andere) Gemeinde ergänzen?"
 msgstr "You want to register your (or another) church?"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:106
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:110
 msgid "Das geht über dieses Formular."
 msgstr "That's possible using this form."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:110
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:114
 msgid ""
 "In der Karte oder der Tabelle können Sie vorher nachschauen, ob die Gemeinde "
 "bereits gelistet ist."
@@ -330,23 +453,17 @@ msgstr ""
 "In the map or the table you can check up whether the church is already "
 "listed."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:114
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:118
 msgid ""
 "Sie haben selber einen Datensatz und möchten uns diesen zur Verfügung "
 "stellen?"
 msgstr "You have a data set and want us to include the data?"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:119
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:165
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:78
-msgid "Dann schreiben Sie uns!"
-msgstr "Contact us!"
-
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:125
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:130
 msgid "Was ist der Unterschied zu ähnlichen Projekten?"
 msgstr "What is the difference to similiar projects?"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:130
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:135
 msgid ""
 "Unser Projekt ist überkonfessionell, d. h. egal ob evangelisch, katholisch "
 "oder freikirchlich - alle können mitmachen."
@@ -354,307 +471,195 @@ msgstr ""
 "Our Project is oecumenic, i. e. regardless whether Protestants, Catholic or "
 "free church - all can participate."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:136
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:141
 #: src/Controllers/PageController.php:178
 msgid "Offene Daten"
 msgstr "Open Data"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:140
-#: cache/8a/8ad27a484554faf1589ea12b276e3c23e9f4a988efadf6a9827cea7cb2bf93a4.php:57
-msgid ""
-"Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die "
-"Daten können auch für andere Projekte verwendet werden."
-msgstr ""
-"The data is available in a free and open format, i. e. the data may be used "
-"for other projects, too."
-
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:144
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:149
 msgid "Die Daten werden automatisch validiert - das hilft, Fehler zu finden."
 msgstr "The data are automatically validated - this helps to find errors."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:147
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:153
 msgid ""
 "Außerdem prüfen wir regelmäßig, ob die verlinkten Seiten noch existieren."
 msgstr "In addition, we test frequently whether the linked pages still exist."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:150
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:157
 msgid "So sind unsere Karte und Tabelle immer aktuell."
 msgstr "This is why our map and table are always up to date."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:154
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:161
 msgid "Der Quelltext dieser Webanwendung ist frei verfügbar."
 msgstr "The source code is open source."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:160
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:167
 msgid "Sie haben eine Frage, die hier nicht beantwortet wird?"
 msgstr "You have a question not answered here?"
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:167
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:175
 msgid "Natürlich sind Verbesserungsvorschläge sehr willkommen."
 msgstr "Of course suggestions for improvement are welcome."
 
-#: cache/48/48680ccc1ded388ebb50f1f86d4f713547cda2ff9665a856a3273b39e58da216.php:173
+#: cache/79/79a936ce6423461171e5763ef52c2afda036a806e55d3d17133097b6c1727fde.php:181
 msgid "Zuletzt hinzugefügt"
 msgstr "Recently added"
 
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:57
-msgid "Auf kirchen-im-web.de ist aktuell eine Gemeinde erfasst."
-msgid_plural "Auf kirchen-im-web.de sind aktuell %count% Gemeinden erfasst."
-msgstr[0] "Currently one church is registered at kirchen-im-web.de."
-msgstr[1] "Currently %count% churches are registered at kirchen-im-web.de."
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:65
-msgid "Inhalt"
-msgstr "Table of Contents"
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:70
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:94
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:445
-msgid "Einträge nach Konfessionen"
-msgstr "Entries according to denomination"
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:74
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:156
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:499
-msgid "Einträge nach Ländern"
-msgstr "Entries according to countries"
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:78
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:218
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:542
-msgid "Einträge nach Gemeindetypen"
-msgstr "Entries according to type"
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:82
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:278
-msgid "Einträge nach Webauftritten/Social-Media-Auftritten"
-msgstr "Entries according to Websites/social networks"
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:86
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:342
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:661
-msgid "Verschlüssung der Webauftritte"
-msgstr "Encryption of Websites"
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:110
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:172
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:234
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:294
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:457
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:508
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:551
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:613
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:630
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:689
-msgid "Anzahl der Einträge"
-msgstr "Number of entries"
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:290
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:354
-msgid "Webauftritt/Netzwerk"
-msgstr "Website/network"
-
-#: cache/64/641bcb57981df6b4141318de68480a04e844d31134bb647e1aef27726b23c833.php:585
-msgid "Gemeinden mit Webauftritt/Social-Media-Profilen"
-msgstr "Churches with Website/Social Networks"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:75
-#: cache/8d/8dab257ffa791b10636d6a2906d5cb83addb2aec7a4d517b13d3ec10ed6b2c53.php:82
-#: cache/8d/8dab257ffa791b10636d6a2906d5cb83addb2aec7a4d517b13d3ec10ed6b2c53.php:96
-msgid "Kirchen im Web"
-msgstr "Churches online"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:149
-msgid "Link"
-msgstr "Link"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:153
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:489
-msgid "Followers"
-msgstr "Followers"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:212
-msgid "Adresse"
-msgstr "Address"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:255
-msgid "Geoposition"
-msgstr "Geo position"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:264
-msgid "nördliche Breite"
-msgstr "north"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:266
-msgid "N"
-msgstr "N"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:274
-msgid "südliche Breite"
-msgstr "south"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:276
-msgid "S"
-msgstr "S"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:287
-msgid "östliche Länge"
-msgstr "East"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:289
-msgid "O"
-msgstr "E"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:297
-msgid "westliche Länge"
-msgstr "west"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:299
-msgid "W"
-msgstr "W"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:340
-msgid "Nächsthöhere Ebenen"
-msgstr "Superior levels"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:379
-msgid "Nächsttiefere Ebenen"
-msgstr "Subordinate levels"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:386
-msgid "Bisher wurden keine untergeordneten Ebenen hinzugefügt!"
-msgstr "No subordinate levels were added until now!"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:414
-msgid "Jetzt eine Gemeinde unterhalb von %name% hinzufügen!"
-msgstr "Add a church as subordinate of %name% now!"
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:434
-#: cache/e7/e790fa3a9c47166553af66f9634ac8ccbada371205b4b096d7f01663d040a605.php:108
-msgid "Bitte warten. Die Karte wird geladen."
-msgstr "Please wait. The map is loaded."
-
-#: cache/7e/7ef837b8b742fd9d4cf3e8f36ab3c3e540bd0497fa0df8f0ce02ef21d027886e.php:507
-msgid "Anzahl der Follower"
-msgstr "Number of followers"
-
-#: cache/8a/8ad27a484554faf1589ea12b276e3c23e9f4a988efadf6a9827cea7cb2bf93a4.php:53
-msgid "Download"
-msgstr "Download"
-
-#: cache/8a/8ad27a484554faf1589ea12b276e3c23e9f4a988efadf6a9827cea7cb2bf93a4.php:62
-msgid "Download JSON"
-msgstr "Download JSON"
-
-#: cache/8a/8ad27a484554faf1589ea12b276e3c23e9f4a988efadf6a9827cea7cb2bf93a4.php:66
-msgid "Download csv"
-msgstr "Download csv"
-
-#: cache/8a/8ad27a484554faf1589ea12b276e3c23e9f4a988efadf6a9827cea7cb2bf93a4.php:70
-msgid "Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten"
-msgstr "separator: semicolon because some of the names contain commas"
-
-#: cache/8a/8ad27a484554faf1589ea12b276e3c23e9f4a988efadf6a9827cea7cb2bf93a4.php:75
-msgid "Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert."
-msgstr "Hint: The data is exported into both formats daily."
-
-#: cache/8d/8dab257ffa791b10636d6a2906d5cb83addb2aec7a4d517b13d3ec10ed6b2c53.php:100
-msgid "Menü umschalten"
-msgstr "Toggle menu"
-
-#: cache/8d/8dab257ffa791b10636d6a2906d5cb83addb2aec7a4d517b13d3ec10ed6b2c53.php:135
-msgid "Eintragen"
-msgstr "Add church"
-
-#: cache/8d/8dab257ffa791b10636d6a2906d5cb83addb2aec7a4d517b13d3ec10ed6b2c53.php:195
-#: src/Controllers/PageController.php:54 src/Controllers/PageController.php:191
-msgid "Kirchliche Web- und Social-Media-Auftritte"
-msgstr "Churchy Websites and Social Media Pages"
-
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:204
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:204
 msgid "nur Gemeinden mit"
 msgstr "only churches with"
 
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:239
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:239
 msgid "Sortieren nach"
 msgstr "Sort according to"
 
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:274
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:274
 msgid "Anzeige"
 msgstr "View"
 
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:314
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:314
 msgid "Filtern und sortieren"
 msgstr "Filter and sort"
 
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:325
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:325
 msgid "Leider keine Gemeinde gefunden!"
 msgstr "Sadly no church could be found!"
 
-#: cache/a2/a283805dbe1c187022f20a543ab1c466054eb03bbc0ac4b11a3bc21e774de52c.php:334
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:337
 msgid "Eine Gemeinde gefunden!"
-msgid_plural "%count% Gemeinden gefunden!"
-msgstr[0] "One church found!"
-msgstr[1] "%count% churches found!"
+msgstr "One church found!"
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:53
-msgid "Entwickler"
-msgstr "Developers"
+#: cache/a1/a17981fbd6819667c14b9a55c93930fe5154a71a4e62888c6588a18878b150d1.php:343
+msgid "%count% Gemeinden gefunden"
+msgstr "%count% churches found"
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:57
-msgid "Idee"
-msgstr "Idea"
+#: cache/d3/d3580169d6752fc3a963ae80a5a24c31c7ec09f3919292c9b6a568569bf81f97.php:108
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:433
+msgid "Bitte warten. Die Karte wird geladen."
+msgstr "Please wait. The map is loaded."
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:62
-msgid "Technische Umsetzung"
-msgstr "Implementation"
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:149
+msgid "Link"
+msgstr "Link"
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:67
-msgid "Daten: viele Leute, die Daten über unser Formular hinzugefügt haben"
-msgstr "Data: many people who added churches using our form"
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:153
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:488
+msgid "Followers"
+msgstr "Followers"
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:70
-msgid ""
-"Für die Korrektur falscher Daten wenden Sie sich bitte an Patrick Robrecht:"
-msgstr "For the correction of wrong data please contact Patrick Robrecht:"
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:212
+msgid "Adresse"
+msgstr "Address"
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:75
-msgid "Möchten Sie bei der Weiterentwicklung mithelfen?"
-msgstr "You want to help us in further development?"
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:255
+msgid "Geoposition"
+msgstr "Geo position"
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:85
-msgid "Lizenzen"
-msgstr "Licences"
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:264
+msgid "nördliche Breite"
+msgstr "north"
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:89
-msgid "kirchen-im-web.de ist Open Source:"
-msgstr "kirchen-im-web.de is open source:"
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:266
+msgid "N"
+msgstr "N"
 
-#: cache/ad/adeac125f00e28ba44e60af376a6c87082a53ed15e293df0ffb28c47a072937f.php:101
-#: src/Controllers/PageController.php:162
-msgid "Impressum"
-msgstr "Legal notice"
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:274
+msgid "südliche Breite"
+msgstr "south"
 
-#: src/Controllers/PageController.php:32
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:276
+msgid "S"
+msgstr "S"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:287
+msgid "östliche Länge"
+msgstr "East"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:289
+msgid "O"
+msgstr "E"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:297
+msgid "westliche Länge"
+msgstr "west"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:299
+msgid "W"
+msgstr "W"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:340
+msgid "Nächsthöhere Ebenen"
+msgstr "Superior levels"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:379
+msgid "Nächsttiefere Ebenen"
+msgstr "Subordinate levels"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:386
+msgid "Bisher wurden keine untergeordneten Ebenen hinzugefügt!"
+msgstr "No subordinate levels were added until now!"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:413
+msgid "Jetzt eine Gemeinde unterhalb von %name% hinzufügen!"
+msgstr "Add a church as subordinate of %name% now!"
+
+#: cache/dd/dd7315c175da4fa9cb633d45207520fbe3558e99c943b6f8bff104ea97005f60.php:506
+msgid "Anzahl der Follower"
+msgstr "Number of followers"
+
+#: cache/e0/e05f630f8ced94c6b7201be49b06622b3ac3d699b66fdf7cbd712b1c305ef2a2.php:92
+#: src/Helpers/Configuration.php:26
+msgid "alt-katholisch"
+msgstr "Old Catholic"
+
+#: cache/e0/e05f630f8ced94c6b7201be49b06622b3ac3d699b66fdf7cbd712b1c305ef2a2.php:96
+#: src/Helpers/Configuration.php:27
+msgid "anglikanisch"
+msgstr "Anglican"
+
+#: cache/e0/e05f630f8ced94c6b7201be49b06622b3ac3d699b66fdf7cbd712b1c305ef2a2.php:100
+#: src/Helpers/Configuration.php:28
+msgid "evangelisch"
+msgstr "Protestant"
+
+#: cache/e0/e05f630f8ced94c6b7201be49b06622b3ac3d699b66fdf7cbd712b1c305ef2a2.php:104
+#: src/Helpers/Configuration.php:29
+msgid "freikirchlich"
+msgstr "free churches"
+
+#: cache/e0/e05f630f8ced94c6b7201be49b06622b3ac3d699b66fdf7cbd712b1c305ef2a2.php:108
+#: src/Helpers/Configuration.php:30
+msgid "katholisch"
+msgstr "Catholic"
+
+#: cache/e0/e05f630f8ced94c6b7201be49b06622b3ac3d699b66fdf7cbd712b1c305ef2a2.php:112
+msgid "andere Konfession"
+msgstr "other denomination"
+
+#: cache/e0/e05f630f8ced94c6b7201be49b06622b3ac3d699b66fdf7cbd712b1c305ef2a2.php:208
+msgid "(aktuelle Seite)"
+msgstr "(current page)"
+
+#: src/Controllers/PageController.php:34
 msgid "Das Projekt kirchen-im-web.de"
 msgstr "The Project kirchen-im-web.de"
 
-#: src/Controllers/PageController.php:33
+#: src/Controllers/PageController.php:35
 msgid "Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte."
 msgstr "Many churches use social networks."
 
-#: src/Controllers/PageController.php:42
+#: src/Controllers/PageController.php:44
 msgid "Karte kirchlicher Web- und Social-Media-Auftritte"
 msgstr "Map of Churchy Websites and Social Networks"
 
-#: src/Controllers/PageController.php:43
+#: src/Controllers/PageController.php:45
 msgid ""
 "Unsere Karte zeigt viele Kirchengemeinden mit ihren Web- und Social-Media-"
 "Auftritten."
 msgstr ""
 "Our map shows many churches and their websites and social media profiles."
 
-#: src/Controllers/PageController.php:55
+#: src/Controllers/PageController.php:56
 msgid "Suchen Sie hier nach kirchlichen Web- und Social-Media-Auftritten."
 msgstr ""
 "You can search for churchy websites and social medi profiles on this page."
@@ -676,7 +681,7 @@ msgid "Gemeinde eintragen"
 msgstr "Add Church"
 
 #: src/Controllers/PageController.php:123
-#: src/Controllers/PageController.php:240
+#: src/Controllers/PageController.php:244
 msgid "Statistik"
 msgstr "Statistics"
 
@@ -698,151 +703,151 @@ msgid ""
 "wurde dieser Eintrag gelöscht."
 msgstr "Sadly the page could not be found. Maybe the entry was deleted."
 
-#: src/Controllers/PageController.php:237
+#: src/Controllers/PageController.php:241
 msgid "Social-Media-Vergleich"
 msgstr "Social Network Comparison"
 
-#: src/Helpers/Configuration.php:31
+#: src/Helpers/Configuration.php:15
 msgid "Deutschland"
 msgstr "Germany"
 
-#: src/Helpers/Configuration.php:32
+#: src/Helpers/Configuration.php:16
 msgid "Liechtenstein"
 msgstr "Liechtenstein"
 
-#: src/Helpers/Configuration.php:33
+#: src/Helpers/Configuration.php:17
 msgid "Luxemburg"
 msgstr "Luxembourg"
 
-#: src/Helpers/Configuration.php:34
+#: src/Helpers/Configuration.php:18
 msgid "Österreich"
 msgstr "Austria"
 
-#: src/Helpers/Configuration.php:35
+#: src/Helpers/Configuration.php:19
 msgid "Schweiz"
 msgstr "Switzerland"
 
-#: src/Helpers/Configuration.php:44
+#: src/Helpers/Configuration.php:31
 msgid "ökumenisch"
 msgstr "oecumenic"
 
-#: src/Helpers/Configuration.php:57
+#: src/Helpers/Configuration.php:38
 msgid "Bildungseinrichtung"
 msgstr "Institution of education"
 
-#: src/Helpers/Configuration.php:58
+#: src/Helpers/Configuration.php:39
 msgid "Bischofskonferenz"
 msgstr "Conference of bishops"
 
-#: src/Helpers/Configuration.php:59
+#: src/Helpers/Configuration.php:40
 msgid "Bistum"
 msgstr "Diocese"
 
-#: src/Helpers/Configuration.php:60
+#: src/Helpers/Configuration.php:41
 msgid "Citykirche"
 msgstr "City church"
 
-#: src/Helpers/Configuration.php:61
+#: src/Helpers/Configuration.php:42
 msgid "Dekanat"
 msgstr "Deanery"
 
-#: src/Helpers/Configuration.php:62
+#: src/Helpers/Configuration.php:43
 msgid "Jugend"
 msgstr "youth organisation"
 
-#: src/Helpers/Configuration.php:63
+#: src/Helpers/Configuration.php:44
 msgid "Gemeindeverband"
 msgstr "Association of churches"
 
-#: src/Helpers/Configuration.php:64
+#: src/Helpers/Configuration.php:45
 msgid "Hilfswerk"
 msgstr "Public social aid"
 
-#: src/Helpers/Configuration.php:65
+#: src/Helpers/Configuration.php:46
 msgid "Internetportal"
 msgstr "web portal"
 
-#: src/Helpers/Configuration.php:66
+#: src/Helpers/Configuration.php:47
 msgid "Kirchengemeinde"
 msgstr "Church"
 
-#: src/Helpers/Configuration.php:67
+#: src/Helpers/Configuration.php:48
 msgid "Kirchenkreis"
 msgstr "Church district"
 
-#: src/Helpers/Configuration.php:68
+#: src/Helpers/Configuration.php:49
 msgid "Kloster"
 msgstr "Monastery"
 
-#: src/Helpers/Configuration.php:69
+#: src/Helpers/Configuration.php:50
 msgid "Laienorganisation"
 msgstr "Lay movement"
 
-#: src/Helpers/Configuration.php:70
+#: src/Helpers/Configuration.php:51
 msgid "Landeskirche"
 msgstr "Regional church"
 
-#: src/Helpers/Configuration.php:71
+#: src/Helpers/Configuration.php:52
 msgid "Museum"
 msgstr "Museum"
 
-#: src/Helpers/Configuration.php:72
+#: src/Helpers/Configuration.php:53
 msgid "Pastoraler Raum/ Pfarreiengemeinschaft/ Seelsorgeeinheit"
 msgstr "Church union"
 
-#: src/Helpers/Configuration.php:73
+#: src/Helpers/Configuration.php:54
 msgid "Pfarrei"
 msgstr "Parish"
 
-#: src/Helpers/Configuration.php:74
+#: src/Helpers/Configuration.php:55
 msgid "Pfarrvikarie"
 msgstr "Quasi-parish"
 
-#: src/Helpers/Configuration.php:75
+#: src/Helpers/Configuration.php:56
 msgid "andere"
 msgstr "others"
 
-#: src/Helpers/Configuration.php:80 src/Helpers/Configuration.php:93
+#: src/Helpers/Configuration.php:63 src/Helpers/Configuration.php:79
 msgid "Webauftritt"
 msgstr "Website"
 
-#: src/Helpers/Configuration.php:81
+#: src/Helpers/Configuration.php:64
 msgid "Blog"
 msgstr "Blog"
 
-#: src/Helpers/ParameterChecker.php:142
+#: src/Helpers/ParameterChecker.php:141
 msgid "Bitte einen gültigen Namen angeben!"
 msgstr "Please enter a valid name!"
 
-#: src/Helpers/ParameterChecker.php:146
+#: src/Helpers/ParameterChecker.php:145
 msgid "Bitte die Straße angeben!"
 msgstr "Please enter the street!"
 
-#: src/Helpers/ParameterChecker.php:150
+#: src/Helpers/ParameterChecker.php:149
 msgid "Bitte einen Ort angeben!"
 msgstr "Please enter a city!"
 
-#: src/Helpers/ParameterChecker.php:154
+#: src/Helpers/ParameterChecker.php:153
 msgid "Bitte ein Land auswählen!"
 msgstr "Please select a country!"
 
-#: src/Helpers/ParameterChecker.php:158
+#: src/Helpers/ParameterChecker.php:157
 msgid "Bitte eine Postleitzahl angeben!"
 msgstr "Please enter a postal code!"
 
-#: src/Helpers/ParameterChecker.php:162
+#: src/Helpers/ParameterChecker.php:161
 msgid "Bitte eine Konfession auswählen!"
 msgstr "Please select a denomination!"
 
-#: src/Helpers/ParameterChecker.php:166
+#: src/Helpers/ParameterChecker.php:165
 msgid "Bitte einen Gemeindetyp auswählen!"
 msgstr "Please select a type!"
 
-#: src/Helpers/ParameterChecker.php:170
+#: src/Helpers/ParameterChecker.php:169
 msgid "Bitte keine oder eine gültige nächsthöhere Ebene auswählen!"
 msgstr "Please select no or a valid superior level!"
 
-#: src/Helpers/ParameterChecker.php:201
+#: src/Helpers/ParameterChecker.php:200
 #, php-format
 msgid ""
 "Bitte eine gültige oder keine URL für %s angeben, diese muss mit %s beginnen."
@@ -998,9 +1003,6 @@ msgstr "Please enter a valid or no URL for %s  which has to start with %s."
 
 #~ msgid "dieses Formular"
 #~ msgstr "this form"
-
-#~ msgid "Auf kirchen-im-web.de sind aktuell %s Gemeinden erfasst."
-#~ msgstr "At kirchen-im-web.de currently %s churches are registered."
 
 #~ msgid ""
 #~ "Die Like-Zahlen für Facebook-Seiten, der Follower bei Twitter und Google+ "
