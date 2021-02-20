@@ -19,8 +19,8 @@
     </rule>
 
     <!-- Paths to check -->
+    <file>config</file>
+    <file>public/index.php</file>
     <file>src</file>
-    <file>config.sample.php</file>
     <file>cron.php</file>
-    <file>index.php</file>
 </ruleset>

@@ -1,4 +1,4 @@
-﻿![Screenshot](./images/screenshot.png)
+﻿![Screenshot](public/images/screenshot.png)
 
 [README in Deutsch](./LIESMICH.md)
 
@@ -105,8 +105,8 @@ Returns the (direct) children of the church with the given id in JSON.
 * Run `composer dev` to automatically compile `*.scss` to `*.css` 
     and `*.js` to `*.min.js` whenever the file is changed.
 * Create a database and create the tables with `database-scheme.sql`.
-* Create a `config.php` with the database credentials and valid API keys/secrets
-    (cp. `config.sample.php`).
+* Create a `config/config.php` with the database credentials and valid API keys/secrets
+    (cp. `config/config.sample.php`).
 
 ### Code Style Guidelines
 - CSS: recommended configuration for [stylelint](https://stylelint.io/)
@@ -139,8 +139,6 @@ To run all checks, use `composer cs`.
 ## How to deploy
 - Run `composer prod`.
 - Upload the following to the production server: 
-    - the directories `assets`, `images`, `lang`, `src`, 
-        `theme` and `vendor`
-    - the files `.htacess`, `*.png`, `browserconfig.xml`, `favicon.ico`
-        `config.php`, `cron.php`, `index.php` and `manifest.json`.
+    - the directories `config`, `lang`, `public`, `src`, `resources` and `vendor`
+    - the files `*.png`, `browserconfig.xml`, `favicon.ico`, `cron.php`, and `manifest.json`.
 - Create empty directories `cache` and `data`.

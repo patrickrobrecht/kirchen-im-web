@@ -9,8 +9,11 @@ const sass = require('gulp-sass');
 
 const { parallel } = require('gulp');
 
+const assetsRoot = 'public/assets';
+const resourcesRoot = 'resources';
+
 function copyCSSFromLibraries () {
-  del(['assets/lib/*.css']);
+  del([assetsRoot + '/lib/*.css']);
   return gulp.src(
     [
       'node_modules/leaflet/dist/leaflet.css',
@@ -20,7 +23,7 @@ function copyCSSFromLibraries () {
     .pipe(concat('leaflet-bundle.css'))
     .pipe(cleanCss())
     .pipe(rev())
-    .pipe(gulp.dest('assets/lib'))
+    .pipe(gulp.dest(assetsRoot + '/lib'))
     .pipe(rename({
       dirname: 'lib'
     }))
@@ -28,21 +31,21 @@ function copyCSSFromLibraries () {
       merge: true,
       base: 'assets'
     }))
-    .pipe(gulp.dest('assets'));
+    .pipe(gulp.dest(assetsRoot));
 }
 
 function copyImagesFromLibraries () {
-  del(['assets/lib/images/*.png']);
+  del([assetsRoot + '/lib/images/*.png']);
   return gulp.src(
     [
       'node_modules/leaflet/dist/images/layers.png',
       'node_modules/leaflet/dist/images/layers-2x.png'
     ])
-    .pipe(gulp.dest('assets/lib/images'))
+    .pipe(gulp.dest(assetsRoot + '/lib/images'))
 }
 
 function copyJavaScriptLibraries () {
-  del(['assets/lib/*.js']);
+  del([assetsRoot + '/lib/*.js']);
   return gulp.src(
     [
       'node_modules/bootstrap/dist/js/bootstrap.min.js',
@@ -53,20 +56,20 @@ function copyJavaScriptLibraries () {
       'node_modules/tablesorter/dist/js/jquery.tablesorter.min.js'
     ])
     .pipe(rev())
-    .pipe(gulp.dest('assets/lib'))
+    .pipe(gulp.dest(assetsRoot + '/lib'))
     .pipe(rename({
       dirname: 'lib'
     }))
-    .pipe(rev.manifest('assets/rev-manifest.json', {
+    .pipe(rev.manifest(assetsRoot + '/rev-manifest.json', {
       merge: true,
-      base: 'assets'
+      base: assetsRoot
     }))
-    .pipe(gulp.dest('assets'));
+    .pipe(gulp.dest(assetsRoot));
 }
 
 function minifyCSS () {
-  del(['assets/css/*.css']);
-  return gulp.src(['theme/css/*.scss'], { base: 'theme/css' })
+  del([assetsRoot + '/css/*.css']);
+  return gulp.src([resourcesRoot + '/css/*.scss'], { base: resourcesRoot + '/css' })
     .pipe(sass({
       outputStyle: 'compressed'
     }).on(
@@ -74,20 +77,20 @@ function minifyCSS () {
       sass.logError
     ))
     .pipe(rev())
-    .pipe(gulp.dest('assets/css'))
+    .pipe(gulp.dest(assetsRoot + '/css'))
     .pipe(rename({
       dirname: 'css'
     }))
-    .pipe(rev.manifest('assets/rev-manifest.json', {
+    .pipe(rev.manifest(assetsRoot + '/rev-manifest.json', {
       merge: true,
-      base: 'assets'
+      base: assetsRoot
     }))
-    .pipe(gulp.dest('assets'));
+    .pipe(gulp.dest(assetsRoot));
 }
 
 function minifyJavaScript () {
-  del(['assets/js/*.js']);
-  return gulp.src(['theme/js/*.js'], { base: 'theme/js' })
+  del([assetsRoot + '/js/*.js']);
+  return gulp.src([resourcesRoot + '/js/*.js'], { base: resourcesRoot + '/js' })
     .pipe(minify({
       ext: {
         min: '.js'
@@ -95,23 +98,23 @@ function minifyJavaScript () {
       noSource: true
     }))
     .pipe(rev())
-    .pipe(gulp.dest('assets/js'))
+    .pipe(gulp.dest(assetsRoot + '/js'))
     .pipe(rename({
       dirname: 'js'
     }))
-    .pipe(rev.manifest('assets/rev-manifest.json', {
+    .pipe(rev.manifest(assetsRoot + '/rev-manifest.json', {
       merge: true,
-      base: 'assets'
+      base: assetsRoot
     }))
-    .pipe(gulp.dest('assets'));
+    .pipe(gulp.dest(assetsRoot));
 }
 
 function watchCSS () {
-  return gulp.watch('theme/css/*.scss', minifyCSS);
+  return gulp.watch(resourcesRoot + '/css/*.scss', minifyCSS);
 }
 
 function watchJavaScript () {
-  return gulp.watch('theme/js/*.js', minifyJavaScript);
+  return gulp.watch(resourcesRoot + '/js/*.js', minifyJavaScript);
 }
 
 exports.copy = parallel(copyCSSFromLibraries, copyImagesFromLibraries, copyJavaScriptLibraries);

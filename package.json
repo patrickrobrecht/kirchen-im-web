@@ -21,6 +21,7 @@
     "jquery": "^3.5.1",
     "leaflet": "^1.7.1",
     "leaflet.markercluster": "^1.4.1",
+    "node-sass": "^5.0.0",
     "stylelint": "^13.8.0",
     "stylelint-config-recommended": "^3.0.0",
     "tablesorter": "^2.31.3"
@@ -29,10 +30,10 @@
     "postinstall": "npm run copy && npm run build",
     "build": "gulp",
     "copy": "gulp copy",
-    "csCSS": "stylelint theme/css/*.scss",
-    "fixCSS": "stylelint theme/css/*.scss --fix",
-    "csJS": "eslint theme/js/*.js gulpfile.js",
-    "fixJS": "eslint theme/js/*.js gulpfile.js --fix",
+    "csCSS": "stylelint resources/css/*.scss",
+    "fixCSS": "stylelint resources/css/*.scss --fix",
+    "csJS": "eslint resources/js/*.js gulpfile.js",
+    "fixJS": "eslint resources/js/*.js gulpfile.js --fix",
     "watch": "gulp watch"
   },
   "eslintConfig": {
