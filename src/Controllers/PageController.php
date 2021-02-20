@@ -179,9 +179,9 @@ class PageController
         ]);
     }
 
-    public function error(Request $request, Response $response, array $args): Response
+    public function error(Request $request, Response $response): Response
     {
-        if (strpos($request->getRequestTarget(), '/en') === 0) {
+        if (str_starts_with($request->getRequestTarget(), '/en')) {
             $this->setLanguage('en_US', $request);
         } else {
             $this->setLanguage('de_DE', $request);
@@ -224,8 +224,8 @@ class PageController
         $this->container->get(Twig::class)->offsetSet('languageSlug', $languageSlug);
 
         // Set Menu
-        $routeContent = RouteContext::fromRequest($request);
-        $route = $routeContent->getRoute();
+        $routeContext = RouteContext::fromRequest($request);
+        $route = $routeContext->getRoute();
         $routeWithoutLanguagePrefix = $route ? substr($route->getName(), 3) : 'home';
         $args = $route ? $route->getArguments() : [];
 
