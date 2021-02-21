@@ -9,9 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version 3.7 (unreleased)
 
 ### Changed
-* Updated dependencies
+* Updated dependencies, including Slim and Twig
 * Make number of updated URLs in LinkChecker and SocialMediaUpdater configurable
 * Reuse Instagram and Twitter connection
+* Refactor code to use PHP 8 features
 
 ### Fixed
 * Fix update of Instagram follower count

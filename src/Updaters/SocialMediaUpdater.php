@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use InstagramScraper\Instagram;
 use KirchenImWeb\Helpers\Database;
 use Phpfastcache\Helper\Psr16Adapter;
+use Psr\SimpleCache\InvalidArgumentException;
 use TwitterAPIExchange;
 
 /**
@@ -17,20 +18,9 @@ use TwitterAPIExchange;
  */
 class SocialMediaUpdater
 {
-    /**
-     * @var Database
-     */
-    private $database;
-
-    /**
-     * @var Instagram
-     */
-    private $instagram;
-
-    /**
-     * @var TwitterAPIExchange
-     */
-    private $twitter;
+    private Database $database;
+    private ?Instagram $instagram = null;
+    private ?TwitterAPIExchange $twitter = null;
 
     public function __construct(Database $database)
     {
@@ -85,18 +75,14 @@ class SocialMediaUpdater
      *
      * @return int|bool the follower count; false in case of errors.
      */
-    private function getFollowers(string $network, string $url)
+    private function getFollowers(string $network, string $url): bool | int
     {
-        switch ($network) {
-            case 'facebook':
-                return self::getFacebookLikes($url);
-            case 'instagram':
-                return $this->getInstagramFollowers($url);
-            case 'twitter':
-                return $this->getTwitterFollower($url);
-            default:
-                return false;
-        }
+        return match ($network) {
+            'facebook' => self::getFacebookLikes($url),
+            'instagram' => $this->getInstagramFollowers($url),
+            'twitter' => $this->getTwitterFollower($url),
+        default => false,
+        };
     }
 
     /**
@@ -106,7 +92,7 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of likes, or false on failure
      */
-    private static function getFacebookLikes(string $url)
+    private static function getFacebookLikes(string $url): bool | int
     {
         $handle = curl_init($url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
@@ -128,12 +114,13 @@ class SocialMediaUpdater
     /**
      * Extracts the follower count from the meta element with the given name.
      *
+     * @param string $html the HTML
      * @param string $metaKey the attribute to compare
      * @param string $metaValue the attribute to expect
      *
      * @return bool|int
      */
-    private static function extractFollowerCountFromMeta(string $html, string $metaKey, string $metaValue)
+    private static function extractFollowerCountFromMeta(string $html, string $metaKey, string $metaValue): bool | int
     {
         $metaContent = self::getMetaContent($html, $metaKey, $metaValue);
         if ($metaContent) {
@@ -158,7 +145,7 @@ class SocialMediaUpdater
      *
      * @return bool|string the meta description, or false on failure
      */
-    private static function getMetaContent(string $html, string $metaKey, string $metaValue)
+    private static function getMetaContent(string $html, string $metaKey, string $metaValue): bool | string
     {
         libxml_use_internal_errors(true);
         $doc = new DOMDocument();
@@ -179,7 +166,7 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of followers, or false on failure
      */
-    private function getInstagramFollowers(string $url)
+    private function getInstagramFollowers(string $url): bool | int
     {
         try {
             $name = str_replace('/', '', substr($url, 25));
@@ -189,7 +176,7 @@ class SocialMediaUpdater
             }
             $account = $instagram->getAccount($name);
             return $account->getFollowedByCount();
-        } catch (Exception $e) {
+        } catch (Exception) {
             return false;
         }
     }
@@ -207,7 +194,7 @@ class SocialMediaUpdater
             try {
                 $this->instagram->login();
                 $this->instagram->saveSession();
-            } catch (Exception $e) {
+            } catch (Exception | InvalidArgumentException) {
             }
         }
         return $this->instagram;
@@ -220,7 +207,7 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of subscribers, or false on failure
      */
-    private function getTwitterFollower(string $url)
+    private function getTwitterFollower(string $url): bool | int
     {
         try {
             $name = substr($url, 20);
@@ -231,12 +218,12 @@ class SocialMediaUpdater
             $json = $twitterAPI->setGetfield('?screen_name=' . $name)
                                ->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
                                ->performRequest();
-            $json = json_decode($json, false);
+            $json = json_decode($json, false, 512, JSON_THROW_ON_ERROR);
             if (isset($json->followers_count)) {
                 return (int)$json->followers_count;
             }
             return false;
-        } catch (Exception $e) {
+        } catch (Exception) {
             return false;
         }
     }

@@ -12,15 +12,8 @@ use PDOException;
  */
 class Database
 {
-    /**
-     * @var Database
-     */
-    private static $instance = null;
-
-    /**
-     * @var PDO
-     */
-    private $connection;
+    private static ?Database $instance = null;
+    private PDO $connection;
 
     public function __construct()
     {
@@ -35,7 +28,7 @@ class Database
                 DATABASE_PASSWORD,
                 $options
             );
-        } catch (PDOException $e) {
+        } catch (PDOException) {
             echo '<h1>Datenbank-Verbindung fehlgeschlagen</h1>';
         }
     }
@@ -116,7 +109,7 @@ class Database
                 $compare_conditions[] =
                     '(' . $websiteId . '.followers IS NOT NULL AND ' . $websiteId . '.followers > 0) ';
             }
-            if (sizeof($compare_conditions) > 0) {
+            if (count($compare_conditions) > 0) {
                 $only_socialmedia_compare_condition = '';
                 foreach ($compare_conditions as $condition) {
                     $only_socialmedia_compare_condition .= ' OR ' . $condition;
@@ -127,7 +120,7 @@ class Database
             }
         }
 
-        if (sizeof($conditions) > 0) {
+        if (count($conditions) > 0) {
             $whereclause = '';
             foreach ($conditions as $condition) {
                 $whereclause .= ' AND ' . $condition;
@@ -144,7 +137,7 @@ class Database
             $name = '%' . $filters['name'] . '%';
             $statement->bindParam(':name', $name);
         }
-        if (isset($filters['postalCode']) && $filters['postalCode'] != 0) {
+        if (isset($filters['postalCode']) && $filters['postalCode'] !== '') {
             $statement->bindParam(':postalCode', $filters['postalCode']);
         }
         if (isset($filters['city']) && $filters['city'] !== '') {
@@ -174,7 +167,7 @@ class Database
         return $filters['options'][$name] ?? false;
     }
 
-    private static function extractIds($entries)
+    private static function extractIds($entries): array
     {
         $ids = [];
         foreach ($entries as $entry) {
@@ -234,7 +227,7 @@ class Database
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getEntry($id, $childrenRecursive = false)
+    public function getEntry($id, $childrenRecursive = false): array | bool
     {
         $id = (int)$id;
 
@@ -470,9 +463,9 @@ class Database
      *
      * @param array $data the church data
      *
-     * @return number the id of the created church.
+     * @return array|bool the id of the created church.
      */
-    public function addChurch($data)
+    public function addChurch(array $data): array | bool
     {
         $urls = $data['urls'];
 
@@ -528,7 +521,7 @@ class Database
         $name = str_replace([' ', '/', '(', ')'], '-', $name);
         $name = str_replace(['ä', 'ö', 'ü', 'ß'], ['ae', 'oe', 'ue', 'ss'], $name);
         $name = preg_replace("/[^a-z-0-9]+/i", "", $name);
-        while (strpos($name, '--') !== false) {
+        while (str_contains($name, '--')) {
             $name = str_replace('--', '-', $name);
         }
         $name = trim($name, '-');
@@ -563,10 +556,7 @@ class Database
         return $statement->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
-    /**
-     * @return static
-     */
-    public static function getInstance()
+    public static function getInstance(): Database
     {
         if (null === self::$instance) {
             self::$instance = new static();

@@ -11,10 +11,7 @@ use RuntimeException;
  */
 class Exporter
 {
-    /**
-     * @var string
-     */
-    private $dataDirectory;
+    private string $dataDirectory;
 
     public function __construct()
     {

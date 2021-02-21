@@ -1,0 +1,32 @@
+{% extends 'default.html.twig' %}
+
+{% import 'admin/admin-macros.html.twig' as adminMacros %}
+
+{% block head_styles %}
+    {{ parent() }}
+    <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block main %}
+    <main class="container-fluid py-md-3">
+        <article>
+            <h2>Webauftritt nicht erreichbar ({{ websitesError | length }})</h2>
+            {{ adminMacros.websitesErrorTable(websitesError) }}
+        </article>
+
+        <article>
+            <h2>Keine Followerzahlen verfügbar ({{ websitesWithMissingFollowers | length }})</h2>
+            {{ adminMacros.websitesErrorTable(websitesWithMissingFollowers) }}
+        </article>
+    </main>
+{% endblock %}
+
+{% block footer_scripts %}
+    {{ parent() }}
+    <script src="{{ base_path() }}/assets/{{ 'lib/jquery.tablesorter.min.js' | asset_version }}"></script>
+    <script>
+        $(function(){
+            $("table").tablesorter();
+        });
+    </script>
+{% endblock %}

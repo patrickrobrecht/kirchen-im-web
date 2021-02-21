@@ -69,7 +69,7 @@ class ParameterChecker
             }
         }
         // If no website type is selected, use default.
-        if (sizeof($websites) === 0) {
+        if (count($websites) === 0) {
             $websites = Configuration::getPreselectedWebsiteTypes();
         }
         return $websites;
@@ -218,12 +218,13 @@ class ParameterChecker
     /**
      * Tests whether the given variable is null or the empty string.
      *
-     * @param string $str
+     * @param ?string $str
+     *
      * @return boolean
      */
-    private static function isNullOrEmptyString($str): bool
+    private static function isNullOrEmptyString(?string $str): bool
     {
-        return (!isset($str) || trim($str) === '');
+        return !isset($str) || trim($str) === '';
     }
 
     /**
@@ -231,22 +232,20 @@ class ParameterChecker
      *
      * @param number|string $postalCode
      * @param string $countryCode
-     * @return number
+     * @return bool
      */
-    private static function isPostalCode($postalCode, $countryCode)
+    private static function isPostalCode($postalCode, $countryCode): bool
     {
         switch ($countryCode) {
             case 'DE':
-                return preg_match('/[0-9]{5}/', $postalCode);
-                break;
+                return preg_match('/[0-9]{5}/', $postalCode) !== false;
             case 'AT':
             case 'CH':
             case 'LI':
             case 'LU':
-                return preg_match('/[0-9]{4}/', $postalCode);
-                break;
+                return preg_match('/[0-9]{4}/', $postalCode) !== false;
         }
-        return 0;
+        return false;
     }
 
     /**
@@ -278,10 +277,10 @@ class ParameterChecker
     /**
      * Tests whether the given variable is a valid type.
      *
-     * @param string $type
+     * @param ?string $type
      * @return boolean
      */
-    private static function isType($type): bool
+    private static function isType(?string $type): bool
     {
         return !self::isNullOrEmptyString($type)
                && array_key_exists($type, Configuration::getTypes());
@@ -301,10 +300,10 @@ class ParameterChecker
     /**
      * Tests whether the given variable is a valid URL.
      *
-     * @param string $url
+     * @param ?string $url
      * @return boolean
      */
-    private static function isURL($url): bool
+    private static function isURL(?string $url): bool
     {
         return ($url && is_string($url) && $url !== ''
                 && preg_match('/^http(s)?:\/\/[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $url));
@@ -313,26 +312,14 @@ class ParameterChecker
     /**
      * Tests whether the given variable is a valid URL with begins with the given string.
      *
-     * @param string $url
+     * @param ?string $url
      * @param string $startsWith
-     * @return boolean
-     */
-    private static function isValidURL($url, $startsWith = ''): bool
-    {
-        return self::isURL($url) && self::startsWith($url, $startsWith);
-    }
-
-    /**
-     * Tests whether the given haystack starts with needle.
      *
-     * @param string $haystack
-     * @param string $needle
      * @return boolean
      */
-    private static function startsWith($haystack, $needle): bool
+    private static function isValidURL(?string $url, $startsWith = ''): bool
     {
-        // search backwards starting from haystack length characters from the end
-        return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+        return self::isURL($url) && str_starts_with($url, $startsWith);
     }
 
     private static function getGeolocation($street, $city, $countryCode): array
@@ -353,7 +340,7 @@ class ParameterChecker
                     'lon' => $first['geometry']['lng']
                 ];
             }
-        } catch (Exception $e) {
+        } catch (Exception) {
         }
 
         return [

@@ -1,0 +1,38 @@
+{% macro websitesErrorTable(websites) %}
+    <table class="table table-striped tablesorter">
+        <thead>
+        <tr>
+            <th>Church</th>
+            <th>URL</th>
+            <th>Status Code</th>
+            <th>Redirect Target</th>
+            <th>Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for w in websites %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('de-details', {'id': w.churchId}) }}" target="_blank">
+                        {{ w.churchId }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ w.url }}" target="_blank">
+                        {{ w.url }}
+                    </a>
+                </td>
+                <td>{{ w.statusCode }}</td>
+                <td>
+                    {% if w.redirectTarget %}
+                        <a href="{{ w.redirectTarget }}" target="_blank">
+                            {{ w.redirectTarget }}
+                        </a>
+                    {% endif %}
+                </td>
+                <td>{{ w.notes }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}

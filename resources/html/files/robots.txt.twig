@@ -1,0 +1,9 @@
+User-agent: *
+{% if production %}
+Allow: /
+Disallow: /data/
+
+Sitemap: {{ host ~ base_path() ~ url_for('sitemap') }}
+{% else %}
+Disallow: /
+{% endif %}

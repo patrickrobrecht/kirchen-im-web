@@ -1,0 +1,14 @@
+{% extends 'default.html.twig' %}
+
+{% block main %}
+    <article id="download">
+        <h2>{{ 'Download' | trans }}</h2>
+        <p>{{ 'Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden.' | trans }}</p>
+        <ul>
+            <li><a href="/data/data.json">{{ 'Download JSON' | trans }}</a></li>
+            <li><a href="/data/data.csv">{{ 'Download csv' | trans }}</a>
+                ({{ 'Trennzeichen: Semikolon, da einige der Namen ein Komma enthalten' | trans }})</li>
+        </ul>
+        <p>{{ 'Hinweis: Die Daten werden täglich neu in die beiden Formate exportiert.' | trans }}</p>
+    </article>
+{% endblock %}

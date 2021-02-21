@@ -10,25 +10,27 @@ use KirchenImWeb\Helpers\ParameterChecker;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Routing\RouteContext;
+use Slim\Views\Twig;
+use Symfony\Component\Translation\Translator;
 
 /**
  * Class PageController
  *
  * @package KirchenImWeb\Controllers
  */
-class PageController extends TwigController
+class PageController
 {
-    private $router;
+    private ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
     {
-        parent::__construct($container);
-        $this->router = $container['router'];
+        $this->container = $container;
     }
 
     public function index(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'pages/index.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/index.html.twig', [
             'title' => _('Das Projekt kirchen-im-web.de'),
             'description' => _('Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte.'),
             'recentlyAddedEntries' => Database::getInstance()->getRecentlyAddedEntries()
@@ -37,7 +39,7 @@ class PageController extends TwigController
 
     public function map(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'pages/map.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/map.html.twig', [
             'title' => _('Karte'),
             'headline' => _('Karte kirchlicher Web- und Social-Media-Auftritte'),
             'description' => _('Unsere Karte zeigt viele Kirchengemeinden mit ihren Web- und Social-Media-Auftritten.')
@@ -48,7 +50,7 @@ class PageController extends TwigController
     {
         $filters = ParameterChecker::extractFilterParameters($request);
         $websites = ParameterChecker::extractFilterWebsites($request);
-        return $this->twig->render($response, 'pages/table.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/table.html.twig', [
             'title' => _('Suche'),
             'headline' => _('Kirchliche Web- und Social-Media-Auftritte'),
             'description' => _('Suchen Sie hier nach kirchlichen Web- und Social-Media-Auftritten.'),
@@ -64,7 +66,7 @@ class PageController extends TwigController
     {
         $filters = ParameterChecker::extractFilterParameters($request);
         $websites = Configuration::getWebsiteTypesToCompare();
-        return $this->twig->render($response, 'pages/table.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/table.html.twig', [
             'title' => _('Vergleich kirchlicher Social-Media-Auftritte'),
             'headline' => _('Vergleich kirchlicher Social-Media-Auftritte'),
             // phpcs:ignore Generic.Files.LineLength.TooLong
@@ -93,7 +95,7 @@ class PageController extends TwigController
             Exporter::run(Database::getInstance());
             Mailer::sendMail(
                 'Kirchen im Web: Neuer Eintrag',
-                $this->twig->fetch('email/email-add.html.twig', [
+                $this->container->get(Twig::class)->fetch('email/email-add.html.twig', [
                     'added' => $added
                 ])
             );
@@ -104,7 +106,7 @@ class PageController extends TwigController
 
     private function addResponse(Response $response, array $data, array $added = [], array $messages = []): Response
     {
-        return $this->twig->render($response, 'pages/add.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/add.html.twig', [
             'title' => _('Gemeinde eintragen'),
             'description' => _('Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.'),
             'data' => $data,
@@ -117,7 +119,7 @@ class PageController extends TwigController
     public function stats(Request $request, Response $response, array $args): Response
     {
         $db = Database::getInstance();
-        return $this->twig->render($response, 'pages/stats.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/stats.html.twig', [
             'title' => _('Statistik'),
             'description' => _('Statistik zu den Eintragungen auf kirchen-im-web.de'),
             'total' => $db->getTotalCount(),
@@ -136,7 +138,7 @@ class PageController extends TwigController
             // Redirect for old URL.
             $entry = Database::getInstance()->getEntry($id, true);
             $redirect = $this->router->pathFor(
-                $this->twig->offsetGet('languageSlug') . '-details',
+                $this->container->get(Twig::class)->offsetGet('languageSlug') . '-details',
                 ['id' => $entry['slug']]
             );
             return $response->withRedirect($redirect);
@@ -149,14 +151,14 @@ class PageController extends TwigController
             return $this->error($request, $response, $args);
         }
 
-        return $this->twig->render($response, 'pages/details.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/details.html.twig', [
             'entry' => $entry
         ]);
     }
 
     public function legal(Request $request, Response $response, array $args)
     {
-        return $this->twig->render($response, 'pages/legal.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/legal.html.twig', [
             'title' => _('Impressum'),
             'settings' => Database::getInstance()->getSettings()
         ]);
@@ -164,7 +166,7 @@ class PageController extends TwigController
 
     public function privacy(Request $request, Response $response, array $args): Response
     {
-        return $this->twig->render($response, 'pages/privacy.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/privacy.html.twig', [
             'title' => _('Datenschutzerklärung'),
             'settings' => Database::getInstance()->getSettings()
         ]);
@@ -172,20 +174,20 @@ class PageController extends TwigController
 
     public function data(Request $request, Response $response, array $args): Response
     {
-        return $this->twig->render($response, 'pages/data.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'pages/data.html.twig', [
             'title' => _('Offene Daten')
         ]);
     }
 
-    public function error(Request $request, Response $response, array $args): Response
+    public function error(Request $request, Response $response): Response
     {
-        if (strpos($request->getRequestTarget(), '/en') === 0) {
+        if (str_starts_with($request->getRequestTarget(), '/en')) {
             $this->setLanguage('en_US', $request);
         } else {
             $this->setLanguage('de_DE', $request);
         }
 
-        return $this->twig->render($response, 'default.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'default.html.twig', [
             'title' => _('Kirchliche Web- und Social-Media-Auftritte'),
             'headline' => _('Seite nicht gefunden'),
             // phpcs:ignore Generic.Files.LineLength.TooLong
@@ -195,7 +197,7 @@ class PageController extends TwigController
 
     public function opensearch(Request $request, Response $response, array $args): Response
     {
-        return $this->twig->render($response, 'pages/opensearch.xml.twig')
+        return $this->container->get(Twig::class)->render($response, 'pages/opensearch.xml.twig')
                           ->withHeader('Content-Type', 'text/xml; charset=UTF-8');
     }
 
@@ -203,23 +205,27 @@ class PageController extends TwigController
     {
         $this->setLanguage('de_DE', $request);
         $db = Database::getInstance();
-        return $this->twig->render($response, 'admin/admin.html.twig', [
+        return $this->container->get(Twig::class)->render($response, 'admin/admin.html.twig', [
             'title' => 'Admin',
             'websitesWithMissingFollowers' => $db->getWebsitesWithMissingFollowers(),
             'websitesError' => $db->getErrorWebsitesByStatusCode()
         ]);
     }
 
-    public function setLanguage($language, Request $request)
+    public function setLanguage($language, Request $request): void
     {
+        $this->container->get(Translator::class)->setLocale($language);
+
         putenv(sprintf('LC_ALL=%s', $language));
         setlocale(LC_ALL, $language);
-        $this->twig->offsetSet('language', str_replace('_', '-', $language));
+
+        $this->container->get(Twig::class)->offsetSet('language', str_replace('_', '-', $language));
         $languageSlug = substr($language, 0, 2);
-        $this->twig->offsetSet('languageSlug', $languageSlug);
+        $this->container->get(Twig::class)->offsetSet('languageSlug', $languageSlug);
 
         // Set Menu
-        $route = $request->getAttribute('route');
+        $routeContext = RouteContext::fromRequest($request);
+        $route = $routeContext->getRoute();
         $routeWithoutLanguagePrefix = $route ? substr($route->getName(), 3) : 'home';
         $args = $route ? $route->getArguments() : [];
 
@@ -276,7 +282,7 @@ class PageController extends TwigController
             ]
         ];
 
-        $this->twig->offsetSet('headerMenu', $headerMenuItems);
-        $this->twig->offsetSet('footerMenu', $footerMenuItems);
+        $this->container->get(Twig::class)->offsetSet('headerMenu', $headerMenuItems);
+        $this->container->get(Twig::class)->offsetSet('footerMenu', $footerMenuItems);
     }
 }

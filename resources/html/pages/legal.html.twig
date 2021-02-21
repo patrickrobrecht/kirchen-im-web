@@ -1,0 +1,34 @@
+{% extends 'default.html.twig' %}
+
+{% block main %}
+    <article>
+        <h2>{{ 'Entwickler' | trans }}</h2>
+        <p>{{ 'Idee' | trans }}:
+            <a href="https://www.joerg-lohrer.de/">Jörg Lohrer</a></p>
+        <p>{{ 'Technische Umsetzung' | trans }}:
+            <a href="https://patrick-robrecht.de">Patrick Robrecht</a></p>
+        <p>{{ 'Daten: viele Leute, die Daten über unser Formular hinzugefügt haben' | trans }}
+            <br>{{ 'Für die Korrektur falscher Daten wenden Sie sich bitte an Patrick Robrecht:' | trans }}
+            kontakt [ät-Zeichen] kirchen [minus] im [minus] web de.</p>
+        <p>{{ 'Möchten Sie bei der Weiterentwicklung mithelfen?' | trans }}
+            {{ 'Dann schreiben Sie uns!' | trans }}</p>
+    </article>
+
+    <article>
+        <h2>{{ 'Lizenzen' | trans }}</h2>
+        <p>{{ 'kirchen-im-web.de ist Open Source:' | trans }}
+            <a href="https://github.com/patrickrobrecht/kirchen-im-web">Github</a></p>
+        <ul>
+            <li><a href="https://www.designbolts.com/2013/06/27/new-flat-free-social-media-icons-2013/">Social Media Icons, DesignBolts.com</a>, CC BY-NC-ND 3.0</li>
+            <li><a href="https://www.gosquared.com/resources/flag-icons/">2600 Flag Icon Set</a>, MIT License</li>
+        </ul>
+    </article>
+
+    <article>
+        <h2>{{ 'Impressum' | trans }}</h2>
+        <p>Verantwortlich für diesen Webauftritt ist:
+            <br>{{ settings.legalNotice }}
+            <br>E-Mail: {{ settings.mailContactEscaped }}
+            <br>Twitter: <a href="https://twitter.com/kirchenimweb/">@kirchenimweb</a></p>
+    </article>
+{% endblock %}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+	<ShortName>{% trans 'Kirchen im Web' %}</ShortName>
+	<Description>{% trans 'Suchen Sie nach kirchlichen Web- und Social-Media-Auftritten' %}</Description>
+	<LongName>{% trans 'Kirchen im Web' %} ({{ domain }})</LongName>
+	<Contact>kontakt@kirchen-im-web.de</Contact>
+    <Image height="16" width="16" type="image/x-icon">/favicon.ico</Image>
+	<Image height="16" width="16" type="image/png">/favicon-16x16.png</Image>
+	<Image height="32" width="32" type="image/png">/favicon-32x32.png</Image>
+	<Url type="text/html" template="{{ host ~ base_path() ~ url_for(languageSlug ~ '-search') }}?name={searchTerms}" />
+	<Url type="application/opensearchdescription+xml" rel="self" template="{{ host ~ base_path() ~ url_for(languageSlug ~ '-opensearch') }}"/>
+	<Attribution>Copyright 2018 {{ domain }}</Attribution>
+	<SyndicationRight>open</SyndicationRight>
+	<AdultContent>false</AdultContent>
+	<Language>{{ language }}</Language>
+	<OutputEncoding>UTF-8</OutputEncoding>
+	<InputEncoding>UTF-8</InputEncoding>
+	<moz:SearchForm>{{ host ~ base_path() ~ url_for(languageSlug ~ '-search') }}?name={searchTerms}</moz:SearchForm>
+</OpenSearchDescription>

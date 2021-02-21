@@ -1,4 +1,4 @@
-﻿![Screenshot](./images/screenshot.png)
+﻿![Screenshot](public/images/screenshot.png)
 
 [README in English](./README.md)
 
