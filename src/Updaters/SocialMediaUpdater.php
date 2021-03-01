@@ -2,8 +2,9 @@
 
 namespace KirchenImWeb\Updaters;
 
-use DOMDocument;
 use Exception;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook;
 use GuzzleHttp\Client;
 use InstagramScraper\Instagram;
 use KirchenImWeb\Helpers\Database;
@@ -19,6 +20,7 @@ use TwitterAPIExchange;
 class SocialMediaUpdater
 {
     private Database $database;
+    private ?Facebook $facebook = null;
     private ?Instagram $instagram = null;
     private ?TwitterAPIExchange $twitter = null;
 
@@ -75,10 +77,10 @@ class SocialMediaUpdater
      *
      * @return int|bool the follower count; false in case of errors.
      */
-    private function getFollowers(string $network, string $url): bool | int
+    private function getFollowers(string $network, string $url)
     {
         return match ($network) {
-            'facebook' => self::getFacebookLikes($url),
+            'facebook' => $this->getFacebookLikes($url),
             'instagram' => $this->getInstagramFollowers($url),
             'twitter' => $this->getTwitterFollower($url),
         default => false,
@@ -92,71 +94,26 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of likes, or false on failure
      */
-    private static function getFacebookLikes(string $url): bool | int
+    public function getFacebookLikes(string $url)
     {
-        $handle = curl_init($url);
-        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($handle, CURLOPT_HEADER, true);
-        curl_setopt($handle, CURLOPT_USERAGENT, LinkChecker::USER_AGENT);
-        $htmlCode = curl_exec($handle);
-
-        if ($htmlCode && curl_getinfo($handle, CURLINFO_RESPONSE_CODE) === 200) {
-            $followerCount = self::extractFollowerCountFromMeta($htmlCode, 'property', 'og:description');
-            if ($followerCount) {
-                return $followerCount;
-            }
-
-            return self::extractFollowerCountFromMeta($htmlCode, 'name', 'description');
-        }
-        return false;
-    }
-
-    /**
-     * Extracts the follower count from the meta element with the given name.
-     *
-     * @param string $html the HTML
-     * @param string $metaKey the attribute to compare
-     * @param string $metaValue the attribute to expect
-     *
-     * @return bool|int
-     */
-    private static function extractFollowerCountFromMeta(string $html, string $metaKey, string $metaValue): bool | int
-    {
-        $metaContent = self::getMetaContent($html, $metaKey, $metaValue);
-        if ($metaContent) {
-            preg_match('/Gefällt (?P<likes>\d+(.\d+)*) Mal/mu', $metaContent, $match);
-            if (isset($match['likes'])) {
-                $i = (int)str_replace('.', '', $match['likes']);
-                if ($i > 0) {
-                    return $i;
-                }
-            }
+        if (!$this->facebook) {
+            $this->facebook = new Facebook([
+                'app_id' => FACEBOOK_APP_ID,
+                'app_secret' => FACEBOOK_APP_SECRET,
+            ]);
         }
 
-        return false;
-    }
-
-    /**
-     * Extracts the first meta content element with the given attribute from the given HTML code.
-     *
-     * @param string $html the HTML
-     * @param string $metaKey the attribute to compare
-     * @param string $metaValue the attribute to expect
-     *
-     * @return bool|string the meta description, or false on failure
-     */
-    private static function getMetaContent(string $html, string $metaKey, string $metaValue): bool | string
-    {
-        libxml_use_internal_errors(true);
-        $doc = new DOMDocument();
-        $doc->loadHTML($html);
-        foreach ($doc->getElementsByTagName('meta') as $node) {
-            /** @var $node \DOMNode */
-            if ($metaValue === strtolower($node->getAttribute($metaKey))) {
-                return $node->getAttribute('content');
-            }
+        $name = str_replace('https://www.facebook.com/', '', $url);
+        try {
+            $response = $this->facebook->get(
+                $name . '?fields=id,name,fan_count',
+                $this->facebook->getApp()->getAccessToken()
+            );
+            $json = $response->getDecodedBody();
+            return $json['fan_count'] ?? false;
+        } catch (FacebookSDKException $e) {
+            return false;
         }
-        return false;
     }
 
     /**
