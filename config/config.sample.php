@@ -15,6 +15,11 @@ define('MAIL_PASSWORD', '');
 define('MAIL_FROM', '');
 define('MAIL_TO', '');
 
+// Facebook
+define('FACEBOOK_APP_ID', '');
+define('FACEBOOK_APP_SECRET', '');
+define('FACEBOOK_ACCESS_TOKEN', '');
+
 // Instagram
 define('INSTAGRAM_USERNAME', '');
 define('INSTAGRAM_PASSWORD', '');
