@@ -15,7 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Refactor code to use PHP 8 features
 
 ### Fixed
-* Fix update of Instagram follower count
+* Fix update of Facebook follower count (read via Facebook Graph API)
+* Fix update of Instagram follower count (based on scraper with login)
 
 
 ## Version 3.6.3 (2019-12-19)

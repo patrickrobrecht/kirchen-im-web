@@ -57,7 +57,7 @@ class SocialMediaUpdater
             'followersOld' => $row['followers'] === null ? null : (int)$row['followers']
         ];
 
-        if ($followersNew && $followersNew > 0) {
+        if ($followersNew !== false) {
             // Update follower number and the timestamp.
             $this->database->updateFollowers($websiteId, $followersNew);
             $this->database->addFollowers($websiteId, $followersNew);
@@ -77,7 +77,7 @@ class SocialMediaUpdater
      *
      * @return int|bool the follower count; false in case of errors.
      */
-    private function getFollowers(string $network, string $url)
+    private function getFollowers(string $network, string $url): bool | int
     {
         return match ($network) {
             'facebook' => $this->getFacebookLikes($url),
@@ -94,24 +94,23 @@ class SocialMediaUpdater
      *
      * @return int|bool the number of likes, or false on failure
      */
-    public function getFacebookLikes(string $url)
+    private function getFacebookLikes(string $url): bool | int
     {
-        if (!$this->facebook) {
-            $this->facebook = new Facebook([
-                'app_id' => FACEBOOK_APP_ID,
-                'app_secret' => FACEBOOK_APP_SECRET,
-            ]);
-        }
-
-        $name = str_replace('https://www.facebook.com/', '', $url);
         try {
+            if (!$this->facebook) {
+                $this->facebook = new Facebook([
+                    'app_id' => FACEBOOK_APP_ID,
+                    'app_secret' => FACEBOOK_APP_SECRET,
+                ]);
+            }
+
             $response = $this->facebook->get(
-                $name . '?fields=id,name,fan_count',
+                $url . '?fields=id,fan_count',
                 $this->facebook->getApp()->getAccessToken()
             );
             $json = $response->getDecodedBody();
             return $json['fan_count'] ?? false;
-        } catch (FacebookSDKException $e) {
+        } catch (FacebookSDKException) {
             return false;
         }
     }

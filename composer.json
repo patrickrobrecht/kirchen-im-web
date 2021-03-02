@@ -58,11 +58,11 @@
       "phpcbf"
     ],
     "dev": [
-      "@composer install",
+      "@composer install --ignore-platform-req=php",
       "npm run watch"
     ],
     "prod": [
-      "@composer install --optimize-autoloader --no-dev",
+      "@composer install --optimize-autoloader --no-dev --ignore-platform-req=php",
       "npm run postinstall"
     ]
   },
