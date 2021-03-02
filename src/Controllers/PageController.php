@@ -137,11 +137,13 @@ class PageController
         if ($id > 0) {
             // Redirect for old URL.
             $entry = Database::getInstance()->getEntry($id, true);
-            $redirect = $this->router->pathFor(
+            $redirect = RouteContext::fromRequest($request)->getRouteParser()->urlFor(
                 $this->container->get(Twig::class)->offsetGet('languageSlug') . '-details',
                 ['id' => $entry['slug']]
             );
-            return $response->withRedirect($redirect);
+            return $response
+                ->withStatus(302)
+                ->withHeader('Location', $redirect);
         }
 
         $id = Database::getInstance()->getIDForSlug($args['id']);
