@@ -289,12 +289,12 @@ class ParameterChecker
     /**
      * Tests whether the given variable is a valid parent id.
      *
-     * @param number $parentId
+     * @param string|number $parentId
      * @return boolean
      */
     private static function isParentId($parentId): bool
     {
-        return $parentId === 'none' || Database::getInstance()->getEntry($parentId) !== false;
+        return $parentId === '' || Database::getInstance()->getEntry($parentId) !== false;
     }
 
     /**

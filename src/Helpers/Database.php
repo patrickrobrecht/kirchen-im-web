@@ -494,7 +494,7 @@ class Database
         $churchId = $this->connection->lastInsertId();
 
         // Set parent id.
-        if ($data['parentId'] !== 0) {
+        if ($data['parentId'] !== '') {
             $statement = $this->connection->prepare('UPDATE churches SET parentId = :parentId
 				WHERE id = :id');
             $statement->bindParam(':parentId', $data['parentId'], PDO::PARAM_INT);

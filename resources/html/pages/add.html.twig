@@ -4,7 +4,7 @@
     {% if added %}
         <p class="alert alert-success">
             <a href="{{ url_for(languageSlug ~ '-details', {'id': added.slug}) }}">
-                {{ '%name% wurde eingetragen.' | trans({'%name': added.name}) }}
+                {{ '%name% wurde eingetragen.' | trans({'%name%': added.name}) }}
             </a>
         </p>
     {% endif %}
@@ -89,7 +89,7 @@
                     <div class="form-group">
                         <label for="parentId">{{ 'nächsthöhere Ebene' | trans }}</label>
                         <select class="form-control" id="parentId" name="parentId" aria-describedby="parentHelp">
-                            <option value="none">{{ 'keine' | trans }}</option>
+                            <option value="">{{ 'keine' | trans }}</option>
                             {% for parent in parents %}
                                 <option value="{{ parent.id }}" {% if parent.id == data.parentId %}selected{% endif %}>{{ parent.name }}</option>
                             {% endfor %}
