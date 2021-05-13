@@ -332,10 +332,9 @@ class Database
 
     public function getWebsitesToCheck(int $limit): array
     {
-        $networksToCompareList = $this->getNetworksToCompareList();
         $statement = $this->connection->prepare('SELECT websiteId, url
             FROM websites
-            WHERE type NOT IN (' . $networksToCompareList . ') AND (lastCheck IS NULL OR lastCheck <= CURDATE()) 
+            WHERE type IN (' . $this->getTypesForLinkCheck() . ') AND (lastCheck IS NULL OR lastCheck <= CURDATE()) 
             ORDER BY lastCheck
             LIMIT :maxResults');
         $statement->bindParam(':maxResults', $limit, PDO::PARAM_INT);
@@ -343,13 +342,13 @@ class Database
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    private function getNetworksToCompareList(): string
+    private function getTypesForLinkCheck(): string
     {
-        $networksToCompareAsStrings = [];
-        foreach (Configuration::getWebsiteTypesToCompare() as $type => $typeName) {
-            $networksToCompareAsStrings[] = "'" . $type . "'";
+        $types = [];
+        foreach (Configuration::getWebsiteTypesForLinkCheck() as $type => $typeName) {
+            $types[] = "'" . $type . "'";
         }
-        return implode(', ', $networksToCompareAsStrings);
+        return implode(', ', $types);
     }
 
     public function updateWebsiteCheck($websiteId, $statusCode, $redirectTarget): bool

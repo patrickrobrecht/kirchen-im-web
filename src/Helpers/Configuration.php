@@ -99,6 +99,22 @@ class Configuration
         ];
     }
 
+    public static function getWebsiteTypesForLinkCheck(): array
+    {
+        /**
+         * All except {@link Configuration::getWebsiteTypesToCompare()}
+         * and YouTube, which redirects to cookie consent page.
+         */
+        return [
+            'web'        => _('Webauftritt'),
+            'blog'       => _('Blog'),
+            'rss'        => 'RSS',
+            'flickr'     => 'Flickr',
+            'soundcloud' => 'Soundcloud',
+            'vimeo'      => 'Vimeo',
+        ];
+    }
+
     public static function getWebsiteTypesToCompare(): array
     {
         return [
