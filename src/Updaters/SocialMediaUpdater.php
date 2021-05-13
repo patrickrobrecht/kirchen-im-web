@@ -83,7 +83,7 @@ class SocialMediaUpdater
             'facebook' => $this->getFacebookLikes($url),
             'instagram' => $this->getInstagramFollowers($url),
             'twitter' => $this->getTwitterFollower($url),
-        default => false,
+            default => false,
         };
     }
 
