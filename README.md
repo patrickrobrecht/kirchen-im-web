@@ -126,6 +126,7 @@ To run all checks, use `composer cs`.
 * [HTML5 and CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss), based on
     [Bootstrap 4](https://getbootstrap.com/)
 * [PHP](https://secure.php.net/) with libraries
+    [Facebook Graph SDK](https://github.com/facebookarchive/php-graph-sdk),
     [Instagram PHP Scraper](https://github.com/postaddictme/instagram-php-scraper),
     [OpenCage API](https://github.com/OpenCageData/php-opencage-geocode)
     [Slim](https://www.slimframework.com/),
@@ -142,5 +143,5 @@ To run all checks, use `composer cs`.
 - Run `composer prod`.
 - Upload the following to the production server: 
     - the directories `config`, `public`, `src`, `resources`, `vendor`, and
-    - the files `cron.php`.
+    - the file `cron.php`.
 - Create empty directories `cache` and `data`.

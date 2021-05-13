@@ -191,9 +191,10 @@ class Database
     public function getErrorWebsitesByStatusCode(): array
     {
         $statement = $this->connection->query('SELECT *
-            FROM websites
-            WHERE statusCode != 200 AND notesUpdate < (NOW() - INTERVAL 90 DAY)
-            ORDER BY url');
+			FROM websites
+			WHERE statusCode != 200
+				AND (notesUpdate is null OR notesUpdate < (NOW() - INTERVAL 90 DAY))
+			ORDER BY url');
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
