@@ -104,7 +104,7 @@
             {% if entries|length == 1 %}
                 {{ 'Eine Gemeinde gefunden!' | trans }}
             {% else %}
-                {{ '%count% Gemeinden gefunden' | trans({'%count%': entries|length}) }}
+                {{ '%count% Gemeinden gefunden' | trans({'%count%': macros.number_format(entries|length, languageSlug)}) }}
             {% endif %}
         </p>
         <table id="churchTable" class="table table-striped tablesorter">
