@@ -5,16 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
 ## Version 3.7.2 (2021-05-27)
 
 ### Fixed
 * Fix download links and map
+* Update dependencies
 
 
 ## Version 3.7.1 (2021-05-13)
 
 ### Fixed
-* Updated dependencies
+* Update dependencies
 * Fix list of churches for manual check
 * Fix number formatting
 
@@ -22,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version 3.7 (2021-03-02)
 
 ### Changed
-* Updated dependencies, including Slim and Twig
+* Update dependencies, including Slim and Twig
 * Make number of updated URLs in LinkChecker and SocialMediaUpdater configurable
 * Reuse Instagram and Twitter connection
 * Refactor code to use PHP 8 features
@@ -123,7 +125,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Improved styling of forms (validation, fixes for display on small devices),
     CSS grids instead of floats
 * API: several improvements, documentation in README
-* Updated dependencies (Slim, Highcharts)
+* Update dependencies (Slim, Highcharts)
 
 ### Fixed
 * Sitemap: no trailing slash redirect for `sitemap.xml`
