@@ -15,7 +15,7 @@ class Exporter
 
     public function __construct()
     {
-        $this->dataDirectory = dirname(__FILE__, 3) . '/data';
+        $this->dataDirectory = dirname(__FILE__, 3) . '/public/data';
         if (!file_exists($this->dataDirectory) && !mkdir($this->dataDirectory) && !is_dir($this->dataDirectory)) {
             throw new RuntimeException(sprintf('Directory "%s" was not created', $this->dataDirectory));
         }
