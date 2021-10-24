@@ -3,4 +3,5 @@ config/config.php
 node_modules/
 public/assets/
 public/data/
+public/mix-manifest.json
 vendor/
