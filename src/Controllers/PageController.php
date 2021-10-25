@@ -222,8 +222,7 @@ class PageController
         $this->container->get(Twig::class)->offsetSet('languageSlug', $languageSlug);
 
         // Set Menu
-        $routeContext = RouteContext::fromRequest($request);
-        $route = $routeContext->getRoute();
+        $route = $request->getAttribute(RouteContext::ROUTE);
         $routeWithoutLanguagePrefix = $route ? substr($route->getName(), 3) : 'home';
         $args = $route ? $route->getArguments() : [];
 

@@ -12,20 +12,22 @@ return static function (App $app) {
     $app->add(TwigMiddleware::createFromContainer($app, Twig::class));
 
     $debug = defined('DEBUG') && DEBUG;
-    $errorMiddleware = $app->addErrorMiddleware($debug, $debug, $debug);
-    $errorMiddleware->setDefaultErrorHandler(
-        function (
-            Request $request,
-            Throwable $exception,
-            bool $displayErrorDetails,
-            bool $logErrors,
-            bool $logErrorDetails,
-            LoggerInterface $logger = null
-        ) use ($app) {
-            return $app->getContainer()->get(PageController::class)->error(
-                $request,
-                $app->getResponseFactory()->createResponse()
-            );
-        }
-    );
+    if (!$debug) {
+        $errorMiddleware = $app->addErrorMiddleware(false, false, false);
+        $errorMiddleware->setDefaultErrorHandler(
+            function (
+                Request $request,
+                Throwable $exception,
+                bool $displayErrorDetails,
+                bool $logErrors,
+                bool $logErrorDetails,
+                LoggerInterface $logger = null
+            ) use ($app) {
+                return $app->getContainer()->get(PageController::class)->error(
+                    $request,
+                    $app->getResponseFactory()->createResponse()
+                );
+            }
+        );
+    }
 };

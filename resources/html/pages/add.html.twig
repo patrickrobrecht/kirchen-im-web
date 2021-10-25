@@ -153,5 +153,5 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script src="{{ base_path() }}/assets/{{ 'js/add.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}{{ '/js/add.js' | asset_version }}"></script>
 {% endblock %}

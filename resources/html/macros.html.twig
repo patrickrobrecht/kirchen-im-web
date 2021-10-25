@@ -1,7 +1,7 @@
 {% macro map(mapId, dataPath, languageSlug, config) %}
-    <script src="{{ base_path() }}/assets/{{ 'lib/leaflet.js' | asset_version }}"></script>
-    <script src="{{ base_path() }}/assets/{{ 'lib/leaflet.markercluster.js' | asset_version }}"></script>
-    <script src="{{ base_path() }}/assets/{{ 'js/map.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}{{ '/lib/leaflet.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}{{ '/lib/leaflet.markercluster.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}{{ '/js/map.js' | asset_version }}"></script>
     <script>
         var map = new Map({
             'all': '{{ 'alle' | trans }}',

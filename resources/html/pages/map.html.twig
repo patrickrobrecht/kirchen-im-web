@@ -4,7 +4,7 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ base_path() }}/assets/{{ 'lib/leaflet-bundle.css' | asset_version }}">
+    <link rel="stylesheet" href="{{ base_path() }}{{ '/lib/leaflet-bundle.css' | asset_version }}">
 {% endblock %}
 
 {% block main %}
