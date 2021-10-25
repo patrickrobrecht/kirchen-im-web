@@ -18,7 +18,7 @@
     "sass": "^1.43.3",
     "sass-loader": "^12.2.0",
     "stylelint": "^14.0.0",
-    "stylelint-config-recommended": "^6.0.0",
+    "stylelint-config-standard-scss": "^2.0.0",
     "tablesorter": "^2.31.3"
   },
   "scripts": {
@@ -40,6 +40,8 @@
     }
   },
   "stylelint": {
-    "extends": "stylelint-config-recommended"
+    "extends": [
+      "stylelint-config-standard-scss"
+    ]
   }
 }

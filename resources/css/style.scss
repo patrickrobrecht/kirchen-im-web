@@ -24,103 +24,103 @@
 @import "../../node_modules/bootstrap/scss/print";
 
 /* Icons for languages */
-.lang_de:before {
-  content: url(../../images/flags/de.gif) " ";
+.lang-de::before {
+  content: url("../../images/flags/de.gif") " ";
 }
 
-.lang_en:before {
-  content: url(../../images/flags/en.gif) " ";
+.lang-en::before {
+  content: url("../../images/flags/en.gif") " ";
 }
 
 /* Icons for links and social networks */
-a[href^="http://"]:after {
-  content: " " url(../../images/non-secure.png);
+a[href^="http://"]::after {
+  content: " " url("../../images/non-secure.png");
 }
 
 .web::before {
-  content: url(../../images/icons/web.png) " ";
+  content: url("../../images/icons/web.png") " ";
 }
 
 .blog::before {
-  content: url(../../images/icons/blog.png) " ";
+  content: url("../../images/icons/blog.png") " ";
 }
 
 .rss::before {
-  content: url(../../images/icons/rss.png) " ";
+  content: url("../../images/icons/rss.png") " ";
 }
 
 .facebook::before {
-  content: url(../../images/icons/facebook.png) " ";
+  content: url("../../images/icons/facebook.png") " ";
 }
 
 .flickr::before {
-  content: url(../../images/icons/flickr.png) " ";
+  content: url("../../images/icons/flickr.png") " ";
 }
 
 .instagram::before {
-  content: url(../../images/icons/instagram.png) " ";
+  content: url("../../images/icons/instagram.png") " ";
 }
 
 .soundcloud::before {
-  content: url(../../images/icons/soundcloud.png) " ";
+  content: url("../../images/icons/soundcloud.png") " ";
 }
 
 .twitter::before {
-  content: url(../../images/icons/twitter.png) " ";
+  content: url("../../images/icons/twitter.png") " ";
 }
 
 .vimeo::before {
-  content: url(../../images/icons/vimeo.png) " ";
+  content: url("../../images/icons/vimeo.png") " ";
 }
 
 .youtube::before {
-  content: url(../../images/icons/youtube.png) " ";
+  content: url("../../images/icons/youtube.png") " ";
 }
 
 /* Icons for countries */
-.at:before {
-  content: url(../../images/flags/Austria.png) " ";
+.at::before {
+  content: url("../../images/flags/Austria.png") " ";
 }
 
-.ch:before {
-  content: url(../../images/flags/Switzerland.png) " ";
+.ch::before {
+  content: url("../../images/flags/Switzerland.png") " ";
 }
 
-.de:before {
-  content: url(../../images/flags/Germany.png) " ";
+.de::before {
+  content: url("../../images/flags/Germany.png") " ";
 }
 
-.li:before {
-  content: url(../../images/flags/Liechtenstein.png) " ";
+.li::before {
+  content: url("../../images/flags/Liechtenstein.png") " ";
 }
 
-.lu:before {
-  content: url(../../images/flags/Luxembourg.png) " ";
+.lu::before {
+  content: url("../../images/flags/Luxembourg.png") " ";
 }
 
 /* Icons for denominations */
-.alt-katholisch:before {
-  content: url(../../images/markers/orange.png) " ";
+.alt-katholisch::before {
+  content: url("../../images/markers/orange.png") " ";
 }
 
-.anglikanisch:before {
-  content: url(../../images/markers/green.png) " ";
+.anglikanisch::before {
+  content: url("../../images/markers/green.png") " ";
 }
 
-.evangelisch:before {
-  content: url(../../images/markers/purple.png) " ";
+.evangelisch::before {
+  content: url("../../images/markers/purple.png") " ";
 }
 
-.freikirchlich:before {
-  content: url(../../images/markers/blue.png) " ";
+.freikirchlich::before {
+  content: url("../../images/markers/blue.png") " ";
 }
 
-.katholisch:before {
-  content: url(../../images/markers/yellow.png) " ";
+.katholisch::before {
+  content: url("../../images/markers/yellow.png") " ";
 }
 
-.ökumenisch:before {
-  content: url(../../images/markers/red.png) " ";
+.ökumenisch::before { /* stylelint-disable-line selector-class-pattern */
+  content: url("../../images/markers/red.png") " ";
 }
 
 /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
@@ -158,7 +158,7 @@ a[href^="http://"]:after {
 
 /* tables, partly inspired by tablesorter's default theme */
 .tablesorter {
-  font-size: .7em;
+  font-size: 0.7em;
 }
 
 .number {
@@ -167,24 +167,26 @@ a[href^="http://"]:after {
 
 .tablesorter-default .header,
 .tablesorter-default .tablesorter-header {
-  background: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==) center right no-repeat;
+  background: url("data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==") center right no-repeat;
   cursor: pointer;
   white-space: normal;
 }
 
+/* stylelint-disable selector-class-pattern -- Class names from tablesorter library. */
 .tablesorter-default thead .headerSortUp,
 .tablesorter-default thead .tablesorter-headerSortUp,
 .tablesorter-default thead .tablesorter-headerAsc {
-  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+  background-image: url("data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7");
   border-bottom: #000 2px solid;
 }
 
 .tablesorter-default thead .headerSortDown,
 .tablesorter-default thead .tablesorter-headerSortDown,
 .tablesorter-default thead .tablesorter-headerDesc {
-  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+  background-image: url("data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7");
   border-bottom: #000 2px solid;
 }
+/* stylelint-enable selector-class-pattern */
 
 .tablesorter-default thead .sorter-false {
   background-image: none;
