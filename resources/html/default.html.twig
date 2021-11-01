@@ -19,7 +19,7 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="search" type="application/opensearchdescription+xml" href="{{ base_path() ~ url_for(languageSlug ~ '-opensearch') }}" title="{{ 'Kirchen im Web' | trans }}">
     {% block head_styles %}
-        <link rel="stylesheet" href="{{ base_path() }}/assets/{{ 'css/style.css' | asset_version }}">
+        <link rel="stylesheet" href="{{ base_path() }}{{ '/css/style.css' | asset_version }}">
     {% endblock %}
 </head>
 <body>
@@ -65,8 +65,8 @@
         </nav>
     </footer>
     {% block footer_scripts %}
-        <script src="{{ base_path() }}/assets/{{ 'lib/jquery.min.js' | asset_version }}"></script>
-        <script src="{{ base_path() }}/assets/{{ 'lib/bootstrap.min.js' | asset_version }}"></script>
+        <script src="{{ base_path() }}{{ '/lib/jquery.min.js' | asset_version }}"></script>
+        <script src="{{ base_path() }}{{ '/lib/bootstrap.min.js' | asset_version }}"></script>
     {% endblock %}
     {% block structured_data %}
     {% endblock %}

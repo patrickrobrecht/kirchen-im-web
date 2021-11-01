@@ -14,11 +14,15 @@ use Twig\TwigFilter;
  */
 class TwigAssetVersionExtension extends AbstractExtension
 {
-    private string $manifest;
+    private array $paths;
 
     public function __construct(string $manifest)
     {
         $this->manifest = $manifest;
+        if (!file_exists($this->manifest)) {
+            throw new RuntimeException(sprintf('Cannot find manifest file: "%s"', $this->manifest));
+        }
+        $this->paths = json_decode(file_get_contents($this->manifest), true, 512, JSON_THROW_ON_ERROR);
     }
 
     public function getFilters(): array
@@ -30,14 +34,10 @@ class TwigAssetVersionExtension extends AbstractExtension
 
     public function getAssetVersion(string $filename)
     {
-        if (!file_exists($this->manifest)) {
-            throw new RuntimeException(sprintf('Cannot find manifest file: "%s"', $this->manifest));
-        }
-        $paths = json_decode(file_get_contents($this->manifest), true, 512, JSON_THROW_ON_ERROR);
-        if (!isset($paths[$filename])) {
+        if (!isset($this->paths[$filename])) {
             throw new RuntimeException(sprintf('There is no file "%s" in the version manifest!', $filename));
         }
-        return $paths[$filename];
+        return '/assets' . $this->paths[$filename];
     }
 
     public function getName(): string

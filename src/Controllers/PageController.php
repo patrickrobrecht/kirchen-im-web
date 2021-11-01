@@ -222,8 +222,7 @@ class PageController
         $this->container->get(Twig::class)->offsetSet('languageSlug', $languageSlug);
 
         // Set Menu
-        $routeContext = RouteContext::fromRequest($request);
-        $route = $routeContext->getRoute();
+        $route = $request->getAttribute(RouteContext::ROUTE);
         $routeWithoutLanguagePrefix = $route ? substr($route->getName(), 3) : 'home';
         $args = $route ? $route->getArguments() : [];
 
@@ -247,7 +246,7 @@ class PageController
             if ($language === 'de_DE') {
                 $headerMenuItems = array_merge($headerMenuItems, [
                     [
-                        'class' => 'lang_en',
+                        'class' => 'lang-en',
                         'path' => 'en-' . $routeWithoutLanguagePrefix,
                         'args' => $args,
                         'text' => 'English'
@@ -256,7 +255,7 @@ class PageController
             } elseif ($language === 'en_US') {
                 $headerMenuItems = array_merge($headerMenuItems, [
                     [
-                        'class' => 'lang_de',
+                        'class' => 'lang-de',
                         'path' => 'de-' . $routeWithoutLanguagePrefix,
                         'args' => $args,
                         'text' => 'Deutsch'
