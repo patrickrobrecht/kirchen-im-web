@@ -35,7 +35,7 @@
 
         {% if url == current_url %}
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url }}">{{ text|trans }}</a> <span class="sr-only">{{ '(aktuelle Seite)' | trans }}</span>
+                <a class="nav-link active" href="{{ url }}">{{ text|trans }}</a> <span class="visually-hidden">{{ '(aktuelle Seite)' | trans }}</span>
             </li>
         {% else %}
             {% if item.class %}

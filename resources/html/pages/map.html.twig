@@ -10,17 +10,15 @@
 {% block main %}
     <p>{{ 'Alt-katholische Kirchen werden orange, anglikanische grün, evangelische lila, freikirchliche blau, katholische gelb und andere/ökumenische rot dargestellt.' | trans }}</p>
 
-    <div class="mx-auto">
-        <ul class="list-unstyled row">
-            {% for value, name in config.denominations %}
-                <li class="media my-4 col-12 col-sm-6 col-md-4 col-xl-2">
-                    <span class="mr-3 {{ value }}"></span>
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">{{ name|trans }}</h5>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="row my-3">
+        {% for value, name in config.denominations %}
+            <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                <div class="d-flex">
+                    <span class="flex-shrink-0 {{ value }}"></span>
+                    <div class="flex-grow-1 ms-3">{{ name|trans }}</div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
     <div id="map">

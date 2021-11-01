@@ -20,40 +20,41 @@
     <form action="{{ url_for(languageSlug ~ '-add-form') }}" method="post" class="row">
         <fieldset class="col-12 col-lg-6">
             <legend>{{ 'Adresse, Konfession und Hierarchie' | trans }}</legend>
-            <div class="form-row">
-                <p class="alert alert-primary">{{ 'Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.' | trans }}
-                    <strong>{{ 'Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem Ausfüllen, ob die Gemeinde bereits aufgeführt ist' | trans }}</strong>
-                    (<a href="{{ url_for(languageSlug ~ '-map') }}">{{ 'Karte' | trans }}</a>
-                    {{ 'oder' | trans }}
-                    <a href="{{ url_for(languageSlug ~ '-search') }}">{{ 'Suche' | trans }}</a>).</p>
+            <p class="alert alert-primary">{{ 'Hier können Sie Ihre Gemeinde zu kirchen-im-web.de hinzufügen.' | trans }}
+                <strong>{{ 'Um doppelte Eintragungen zu vermeiden, kontrollieren Sie bitte vor dem Ausfüllen, ob die Gemeinde bereits aufgeführt ist' | trans }}</strong>
+                (<a href="{{ url_for(languageSlug ~ '-map') }}">{{ 'Karte' | trans }}</a>
+                {{ 'oder' | trans }}
+                <a href="{{ url_for(languageSlug ~ '-search') }}">{{ 'Suche' | trans }}</a>).
+            </p>
+            <div class="row">
                 <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label for="name">{{ 'Name' | trans }}</label>
+                    <div class="mb-3">
+                        <label class="form-label" class="form-label" for="name">{{ 'Name' | trans }}</label>
                         <input class="form-control" id="name" name="name" type="text" required value="{{ data.name }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label for="street">{{ 'Straße' | trans }}, <abbr title="{{ 'Hausnummer' | trans }}">{{ 'Nr.' | trans }}</abbr></label>
+                    <div class="mb-3">
+                        <label class="form-label" for="street">{{ 'Straße' | trans }}, <abbr title="{{ 'Hausnummer' | trans }}">{{ 'Nr.' | trans }}</abbr></label>
                         <input class="form-control" id="street" name="street" type="text" required value="{{ data.street }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3">
-                    <div class="form-group">
-                        <label for="postalCode">{{ 'PLZ' | trans }}</label>
+                    <div class="mb-3">
+                        <label class="form-label" for="postalCode">{{ 'PLZ' | trans }}</label>
                         <input class="form-control" id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" required value="{{ data.postalCode }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-5">
-                    <div class="form-group">
-                        <label for="city">{{ 'Ort' | trans }}</label>
+                    <div class="mb-3">
+                        <label class="form-label" for="city">{{ 'Ort' | trans }}</label>
                         <input class="form-control" id="city" name="city" type="text" required value="{{ data.city }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
-                    <div class="form-group">
-                        <label for="countryCode">{{ 'Land' | trans }}</label>
-                        <select class="form-control" id="countryCode" name="countryCode" required>
+                    <div class="mb-3">
+                        <label class="form-label" for="countryCode">{{ 'Land' | trans }}</label>
+                        <select class="form-select" id="countryCode" name="countryCode" required>
                             <option value="">{{ 'bitte auswählen' | trans }}</option>
                             {% for value, name in config.countries %}
                                 <option value="{{ value }}" class="{{ value|lower }}" {% if value == data.countryCode %}selected{% endif %}>{{ name }}</option>
@@ -62,11 +63,11 @@
                     </div>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="row">
                 <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label for="denomination">{{ 'Konfession' | trans }}</label>
-                        <select class="form-control" id="denomination" name="denomination" required>
+                    <div class="mb-3">
+                        <label class="form-label" for="denomination">{{ 'Konfession' | trans }}</label>
+                        <select class="form-select" id="denomination" name="denomination" required>
                             <option value="">{{ 'bitte auswählen' | trans }}</option>
                             {% for value, name in config.denominations %}
                                 <option value="{{ value }}" {% if value == data.denomination %}selected{% endif %}>{{ name }}</option>
@@ -75,9 +76,9 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label for="type">{{ 'Gemeindetyp' | trans }}</label>
-                        <select class="form-control" id="type" name="type" required>
+                    <div class="mb-3">
+                        <label class="form-label" for="type">{{ 'Gemeindetyp' | trans }}</label>
+                        <select class="form-select" id="type" name="type" required>
                             <option value="">{{ 'bitte auswählen' | trans }}</option>
                             {% for value, name in config.types %}
                                 <option value="{{ value }}" {% if value == data.type %}selected{% endif %}>{{ name }}</option>
@@ -86,9 +87,9 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="form-group">
-                        <label for="parentId">{{ 'nächsthöhere Ebene' | trans }}</label>
-                        <select class="form-control" id="parentId" name="parentId" aria-describedby="parentHelp">
+                    <div class="mb-3">
+                        <label class="form-label" for="parentId">{{ 'nächsthöhere Ebene' | trans }}</label>
+                        <select class="form-select" id="parentId" name="parentId" aria-describedby="parentHelp">
                             <option value="">{{ 'keine' | trans }}</option>
                             {% for parent in parents %}
                                 <option value="{{ parent.id }}" {% if parent.id == data.parentId %}selected{% endif %}>{{ parent.name }}</option>
@@ -101,7 +102,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="form-group">
+                    <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" id="hasChildren" name="hasChildren" type="checkbox" aria-describedby="hasChildrenHelp">
                             <label class="form-check-label" for="hasChildren"> {{ 'hat untergeordnete Ebene' | trans }}</label>
@@ -115,17 +116,17 @@
         </fieldset>
         <fieldset class="col-12 col-lg-6">
             <legend>{{ 'Webauftritte und Social-Media-Profile' | trans }}</legend>
-            <div class="form-row">
-                <p class="alert alert-primary">
-                    {{ 'Bitte achten Sie darauf, nur öffentliche Webauftritte und Social-Media-Auftritte (d.h. keine Facebook-Gruppen, sondern nur öffentliche Facebook-Seiten) anzugeben.' | trans }}
-                    {{ 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' | trans }}
-                </p>
+            <p class="alert alert-primary">
+                {{ 'Bitte achten Sie darauf, nur öffentliche Webauftritte und Social-Media-Auftritte (d.h. keine Facebook-Gruppen, sondern nur öffentliche Facebook-Seiten) anzugeben.' | trans }}
+                {{ 'Wenn eine Seite verschlüsselt (also mit https) erreichbar ist, wählen Sie bitte die URL mit https.' | trans }}
+            </p>
+            <div class="row">
                 {% for id, website in config.websiteTypes %}
                     {% set prefix = config.startOfWebsiteURL[id] %}
                     {% set urlPattern = urlPrefix ? urlPrefix ~ '.+' : 'https?://.+' %}
                     <div class="col-12 col-xl-6">
-                        <div class="form-group">
-                            <label class="{{ id }}" for="{{ id }}URL">{{ website|trans }}</label>
+                        <div class="mb-3">
+                            <label class="form-label {{ id }}" for="{{ id }}URL">{{ website|trans }}</label>
                             <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" pattern="{{ urlPattern }}" placeholder="{{ urlPrefix }}" value="{{ data.urls[id] }}">
                             <div class="invalid-feedback">
                                 {% if prefix %}
@@ -146,7 +147,7 @@
                 ({{ 'sonst erzeugen Sie mehrere identische Einträge' | trans }}).
                 {{ 'Bei Fehlern in Einträgen wenden Sie sich bitte an ' | trans }} kontakt [ät] kirchen-im-web [punkt] de.
             </p>
-            <button class="btn btn-primary btn-block" type="submit">{{ 'Gemeinde hinzufügen' | trans }}</button>
+            <button class="btn btn-primary" type="submit">{{ 'Gemeinde hinzufügen' | trans }}</button>
         </fieldset>
     </form>
 {% endblock %}
