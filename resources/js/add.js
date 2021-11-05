@@ -1,14 +1,13 @@
 /**
  * Add was-validated to inputs parent iff the input is not empty.
  */
-/* global $ */
-/* eslint no-undef: "error" */
-$(document).ready(function () {
-  $('.form-control').on('input', function () {
+const inputs = document.getElementsByClassName('form-control');
+for (const input of inputs) {
+  input.onchange = function () {
     if (this.value === '') {
-      $(this).parent().removeClass('was-validated');
+      input.parentElement.classList.remove('was-validated');
     } else {
-      $(this).parent().addClass('was-validated');
+      input.parentElement.classList.add('was-validated');
     }
-  });
-});
+  }
+}

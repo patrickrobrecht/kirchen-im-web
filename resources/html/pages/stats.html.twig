@@ -171,6 +171,7 @@
 
 {% block footer_scripts %}
     {{ parent() }}
+    <script src="{{ base_path() }}{{ '/lib/jquery.min.js' | asset_version }}"></script>
     <script src="{{ base_path() }}{{ '/lib/highcharts.js' | asset_version }}"></script>
     <script>
         $(function() {
