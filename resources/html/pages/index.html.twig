@@ -46,21 +46,21 @@
             <div class="row">
                 {% for entry in recentlyAddedEntries %}
                     <div class="col-12 col-sm-6 col-lg-12">
-                        <div class="card mb-2 shadow-sm">
-                            <div class="card-body">
-                                <div class="card-text">
+                        <div class="card mb-2">
+                            <div class="card-header">
+                                <div class="card-title">
                                     <a href="{{ url_for(languageSlug ~ '-details', {'id': entry.slug}) }}">{{ entry.name }}</a>
                                 </div>
-                                <small class="text-muted">{{ entry.denomination|trans }} | {{ entry.type }} | {{ entry.city }}</small>
-                                <div class="py-1 mx-n1">
-                                    {% for id, name in config.websiteTypes %}
-                                        {% if entry[id] %}
-                                            <a class="px-1" href="{{ entry[id] }}" title="{{ name|trans }}">
-                                                <img src="{{ base_path() }}/images/icons/{{ id }}.png" alt="{{ name|trans }}">
-                                            </a>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
+                                <small class="card-subtitle text-muted">{{ entry.denomination|trans }} | {{ entry.type }} | {{ entry.city }}</small>
+                            </div>
+                            <div class="card-body">
+                                {% for id, name in config.websiteTypes %}
+                                    {% if entry[id] %}
+                                        <a class="px-1" href="{{ entry[id] }}" title="{{ name|trans }}">
+                                            <img src="{{ base_path() }}/images/icons/{{ id }}.png" alt="{{ name|trans }}">
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

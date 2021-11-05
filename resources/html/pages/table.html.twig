@@ -4,29 +4,29 @@
 
 {% block main %}
     <form method="get">
-        <div class="form-row">
+        <div class="row">
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="form-group">
-                    <label for="name">{{ 'Name' | trans }}</label>
+                <div class="mb-3">
+                    <label class="form-label" for="name">{{ 'Name' | trans }}</label>
                     <input class="form-control" id="name" name="name" type="text" value="{{ filters.name }}">
                 </div>
             </div>
             <div class="col-12 col-md-3 col-lg-2">
-                <div class="form-group">
-                    <label for="postalCode">{{ 'PLZ' | trans }}</label>
+                <div class="mb-3">
+                    <label class="form-label" for="postalCode">{{ 'PLZ' | trans }}</label>
                     <input class="form-control" id="postalCode" name="postalCode" type="text" pattern="[0-9]{4,5}" value="{% if filters.postalCode > 0 %}{{ filters.postalCode }}{% endif %}">
                 </div>
             </div>
             <div class="col-12 col-md-3 col-lg-3">
-                <div class="form-group">
-                    <label for="city">{{ 'Ort' | trans }}</label>
+                <div class="mb-3">
+                    <label class="form-label" for="city">{{ 'Ort' | trans }}</label>
                     <input class="form-control" id="city" name="city" type="text" value="{{ filters.city }}">
                 </div>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-                <div class="form-group">
-                    <label for="countryCode">{{ 'Land' | trans }}</label>
-                    <select class="form-control" id="countryCode" name="countryCode">
+                <div class="mb-3">
+                    <label class="form-label" for="countryCode">{{ 'Land' | trans }}</label>
+                    <select class="form-select" id="countryCode" name="countryCode">
                         <option value="">{{ 'bitte auswählen' | trans }}</option>
                         {% for value, name in config.countries %}
                             <option value="{{ value }}" {% if value == filters.country %}selected{% endif %}>{{ name|trans }}</option>
@@ -35,9 +35,9 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-                <div class="form-group">
-                    <label for="denomination">{{ 'Konfession' | trans }}</label>
-                    <select class="form-control" id="denomination" name="denomination">
+                <div class="mb-3">
+                    <label class="form-label" for="denomination">{{ 'Konfession' | trans }}</label>
+                    <select class="form-select" id="denomination" name="denomination">
                         <option value="">{{ 'bitte auswählen' | trans }}</option>
                         {% for value, name in config.denominations %}
                             <option value="{{ value }}" {% if value == filters.denomination %}selected{% endif %}>{{ name|trans }}</option>
@@ -46,9 +46,9 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-                <div class="form-group">
-                    <label for="type">{{ 'Gemeindetyp' | trans }}</label>
-                    <select class="form-control" id="type" name="type">
+                <div class="mb-3">
+                    <label class="form-label" for="type">{{ 'Gemeindetyp' | trans }}</label>
+                    <select class="form-select" id="type" name="type">
                         <option value="">{{ 'bitte auswählen' | trans }}</option>
                         {% for value, name in config.types %}
                             <option value="{{ value }}" {% if value == filters.type %}selected{% endif %}>{{ name|trans }}</option>
@@ -57,9 +57,9 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-                <div class="form-group">
-                    <label for="hasWebsiteType">{{ 'nur Gemeinden mit' | trans }}</label>
-                    <select class="form-control" id="hasWebsiteType" name="hasWebsiteType">
+                <div class="mb-3">
+                    <label class="form-label" for="hasWebsiteType">{{ 'nur Gemeinden mit' | trans }}</label>
+                    <select class="form-select" id="hasWebsiteType" name="hasWebsiteType">
                         <option value="">{{ 'bitte auswählen' | trans }}</option>
                         {% for value, name in config.websiteTypes %}
                             <option value="{{ value }}" {% if value == filters.hasWebsiteType %}selected{% endif %}>{{ name|trans }}</option>
@@ -68,9 +68,9 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-                <div class="form-group">
-                    <label for="sort">{{ 'Sortieren nach' | trans }}</label>
-                    <select class="form-control" id="sort" name="sort">
+                <div class="mb-3">
+                    <label class="form-label" for="sort">{{ 'Sortieren nach' | trans }}</label>
+                    <select class="form-select" id="sort" name="sort">
                         {% for value, name in config.sortOptions %}
                             <option value="{{ value }}" {% if value == sort.name %}selected{% endif %}>{{ name|trans }}</option>
                         {% endfor %}
@@ -79,8 +79,8 @@
             </div>
             {% if not compare %}
                 <div class="col-12 col-lg-9">
-                    <div class="form-group">
-                        <label >{{ 'Anzeige' | trans }}</label>
+                    <div class="mb-3">
+                        <label class="form-label" >{{ 'Anzeige' | trans }}</label>
                         <div>
                             {% for id, name in config.websiteTypes %}
                                 <div class="form-check form-check-inline">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             {% endif %}
-            <button class="btn btn-primary btn-block" type="submit">{{ 'Filtern und sortieren' | trans }}</button>
+            <button class="btn btn-primary" type="submit">{{ 'Filtern und sortieren' | trans }}</button>
         </div>
     </form>
     {% if entries|length == 0 %}

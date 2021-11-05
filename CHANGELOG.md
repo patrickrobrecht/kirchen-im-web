@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Fixed
-* Update dependencies
+* Update dependencies, including upgrading to Bootstrap 5
 * Switch from Gulp to Laravel Mix as build tool
 
 
