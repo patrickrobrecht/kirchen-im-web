@@ -37,7 +37,7 @@
                     </ul>
                     <form class="d-inline d-none d-xl-block" action="{{ url_for(languageSlug ~ '-search') }}">
                         <div class="input-group">
-                            <input name="name" class="form-control" type="search" placeholder="{{ 'Suche' | trans }}" aria-label="{{ 'Suche' | trans }}}">
+                            <input name="name" class="form-control" type="search" minlength="3" required placeholder="{{ 'Suche' | trans }}" aria-label="{{ 'Suche' | trans }}">
                             <button class="btn btn-secondary" type="submit">{{ 'Suche' | trans }}</button>
                         </div>
                     </form>

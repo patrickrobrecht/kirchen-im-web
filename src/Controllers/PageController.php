@@ -246,7 +246,6 @@ class PageController
             if ($language === 'de_DE') {
                 $headerMenuItems = array_merge($headerMenuItems, [
                     [
-                        'class' => 'lang-en',
                         'path' => 'en-' . $routeWithoutLanguagePrefix,
                         'args' => $args,
                         'text' => 'English'
@@ -255,7 +254,6 @@ class PageController
             } elseif ($language === 'en_US') {
                 $headerMenuItems = array_merge($headerMenuItems, [
                     [
-                        'class' => 'lang-de',
                         'path' => 'de-' . $routeWithoutLanguagePrefix,
                         'args' => $args,
                         'text' => 'Deutsch'
