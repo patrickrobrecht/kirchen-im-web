@@ -20,13 +20,3 @@
         </article>
     </main>
 {% endblock %}
-
-{% block footer_scripts %}
-    {{ parent() }}
-    <script src="{{ base_path() }}{{ '/lib/jquery.tablesorter.min.js' | asset_version }}"></script>
-    <script>
-        $(function(){
-            $("table").tablesorter();
-        });
-    </script>
-{% endblock %}

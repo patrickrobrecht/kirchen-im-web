@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Fixed
-* Update dependencies, including upgrading to Bootstrap 5
-* Switch from Gulp to Laravel Mix as build tool
+- Update dependencies, including upgrading to Bootstrap 5
+- Switch from Gulp to Laravel Mix as build tool
+- Replace jQuery based tablesorter with tablesort library (which has no dependencies)
+- Remove jQuery
 
 
 ## Version 3.7.2 (2021-05-27)

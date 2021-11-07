@@ -1,13 +1,12 @@
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "Map" }] */
+/* global L, fetch */
 function Map (translations) {
   this.translations = translations;
   this.load = function (mapId, baseUrl, dataPath, language) {
     const t = this.translations;
     const detailsUrlPrefix = baseUrl + '/' + language;
-    const markerArray = [];
+
     // the layers
-    /* global L */
-    /* eslint no-undef: "error" */
     const allLayer = new L.LayerGroup();
     const oldCatholicLayer = new L.LayerGroup();
     const anglicanLayer = new L.LayerGroup();
@@ -25,6 +24,7 @@ function Map (translations) {
     const twitterLayer = new L.LayerGroup();
     const vimeoLayer = new L.LayerGroup();
     const youtubeLayer = new L.LayerGroup();
+
     // the icons
     const oldCatholicIcon = L.icon({ iconUrl: baseUrl + '/images/markers/orange.png' });
     const anglicanIcon = L.icon({ iconUrl: baseUrl + '/images/markers/green.png' });
@@ -34,103 +34,109 @@ function Map (translations) {
     const othersIcon = L.icon({ iconUrl: baseUrl + '/images/markers/red.png' });
 
     // Create a map in the container with the given id, set the view to a given place and zoom.
-    const map = L.map(mapId, { center: L.latLng(50, 10), zoom: 6 });
+    const map = L.map(mapId, {
+      center: L.latLng(50, 10),
+      zoom: 6
+    });
     // Add an OpenStreetMap tile layer.
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (CC BY-SA)'
     }).addTo(map);
-    const markerCluster = L.markerClusterGroup({ maxClusterRadius: 80, chunkedLoading: true });
-    /* global $ */
-    /* eslint no-undef: "error" */
-    $.getJSON(baseUrl + dataPath,
-      function (data) {
-        let title, denomination, icon, denominationLayer, content, thisMarker;
-        $.each(data,
-          function (i, v) {
-            // Read the JSON data.
-            title = v.name;
-            denomination = v.denomination;
-            if (denomination === 'alt-katholisch') {
+    const markerCluster = L.markerClusterGroup({
+      maxClusterRadius: 80,
+      chunkedLoading: true
+    });
+
+    fetch(baseUrl + dataPath).then(response => {
+      response.json().then(entries => {
+        let icon, denominationLayer, content, marker;
+        for (const entry of entries) {
+          switch (entry.denomination) {
+            case 'alt-katholisch':
               denominationLayer = oldCatholicLayer;
               icon = oldCatholicIcon;
-            } else if (denomination === 'anglikanisch') {
+              break;
+            case 'anglikanisch':
               denominationLayer = anglicanLayer;
               icon = anglicanIcon;
-            } else if (denomination === 'evangelisch') {
+              break;
+            case 'evangelisch':
               denominationLayer = protestantLayer;
               icon = protestantIcon;
-            } else if (denomination === 'freikirchlich') {
+              break;
+            case 'freikirchlich':
               denominationLayer = freeChurchesLayer;
               icon = freeChurchesIcon;
-            } else if (denomination === 'katholisch') {
+              break;
+            case 'katholisch':
               denominationLayer = catholicLayer;
               icon = catholicIcon;
-            } else {
+              break;
+            default:
               denominationLayer = othersLayer;
               icon = othersIcon;
+              break;
+          }
+
+          if (entry.lat && entry.lon && entry.name && icon) {
+            marker = L.marker([entry.lat, entry.lon], { title: entry.name, icon: icon });
+
+            // Add the marker to the cluster.
+            markerCluster.addLayer(marker);
+
+            // Add to the layers for the denominations.
+            marker.addTo(allLayer);
+            marker.addTo(denominationLayer);
+
+            // Build the popup for the marker.
+            content = '<strong><a href="' + detailsUrlPrefix + '/details/' + entry.slug + '/">' + entry.name + '</a></strong><br>' + entry.street + ', ' + entry.postalCode + ' ' + entry.city + '<br><ul>';
+
+            // Add to the layers for the social networks.
+            if (entry.web) {
+              marker.addTo(webLayer);
+              content = content + '<li><a href="' + entry.web + '">' + t.web + '</a></li>';
             }
-
-            if (v.lat && v.lon && title && icon) {
-              thisMarker = L.marker([v.lat, v.lon], { title: title, icon: icon });
-
-              // Push the marker to the Array which shall be displayed on the map.
-              markerArray.push(thisMarker);
-              markerCluster.addLayer(thisMarker);
-
-              // Add to the layers for the denominations.
-              thisMarker.addTo(allLayer);
-              thisMarker.addTo(denominationLayer);
-
-              // Build the popup for the marker.
-              content = '<strong><a href="' + detailsUrlPrefix + '/details/' + v.slug + '/">' + title + '</a></strong><br>' + v.street + ', ' + v.postalCode + ' ' + v.city + '<br><ul>';
-
-              // Add to the layers for the social networks.
-              if (v.web) {
-                thisMarker.addTo(webLayer);
-                content = content + '<li><a href="' + v.web + '">' + t.web + '</a></li>';
-              }
-              if (v.blog) {
-                thisMarker.addTo(blogLayer);
-                content = content + '<li><a href="' + v.blog + '">' + t.blog + '</a></li>';
-              }
-              if (v.rss) {
-                thisMarker.addTo(rssLayer);
-                content = content + '<li><a href="' + v.rss + '">RSS</a></li>';
-              }
-              if (v.facebook) {
-                thisMarker.addTo(facebookLayer);
-                content = content + '<li><a href="' + v.facebook + '">Facebook</a></li>';
-              }
-              if (v.flickr) {
-                thisMarker.addTo(flickrLayer);
-                content = content + '<li><a href="' + v.flickr + '">Flickr</a></li>';
-              }
-              if (v.instagram) {
-                thisMarker.addTo(instagramLayer);
-                content = content + '<li><a href="' + v.instagram + '">Instagram</a></li>';
-              }
-              if (v.soundcloud) {
-                thisMarker.addTo(soundcloudLayer);
-                content = content + '<li><a href="' + v.soundcloud + '">Soundcloud</a></li>';
-              }
-              if (v.twitter) {
-                thisMarker.addTo(twitterLayer);
-                content = content + '<li><a href="' + v.twitter + '">Twitter</a></li>';
-              }
-              if (v.vimeo) {
-                thisMarker.addTo(vimeoLayer);
-                content = content + '<li><a href="' + v.vimeo + '">Vimeo</a></li>';
-              }
-              if (v.youtube) {
-                thisMarker.addTo(youtubeLayer);
-                content = content + '<li><a href="' + v.youtube + '">YouTube</a></li>';
-              }
-
-              thisMarker.bindPopup(content + '</ul>');
-            } else {
-              console.error('Problem with entry ' + v.id + ' ' + title);
+            if (entry.blog) {
+              marker.addTo(blogLayer);
+              content = content + '<li><a href="' + entry.blog + '">' + t.blog + '</a></li>';
             }
-          });
+            if (entry.rss) {
+              marker.addTo(rssLayer);
+              content = content + '<li><a href="' + entry.rss + '">RSS</a></li>';
+            }
+            if (entry.facebook) {
+              marker.addTo(facebookLayer);
+              content = content + '<li><a href="' + entry.facebook + '">Facebook</a></li>';
+            }
+            if (entry.flickr) {
+              marker.addTo(flickrLayer);
+              content = content + '<li><a href="' + entry.flickr + '">Flickr</a></li>';
+            }
+            if (entry.instagram) {
+              marker.addTo(instagramLayer);
+              content = content + '<li><a href="' + entry.instagram + '">Instagram</a></li>';
+            }
+            if (entry.soundcloud) {
+              marker.addTo(soundcloudLayer);
+              content = content + '<li><a href="' + entry.soundcloud + '">Soundcloud</a></li>';
+            }
+            if (entry.twitter) {
+              marker.addTo(twitterLayer);
+              content = content + '<li><a href="' + entry.twitter + '">Twitter</a></li>';
+            }
+            if (entry.vimeo) {
+              marker.addTo(vimeoLayer);
+              content = content + '<li><a href="' + entry.vimeo + '">Vimeo</a></li>';
+            }
+            if (entry.youtube) {
+              marker.addTo(youtubeLayer);
+              content = content + '<li><a href="' + entry.youtube + '">YouTube</a></li>';
+            }
+            marker.bindPopup(content + '</ul>');
+          } else {
+            console.error('Invalid entry ', entry);
+          }
+        }
 
         // Add control for the layers.
         const layers = {};
@@ -155,6 +161,7 @@ function Map (translations) {
 
         // Add cluster.
         map.addLayer(markerCluster);
-      })
+      });
+    });
   }
 }
