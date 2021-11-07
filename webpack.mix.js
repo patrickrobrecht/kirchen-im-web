@@ -12,6 +12,7 @@ mix.sass('resources/css/style.scss', 'public/assets/css').options({
 // Compile JavaScript files.
 const javaScriptFiles = [
   'add.js',
+  'table.js',
   'map.js'
 ];
 javaScriptFiles.forEach(file => mix.copy('resources/js/' + file, 'public/assets/js'));
@@ -26,11 +27,10 @@ mix.styles(cssFilesForLeaflet, 'public/assets/lib/leaflet-bundle.css');
 
 const javaScriptLibraries = [
   'node_modules/bootstrap/dist/js/bootstrap.min.js',
-  'node_modules/jquery/dist/jquery.min.js',
   'node_modules/highcharts/highcharts.js',
   'node_modules/leaflet/dist/leaflet.js',
   'node_modules/leaflet.markercluster/dist/leaflet.markercluster.js',
-  'node_modules/tablesorter/dist/js/jquery.tablesorter.min.js'
+  'node_modules/tablesort/dist/tablesort.min.js'
 ];
 javaScriptLibraries.forEach(file => mix.copy(file, 'public/assets/lib'));
 

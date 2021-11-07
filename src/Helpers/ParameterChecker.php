@@ -75,20 +75,14 @@ class ParameterChecker
         return $websites;
     }
 
-    public static function extractSort(Request $request, $default = ''): array
+    public static function extractSort(Request $request, $default = ''): string
     {
         $data = $request->getQueryParams();
-        $sort = isset($data['sort']) ? trim($data['sort']) : $default;
-        $sortColumnId = -1;
-        $columns = Configuration::getSortOptions();
-        if (array_key_exists($sort, $columns)) {
-            $sortColumnId = array_search($sort, array_keys($columns), true);
-        }
-        return [
-            'name' => ($sortColumnId > -1) ? $sort : '',
-            'id' => $sortColumnId,
-            'dir' => ($sortColumnId >= 6) ? 1 : 0
-        ];
+        $sort = $data['sort'] ?? '';
+
+        return array_key_exists($sort, Configuration::getSortOptions())
+            ? $sort
+            : $default;
     }
 
     public static function parseAddFormPreSelectionParameters(Request $request): array

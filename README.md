@@ -100,9 +100,8 @@ Returns the (direct) children of the church with the given id in JSON.
 
 ### Setup
 * Clone the Git repository.
-* Install the dependencies via `composer install`
-    (this includes `npm install` for Bootstrap and JavaScript libraries).
-* Run `composer dev` to automatically compile `*.scss` to `*.css` 
+* Install the dependencies via `composer install` and `npm install`.
+* Run `npm run watch` to automatically compile `*.scss` to `*.css` 
     and `*.js` to `*.min.js` whenever the file is changed.
 * Create a database and create the tables with `database-scheme.sql`.
 * Create a `config/config.php` with the database credentials and valid API keys/secrets
@@ -123,8 +122,8 @@ Returns the (direct) children of the church with the given id in JSON.
 To run all checks, use `composer cs`.
 
 ## Used programming languages and libraries
-* [HTML5 and CSS 3.0](https://www.w3.org/standards/webdesign/htmlcss), based on
-    [Bootstrap 4](https://getbootstrap.com/)
+* [HTML and CSS](https://www.w3.org/standards/webdesign/htmlcss),
+    based on [Bootstrap](https://getbootstrap.com/)
 * [PHP](https://secure.php.net/) with libraries
     [Facebook Graph SDK](https://github.com/facebookarchive/php-graph-sdk),
     [Instagram PHP Scraper](https://github.com/postaddictme/instagram-php-scraper),
@@ -133,11 +132,10 @@ To run all checks, use `composer cs`.
     [Symphony Translations](https://symfony.com/doc/current/translation.html),
     [Twig](https://twig.symfony.com/)
     and [twitter-api-php](https://github.com/J7mbo/twitter-api-php)
-* JavaScript, especially the libraries 
-    [jQuery](https://jquery.com/),
+* JavaScript, especially the libraries
     [Highcharts](https://www.highcharts.com/),
     [Leaflet](https://leafletjs.com/) and 
-    [Tablesorter](https://mottie.github.io/tablesorter/)
+    [tablesort](https://github.com/tristen/tablesort)
 
 ## How to deploy
 - Run `composer prod`.

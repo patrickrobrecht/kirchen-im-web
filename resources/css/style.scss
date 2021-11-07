@@ -1,9 +1,8 @@
 @charset "UTF-8";
 
-/* Bootstrap customization. */
+/* Import necessary Bootstrap modules. */
 $link-decoration: none !default;
 
-/* Necessary Bootstrap modules. */
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
@@ -24,6 +23,9 @@ $link-decoration: none !default;
 @import "../../node_modules/bootstrap/scss/alert";
 @import "../../node_modules/bootstrap/scss/helpers";
 @import "../../node_modules/bootstrap/scss/utilities/api";
+
+/* Import necessary tablesort styles. */
+@import "../../node_modules/tablesort/tablesort.css";
 
 /* Icons for links and social networks */
 a[href^="http://"]::after {
@@ -149,41 +151,9 @@ a[href^="http://"]::after {
   width: auto;
 }
 
-/* tables, partly inspired by tablesorter's default theme */
-.tablesorter {
-  font-size: 0.7em;
-}
-
+/* tables */
 .number {
   text-align: right;
-}
-
-.tablesorter-default .header,
-.tablesorter-default .tablesorter-header {
-  background: url("data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==") center right no-repeat;
-  cursor: pointer;
-  white-space: normal;
-}
-
-/* stylelint-disable selector-class-pattern -- Class names from tablesorter library. */
-.tablesorter-default thead .headerSortUp,
-.tablesorter-default thead .tablesorter-headerSortUp,
-.tablesorter-default thead .tablesorter-headerAsc {
-  background-image: url("data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7");
-  border-bottom: #000 2px solid;
-}
-
-.tablesorter-default thead .headerSortDown,
-.tablesorter-default thead .tablesorter-headerSortDown,
-.tablesorter-default thead .tablesorter-headerDesc {
-  background-image: url("data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7");
-  border-bottom: #000 2px solid;
-}
-/* stylelint-enable selector-class-pattern */
-
-.tablesorter-default thead .sorter-false {
-  background-image: none;
-  cursor: default;
 }
 
 /* print version */

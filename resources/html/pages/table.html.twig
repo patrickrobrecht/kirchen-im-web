@@ -72,7 +72,7 @@
                     <label class="form-label" for="sort">{{ 'Sortieren nach' | trans }}</label>
                     <select class="form-select" id="sort" name="sort">
                         {% for value, name in config.sortOptions %}
-                            <option value="{{ value }}" {% if value == sort.name %}selected{% endif %}>{{ name|trans }}</option>
+                            <option value="{{ value }}" {% if value == sort %}selected{% endif %}>{{ name|trans }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -110,21 +110,22 @@
         <table id="churchTable" class="table table-striped tablesorter">
             <thead>
                 <tr>
-                    <th scope="col">{{ 'Name' | trans }}</th>
-                    <th scope="col">{{ 'PLZ' | trans }}</th>
-                    <th scope="col">{{ 'Ort' | trans }}</th>
-                    <th scope="col">{{ 'Land' | trans }}</th>
-                    <th scope="col">{{ 'Konfession' | trans }}</th>
-                    <th scope="col">{{ 'Gemeindetyp' | trans }}</th>
+                    <th scope="col" role="columnheader" {% if sort == 'name' %}data-sort-default{% endif %}>{{ 'Name' | trans }}</th>
+                    <th scope="col" role="columnheader" {% if sort == 'postal_code' %}data-sort-default{% endif %}>{{ 'PLZ' | trans }}</th>
+                    <th scope="col" role="columnheader" {% if sort == 'city' %}data-sort-default{% endif %}>{{ 'Ort' | trans }}</th>
+                    <th scope="col" role="columnheader" {% if sort == 'country' %}data-sort-default{% endif %}>{{ 'Land' | trans }}</th>
+                    <th scope="col" role="columnheader" {% if sort == 'denomination' %}data-sort-default{% endif %}>{{ 'Konfession' | trans }}</th>
+                    <th scope="col" role="columnheader" {% if sort == 'type' %}data-sort-default{% endif %}>{{ 'Gemeindetyp' | trans }}</th>
                     {% for id, name in websites %}
-                        <th scope="col" class="{{ id }}">{{ name|trans }}</th>
+                        <th scope="col" role="columnheader" class="{{ id }}" data-sort-method="count"
+                            {% if sort == id %}data-sort-default{% endif %}>{{ name|trans }}</th>
                     {% endfor %}
                 </tr>
             </thead>
             <tbody>
                 {% for entry in entries %}
                     <tr>
-                        <td scope="row"><a href="{{ url_for(languageSlug ~ '-details', {'id': entry.slug}) }}">{{ entry.name }}</a></td>
+                        <td><a href="{{ url_for(languageSlug ~ '-details', {'id': entry.slug}) }}">{{ entry.name }}</a></td>
                         <td>{{ entry.postalCode }}</td>
                         <td>{{ entry.city }}</td>
                         <td>{{ config.countries[entry.country]|trans }}</td>
@@ -134,7 +135,9 @@
                             {% set followers = entry[id ~ '_followers'] %}
                             {% if entry[id] %}
                                 {% if followers > 0 %}
-                                    <td class="number"><a href="{{ entry[id] }}" title="{{ name }}">{{ macros.number_format(followers, languageSlug) }}</a></td>
+                                    <td class="number" data-sort-method="number" data-sort="{{ followers }}">
+                                        <a href="{{ entry[id] }}" title="{{ name }}">{{ macros.number_format(followers, languageSlug) }}</a>
+                                    </td>
                                 {% else %}
                                     {% if compare %}
                                         <td></td>
@@ -155,28 +158,8 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script src="{{ base_path() }}{{ '/lib/jquery.min.js' | asset_version }}"></script>
-    <script src="{{ base_path() }}{{ '/lib/jquery.tablesorter.min.js' | asset_version }}"></script>
-    <script>
-        $(function(){
-            $("#churchTable").tablesorter({
-                {% if sort.id == -1 %}
-                    {% if compare %}
-                        sortList: [ [6,1], [7,1], [8,1] ],
-                    {% else %}
-                        sortList: [ [3,0], [2,0] ],
-                    {% endif %}
-                {% else %}
-                    sortList: [ [{{ sort.id }},{{ sort.dir }}] ],
-                {% endif %}
-                {% if languageSlug == 'de' %}
-                    usNumberFormat: false
-                {% else %}
-                    usNumberFormat: true
-                {% endif %}
-            });
-        });
-    </script>
+    <script src="{{ base_path() }}{{ '/lib/tablesort.min.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}{{ '/js/table.js' | asset_version }}"></script>
 {% endblock %}
 
 {% block structured_data %}
