@@ -1,4 +1,9 @@
+const del = require('del');
 const mix = require('laravel-mix');
+
+del.sync([
+  'public/assets'
+]);
 
 mix.setPublicPath('public/assets');
 
@@ -35,6 +40,7 @@ const javaScriptLibraries = [
 javaScriptLibraries.forEach(file => mix.copy(file, 'public/assets/lib'));
 
 mix.copy('node_modules/leaflet/dist/images/layers*.png', 'public/assets/lib/images');
+mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/assets/webfonts');
 
 // Setup hash-based file names for the production environment.
 if (mix.inProduction()) {
@@ -44,7 +50,7 @@ if (mix.inProduction()) {
     convertToFileHash({
       publicPath: 'public/assets/',
       manifestFilePath: 'public/assets/mix-manifest.json',
-      blacklist: ['lib/images/**']
+      blacklist: ['webfonts', 'lib/images/**']
     });
   });
 }

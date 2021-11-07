@@ -44,7 +44,10 @@
                 <tbody>
                     {% for website in entry.websites %}
                         <tr>
-                            <td><a class="{{ website.type }}" href="{{ website.url }}">{{ config.websiteTypes[website.type] }}</a></td>
+                            <td><a href="{{ website.url }}">
+                                    <i class="{{ config.websiteTypeIcons[website.type] }}"></i>
+                                    {{ config.websiteTypes[website.type] }}
+                                </a></td>
                             <td class="number">{% if website.followers > 0 %}{{ macros.number_format(website.followers, languageSlug) }}{% endif %}</td>
                         </tr>
                     {% endfor %}
@@ -64,7 +67,7 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <th>{{ 'Adresse' | trans }}</th>
+                        <th><i class="fa fa-road"></i> {{ 'Adresse' | trans }}</th>
                         <td>{% if entry.street %}
                                 <span>{{ entry.street}}, </span>
                             {% endif %}
@@ -74,7 +77,7 @@
                     </tr>
                     {% if entry.lat and entry.lon %}
                     <tr>
-                        <th>{{ 'Geoposition' | trans }}</th>
+                        <th><i class="fa fa-map-marker"></i> {{ 'Geoposition' | trans }}</th>
                         <td>{% if entry.lat > 0 %}
                                 <span>{{ entry.lat }} ° <abbr title="{{ 'nördliche Breite' | trans }}">{{ 'N' | trans }}</abbr>, </span>
                             {% else %}
@@ -88,15 +91,15 @@
                     </tr>
                     {% endif %}
                     <tr>
-                        <th>{{ 'Konfession' | trans }}</th>
+                        <th><i class="fa fa-church"></i> {{ 'Konfession' | trans }}</th>
                         <td><a href="{{ url_for(languageSlug ~ '-search') }}?denomination={{ entry.denomination }}">{{ config.denominations[entry.denomination]|trans }}</a></td>
                     </tr>
                     <tr>
-                        <th>{{ 'Gemeindetyp' | trans }}</th>
+                        <th><i class="fa fa-tag"></i> {{ 'Gemeindetyp' | trans }}</th>
                         <td><a href="{{ url_for(languageSlug ~ '-search') }}?type={{ entry.type }}">{{ config.types[entry.type]|trans }}</a></td>
                     </tr>
                     <tr>
-                        <th>{{ 'Nächsthöhere Ebenen' | trans }}</th>
+                        <th><i class="fa fa-level-up-alt"></i> {{ 'Nächsthöhere Ebenen' | trans }}</th>
                         <td>{% if entry.parentId %}
                                 <ol>
                                     {% for parent in entry.parents %}
@@ -109,7 +112,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>{{ 'Nächsttiefere Ebenen' | trans }}</th>
+                        <th><i class="fa fa-level-down-alt"></i> {{ 'Nächsttiefere Ebenen' | trans }}</th>
                         <td>{% if entry.children|length == 0 %}
                                 <span>{{ 'Bisher wurden keine untergeordneten Ebenen hinzugefügt!' | trans }}</span>
                             {% else %}
@@ -118,6 +121,7 @@
                             {% if entry.hasChildren == 1 %}
                                 <p>
                                     <a class="btn btn-secondary" href="{{ url_for(languageSlug ~ '-add') }}?parentId={{ entry.id }}&denomination={{ entry.denomination }}&countryCode={{ entry.country }}">
+                                        <i class="fa fa-plus"></i>
                                         {{ 'Jetzt eine Gemeinde unterhalb von %name% hinzufügen!' | trans({'%name%': entry.name}) }}
                                     </a>
                                 </p>
@@ -152,57 +156,55 @@
                 {% set dateformat = '%A, %d/%m/%Y' %}
             {% endif %}
 
-            $(function() {
-                $('#followerHistory').highcharts({
+            Highcharts.chart('followerHistory', {
+                title: {
+                    text: '{{ 'Followers' | trans }}'
+                },
+                subtitle: {
+                    text: '{{ entry.name }}'
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
                     title: {
-                        text: '{{ 'Followers' | trans }}'
-                    },
-                    subtitle: {
-                        text: '{{ entry.name }}'
-                    },
-                    xAxis: {
-                        type: 'datetime'
-                    },
-                    yAxis: {
-                        allowDecimals: false,
-                        min: 0,
-                        title: {
-                            text: '{{ 'Anzahl der Follower' | trans }}'
-                        }
-                    },
-                    legend: {
-                        enabled: true
-                    },
-                    plotOptions: {
-                        series: {
-                            marker: {
-                                enabled: true
-                            },
-                            tooltip: {
-                                xDateFormat: '{{ dateformat }}'
-                            }
-                        }
-                    },
-                    series: [
-                        {% for website in entry.websites %}
-                            {% if website.followerHistory %}
-                                {
-                                    name: '{{ config.websiteTypes[website.type] }}',
-                                    data: [
-                                        {% for row in website.followerHistory %}
-                                        [Date.UTC({{ row.date|date('Y') }}, {{ row.date|date('m') - 1 }}, {{ row.date|date('d') + 0 }}), {{ row.followers }}],
-                                        {% endfor %}
-                                    ],
-                                    color: '{{ config.websitesToCompareColors[website.type] }}'
-                                },
-                            {% endif %}
-                        {% endfor %}
-                    ],
-                    credits: {
-                        href: '',
-                        text: ''
+                        text: '{{ 'Anzahl der Follower' | trans }}'
                     }
-                });
+                },
+                legend: {
+                    enabled: true
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: true
+                        },
+                        tooltip: {
+                            xDateFormat: '{{ dateformat }}'
+                        }
+                    }
+                },
+                series: [
+                    {% for website in entry.websites %}
+                        {% if website.followerHistory %}
+                            {
+                                name: '{{ config.websiteTypes[website.type] }}',
+                                data: [
+                                    {% for row in website.followerHistory %}
+                                    [Date.UTC({{ row.date|date('Y') }}, {{ row.date|date('m') - 1 }}, {{ row.date|date('d') + 0 }}), {{ row.followers }}],
+                                    {% endfor %}
+                                ],
+                                color: '{{ config.websitesToCompareColors[website.type] }}'
+                            },
+                        {% endif %}
+                    {% endfor %}
+                ],
+                credits: {
+                    href: '',
+                    text: ''
+                }
             });
         </script>
     {% endif %}

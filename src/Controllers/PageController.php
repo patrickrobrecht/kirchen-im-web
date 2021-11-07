@@ -229,16 +229,20 @@ class PageController
         $headerMenuItems = [
             [
                 'path' => $languageSlug . '-map',
-                'text' => _('Karte')
+                'text' => _('Karte'),
+	            'icon' => 'fa fa-map-pin',
             ], [
                 'path' => $languageSlug . '-search',
-                'text' => _('Suche')
+                'text' => _('Suche'),
+		        'icon' => 'fa fa-search',
             ], [
                 'path' => $languageSlug . '-comparison',
-                'text' => _('Social-Media-Vergleich')
+                'text' => _('Social-Media-Vergleich'),
+		        'icon' => 'fa fa-list',
             ], [
                 'path' => $languageSlug . '-stats',
-                'text' => _('Statistik')
+                'text' => _('Statistik'),
+		        'icon' => 'fa fa-chart-pie',
             ]
         ];
 
@@ -248,7 +252,8 @@ class PageController
                     [
                         'path' => 'en-' . $routeWithoutLanguagePrefix,
                         'args' => $args,
-                        'text' => 'English'
+                        'text' => 'English',
+	                    'icon' => 'fa fa-globe',
                     ]
                 ]);
             } elseif ($language === 'en_US') {
@@ -256,7 +261,8 @@ class PageController
                     [
                         'path' => 'de-' . $routeWithoutLanguagePrefix,
                         'args' => $args,
-                        'text' => 'Deutsch'
+                        'text' => 'Deutsch',
+                        'icon' => 'fa fa-globe',
                     ]
                 ]);
             }
@@ -265,15 +271,18 @@ class PageController
         $footerMenuItems = [
             [
                 'path' => $languageSlug . '-legal',
-                'text' => 'Impressum'
+                'text' => 'Impressum',
+	            'icon' => 'fa fa-address-card',
             ],
             [
                 'path' => $languageSlug . '-privacy',
-                'text' => 'Datenschutzerklärung'
+                'text' => 'Datenschutzerklärung',
+	            'icon' => 'fa fa-file-contract',
             ],
             [
                 'path' => $languageSlug . '-data',
-                'text' => 'Offene Daten'
+                'text' => 'Offene Daten',
+	            'icon' => 'fa fa-folder-open',
             ]
         ];
 

@@ -66,7 +66,10 @@
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <div class="mb-3">
-                        <label class="form-label" for="denomination">{{ 'Konfession' | trans }}</label>
+                        <label class="form-label" for="denomination">
+                            <i class="fa fa-church"></i>
+                            {{ 'Konfession' | trans }}
+                        </label>
                         <select class="form-select" id="denomination" name="denomination" required>
                             <option value="">{{ 'bitte auswählen' | trans }}</option>
                             {% for value, name in config.denominations %}
@@ -77,7 +80,10 @@
                 </div>
                 <div class="col-12 col-sm-6">
                     <div class="mb-3">
-                        <label class="form-label" for="type">{{ 'Gemeindetyp' | trans }}</label>
+                        <label class="form-label" for="type">
+                            <i class="fa fa-tag"></i>
+                            {{ 'Gemeindetyp' | trans }}
+                        </label>
                         <select class="form-select" id="type" name="type" required>
                             <option value="">{{ 'bitte auswählen' | trans }}</option>
                             {% for value, name in config.types %}
@@ -88,7 +94,10 @@
                 </div>
                 <div class="col-12">
                     <div class="mb-3">
-                        <label class="form-label" for="parentId">{{ 'nächsthöhere Ebene' | trans }}</label>
+                        <label class="form-label" for="parentId">
+                            <i class="fa fa-level-up-alt"></i>
+                            {{ 'nächsthöhere Ebene' | trans }}
+                        </label>
                         <select class="form-select" id="parentId" name="parentId" aria-describedby="parentHelp">
                             <option value="">{{ 'keine' | trans }}</option>
                             {% for parent in parents %}
@@ -105,7 +114,10 @@
                     <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" id="hasChildren" name="hasChildren" type="checkbox" aria-describedby="hasChildrenHelp">
-                            <label class="form-check-label" for="hasChildren"> {{ 'hat untergeordnete Ebene' | trans }}</label>
+                            <label class="form-check-label" for="hasChildren">
+                                <i class="fa fa-level-down-alt"></i>
+                                {{ 'hat untergeordnete Ebene' | trans }}
+                            </label>
                         </div>
                         <small id="hasChildrenHelp" class="form-text text-muted">
                             {{ 'Der Haken ist zu setzen, wenn die Gemeinde selbst unter "nächsthöhere Ebene" aufgeführt werden soll (also bei Dekanaten und bei Kirchenkreisen). Bei Kirchengemeinden darf der Haken nicht gesetzt werden!' | trans }}
@@ -126,7 +138,10 @@
                     {% set urlPattern = prefix ? prefix ~ '.+' : 'https?://.+' %}
                     <div class="col-12 col-xl-6">
                         <div class="mb-3">
-                            <label class="form-label {{ id }}" for="{{ id }}URL">{{ website|trans }}</label>
+                            <label class="form-label" for="{{ id }}URL">
+                                <i class="{{ config.websiteTypeIcons[id] }}"></i>
+                                {{ website|trans }}
+                            </label>
                             <input class="form-control" id="{{ id }}URL" name="{{ id }}URL" type="url" pattern="{{ urlPattern }}" placeholder="{{ urlPrefix }}" value="{{ data.urls[id] }}">
                             <div class="invalid-feedback">
                                 {% if prefix %}
@@ -147,7 +162,10 @@
                 ({{ 'sonst erzeugen Sie mehrere identische Einträge' | trans }}).
                 {{ 'Bei Fehlern in Einträgen wenden Sie sich bitte an ' | trans }} kontakt [ät] kirchen-im-web [punkt] de.
             </p>
-            <button class="btn btn-primary" type="submit">{{ 'Gemeinde hinzufügen' | trans }}</button>
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                {{ 'Gemeinde hinzufügen' | trans }}
+            </button>
         </fieldset>
     </form>
 {% endblock %}

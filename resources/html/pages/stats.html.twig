@@ -123,7 +123,10 @@
                     <tbody>
                         {% for w in statsByWebsite %}
                             <tr>
-                                <td><a class="{{ w.type }}" href="{{ url_for(languageSlug ~ '-search') }}?hasWebsiteType={{ w.type }}&{{ w.type }}=show">{{ config.websiteTypes[w.type]|trans }}</a></td>
+                                <td><a class="{{ w.type }}" href="{{ url_for(languageSlug ~ '-search') }}?hasWebsiteType={{ w.type }}&{{ w.type }}=show">
+                                        <i class="{{ config.websiteTypeIcons[w.type] }}"></i>
+                                        {{ config.websiteTypes[w.type]|trans }}
+                                    </a></td>
                                 <td class="number">{{ macros.number_format(w.count, languageSlug) }}</td>
                                 <td class="number">{{ macros.percentage(w.count, total.count, languageSlug) }}</td>
                             </tr>
@@ -146,15 +149,18 @@
                         <tr>
                             <th>{{ 'Webauftritt/Netzwerk' | trans }}</th>
                             <th>{{ 'alle' | trans }}</th>
-                            <th colspan="2">HTTPS</th>
-                            <th colspan="2">HTTP</th>
+                            <th colspan="2"><i class="fa fa-lock"></i> HTTPS</th>
+                            <th colspan="2"><i class="fa fa-lock-open"></i> HTTP</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for h in statsHTTPS %}
                             {% set countHTTP = h.count - h.countHTTPS %}
                             <tr>
-                                <td><a class="{{ h.type }}" href="{{ url_for(languageSlug ~ '-search') }}?hasWebsiteType={{ h.type }}&{{ h.type }}=show">{{ config.websiteTypes[h.type]|trans }}</a></td>
+                                <td><a href="{{ url_for(languageSlug ~ '-search') }}?hasWebsiteType={{ h.type }}&{{ h.type }}=show">
+                                        <i class="{{ config.websiteTypeIcons[h.type] }}"></i>
+                                        {{ config.websiteTypes[h.type]|trans }}
+                                    </a></td>
                                 <td class="number">{{ macros.number_format(h.count, languageSlug) }}</td>
                                 <td class="number">{{ macros.number_format(h.countHTTPS, languageSlug) }}</td>
                                 <td class="number">{{ macros.percentage(h.countHTTPS, h.count, languageSlug) }}</td>

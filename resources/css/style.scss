@@ -27,49 +27,15 @@ $link-decoration: none !default;
 /* Import necessary tablesort styles. */
 @import "../../node_modules/tablesort/tablesort.css";
 
+/* Import Font Awesome icons */
+$fa-font-path: '/assets/webfonts';
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+
 /* Icons for links and social networks */
 a[href^="http://"]::after {
   content: " " url("../../images/non-secure.png");
-}
-
-.web::before {
-  content: url("../../images/icons/web.png") " ";
-}
-
-.blog::before {
-  content: url("../../images/icons/blog.png") " ";
-}
-
-.rss::before {
-  content: url("../../images/icons/rss.png") " ";
-}
-
-.facebook::before {
-  content: url("../../images/icons/facebook.png") " ";
-}
-
-.flickr::before {
-  content: url("../../images/icons/flickr.png") " ";
-}
-
-.instagram::before {
-  content: url("../../images/icons/instagram.png") " ";
-}
-
-.soundcloud::before {
-  content: url("../../images/icons/soundcloud.png") " ";
-}
-
-.twitter::before {
-  content: url("../../images/icons/twitter.png") " ";
-}
-
-.vimeo::before {
-  content: url("../../images/icons/vimeo.png") " ";
-}
-
-.youtube::before {
-  content: url("../../images/icons/youtube.png") " ";
 }
 
 /* Icons for countries */
