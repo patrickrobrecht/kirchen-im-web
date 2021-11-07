@@ -100,7 +100,6 @@ a[href^="http://"]::after {
 #detailsmap {
   height: 512px;
   width: 512px;
-  margin-bottom: 20px;
 }
 
 .details tr > :nth-child(1) {
@@ -111,10 +110,7 @@ a[href^="http://"]::after {
 .chart {
   width: 512px;
   min-height: 400px;
-}
-
-.stats-table {
-  width: auto;
+  @extend .me-5;
 }
 
 /* print version */

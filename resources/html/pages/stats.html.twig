@@ -3,7 +3,7 @@
 {% import 'macros.html.twig' as macros %}
 
 {% block main %}
-    <p>
+    <p class="alert alert-primary">
         {% if total.count == 1 %}
             {{ 'Auf kirchen-im-web.de ist aktuell eine Gemeinde erfasst.' | trans }}
         {% else %}
@@ -24,12 +24,10 @@
 
     <article id="statistics-denominations">
         <h2>{{ 'Einträge nach Konfessionen' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="denominations" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="denominations" class="chart"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Konfession' | trans }}</th>
@@ -52,12 +50,10 @@
 
     <article id="statistics-countries">
         <h2>{{ 'Einträge nach Ländern' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="countries" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="countries" class="chart"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Land' | trans }}</th>
@@ -80,12 +76,10 @@
 
     <article id="statistics-types">
         <h2>{{ 'Einträge nach Gemeindetypen' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="types" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="types" class="chart"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Gemeindetyp' | trans }}</th>
@@ -108,12 +102,10 @@
 
     <article id="statistics-networks">
         <h2>{{ 'Einträge nach Webauftritten/Social-Media-Auftritten' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="websites" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="websites" class="chart"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Webauftritt/Netzwerk' | trans }}</th>
@@ -139,12 +131,10 @@
 
     <article id="statistics-https">
         <h2>{{ 'Verschlüssung der Webauftritte' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="https" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="https" class="chart"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Webauftritt/Netzwerk' | trans }}</th>
@@ -184,17 +174,14 @@
                 type: 'pie'
             },
             title: {
-                text: '{{ 'Einträge nach Konfessionen' | trans }}'
-            },
-            subtitle: {
-                text: 'kirchen-im-web.de'
+                text: ''
             },
             legend: {
                 enabled: true
             },
             series: [ {
                 name: '{{ 'Anzahl der Einträge' | trans }}',
-                    data: [{% for d in statsByDenomination %}{name:'{{ d.denomination|trans }}',y:{{ d.count }}},{% endfor %}]
+                data: [{% for d in statsByDenomination %}{name:'{{ d.denomination|trans }}',y:{{ d.count }}},{% endfor %}]
             } ],
             colors: [
                 '#FF8000', /* orange: Old Catholic */
@@ -222,7 +209,7 @@
             },
             series: [ {
                 name: '{{ 'Anzahl der Einträge' | trans }}',
-                    data: [{% for c in statsByCountry %}{name:'{{ config.countries[c.countryCode]|trans }}',y:{{ c.count }}},{% endfor %}]
+                data: [{% for c in statsByCountry %}{name:'{{ config.countries[c.countryCode]|trans }}',y:{{ c.count }}},{% endfor %}]
             } ],
             credits: {
                 href: '',
@@ -242,7 +229,7 @@
             },
             series: [ {
                 name: '{{ 'Anzahl der Einträge' | trans }}',
-                    data: [{% for t in statsByType %}{name:'{{ config.types[t.type]|trans }}',y:{{ t.count }}},{% endfor %}]
+                data: [{% for t in statsByType %}{name:'{{ config.types[t.type]|trans }}',y:{{ t.count }}},{% endfor %}]
             } ],
             credits: {
                 href: '',
@@ -283,7 +270,7 @@
             },
             series: [ {
                 name: '{{ 'Anzahl der Einträge' | trans }}',
-                    data: [{% for w in statsByWebsite %}{{ w.count }},{% endfor %}]
+                data: [{% for w in statsByWebsite %}{{ w.count }},{% endfor %}]
             } ],
             credits: {
                 href: '',
