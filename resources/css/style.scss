@@ -117,11 +117,6 @@ a[href^="http://"]::after {
   width: auto;
 }
 
-/* tables */
-.number {
-  text-align: right;
-}
-
 /* print version */
 @media print {
   body {

@@ -40,8 +40,8 @@
                         {% for d in statsByDenomination %}
                             <tr>
                                 <td><a class="{{ d.denomination }}" href="{{ url_for(languageSlug ~ '-search') }}?denomination={{ d.denomination }}">{{ config.denominations[d.denomination]|trans }}</a></td>
-                                <td class="number">{{ macros.number_format(d.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(d.count, total.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(d.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(d.count, total.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -68,8 +68,8 @@
                         {% for c in statsByCountry %}
                             <tr>
                                 <td><a class="{{ c.countryCode|lower }}" href="{{ url_for(languageSlug ~ '-search') }}?countryCode={{ c.countryCode }}">{{ config.countries[c.countryCode]|trans }}</a></td>
-                                <td class="number">{{ macros.number_format(c.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(c.count, total.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(c.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(c.count, total.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -96,8 +96,8 @@
                         {% for t in statsByType %}
                             <tr>
                                 <td><a href="{{ url_for(languageSlug ~ '-search') }}?type={{ t.type }}">{{ config.types[t.type]|trans }}</a></td>
-                                <td class="number">{{ macros.number_format(t.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(t.count, total.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(t.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(t.count, total.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -127,8 +127,8 @@
                                         <i class="{{ config.websiteTypeIcons[w.type] }}"></i>
                                         {{ config.websiteTypes[w.type]|trans }}
                                     </a></td>
-                                <td class="number">{{ macros.number_format(w.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(w.count, total.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(w.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(w.count, total.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -161,11 +161,11 @@
                                         <i class="{{ config.websiteTypeIcons[h.type] }}"></i>
                                         {{ config.websiteTypes[h.type]|trans }}
                                     </a></td>
-                                <td class="number">{{ macros.number_format(h.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.number_format(h.countHTTPS, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(h.countHTTPS, h.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.number_format(countHTTP, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(countHTTP, h.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(h.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(h.countHTTPS, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(h.countHTTPS, h.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(countHTTP, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(countHTTP, h.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

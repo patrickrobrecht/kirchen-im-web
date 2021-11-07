@@ -155,7 +155,7 @@
                             {% set followers = entry[id ~ '_followers'] %}
                             {% if entry[id] %}
                                 {% if followers > 0 %}
-                                    <td class="number" data-sort-method="number" data-sort="{{ followers }}">
+                                    <td class="text-end" data-sort-method="number" data-sort="{{ followers }}">
                                         <a href="{{ entry[id] }}" title="{{ name }}">{{ macros.number_format(followers, languageSlug) }}</a>
                                     </td>
                                 {% else %}

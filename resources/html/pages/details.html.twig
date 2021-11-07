@@ -48,7 +48,7 @@
                                     <i class="{{ config.websiteTypeIcons[website.type] }}"></i>
                                     {{ config.websiteTypes[website.type] }}
                                 </a></td>
-                            <td class="number">{% if website.followers > 0 %}{{ macros.number_format(website.followers, languageSlug) }}{% endif %}</td>
+                            <td class="text-end">{% if website.followers > 0 %}{{ macros.number_format(website.followers, languageSlug) }}{% endif %}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
