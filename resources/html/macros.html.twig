@@ -12,7 +12,8 @@
             'catholic': "{{ 'katholisch' | trans }}",
             'others': "{{ 'andere Konfession' | trans }}",
             'web': "{{ config.websiteTypes['web'] }}",
-            'blog': "{{ config.websiteTypes['blog'] }}"
+            'blog': "{{ config.websiteTypes['blog'] }}",
+            'podcast': "{{ config.websiteTypes['podcast'] }}",
         });
         map.load('{{ mapId }}', '{{ base_path() }}', '{{ dataPath|raw }}', '{{ languageSlug }}');
     </script>
@@ -31,22 +32,24 @@
         {% else %}
             {% set url = url_for(item.path) %}
         {% endif %}
+        {% set icon = item.icon %}
         {% set text = item.text %}
 
         {% if url == current_url %}
             <li class="nav-item">
-                <a class="nav-link active" href="{{ url }}">{{ text|trans }}</a> <span class="visually-hidden">{{ '(aktuelle Seite)' | trans }}</span>
+                <a class="nav-link active" href="{{ url }}">
+                    {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
+                    {{ text|trans }}
+                </a>
+                <span class="visually-hidden">{{ '(aktuelle Seite)' | trans }}</span>
             </li>
         {% else %}
-            {% if item.class %}
-                <li class="nav-item">
-                    <a class="nav-link {{ item.class }}" href="{{ url }}">{{ text|trans }}</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url }}">{{ text|trans }}</a>
-                </li>
-            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link {{ item.class }}" href="{{ url }}">
+                    {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
+                    {{ text|trans }}
+                </a>
+            </li>
         {% endif %}
     {% endfor %}
 {% endmacro %}

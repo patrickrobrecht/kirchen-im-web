@@ -62,6 +62,7 @@ class Configuration
         return [
             'web'        => _('Webauftritt'),
             'blog'       => _('Blog'),
+            'podcast'    => 'Podcast',
             'rss'        => 'RSS',
             'facebook'   => 'Facebook',
             'flickr'     => 'Flickr',
@@ -70,6 +71,23 @@ class Configuration
             'twitter'    => 'Twitter',
             'vimeo'      => 'Vimeo',
             'youtube'    => 'YouTube',
+        ];
+    }
+
+    public static function getWebsiteTypeIcons(): array
+    {
+        return [
+            'web'        => 'fa fa-home',
+            'blog'       => 'fa fa-blog',
+            'podcast'    => 'fa fa-podcast',
+            'rss'        => 'fa fa-rss',
+            'facebook'   => 'fab fa-facebook',
+            'flickr'     => 'fab fa-flickr',
+            'instagram'  => 'fab fa-instagram',
+            'soundcloud' => 'fab fa-soundcloud',
+            'twitter'    => 'fab fa-twitter',
+            'vimeo'      => 'fab fa-vimeo',
+            'youtube'    => 'fab fa-youtube',
         ];
     }
 
@@ -88,6 +106,7 @@ class Configuration
         return [
             'web'        => '',
             'blog'       => '',
+            'podcast'    => '',
             'rss'        => '',
             'facebook'   => 'https://www.facebook.com/',
             'flickr'     => 'https://www.flickr.com/',

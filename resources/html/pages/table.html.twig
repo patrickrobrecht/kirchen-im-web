@@ -36,7 +36,10 @@
             </div>
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="mb-3">
-                    <label class="form-label" for="denomination">{{ 'Konfession' | trans }}</label>
+                    <label class="form-label" for="denomination">
+                        <i class="fa fa-church"></i>
+                        {{ 'Konfession' | trans }}
+                    </label>
                     <select class="form-select" id="denomination" name="denomination">
                         <option value="">{{ 'bitte auswählen' | trans }}</option>
                         {% for value, name in config.denominations %}
@@ -47,7 +50,10 @@
             </div>
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="mb-3">
-                    <label class="form-label" for="type">{{ 'Gemeindetyp' | trans }}</label>
+                    <label class="form-label" for="type">
+                        <i class="fa fa-tag"></i>
+                        {{ 'Gemeindetyp' | trans }}
+                    </label>
                     <select class="form-select" id="type" name="type">
                         <option value="">{{ 'bitte auswählen' | trans }}</option>
                         {% for value, name in config.types %}
@@ -58,7 +64,10 @@
             </div>
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="mb-3">
-                    <label class="form-label" for="hasWebsiteType">{{ 'nur Gemeinden mit' | trans }}</label>
+                    <label class="form-label" for="hasWebsiteType">
+                        <i class="fa fa-filter"></i>
+                        {{ 'nur Gemeinden mit' | trans }}
+                    </label>
                     <select class="form-select" id="hasWebsiteType" name="hasWebsiteType">
                         <option value="">{{ 'bitte auswählen' | trans }}</option>
                         {% for value, name in config.websiteTypes %}
@@ -69,7 +78,10 @@
             </div>
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="mb-3">
-                    <label class="form-label" for="sort">{{ 'Sortieren nach' | trans }}</label>
+                    <label class="form-label" for="sort">
+                        <i class="fa fa-sort"></i>
+                        {{ 'Sortieren nach' | trans }}
+                    </label>
                     <select class="form-select" id="sort" name="sort">
                         {% for value, name in config.sortOptions %}
                             <option value="{{ value }}" {% if value == sort %}selected{% endif %}>{{ name|trans }}</option>
@@ -78,22 +90,28 @@
                 </div>
             </div>
             {% if not compare %}
-                <div class="col-12 col-lg-9">
+                <div class="col-12">
                     <div class="mb-3">
-                        <label class="form-label" >{{ 'Anzeige' | trans }}</label>
+                        <label class="form-label">
+                            <i class="fa fa-clipboard-list"></i>
+                            {{ 'Anzeige' | trans }}
+                        </label>
                         <div>
                             {% for id, name in config.websiteTypes %}
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" id="{{ id }}" name="{{ id }}" type="checkbox" value="show" {% if websites[id] is defined %}checked{% endif %}>
-                                    <label class="form-check-label" for="{{ id }}">&nbsp;{{ name|trans }}</label>
+                                    <label class="form-check-label" for="{{ id }}">
+                                        <i class="{{ config.websiteTypeIcons[id] }}"></i>
+                                        {{ name|trans }}
+                                    </label>
                                 </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
             {% endif %}
-            <button class="btn btn-primary" type="submit">{{ 'Filtern und sortieren' | trans }}</button>
         </div>
+        <button class="btn btn-primary" type="submit">{{ 'Filtern und sortieren' | trans }}</button>
     </form>
     {% if entries|length == 0 %}
         <p class="alert alert-danger text-center my-4" role="alert">
@@ -117,8 +135,10 @@
                     <th scope="col" role="columnheader" {% if sort == 'denomination' %}data-sort-default{% endif %}>{{ 'Konfession' | trans }}</th>
                     <th scope="col" role="columnheader" {% if sort == 'type' %}data-sort-default{% endif %}>{{ 'Gemeindetyp' | trans }}</th>
                     {% for id, name in websites %}
-                        <th scope="col" role="columnheader" class="{{ id }}" data-sort-method="count"
-                            {% if sort == id %}data-sort-default{% endif %}>{{ name|trans }}</th>
+                        <th scope="col" role="columnheader" data-sort-method="count" {% if sort == id %}data-sort-default{% endif %}>
+                            <i class="{{ config.websiteTypeIcons[id] }}"></i>
+                            {{ name|trans }}
+                        </th>
                     {% endfor %}
                 </tr>
             </thead>
@@ -135,7 +155,7 @@
                             {% set followers = entry[id ~ '_followers'] %}
                             {% if entry[id] %}
                                 {% if followers > 0 %}
-                                    <td class="number" data-sort-method="number" data-sort="{{ followers }}">
+                                    <td class="text-end" data-sort-method="number" data-sort="{{ followers }}">
                                         <a href="{{ entry[id] }}" title="{{ name }}">{{ macros.number_format(followers, languageSlug) }}</a>
                                     </td>
                                 {% else %}

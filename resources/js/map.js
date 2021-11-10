@@ -14,8 +14,10 @@ function Map (translations) {
     const freeChurchesLayer = new L.LayerGroup();
     const catholicLayer = new L.LayerGroup();
     const othersLayer = new L.LayerGroup();
+
     const webLayer = new L.LayerGroup();
     const blogLayer = new L.LayerGroup();
+    const podcastLayer = new L.LayerGroup();
     const rssLayer = new L.LayerGroup();
     const facebookLayer = new L.LayerGroup();
     const flickrLayer = new L.LayerGroup();
@@ -100,6 +102,10 @@ function Map (translations) {
               marker.addTo(blogLayer);
               content = content + '<li><a href="' + entry.blog + '">' + t.blog + '</a></li>';
             }
+            if (entry.podcast) {
+              marker.addTo(podcastLayer);
+              content = content + '<li><a href="' + entry.podcast + '">' + t.podcast + '</a></li>';
+            }
             if (entry.rss) {
               marker.addTo(rssLayer);
               content = content + '<li><a href="' + entry.rss + '">RSS</a></li>';
@@ -149,6 +155,7 @@ function Map (translations) {
         layers[t.others] = othersLayer;
         layers[t.web] = webLayer;
         layers[t.blog] = blogLayer;
+        layers[t.podcast] = podcastLayer;
         layers.RSS = rssLayer;
         layers.Facebook = facebookLayer;
         layers.Flickr = flickrLayer;

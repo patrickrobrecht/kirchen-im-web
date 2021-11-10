@@ -3,7 +3,7 @@
 {% import 'macros.html.twig' as macros %}
 
 {% block main %}
-    <p>
+    <p class="alert alert-primary">
         {% if total.count == 1 %}
             {{ 'Auf kirchen-im-web.de ist aktuell eine Gemeinde erfasst.' | trans }}
         {% else %}
@@ -24,12 +24,10 @@
 
     <article id="statistics-denominations">
         <h2>{{ 'Einträge nach Konfessionen' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="denominations" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="denominations" class="chart me-5"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Konfession' | trans }}</th>
@@ -40,8 +38,8 @@
                         {% for d in statsByDenomination %}
                             <tr>
                                 <td><a class="{{ d.denomination }}" href="{{ url_for(languageSlug ~ '-search') }}?denomination={{ d.denomination }}">{{ config.denominations[d.denomination]|trans }}</a></td>
-                                <td class="number">{{ macros.number_format(d.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(d.count, total.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(d.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(d.count, total.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -52,12 +50,10 @@
 
     <article id="statistics-countries">
         <h2>{{ 'Einträge nach Ländern' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="countries" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="countries" class="chart me-5"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Land' | trans }}</th>
@@ -68,8 +64,8 @@
                         {% for c in statsByCountry %}
                             <tr>
                                 <td><a class="{{ c.countryCode|lower }}" href="{{ url_for(languageSlug ~ '-search') }}?countryCode={{ c.countryCode }}">{{ config.countries[c.countryCode]|trans }}</a></td>
-                                <td class="number">{{ macros.number_format(c.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(c.count, total.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(c.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(c.count, total.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -80,12 +76,10 @@
 
     <article id="statistics-types">
         <h2>{{ 'Einträge nach Gemeindetypen' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="types" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="types" class="chart me-5"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Gemeindetyp' | trans }}</th>
@@ -96,8 +90,8 @@
                         {% for t in statsByType %}
                             <tr>
                                 <td><a href="{{ url_for(languageSlug ~ '-search') }}?type={{ t.type }}">{{ config.types[t.type]|trans }}</a></td>
-                                <td class="number">{{ macros.number_format(t.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(t.count, total.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(t.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(t.count, total.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -108,12 +102,10 @@
 
     <article id="statistics-networks">
         <h2>{{ 'Einträge nach Webauftritten/Social-Media-Auftritten' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="websites" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="websites" class="chart me-5"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Webauftritt/Netzwerk' | trans }}</th>
@@ -123,9 +115,12 @@
                     <tbody>
                         {% for w in statsByWebsite %}
                             <tr>
-                                <td><a class="{{ w.type }}" href="{{ url_for(languageSlug ~ '-search') }}?hasWebsiteType={{ w.type }}&{{ w.type }}=show">{{ config.websiteTypes[w.type]|trans }}</a></td>
-                                <td class="number">{{ macros.number_format(w.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(w.count, total.count, languageSlug) }}</td>
+                                <td><a class="{{ w.type }}" href="{{ url_for(languageSlug ~ '-search') }}?hasWebsiteType={{ w.type }}&{{ w.type }}=show">
+                                        <i class="{{ config.websiteTypeIcons[w.type] }}"></i>
+                                        {{ config.websiteTypes[w.type]|trans }}
+                                    </a></td>
+                                <td class="text-end">{{ macros.number_format(w.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(w.count, total.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -136,30 +131,31 @@
 
     <article id="statistics-https">
         <h2>{{ 'Verschlüssung der Webauftritte' | trans }}</h2>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div id="https" class="chart"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <table class="table table-striped stats-table">
+        <div class="d-flex">
+            <div id="https" class="chart me-5"></div>
+            <div>
+                <table class="table table-striped w-auto">
                     <thead>
                         <tr>
                             <th>{{ 'Webauftritt/Netzwerk' | trans }}</th>
                             <th>{{ 'alle' | trans }}</th>
-                            <th colspan="2">HTTPS</th>
-                            <th colspan="2">HTTP</th>
+                            <th colspan="2"><i class="fa fa-lock"></i> HTTPS</th>
+                            <th colspan="2"><i class="fa fa-lock-open"></i> HTTP</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for h in statsHTTPS %}
                             {% set countHTTP = h.count - h.countHTTPS %}
                             <tr>
-                                <td><a class="{{ h.type }}" href="{{ url_for(languageSlug ~ '-search') }}?hasWebsiteType={{ h.type }}&{{ h.type }}=show">{{ config.websiteTypes[h.type]|trans }}</a></td>
-                                <td class="number">{{ macros.number_format(h.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.number_format(h.countHTTPS, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(h.countHTTPS, h.count, languageSlug) }}</td>
-                                <td class="number">{{ macros.number_format(countHTTP, languageSlug) }}</td>
-                                <td class="number">{{ macros.percentage(countHTTP, h.count, languageSlug) }}</td>
+                                <td><a href="{{ url_for(languageSlug ~ '-search') }}?hasWebsiteType={{ h.type }}&{{ h.type }}=show">
+                                        <i class="{{ config.websiteTypeIcons[h.type] }}"></i>
+                                        {{ config.websiteTypes[h.type]|trans }}
+                                    </a></td>
+                                <td class="text-end">{{ macros.number_format(h.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(h.countHTTPS, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(h.countHTTPS, h.count, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.number_format(countHTTP, languageSlug) }}</td>
+                                <td class="text-end">{{ macros.percentage(countHTTP, h.count, languageSlug) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -178,17 +174,14 @@
                 type: 'pie'
             },
             title: {
-                text: '{{ 'Einträge nach Konfessionen' | trans }}'
-            },
-            subtitle: {
-                text: 'kirchen-im-web.de'
+                text: ''
             },
             legend: {
                 enabled: true
             },
             series: [ {
                 name: '{{ 'Anzahl der Einträge' | trans }}',
-                    data: [{% for d in statsByDenomination %}{name:'{{ d.denomination|trans }}',y:{{ d.count }}},{% endfor %}]
+                data: [{% for d in statsByDenomination %}{name:'{{ d.denomination|trans }}',y:{{ d.count }}},{% endfor %}]
             } ],
             colors: [
                 '#FF8000', /* orange: Old Catholic */
@@ -216,7 +209,7 @@
             },
             series: [ {
                 name: '{{ 'Anzahl der Einträge' | trans }}',
-                    data: [{% for c in statsByCountry %}{name:'{{ config.countries[c.countryCode]|trans }}',y:{{ c.count }}},{% endfor %}]
+                data: [{% for c in statsByCountry %}{name:'{{ config.countries[c.countryCode]|trans }}',y:{{ c.count }}},{% endfor %}]
             } ],
             credits: {
                 href: '',
@@ -236,7 +229,7 @@
             },
             series: [ {
                 name: '{{ 'Anzahl der Einträge' | trans }}',
-                    data: [{% for t in statsByType %}{name:'{{ config.types[t.type]|trans }}',y:{{ t.count }}},{% endfor %}]
+                data: [{% for t in statsByType %}{name:'{{ config.types[t.type]|trans }}',y:{{ t.count }}},{% endfor %}]
             } ],
             credits: {
                 href: '',
@@ -277,7 +270,7 @@
             },
             series: [ {
                 name: '{{ 'Anzahl der Einträge' | trans }}',
-                    data: [{% for w in statsByWebsite %}{{ w.count }},{% endfor %}]
+                data: [{% for w in statsByWebsite %}{{ w.count }},{% endfor %}]
             } ],
             credits: {
                 href: '',
