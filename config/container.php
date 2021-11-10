@@ -66,7 +66,7 @@ return [
             'denominations' => Configuration::getDenominations(),
             'types' => Configuration::getTypes(),
             'websiteTypes' => Configuration::getWebsiteTypes(),
-			'websiteTypeIcons' => Configuration::getWebsiteTypeIcons(),
+            'websiteTypeIcons' => Configuration::getWebsiteTypeIcons(),
             'startOfWebsiteURL' => Configuration::getStartOfWebsiteURL(),
             'websitesTypesToCompare' => Configuration::getWebsiteTypesToCompare(),
             'websitesToCompareColors' => Configuration::getWebsitesToCompareColors(),

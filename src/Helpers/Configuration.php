@@ -74,22 +74,22 @@ class Configuration
         ];
     }
 
-	public static function getWebsiteTypeIcons(): array
-	{
-		return [
-			'web'        => 'fa fa-home',
-			'blog'       => 'fa fa-blog',
-			'podcast'    => 'fa fa-podcast',
-			'rss'        => 'fa fa-rss',
-			'facebook'   => 'fab fa-facebook',
-			'flickr'     => 'fab fa-flickr',
-			'instagram'  => 'fab fa-instagram',
-			'soundcloud' => 'fab fa-soundcloud',
-			'twitter'    => 'fab fa-twitter',
-			'vimeo'      => 'fab fa-vimeo',
-			'youtube'    => 'fab fa-youtube',
-		];
-	}
+    public static function getWebsiteTypeIcons(): array
+    {
+        return [
+            'web'        => 'fa fa-home',
+            'blog'       => 'fa fa-blog',
+            'podcast'    => 'fa fa-podcast',
+            'rss'        => 'fa fa-rss',
+            'facebook'   => 'fab fa-facebook',
+            'flickr'     => 'fab fa-flickr',
+            'instagram'  => 'fab fa-instagram',
+            'soundcloud' => 'fab fa-soundcloud',
+            'twitter'    => 'fab fa-twitter',
+            'vimeo'      => 'fab fa-vimeo',
+            'youtube'    => 'fab fa-youtube',
+        ];
+    }
 
     public static function getPreselectedWebsiteTypes(): array
     {

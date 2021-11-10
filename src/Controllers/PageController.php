@@ -230,19 +230,19 @@ class PageController
             [
                 'path' => $languageSlug . '-map',
                 'text' => _('Karte'),
-	            'icon' => 'fa fa-map-pin',
+                'icon' => 'fa fa-map-pin',
             ], [
                 'path' => $languageSlug . '-search',
                 'text' => _('Suche'),
-		        'icon' => 'fa fa-search',
+                'icon' => 'fa fa-search',
             ], [
                 'path' => $languageSlug . '-comparison',
                 'text' => _('Social-Media-Vergleich'),
-		        'icon' => 'fa fa-list',
+                'icon' => 'fa fa-list',
             ], [
                 'path' => $languageSlug . '-stats',
                 'text' => _('Statistik'),
-		        'icon' => 'fa fa-chart-pie',
+                'icon' => 'fa fa-chart-pie',
             ]
         ];
 
@@ -253,7 +253,7 @@ class PageController
                         'path' => 'en-' . $routeWithoutLanguagePrefix,
                         'args' => $args,
                         'text' => 'English',
-	                    'icon' => 'fa fa-globe',
+                        'icon' => 'fa fa-globe',
                     ]
                 ]);
             } elseif ($language === 'en_US') {
@@ -272,17 +272,17 @@ class PageController
             [
                 'path' => $languageSlug . '-legal',
                 'text' => 'Impressum',
-	            'icon' => 'fa fa-address-card',
+                'icon' => 'fa fa-address-card',
             ],
             [
                 'path' => $languageSlug . '-privacy',
                 'text' => 'Datenschutzerklärung',
-	            'icon' => 'fa fa-file-contract',
+                'icon' => 'fa fa-file-contract',
             ],
             [
                 'path' => $languageSlug . '-data',
                 'text' => 'Offene Daten',
-	            'icon' => 'fa fa-folder-open',
+                'icon' => 'fa fa-folder-open',
             ]
         ];
 

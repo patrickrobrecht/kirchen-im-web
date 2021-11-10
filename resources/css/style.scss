@@ -28,7 +28,8 @@ $link-decoration: none !default;
 @import "../../node_modules/tablesort/tablesort.css";
 
 /* Import Font Awesome icons */
-$fa-font-path: '/assets/webfonts';
+$fa-font-path: "/assets/webfonts";
+
 @import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
 @import "../../node_modules/@fortawesome/fontawesome-free/scss/brands";
 @import "../../node_modules/@fortawesome/fontawesome-free/scss/solid";
@@ -110,7 +111,6 @@ a[href^="http://"]::after {
 .chart {
   width: 512px;
   min-height: 400px;
-  @extend .me-5;
 }
 
 /* print version */
