@@ -32,6 +32,18 @@ class Configuration
         ];
     }
 
+    public static function getDenominationColors(): array
+    {
+        return [
+            'alt-katholisch' => '#ff8000',
+            'anglikanisch'   => '#81a04d',
+            'evangelisch'    => '#4e2775',
+            'freikirchlich'  => '#2f7ed8',
+            'katholisch'     => '#e5ca4d',
+            'ökumenisch'     => '#ff4500',
+        ];
+    }
+
     public static function getTypes(): array
     {
         return [

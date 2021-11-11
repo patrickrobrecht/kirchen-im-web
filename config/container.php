@@ -64,6 +64,7 @@ return [
         $twig->offsetSet('config', [
             'countries' => Configuration::getCountries(),
             'denominations' => Configuration::getDenominations(),
+            'denominationColors' => Configuration::getDenominationColors(),
             'types' => Configuration::getTypes(),
             'websiteTypes' => Configuration::getWebsiteTypes(),
             'websiteTypeIcons' => Configuration::getWebsiteTypeIcons(),
