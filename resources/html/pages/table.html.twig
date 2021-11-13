@@ -186,13 +186,13 @@
     {% if filters|length > 0 %}
         <script type="application/ld+json">
             {
-               "@context": "http://schema.org",
+               "@context": "https://schema.org",
                "@type": "WebSite",
-               "url": "http://kirchen-im-web.de/",
+               "url": "https://kirchen-im-web.de/",
                "potentialAction": {
                  "@type": "SearchAction",
                  "actionStatus": "CompletedActionStatus",
-                 "target": "http://kirchen-im-web.de{{ url_for(languageSlug ~ '-search') }}?name={q}",
+                 "target": "https://kirchen-im-web.de{{ url_for(languageSlug ~ '-search') }}?name={q}",
                  "query": "{{ filters.name }}",
                  "query-input": {
                     "@type": "PropertyValueSpecification",

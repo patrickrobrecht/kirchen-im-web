@@ -73,12 +73,12 @@
 {% block structured_data %}
     <script type="application/ld+json">
         {
-           "@context": "http://schema.org",
+           "@context": "https://schema.org",
            "@type": "WebSite",
-           "url": "http://kirchen-im-web.de/",
+           "url": "https://kirchen-im-web.de/",
            "potentialAction": {
              "@type": "SearchAction",
-             "target": "http://kirchen-im-web.de{{ url_for(languageSlug ~ '-search') }}?name={q}",
+             "target": "https://kirchen-im-web.de{{ url_for(languageSlug ~ '-search') }}?name={q}",
              "query-input": {
                 "@type": "PropertyValueSpecification",
                 "valueRequired": "True",
