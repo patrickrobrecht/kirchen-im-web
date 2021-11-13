@@ -8,13 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Icons for the menu items, replace icons for social networks and other website types
+- Add website type "podcast"
+- Export of follower history
+
 ### Changed
 - Update dependencies, including upgrading to Bootstrap 5
 - Switch from Gulp to Laravel Mix as build tool
 - Replace jQuery based tablesorter with tablesort library (which has no dependencies)
 - Remove jQuery
-- Add icons to menu items, replace icons for social networks and other website types
-- Add website type "podcast"
 
 
 ## Version 3.7.2 (2021-05-27)

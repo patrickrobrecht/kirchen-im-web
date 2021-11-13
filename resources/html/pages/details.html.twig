@@ -57,6 +57,10 @@
         {% if hasFollowerHistory %}
             <div class="col-12 col-lg-6">
                 <div id="followerHistory" class="chart"></div>
+                <a class="btn btn-primary" href="{{ url_for('followers', {'id': entry.id}) }}?type=csv">
+                    <i class="fa fa-download"></i>
+                    {{ 'Download' | trans }}
+                </a>
             </div>
         {% endif %}
     </div>
@@ -192,8 +196,8 @@
                             {
                                 name: '{{ config.websiteTypes[website.type] }}',
                                 data: [
-                                    {% for row in website.followerHistory %}
-                                    [Date.UTC({{ row.date|date('Y') }}, {{ row.date|date('m') - 1 }}, {{ row.date|date('d') + 0 }}), {{ row.followers }}],
+                                    {% for date, followers in website.followerHistory %}
+                                    [Date.UTC({{ date|date('Y') }}, {{ date|date('m') - 1 }}, {{ date|date('d') + 0 }}), {{ followers }}],
                                     {% endfor %}
                                 ],
                                 color: '{{ config.websitesToCompareColors[website.type] }}'

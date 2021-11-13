@@ -21,6 +21,8 @@ return static function (App $app) {
         $group->get('churches/', APIController::class . ':churches');
         $group->get('churches/{id}/', APIController::class . ':church');
         $group->get('churches/{id}/children/', APIController::class . ':children');
+        $group->get('churches/{id}/followers/', APIController::class . ':followers')
+            ->setName('followers');
     });
 
     $app->get('/admin/', PageController::class . ':admin');
