@@ -239,13 +239,12 @@
     {% set schemaPlaceType = 'Place' %}
     {% if entry.type == 'Museum' %}
         {% set schemaPlaceType = 'Museum' %}
-    {% endif %}
-    {% if entry.type in ['Citykirche', 'Kirchengemeinde', 'Pfarrei', 'Pfarrvikarie'] %}
+    {% elseif entry.type in ['Citykirche', 'Kirchengemeinde', 'Pfarrei', 'Pfarrvikarie'] %}
         {% set schemaPlaceType = entry.denomination == 'katholisch' ? 'CatholicChurch' : 'Church' %}
     {% endif %}
     <script type="application/ld+json">
         {
-          "@context": "http://schema.org",
+          "@context": "https://schema.org",
           "@type": "Organization",
           "address": {
             "@type": "PostalAddress",
