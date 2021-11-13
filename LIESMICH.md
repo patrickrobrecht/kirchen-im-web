@@ -21,10 +21,11 @@ Die aktuelle Entwicklungsversion gibt es unter
 ## Funktionen
 * [Karte](https://kirchen-im-web.de/de/karte/)
     mit allen Gemeinden, die nach Konfession und Netzwerk gefiltert werden kann
-* [Tabelle](https://kirchen-im-web.de/de/suche/)
+* [Tabelle](https://kirchen-im-web.de/de/suche/) und [Social-Media-Vergleich](https://kirchen-im-web.de/de/vergleich/)
     mit Filter nach Name, PLZ, Stadt, Land, Konfession, Gemeindetyp, Netzwerk
 * [Detailseite](https://kirchen-im-web.de/de/details/1/)
     für jede Gemeinde, die alle Web- und Social-Media-Auftritte, eine Karte und die Hierarchie anzeigt
+    sowie die Follower-Historie der Social-Media-Auftritte zum Download anbietet
 * Formular zum [Hinzufügen neuer Gemeinden](https://kirchen-im-web.de/de/eintragen/)
 * [Statistik](https://kirchen-im-web.de/de/statistik/)
     und herunterladbare [offene Daten](https://kirchen-im-web.de/de/daten/)

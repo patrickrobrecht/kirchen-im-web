@@ -20,10 +20,11 @@ The latest development version is online at [test.kirchen-im-web.de](https://tes
 ## Features
 * [map](https://kirchen-im-web.de/en/map/)
     with all churches which can be filtered according to denomination and network
-* [table](https://kirchen-im-web.de/en/search/)
+* [table](https://kirchen-im-web.de/en/search/) and [social media comparison](https://kirchen-im-web.de/en/comparison/)
     with filtering according to name, postal code, city, country, denomination, type, network
 * [details page](https://kirchen-im-web.de/en/details/1/)
     for every church showing all websites and networks, map and church hierarchy
+    and offering download of the social media follower history
 * form to [add new churches](https://kirchen-im-web.de/en/add/)
 * [statistics](https://kirchen-im-web.de/en/statistics/)
     and downloadable [open data](https://kirchen-im-web.de/en/data/)
@@ -87,16 +88,21 @@ The entry id is the number in the URL of the details page.
 ### GET /api/churches/{id}/children/
 Returns the (direct) children of the church with the given id in JSON.
 
+### GET /api/churches/{id}/followers/
+Returns the follower history for the social networks of the church in csv or JSON.
+
+* `type`: csv or JSON (default)
+
 
 ## How to develop
 
 ### Requirements
 * [Apache](https://httpd.apache.org/) 2.4+
-* [PHP](https://secure.php.net/) 7+
+* [PHP](https://secure.php.net/) 8+
 * [MySQL](https://dev.mysql.com/downloads/) database
-* [Node.js](https://nodejs.org/en/download/) 10+
-    and [npm](https://www.npmjs.com/) 6+
-* [Composer](https://getcomposer.org/) 1.7+
+* [Node.js](https://nodejs.org/en/download/) 14+
+    and [npm](https://www.npmjs.com/) 8+
+* [Composer](https://getcomposer.org/) 2+
 
 ### Setup
 * Clone the Git repository.
@@ -127,7 +133,7 @@ To run all checks, use `composer cs`.
 * [PHP](https://secure.php.net/) with libraries
     [Facebook Graph SDK](https://github.com/facebookarchive/php-graph-sdk),
     [Instagram PHP Scraper](https://github.com/postaddictme/instagram-php-scraper),
-    [OpenCage API](https://github.com/OpenCageData/php-opencage-geocode)
+    [OpenCage API](https://github.com/OpenCageData/php-opencage-geocode),
     [Slim](https://www.slimframework.com/),
     [Symphony Translations](https://symfony.com/doc/current/translation.html),
     [Twig](https://twig.symfony.com/)
