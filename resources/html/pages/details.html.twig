@@ -37,8 +37,8 @@
             <table class="table table-striped w-auto">
                 <thead>
                     <tr>
-                        <th>{{ 'Link' | trans }}</th>
-                        <th>{{ 'Followers' | trans }}</th>
+                        <th scope="col">{{ 'Link' | trans }}</th>
+                        <th scope="col">{{ 'Followers' | trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +47,8 @@
                             <td><a href="{{ website.url }}">
                                     <i class="{{ config.websiteTypeIcons[website.type] }}"></i>
                                     {{ config.websiteTypes[website.type] }}
-                                </a></td>
+                                </a>
+                            </td>
                             <td class="text-end">{% if website.followers > 0 %}{{ macros.number_format(website.followers, languageSlug) }}{% endif %}</td>
                         </tr>
                     {% endfor %}
@@ -57,7 +58,7 @@
         {% if hasFollowerHistory %}
             <div class="col-12 col-lg-6">
                 <div id="followerHistory" class="chart"></div>
-                <a class="btn btn-primary" href="{{ url_for('followers', {'id': entry.id}) }}?type=csv">
+                <a class="btn btn-primary btn-sm" href="{{ url_for('followers', {'id': entry.id}) }}?type=csv">
                     <i class="fa fa-download"></i>
                     {{ 'Download' | trans }}
                 </a>
@@ -65,82 +66,94 @@
         {% endif %}
     </div>
 
-    <h2>{{ 'Adresse, Konfession und Hierarchie' | trans }}</h2>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th><i class="fa fa-road"></i> {{ 'Adresse' | trans }}</th>
-                        <td>{% if entry.street %}
+    <div class="mt-3">
+        <h2>{{ 'Adresse, Konfession und Hierarchie' | trans }}</h2>
+        <div class="d-sm-flex">
+            <div class="flex-grow-1">
+                <div class="row">
+                    <div class="col-12 col-md mt-3">
+                        <i class="fa fa-road"></i> {{ 'Adresse' | trans }}
+                        <div>
+                            {% if entry.street %}
                                 <span>{{ entry.street}}, </span>
                             {% endif %}
                             <span><a href="{{ url_for(languageSlug ~ '-search') }}?postalCode={{ entry.postalCode }}">{{ entry.postalCode }}</a>&nbsp;</span>
                             <span><a href="{{ url_for(languageSlug ~ '-search') }}?city={{ entry.city }}">{{ entry.city }}</a>, </span>
-                            <span><a href="{{ url_for(languageSlug ~ '-search') }}?countryCode={{ entry.country }}">{{ config.countries[entry.country] }}</a></span></td>
-                    </tr>
+                            <span><a href="{{ url_for(languageSlug ~ '-search') }}?countryCode={{ entry.country }}">{{ config.countries[entry.country] }}</a></span>
+                        </div>
+                    </div>
                     {% if entry.lat and entry.lon %}
-                    <tr>
-                        <th><i class="fa fa-map-marker"></i> {{ 'Geoposition' | trans }}</th>
-                        <td>{% if entry.lat > 0 %}
-                                <span>{{ entry.lat }} ° <abbr title="{{ 'nördliche Breite' | trans }}">{{ 'N' | trans }}</abbr>, </span>
-                            {% else %}
-                                <span>{{ entry.lat }} ° <abbr title="{{ 'südliche Breite' | trans }}">{{ 'S' | trans }}</abbr>, </span>
-                            {% endif %}
-                            {% if entry.lon > 0 %}
-                                <span>{{ entry.lon }} ° <abbr title="{{ 'östliche Länge' | trans }}">{{ 'O' | trans }}</abbr></span>
-                            {% else %}
-                                <span>{{ entry.lon }} °<abbr title="{{ 'westliche Länge' | trans }}">{{ 'W' | trans }}</abbr></span>
-                            {% endif %}</td>
-                    </tr>
+                        <div class="col-12 col-md mt-3">
+                            <i class="fa fa-map-marker"></i> {{ 'Geoposition' | trans }}
+                            <div>
+                                {% if entry.lat > 0 %}
+                                    <span>{{ entry.lat }}°&nbsp;<abbr title="{{ 'nördliche Breite' | trans }}">{{ 'N' | trans }}</abbr>, </span>
+                                {% else %}
+                                    <span>{{ entry.lat }}°&nbsp;<abbr title="{{ 'südliche Breite' | trans }}">{{ 'S' | trans }}</abbr>, </span>
+                                {% endif %}
+                                {% if entry.lon > 0 %}
+                                    <span>{{ entry.lon }}°&nbsp;<abbr title="{{ 'östliche Länge' | trans }}">{{ 'O' | trans }}</abbr></span>
+                                {% else %}
+                                    <span>{{ entry.lon }}°&nbsp;<abbr title="{{ 'westliche Länge' | trans }}">{{ 'W' | trans }}</abbr></span>
+                                {% endif %}
+                            </div>
+                        </div>
                     {% endif %}
-                    <tr>
-                        <th><i class="fa fa-church"></i> {{ 'Konfession' | trans }}</th>
-                        <td><a href="{{ url_for(languageSlug ~ '-search') }}?denomination={{ entry.denomination }}">{{ config.denominations[entry.denomination]|trans }}</a></td>
-                    </tr>
-                    <tr>
-                        <th><i class="fa fa-tag"></i> {{ 'Gemeindetyp' | trans }}</th>
-                        <td><a href="{{ url_for(languageSlug ~ '-search') }}?type={{ entry.type }}">{{ config.types[entry.type]|trans }}</a></td>
-                    </tr>
-                    <tr>
-                        <th><i class="fa fa-level-up-alt"></i> {{ 'Nächsthöhere Ebenen' | trans }}</th>
-                        <td>{% if entry.parentId %}
-                                <ol>
-                                    {% for parent in entry.parents %}
-                                        <li><a href="{{ url_for(languageSlug ~ '-details', {'id': parent.slug}) }}">{{ parent.name }}</a></li>
-                                    {% endfor %}
-                                </ol>
-                            {% else %}
-                                <span>{{ 'keine' | trans }}</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><i class="fa fa-level-down-alt"></i> {{ 'Nächsttiefere Ebenen' | trans }}</th>
-                        <td>{% if entry.children|length == 0 %}
-                                <span>{{ 'Bisher wurden keine untergeordneten Ebenen hinzugefügt!' | trans }}</span>
-                            {% else %}
-                                {{ macros.churchHierarchy(entry, languageSlug) }}
-                            {% endif %}
-                            {% if entry.hasChildren == 1 %}
-                                <p>
-                                    <a class="btn btn-secondary" href="{{ url_for(languageSlug ~ '-add') }}?parentId={{ entry.id }}&denomination={{ entry.denomination }}&countryCode={{ entry.country }}">
-                                        <i class="fa fa-plus"></i>
-                                        {{ 'Jetzt eine Gemeinde unterhalb von %name% hinzufügen!' | trans({'%name%': entry.name}) }}
-                                    </a>
-                                </p>
-                            {% endif %}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        {% if entry.lat and entry.lon %}
-            <div id="detailsmap" class="col-12 col-lg-6">
-                <p>{{ 'Bitte warten. Die Karte wird geladen.' | trans }}</p>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md mt-3">
+                        <i class="fa fa-church"></i> {{ 'Konfession' | trans }}
+                        <div>
+                            <a href="{{ url_for(languageSlug ~ '-search') }}?denomination={{ entry.denomination }}">{{ config.denominations[entry.denomination]|trans }}</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md mt-3">
+                        <i class="fa fa-tag"></i> {{ 'Gemeindetyp' | trans }}
+                        <div>
+                            <a href="{{ url_for(languageSlug ~ '-search') }}?type={{ entry.type }}">{{ config.types[entry.type]|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <i class="fa fa-level-up-alt"></i> {{ 'Nächsthöhere Ebenen' | trans }}
+                    <div>
+                        {% if entry.parentId %}
+                            <ol>
+                                {% for parent in entry.parents %}
+                                    <li><a href="{{ url_for(languageSlug ~ '-details', {'id': parent.slug}) }}">{{ parent.name }}</a></li>
+                                {% endfor %}
+                            </ol>
+                        {% else %}
+                            <span>{{ 'keine' | trans }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <i class="fa fa-level-down-alt"></i> {{ 'Nächsttiefere Ebenen' | trans }}
+                    <div>
+                        {% if entry.children|length == 0 %}
+                            <span>{{ 'Bisher wurden keine untergeordneten Ebenen hinzugefügt!' | trans }}</span>
+                        {% else %}
+                            {{ macros.churchHierarchy(entry, languageSlug) }}
+                        {% endif %}
+                        {% if entry.hasChildren == 1 %}
+                            <p>
+                                <a class="btn btn-secondary" href="{{ url_for(languageSlug ~ '-add') }}?parentId={{ entry.id }}&denomination={{ entry.denomination }}&countryCode={{ entry.country }}">
+                                    <i class="fa fa-plus"></i>
+                                    {{ 'Jetzt eine Gemeinde unterhalb von %name% hinzufügen!' | trans({'%name%': entry.name}) }}
+                                </a>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-        {% endif %}
+
+            {% if entry.lat and entry.lon %}
+                <div id="detailsmap" class="mt-3 mt-md-0">
+                    <p>{{ 'Bitte warten. Die Karte wird geladen.' | trans }}</p>
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 
