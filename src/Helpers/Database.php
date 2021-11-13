@@ -396,11 +396,11 @@ class Database
 
     private function getFollowerHistory($websiteId): array
     {
-        $statement = $this->connection->prepare('SELECT followers, date FROM followers
+        $statement = $this->connection->prepare('SELECT date, followers FROM followers
 			WHERE websiteId = :websiteId');
         $statement->bindParam(':websiteId', $websiteId);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return array_map('intval', $statement->fetchAll(PDO::FETCH_KEY_PAIR));
     }
 
     public function getTotalCount()
