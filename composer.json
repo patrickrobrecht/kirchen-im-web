@@ -70,5 +70,10 @@
     "psr-4": {
       "KirchenImWeb\\": "src/"
     }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
