@@ -81,7 +81,7 @@ function Map (translations) {
           }
 
           if (entry.lat && entry.lon && entry.name && icon) {
-            marker = L.marker([entry.lat, entry.lon], { title: entry.name, icon: icon });
+            marker = L.marker([entry.lat, entry.lon], { title: entry.name, icon });
 
             // Add the marker to the cluster.
             markerCluster.addLayer(marker);
