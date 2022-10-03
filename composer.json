@@ -20,7 +20,6 @@
     "ext-json": "*",
     "ext-libxml": "*",
     "ext-pdo": "*",
-    "facebook/graph-sdk": "^5.7",
     "guzzlehttp/guzzle": "^7.5.0",
     "j7mbo/twitter-api-php": "^1.0.6",
     "opencage/geocode": "^v3.1.1",

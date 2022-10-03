@@ -3,10 +3,11 @@
 namespace KirchenImWeb\Updaters;
 
 use Exception;
-use Facebook\Exceptions\FacebookSDKException;
-use Facebook\Facebook;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\RequestOptions;
 use InstagramScraper\Instagram;
+use JsonException;
 use KirchenImWeb\Helpers\Database;
 use Phpfastcache\Helper\Psr16Adapter;
 use Psr\SimpleCache\InvalidArgumentException;
@@ -20,7 +21,7 @@ use TwitterAPIExchange;
 class SocialMediaUpdater
 {
     private Database $database;
-    private ?Facebook $facebook = null;
+    private ?Client $facebookClient = null;
     private ?Instagram $instagram = null;
     private ?TwitterAPIExchange $twitter = null;
 
@@ -97,20 +98,26 @@ class SocialMediaUpdater
     private function getFacebookLikes(string $url): bool | int
     {
         try {
-            if (!$this->facebook) {
-                $this->facebook = new Facebook([
-                    'app_id' => FACEBOOK_APP_ID,
-                    'app_secret' => FACEBOOK_APP_SECRET,
+            if (!$this->facebookClient) {
+                $this->facebookClient = new Client([
+	                'base_uri' => 'https://graph.facebook.com/v2.10/',
                 ]);
             }
 
-            $response = $this->facebook->get(
-                $url . '?fields=id,fan_count',
-                $this->facebook->getApp()->getAccessToken()
-            );
-            $json = $response->getDecodedBody();
-            return $json['fan_count'] ?? false;
-        } catch (FacebookSDKException) {
+			$pageName = substr($url, 25);
+
+	        $accessToken = FACEBOOK_APP_ID . '|' . FACEBOOK_APP_SECRET;
+	        $response = $this->facebookClient->get($pageName, [
+		        RequestOptions::QUERY => [
+			        'access_token' => $accessToken,
+			        'appsecret_proof' => hash_hmac('sha256', $accessToken, FACEBOOK_APP_SECRET),
+			        'fields' => 'id,fan_count',
+		        ],
+	        ]);
+	        $json = json_decode($response->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
+
+            return $json->fan_count ?? false;
+        } catch (GuzzleException|JsonException) {
             return false;
         }
     }
