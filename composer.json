@@ -22,22 +22,22 @@
     "ext-pdo": "*",
     "guzzlehttp/guzzle": "^7.5.0",
     "j7mbo/twitter-api-php": "^1.0.6",
-    "opencage/geocode": "^v3.1.1",
+    "opencage/geocode": "^3.1.1",
     "php-di/slim-bridge": "^3.2.0",
-    "phpfastcache/phpfastcache": "^8.1.3",
-    "phpmailer/phpmailer": "^6.6.4",
-    "raiym/instagram-php-scraper": "^0.12.7",
-    "slim/psr7": "^1.5",
-    "slim/slim": "^4.10.0",
+    "phpfastcache/phpfastcache": "^9.1.2",
+    "phpmailer/phpmailer": "^6.6.5",
+    "raiym/instagram-php-scraper": "^0.12.9",
+    "slim/psr7": "^1.6",
+    "slim/slim": "^4.11.0",
     "slim/twig-view": "^3.3.0",
-    "symfony/twig-bridge": "^5.4.12",
-    "symfony/translation": "^5.4.12"
+    "symfony/twig-bridge": "^6.2.0",
+    "symfony/translation": "^6.2.0"
   },
   "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-    "phpcompatibility/php-compatibility": "^9.3",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+    "phpcompatibility/php-compatibility": "^9.3.5",
     "roave/security-advisories": "dev-latest",
-    "squizlabs/php_codesniffer": "^3.6"
+    "squizlabs/php_codesniffer": "^3.7.1"
   },
   "scripts": {
     "cs": [
@@ -55,14 +55,6 @@
     ],
     "csfixPHP": [
       "phpcbf"
-    ],
-    "dev": [
-      "@composer install --ignore-platform-req=php",
-      "npm run watch"
-    ],
-    "prod": [
-      "@composer install --optimize-autoloader --no-dev --ignore-platform-req=php",
-      "npm run postinstall"
     ]
   },
   "autoload": {

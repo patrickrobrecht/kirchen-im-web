@@ -98,10 +98,9 @@ Returns the follower history for the social networks of the church in csv or JSO
 
 ### Requirements
 * [Apache](https://httpd.apache.org/) 2.4+
-* [PHP](https://secure.php.net/) 8+
+* [PHP](https://secure.php.net/) 8.1+
 * [MySQL](https://dev.mysql.com/downloads/) database
-* [Node.js](https://nodejs.org/en/download/) 14+
-    and [npm](https://www.npmjs.com/) 8+
+* [npm](https://www.npmjs.com/) 9+
 * [Composer](https://getcomposer.org/) 2+
 
 ### Setup
@@ -144,7 +143,8 @@ To run all checks, use `composer cs`.
     [tablesort](https://github.com/tristen/tablesort)
 
 ## How to deploy
-- Run `composer prod`.
+- Run `npm run production`.
+- Run `composer install --optimize-autoloader --no-dev`.
 - Upload the following to the production server: 
     - the directories `config`, `public`, `src`, `resources`, `vendor`, and
     - the file `cron.php`.
