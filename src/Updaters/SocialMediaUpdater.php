@@ -11,7 +11,6 @@ use JsonException;
 use KirchenImWeb\Helpers\Database;
 use Phpfastcache\Helper\Psr16Adapter;
 use Psr\SimpleCache\InvalidArgumentException;
-use TwitterAPIExchange;
 
 /**
  * Class SocialMediaUpdater
@@ -23,7 +22,6 @@ class SocialMediaUpdater
     private Database $database;
     private ?Client $facebookClient = null;
     private ?Instagram $instagram = null;
-    private ?TwitterAPIExchange $twitter = null;
 
     public function __construct(Database $database)
     {
@@ -83,7 +81,6 @@ class SocialMediaUpdater
         return match ($network) {
             'facebook' => $this->getFacebookLikes($url),
             'instagram' => $this->getInstagramFollowers($url),
-            'twitter' => $this->getTwitterFollower($url),
             default => false,
         };
     }
@@ -100,24 +97,24 @@ class SocialMediaUpdater
         try {
             if (!$this->facebookClient) {
                 $this->facebookClient = new Client([
-	                'base_uri' => 'https://graph.facebook.com/v2.10/',
+                    'base_uri' => 'https://graph.facebook.com/v2.10/',
                 ]);
             }
 
-			$pageName = substr($url, 25);
+            $pageName = substr($url, 25);
 
-	        $accessToken = FACEBOOK_APP_ID . '|' . FACEBOOK_APP_SECRET;
-	        $response = $this->facebookClient->get($pageName, [
-		        RequestOptions::QUERY => [
-			        'access_token' => $accessToken,
-			        'appsecret_proof' => hash_hmac('sha256', $accessToken, FACEBOOK_APP_SECRET),
-			        'fields' => 'id,fan_count',
-		        ],
-	        ]);
-	        $json = json_decode($response->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
+            $accessToken = FACEBOOK_APP_ID . '|' . FACEBOOK_APP_SECRET;
+            $response = $this->facebookClient->get($pageName, [
+                RequestOptions::QUERY => [
+                    'access_token' => $accessToken,
+                    'appsecret_proof' => hash_hmac('sha256', $accessToken, FACEBOOK_APP_SECRET),
+                    'fields' => 'id,fan_count',
+                ],
+            ]);
+            $json = json_decode($response->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
 
             return $json->fan_count ?? false;
-        } catch (GuzzleException|JsonException) {
+        } catch (GuzzleException | JsonException) {
             return false;
         }
     }
@@ -161,48 +158,5 @@ class SocialMediaUpdater
             }
         }
         return $this->instagram;
-    }
-
-    /**
-     * Returns the number of Twitter followers of the given URL.
-     *
-     * @param string $url the Twitter URL to check
-     *
-     * @return int|bool the number of subscribers, or false on failure
-     */
-    private function getTwitterFollower(string $url): bool | int
-    {
-        try {
-            $name = substr($url, 20);
-            $twitterAPI = $this->getTwitter();
-            if (!$twitterAPI) {
-                return false;
-            }
-            $json = $twitterAPI->setGetfield('?screen_name=' . $name)
-                               ->buildOauth('https://api.twitter.com/1.1/users/show.json', 'GET')
-                               ->performRequest();
-            $json = json_decode($json, false, 512, JSON_THROW_ON_ERROR);
-            if (isset($json->followers_count)) {
-                return (int)$json->followers_count;
-            }
-            return false;
-        } catch (Exception) {
-            return false;
-        }
-    }
-
-    private function getTwitter(): ?TwitterAPIExchange
-    {
-        if (!$this->twitter) {
-            $this->twitter = new TwitterAPIExchange(
-                [
-                    'oauth_access_token' => TWITTER_API_TOKEN,
-                    'oauth_access_token_secret' => TWITTER_API_TOKEN_SECRET,
-                    'consumer_key' => TWITTER_API_CONSUMER_KEY,
-                    'consumer_secret' => TWITTER_API_CONSUMER_SECRET
-                ]
-            );
-        }
-        return $this->twitter;
     }
 }
