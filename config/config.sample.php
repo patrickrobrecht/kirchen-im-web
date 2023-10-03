@@ -24,12 +24,6 @@ define('FACEBOOK_ACCESS_TOKEN', '');
 define('INSTAGRAM_USERNAME', '');
 define('INSTAGRAM_PASSWORD', '');
 
-// Twitter API
-define('TWITTER_API_TOKEN', '');
-define('TWITTER_API_TOKEN_SECRET', '');
-define('TWITTER_API_CONSUMER_KEY', '');
-define('TWITTER_API_CONSUMER_SECRET', '');
-
 // OpenCage API
 define('OPENCAGE_API_KEY', '');
 

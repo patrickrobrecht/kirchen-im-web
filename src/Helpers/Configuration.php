@@ -134,7 +134,8 @@ class Configuration
     {
         /**
          * All except {@link Configuration::getWebsiteTypesToCompare()}
-         * and YouTube, which redirects to cookie consent page.
+         * and Twitter (redirects to login page)
+         * and YouTube (which redirects to cookie consent page).
          */
         return [
             'web'        => _('Webauftritt'),
@@ -151,7 +152,6 @@ class Configuration
         return [
             'facebook'  => 'Facebook',
             'instagram' => 'Instagram',
-            'twitter'   => 'Twitter',
         ];
     }
 
