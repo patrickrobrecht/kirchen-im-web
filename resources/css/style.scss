@@ -3,12 +3,15 @@
 /* Import necessary Bootstrap modules. */
 $link-decoration: none !default;
 
+// Bootstrap Configuration
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
 @import "../../node_modules/bootstrap/scss/maps";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/utilities";
 
+// Bootstrap Layout & components
 @import "../../node_modules/bootstrap/scss/root";
 @import "../../node_modules/bootstrap/scss/reboot";
 @import "../../node_modules/bootstrap/scss/images";
@@ -23,7 +26,11 @@ $link-decoration: none !default;
 @import "../../node_modules/bootstrap/scss/card";
 @import "../../node_modules/bootstrap/scss/breadcrumb";
 @import "../../node_modules/bootstrap/scss/alert";
+
+// Bootstrap Helpers
 @import "../../node_modules/bootstrap/scss/helpers";
+
+// Bootstrap Utilities
 @import "../../node_modules/bootstrap/scss/utilities/api";
 
 /* Import necessary tablesort styles. */
@@ -93,7 +100,7 @@ a[href^="http://"]::after {
   width: 512px;
 }
 
-@media (min-width: 1024px) {
+@media (1024px <= width) {
   #map {
     height: 768px;
     width: 1024px;
