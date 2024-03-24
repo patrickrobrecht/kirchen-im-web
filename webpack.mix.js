@@ -1,9 +1,7 @@
-const del = require('del');
+const fs = require('fs-extra');
 const mix = require('laravel-mix');
 
-del.sync([
-  'public/assets'
-]);
+fs.removeSync('public/assets');
 
 mix.setPublicPath('public/assets');
 

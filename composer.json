@@ -6,6 +6,7 @@
     "map",
     "social-media"
   ],
+  "type": "project",
   "homepage": "https://kirchen-im-web.de/",
   "support": {
     "issues": "https://github.com/patrickrobrecht/kirchen-im-web/issues",
@@ -21,21 +22,21 @@
     "ext-libxml": "*",
     "ext-pdo": "*",
     "guzzlehttp/guzzle": "^7.8",
-    "opencage/geocode": "^3.2",
+    "opencage/geocode": "^3.3",
     "php-di/slim-bridge": "^3.4",
-    "phpfastcache/phpfastcache": "^9.1",
-    "phpmailer/phpmailer": "^6.8",
+    "phpfastcache/phpfastcache": "^9.2",
+    "phpmailer/phpmailer": "^6.9",
     "raiym/instagram-php-scraper": "^0.12.9",
     "slim/psr7": "^1.6",
-    "slim/slim": "^4.12",
+    "slim/slim": "^4.13",
     "slim/twig-view": "^3.3",
-    "symfony/twig-bridge": "^6.3",
-    "symfony/translation": "^6.3"
+    "symfony/twig-bridge": "^6.4",
+    "symfony/translation": "^6.4"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
     "phpcompatibility/php-compatibility": "^9.3.5",
-    "squizlabs/php_codesniffer": "^3.7.2"
+    "squizlabs/php_codesniffer": "^3.9.0"
   },
   "scripts": {
     "cs": [
