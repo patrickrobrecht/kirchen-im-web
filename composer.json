@@ -27,11 +27,11 @@
     "phpfastcache/phpfastcache": "^9.2",
     "phpmailer/phpmailer": "^6.9",
     "raiym/instagram-php-scraper": "^0.12.9",
-    "slim/psr7": "^1.6",
-    "slim/slim": "^4.13",
+    "slim/psr7": "^1.7",
+    "slim/slim": "^4.14",
     "slim/twig-view": "^3.3",
-    "symfony/twig-bridge": "^6.4",
-    "symfony/translation": "^6.4"
+    "symfony/twig-bridge": "^7.1",
+    "symfony/translation": "^7.1"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
