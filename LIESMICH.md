@@ -15,9 +15,6 @@ Unser Projekt ist überkonfessionell, d. h. egal ob evangelisch, katholisch oder
 Sie können Ihre Gemeinde einfach über unser 
     [Formular](https://kirchen-im-web.de/de/eintragen/) hinzufügen.
 
-Die aktuelle Entwicklungsversion gibt es unter 
-    [test.kirchen-im-web.de](https://test.kirchen-im-web.de/de/).
-
 ## Funktionen
 * [Karte](https://kirchen-im-web.de/de/karte/)
     mit allen Gemeinden, die nach Konfession und Netzwerk gefiltert werden kann
