@@ -16,9 +16,8 @@ class TwigAssetVersionExtension extends AbstractExtension
 {
     private array $paths;
 
-    public function __construct(string $manifest)
+    public function __construct(private string $manifest)
     {
-        $this->manifest = $manifest;
         if (!file_exists($this->manifest)) {
             throw new RuntimeException(sprintf('Cannot find manifest file: "%s"', $this->manifest));
         }

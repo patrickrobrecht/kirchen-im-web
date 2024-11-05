@@ -26,6 +26,5 @@
   /**
    * Initialize tablesort for the table.
    */
-  // eslint-disable-next-line no-new
   new Tablesort(document.getElementById('churchTable'));
 }());

@@ -10,11 +10,11 @@
   "homepage": "https://kirchen-im-web.de/",
   "support": {
     "issues": "https://github.com/patrickrobrecht/kirchen-im-web/issues",
-    "source": "https://github.com/patrickrobrecht/kirchen-im-web/archive/master.zip"
+    "source": "https://github.com/patrickrobrecht/kirchen-im-web/archive/main.zip"
   },
   "license": "GPL-3.0",
   "require": {
-    "php": "^8.2",
+    "php": "^8.3",
     "ext-curl": "*",
     "ext-dom": "*",
     "ext-gettext": "*",
@@ -49,8 +49,8 @@
     ],
     "csfix": [
       "@csfixPHP",
-      "npm run fixCSS",
-      "npm run fixJS"
+      "npm run csfixCSS",
+      "npm run csfixJS"
     ],
     "csfixPHP": [
       "phpcbf"

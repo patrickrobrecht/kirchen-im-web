@@ -60,7 +60,7 @@ return [
         $twig->addExtension(new TwigAssetVersionExtension(__DIR__ . '/../public/assets/mix-manifest.json'));
 
         $twig->offsetSet('domain', $_SERVER['HTTP_HOST']);
-        $twig->offsetSet('host', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']);
+        $twig->offsetSet('host', ($_SERVER['REQUEST_SCHEME'] ?? 'http') . '://' . $_SERVER['HTTP_HOST']);
         $twig->offsetSet('config', [
             'countries' => Configuration::getCountries(),
             'denominations' => Configuration::getDenominations(),

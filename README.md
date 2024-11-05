@@ -96,7 +96,7 @@ Returns the follower history for the social networks of the church in csv or JSO
 
 ### Requirements
 * [Apache](https://httpd.apache.org/) 2.4+
-* [PHP](https://secure.php.net/) 8.1+
+* [PHP](https://secure.php.net/) 8.3+
 * [MySQL](https://dev.mysql.com/downloads/) database
 * [npm](https://www.npmjs.com/) 9+
 * [Composer](https://getcomposer.org/) 2+
@@ -113,11 +113,10 @@ Returns the follower history for the social networks of the church in csv or JSO
 ### Code Style Guidelines
 - CSS: recommended configuration for [stylelint](https://stylelint.io/)
     - `npm run csCSS` to run a check for compliance with the guidelines
-    - `npm run fixCSS` applies fixes for violations automatically.
-- JavaScript: [JavaScript Standard Style](https://standardjs.com/rules.html),
-    checked by [eslint](https://eslint.org/)
+    - `npm run csfixCSS` applies fixes for violations automatically.
+- JavaScript: [JavaScript Standard Style](https://standardjs.com/rules.html), checked by [eslint](https://eslint.org/)
     - `npm run csJS` to run a check for compliance with the guidelines
-    - `npm run fixJS` applies fixes for violations automatically.
+    - `npm run csfixJS` applies fixes for violations automatically.
 - PHP: [PSR12](https://www.php-fig.org/psr/psr-12/)
     - `composer csPHP` to run a check for compliance with the guidelines
     - `composer fixPHP` applies fixes for violations automatically.
