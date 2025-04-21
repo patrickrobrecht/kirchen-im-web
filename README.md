@@ -96,9 +96,9 @@ Returns the follower history for the social networks of the church in csv or JSO
 
 ### Requirements
 * [Apache](https://httpd.apache.org/) 2.4+
-* [PHP](https://secure.php.net/) 8.3+
+* [PHP](https://secure.php.net/) 8.4
 * [MySQL](https://dev.mysql.com/downloads/) database
-* [npm](https://www.npmjs.com/) 9+
+* [npm](https://www.npmjs.com/) 11+
 * [Composer](https://getcomposer.org/) 2+
 
 ### Setup
@@ -127,13 +127,10 @@ To run all checks, use `composer cs`.
 * [HTML and CSS](https://www.w3.org/standards/webdesign/htmlcss),
     based on [Bootstrap](https://getbootstrap.com/)
 * [PHP](https://secure.php.net/) with libraries
-    [Facebook Graph SDK](https://github.com/facebookarchive/php-graph-sdk),
-    [Instagram PHP Scraper](https://github.com/postaddictme/instagram-php-scraper),
     [OpenCage API](https://github.com/OpenCageData/php-opencage-geocode),
     [Slim](https://www.slimframework.com/),
     [Symphony Translations](https://symfony.com/doc/current/translation.html),
     [Twig](https://twig.symfony.com/)
-    and [twitter-api-php](https://github.com/J7mbo/twitter-api-php)
 * JavaScript, especially the libraries
     [Highcharts](https://www.highcharts.com/),
     [Leaflet](https://leafletjs.com/) and 

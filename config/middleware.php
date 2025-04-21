@@ -21,7 +21,7 @@ return static function (App $app) {
                 bool $displayErrorDetails,
                 bool $logErrors,
                 bool $logErrorDetails,
-                LoggerInterface $logger = null
+                ?LoggerInterface $logger = null
             ) use ($app) {
                 return $app->getContainer()->get(PageController::class)->error(
                     $request,
