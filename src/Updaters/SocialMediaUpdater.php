@@ -91,7 +91,7 @@ class SocialMediaUpdater
         try {
             if (!$this->facebookClient) {
                 $this->facebookClient = new Client([
-                    'base_uri' => 'https://graph.facebook.com/v2.10/',
+                    'base_uri' => 'https://graph.facebook.com/',
                 ]);
             }
 
