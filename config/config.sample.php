@@ -20,10 +20,6 @@ define('FACEBOOK_APP_ID', '');
 define('FACEBOOK_APP_SECRET', '');
 define('FACEBOOK_ACCESS_TOKEN', '');
 
-// Instagram
-define('INSTAGRAM_USERNAME', '');
-define('INSTAGRAM_PASSWORD', '');
-
 // OpenCage API
 define('OPENCAGE_API_KEY', '');
 

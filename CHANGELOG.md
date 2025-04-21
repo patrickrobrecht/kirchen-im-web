@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## Version 3.8.3 (2025-04-21)
+
+### Changed
+- Remove Instagram vom social media comparison (scraping does not work anymore)
+- Update libraries
+
+
 ## Version 3.8.2 (2023-10-03)
 
 ### Changed

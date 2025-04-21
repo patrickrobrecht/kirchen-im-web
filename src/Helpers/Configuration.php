@@ -157,7 +157,6 @@ class Configuration
     {
         return [
             'facebook'  => 'Facebook',
-            'instagram' => 'Instagram',
         ];
     }
 

@@ -2,15 +2,11 @@
 
 namespace KirchenImWeb\Updaters;
 
-use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
-use InstagramScraper\Instagram;
 use JsonException;
 use KirchenImWeb\Helpers\Database;
-use Phpfastcache\Helper\Psr16Adapter;
-use Psr\SimpleCache\InvalidArgumentException;
 
 /**
  * Class SocialMediaUpdater
@@ -21,7 +17,6 @@ class SocialMediaUpdater
 {
     private Database $database;
     private ?Client $facebookClient = null;
-    private ?Instagram $instagram = null;
 
     public function __construct(Database $database)
     {
@@ -80,7 +75,6 @@ class SocialMediaUpdater
     {
         return match ($network) {
             'facebook' => $this->getFacebookLikes($url),
-            'instagram' => $this->getInstagramFollowers($url),
             default => false,
         };
     }
@@ -117,46 +111,5 @@ class SocialMediaUpdater
         } catch (GuzzleException | JsonException) {
             return false;
         }
-    }
-
-    /**
-     * Returns the number of Instagram followers.
-     *
-     * @param string $url the Instagram to check
-     *
-     * @return int|bool the number of followers, or false on failure
-     */
-    private function getInstagramFollowers(string $url): bool | int
-    {
-        try {
-            $name = str_replace('/', '', substr($url, 25));
-            $instagram = $this->getInstagram();
-            if (!$instagram) {
-                return false;
-            }
-            $account = $instagram->getAccount($name);
-            return $account->getFollowedByCount();
-        } catch (Exception) {
-            return false;
-        }
-    }
-
-    private function getInstagram(): ?Instagram
-    {
-        if (!$this->instagram) {
-            $this->instagram = Instagram::withCredentials(
-                new Client(),
-                INSTAGRAM_USERNAME,
-                INSTAGRAM_PASSWORD,
-                new Psr16Adapter('Files')
-            );
-            $this->instagram->setUserAgent(LinkChecker::USER_AGENT);
-            try {
-                $this->instagram->login();
-                $this->instagram->saveSession();
-            } catch (Exception | InvalidArgumentException) {
-            }
-        }
-        return $this->instagram;
     }
 }
