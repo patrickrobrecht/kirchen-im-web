@@ -1,65 +1,65 @@
 {
-  "name": "patrickrobrecht/kirchen-im-web",
-  "description": "overview of churchy websites and social media profiles in the German speaking area",
-  "keywords": [
-    "churches",
-    "map",
-    "social-media"
-  ],
-  "type": "project",
-  "homepage": "https://kirchen-im-web.de/",
-  "support": {
-    "issues": "https://github.com/patrickrobrecht/kirchen-im-web/issues",
-    "source": "https://github.com/patrickrobrecht/kirchen-im-web/archive/main.zip"
-  },
-  "license": "GPL-3.0",
-  "require": {
-    "php": "^8.5",
-    "ext-curl": "*",
-    "ext-dom": "*",
-    "ext-gettext": "*",
-    "ext-json": "*",
-    "ext-libxml": "*",
-    "ext-pdo": "*",
-    "guzzlehttp/guzzle": "^7.10",
-    "opencage/geocode": "^3.3",
-    "php-di/slim-bridge": "^3.4",
-    "phpmailer/phpmailer": "^6.10",
-    "slim/psr7": "^1.7",
-    "slim/slim": "^4.15",
-    "slim/twig-view": "^3.4",
-    "symfony/twig-bridge": "^7.4",
-    "symfony/translation": "^7.4"
-  },
-  "require-dev": {
-    "portavice/laravel-pint-config": "^3.0"
-  },
-  "scripts": {
-    "cs": [
-      "@csPHP",
-      "npm run csCSS",
-      "npm run csJS"
+    "name": "patrickrobrecht/kirchen-im-web",
+    "description": "overview of churchy websites and social media profiles in the German speaking area",
+    "keywords": [
+        "churches",
+        "map",
+        "social-media"
     ],
-    "csPHP": [
-      "pint --config vendor/portavice/laravel-pint-config/pint.json --test"
-    ],
-    "csfix": [
-      "@csfixPHP",
-      "npm run csfixCSS",
-      "npm run csfixJS"
-    ],
-    "csfixPHP": [
-      "pint --config vendor/portavice/laravel-pint-config/pint.json"
-    ]
-  },
-  "autoload": {
-    "psr-4": {
-      "KirchenImWeb\\": "src/"
+    "type": "project",
+    "homepage": "https://kirchen-im-web.de/",
+    "support": {
+        "issues": "https://github.com/patrickrobrecht/kirchen-im-web/issues",
+        "source": "https://github.com/patrickrobrecht/kirchen-im-web/archive/main.zip"
+    },
+    "license": "GPL-3.0",
+    "require": {
+        "php": "^8.5",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-gettext": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "ext-pdo": "*",
+        "guzzlehttp/guzzle": "^7.10",
+        "opencage/geocode": "^3.3",
+        "php-di/slim-bridge": "^3.4",
+        "phpmailer/phpmailer": "^7.0",
+        "slim/psr7": "^1.7",
+        "slim/slim": "^4.15",
+        "slim/twig-view": "^3.4",
+        "symfony/twig-bridge": "^8.0",
+        "symfony/translation": "^8.0"
+    },
+    "require-dev": {
+        "portavice/laravel-pint-config": "^3.0"
+    },
+    "scripts": {
+        "cs": [
+            "@csPHP",
+            "npm run csCSS",
+            "npm run csJS"
+        ],
+        "csPHP": [
+            "pint --config vendor/portavice/laravel-pint-config/pint.json --test"
+        ],
+        "csfix": [
+            "@csfixPHP",
+            "npm run csfixCSS",
+            "npm run csfixJS"
+        ],
+        "csfixPHP": [
+            "pint --config vendor/portavice/laravel-pint-config/pint.json"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "KirchenImWeb\\": "src/"
+        }
+    },
+    "config": {
+        "audit": {
+            "abandoned": "fail"
+        }
     }
-  },
-  "config": {
-    "audit": {
-      "abandoned": "fail"
-    }
-  }
 }
