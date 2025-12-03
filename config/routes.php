@@ -1,10 +1,10 @@
 <?php
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use KirchenImWeb\Controllers\APIController;
 use KirchenImWeb\Controllers\FileController;
 use KirchenImWeb\Controllers\PageController;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 

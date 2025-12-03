@@ -8,11 +8,6 @@ use GuzzleHttp\RequestOptions;
 use JsonException;
 use KirchenImWeb\Helpers\Database;
 
-/**
- * Class SocialMediaUpdater
- *
- * @package KirchenImWeb\Updaters
- */
 class SocialMediaUpdater
 {
     private Database $database;
@@ -41,14 +36,14 @@ class SocialMediaUpdater
 
     private function update(array $row): array
     {
-        $websiteId = (int)$row['websiteId'];
+        $websiteId = (int) $row['websiteId'];
         $url = $row['url'];
         $followersNew = $this->getFollowers($row['type'], $url);
         $data = [
-            'churchId' => (int)$row['churchId'],
+            'churchId' => (int) $row['churchId'],
             'url' => $url,
             'followersNew' => $followersNew,
-            'followersOld' => $row['followers'] === null ? null : (int)$row['followers']
+            'followersOld' => $row['followers'] === null ? null : (int) $row['followers'],
         ];
 
         if ($followersNew !== false) {
@@ -69,9 +64,9 @@ class SocialMediaUpdater
      * @param string $network the social network
      * @param string $url the URL to check
      *
-     * @return int|bool the follower count; false in case of errors.
+     * @return bool|int the follower count; false in case of errors.
      */
-    private function getFollowers(string $network, string $url): bool | int
+    private function getFollowers(string $network, string $url): bool|int
     {
         return match ($network) {
             'facebook' => $this->getFacebookLikes($url),
@@ -84,9 +79,9 @@ class SocialMediaUpdater
      *
      * @param string $url the URL of the Facebook page to check
      *
-     * @return int|bool the number of likes, or false on failure
+     * @return bool|int the number of likes, or false on failure
      */
-    private function getFacebookLikes(string $url): bool | int
+    private function getFacebookLikes(string $url): bool|int
     {
         try {
             if (!$this->facebookClient) {
@@ -108,7 +103,7 @@ class SocialMediaUpdater
             $json = json_decode($response->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
 
             return $json->fan_count ?? false;
-        } catch (GuzzleException | JsonException) {
+        } catch (GuzzleException|JsonException) {
             return false;
         }
     }

@@ -4,11 +4,6 @@ namespace KirchenImWeb\Helpers;
 
 use RuntimeException;
 
-/**
- * Class Exporter
- *
- * @package KirchenImWeb\Helpers
- */
 class Exporter
 {
     private string $dataDirectory;

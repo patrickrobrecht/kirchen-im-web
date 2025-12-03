@@ -7,10 +7,7 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 /**
- * Class TwigAssetVersionExtension
- * @package KirchenImWeb\Twig
- *
- * Copied from https://github.com/railto/TwigAssetVersionExtension, as the package is PHP 7 only
+ * Copied from https://github.com/railto/TwigAssetVersionExtension, as the package is PHP 7 only.
  */
 class TwigAssetVersionExtension extends AbstractExtension
 {

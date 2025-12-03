@@ -6,11 +6,6 @@ use Exception;
 use OpenCage\Geocoder\Geocoder;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-/**
- * Class ParameterChecker
- *
- * @package KirchenImWeb\Helpers
- */
 class ParameterChecker
 {
     public static function extractFilterParameters(Request $request): array
@@ -18,10 +13,9 @@ class ParameterChecker
         $data = $request->getQueryParams();
         $filters = [];
         $filters['ids'] = isset($data['ids']) ? self::toIntArray($data['ids']) : [];
-        $filters['parent'] = isset($data['parent']) ? (int)$data['parent'] : 0;
+        $filters['parent'] = isset($data['parent']) ? (int) $data['parent'] : 0;
         $filters['name'] = isset($data['name']) ? trim($data['name']) : '';
-        $filters['postalCode'] =
-            isset($_GET['postalCode']) && (int)$_GET['postalCode'] > 0 ? $_GET['postalCode'] : '';
+        $filters['postalCode'] = isset($_GET['postalCode']) && (int) $_GET['postalCode'] > 0 ? $_GET['postalCode'] : '';
         $filters['city'] = isset($_GET['city']) ? trim($_GET['city']) : '';
         $filters['country'] = isset($_GET['countryCode']) ? trim($_GET['countryCode']) : '';
         $filters['denomination'] = isset($_GET['denomination']) ? trim($_GET['denomination']) : '';
@@ -46,7 +40,7 @@ class ParameterChecker
         $array = explode(',', $s);
         $intArray = [];
         foreach ($array as $a) {
-            $i = (int)$a;
+            $i = (int) $a;
             if ($i > 0) {
                 $intArray[] = $i;
             } else {
@@ -117,7 +111,7 @@ class ParameterChecker
             'denomination',
             'type',
             'parentId',
-            'hasChildren'
+            'hasChildren',
         ];
         $data = [];
         foreach ($keys as $key) {
@@ -132,35 +126,35 @@ class ParameterChecker
         $messages = [];
         if (self::isNullOrEmptyString($data['name'])) {
             $dataCorrect = false;
-            $messages[]  = _('Bitte einen gültigen Namen angeben!');
+            $messages[] = _('Bitte einen gültigen Namen angeben!');
         }
         if (self::isNullOrEmptyString($data['street'])) {
             $dataCorrect = false;
-            $messages[]  = _('Bitte die Straße angeben!');
+            $messages[] = _('Bitte die Straße angeben!');
         }
         if (self::isNullOrEmptyString($data['city'])) {
             $dataCorrect = false;
-            $messages[]  = _('Bitte einen Ort angeben!');
+            $messages[] = _('Bitte einen Ort angeben!');
         }
         if (!self::isCountryCode($data['countryCode'])) {
             $dataCorrect = false;
-            $messages[]  = _('Bitte ein Land auswählen!');
+            $messages[] = _('Bitte ein Land auswählen!');
         }
         if (!self::isPostalCode($data['postalCode'], $data['countryCode'])) {
             $dataCorrect = false;
-            $messages[]  = _('Bitte eine Postleitzahl angeben!');
+            $messages[] = _('Bitte eine Postleitzahl angeben!');
         }
         if (!self::isDenomination($data['denomination'])) {
             $dataCorrect = false;
-            $messages[]  = _('Bitte eine Konfession auswählen!');
+            $messages[] = _('Bitte eine Konfession auswählen!');
         }
         if (!self::isType($data['type'])) {
             $dataCorrect = false;
-            $messages[]  = _('Bitte einen Gemeindetyp auswählen!');
+            $messages[] = _('Bitte einen Gemeindetyp auswählen!');
         }
         if (!self::isParentId($data['parentId'])) {
             $dataCorrect = false;
-            $messages[]  = _('Bitte keine oder eine gültige nächsthöhere Ebene auswählen!');
+            $messages[] = _('Bitte keine oder eine gültige nächsthöhere Ebene auswählen!');
         }
         if ($data['hasChildren'] === 'on') {
             $data['hasChildren'] = 1;
@@ -190,7 +184,7 @@ class ParameterChecker
                         $urls[$website_id] = $url;
                     } else {
                         // a submitted URL is invalid.
-                        $messages[]  = sprintf(
+                        $messages[] = sprintf(
                             _('Bitte eine gültige oder keine URL für %s angeben, diese muss mit %s beginnen.'),
                             Configuration::getWebsiteTypes()[$website_id],
                             $startOfURL
@@ -205,16 +199,12 @@ class ParameterChecker
         return [
             'data' => $data,
             'messages' => $messages,
-            'correct' => $dataCorrect && $urlsCorrect
+            'correct' => $dataCorrect && $urlsCorrect,
         ];
     }
 
     /**
      * Tests whether the given variable is null or the empty string.
-     *
-     * @param ?string $str
-     *
-     * @return boolean
      */
     private static function isNullOrEmptyString(?string $str): bool
     {
@@ -226,7 +216,6 @@ class ParameterChecker
      *
      * @param number|string $postalCode
      * @param string $countryCode
-     * @return bool
      */
     private static function isPostalCode($postalCode, $countryCode): bool
     {
@@ -244,10 +233,6 @@ class ParameterChecker
 
     /**
      * Tests whether the given variable is a valid country code.
-     *
-     * @param string $countryCode
-     *
-     * @return boolean
      */
     private static function isCountryCode(string $countryCode): bool
     {
@@ -257,10 +242,6 @@ class ParameterChecker
 
     /**
      * Tests whether the given variable is a valid denomination.
-     *
-     * @param string $denomination
-     *
-     * @return boolean
      */
     private static function isDenomination(string $denomination): bool
     {
@@ -270,9 +251,6 @@ class ParameterChecker
 
     /**
      * Tests whether the given variable is a valid type.
-     *
-     * @param ?string $type
-     * @return boolean
      */
     private static function isType(?string $type): bool
     {
@@ -283,8 +261,7 @@ class ParameterChecker
     /**
      * Tests whether the given variable is a valid parent id.
      *
-     * @param string|number $parentId
-     * @return boolean
+     * @param number|string $parentId
      */
     private static function isParentId($parentId): bool
     {
@@ -293,23 +270,17 @@ class ParameterChecker
 
     /**
      * Tests whether the given variable is a valid URL.
-     *
-     * @param ?string $url
-     * @return boolean
      */
     private static function isURL(?string $url): bool
     {
-        return ($url && is_string($url) && $url !== ''
-                && preg_match('/^http(s)?:\/\/[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $url));
+        return $url && is_string($url) && $url !== ''
+                && preg_match('/^http(s)?:\/\/[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $url);
     }
 
     /**
      * Tests whether the given variable is a valid URL with begins with the given string.
      *
-     * @param ?string $url
      * @param string $startsWith
-     *
-     * @return boolean
      */
     private static function isValidURL(?string $url, $startsWith = ''): bool
     {
@@ -323,7 +294,7 @@ class ParameterChecker
             $result = $geocoder->geocode(
                 $street . ', ' . $city,
                 [
-                    'countrycode' => strtolower(Configuration::getCountries()[$countryCode])
+                    'countrycode' => strtolower(Configuration::getCountries()[$countryCode]),
                 ]
             );
 
@@ -331,7 +302,7 @@ class ParameterChecker
                 $first = $result['results'][0];
                 return [
                     'lat' => $first['geometry']['lat'],
-                    'lon' => $first['geometry']['lng']
+                    'lon' => $first['geometry']['lng'],
                 ];
             }
         } catch (Exception) {
@@ -339,7 +310,7 @@ class ParameterChecker
 
         return [
             'lat' => null,
-            'lon' => null
+            'lon' => null,
         ];
     }
 }

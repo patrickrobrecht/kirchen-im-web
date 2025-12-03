@@ -3,7 +3,7 @@
 // Rename to config.php and enter the credentials.
 
 // database connection
-define('DATABASE_HOSTNAME', "localhost");
+define('DATABASE_HOSTNAME', 'localhost');
 define('DATABASE_USERNAME', '');
 define('DATABASE_PASSWORD', '');
 define('DATABASE_NAME', '');

@@ -4,21 +4,16 @@ namespace KirchenImWeb\Controllers;
 
 use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
-use KirchenImWeb\Helpers\Mailer;
 use KirchenImWeb\Helpers\Exporter;
+use KirchenImWeb\Helpers\Mailer;
 use KirchenImWeb\Helpers\ParameterChecker;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 use Symfony\Component\Translation\Translator;
 
-/**
- * Class PageController
- *
- * @package KirchenImWeb\Controllers
- */
 class PageController
 {
     private ContainerInterface $container;
@@ -133,7 +128,7 @@ class PageController
 
     public function details(Request $request, Response $response, array $args): Response
     {
-        $id = (int)$args['id'];
+        $id = (int) $args['id'];
         if ($id > 0) {
             // Redirect for old URL.
             $entry = Database::getInstance()->getEntry($id, true);
@@ -243,7 +238,7 @@ class PageController
                 'path' => $languageSlug . '-stats',
                 'text' => _('Statistik'),
                 'icon' => 'fa fa-chart-pie',
-            ]
+            ],
         ];
 
         if ($routeWithoutLanguagePrefix) {
@@ -254,7 +249,7 @@ class PageController
                         'args' => $args,
                         'text' => 'English',
                         'icon' => 'fa fa-globe',
-                    ]
+                    ],
                 ]);
             } elseif ($language === 'en_US') {
                 $headerMenuItems = array_merge($headerMenuItems, [
@@ -263,7 +258,7 @@ class PageController
                         'args' => $args,
                         'text' => 'Deutsch',
                         'icon' => 'fa fa-globe',
-                    ]
+                    ],
                 ]);
             }
         }
@@ -283,7 +278,7 @@ class PageController
                 'path' => $languageSlug . '-data',
                 'text' => 'Offene Daten',
                 'icon' => 'fa fa-folder-open',
-            ]
+            ],
         ];
 
         $this->container->get(Twig::class)->offsetSet('headerMenu', $headerMenuItems);
