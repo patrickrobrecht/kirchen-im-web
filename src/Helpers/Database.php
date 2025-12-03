@@ -5,11 +5,6 @@ namespace KirchenImWeb\Helpers;
 use PDO;
 use PDOException;
 
-/**
- * Class Database
- *
- * @package KirchenImWeb\Helpers
- */
 class Database
 {
     private static ?Database $instance = null;
@@ -17,9 +12,9 @@ class Database
 
     public function __construct()
     {
-        $options  = [
+        $options = [
             PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_CLASS
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_CLASS,
         ];
         try {
             $this->connection = new PDO(
@@ -228,9 +223,9 @@ class Database
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getEntry($id, $childrenRecursive = false): array | bool
+    public function getEntry($id, $childrenRecursive = false): array|bool
     {
-        $id = (int)$id;
+        $id = (int) $id;
 
         // Query for the entry itself
         $statement = $this->connection->prepare('SELECT * FROM churches
@@ -281,9 +276,9 @@ class Database
         $statement->execute();
         $parentData = $statement->fetch(PDO::FETCH_ASSOC);
         $parents[] = [
-            'id'   => $parentId,
+            'id' => $parentId,
             'slug' => $parentData['slug'],
-            'name' => $parentData['name']
+            'name' => $parentData['name'],
         ];
         return $this->getParentsOfEntry($parentData['parentId'], $parents);
     }
@@ -465,7 +460,7 @@ class Database
      *
      * @return array|bool the id of the created church.
      */
-    public function addChurch(array $data): array | bool
+    public function addChurch(array $data): array|bool
     {
         $urls = $data['urls'];
 
@@ -512,7 +507,7 @@ class Database
             $statement->execute();
         }
 
-        return $this->getEntry((int)$churchId);
+        return $this->getEntry((int) $churchId);
     }
 
     private function createSlug($name): string
@@ -520,7 +515,7 @@ class Database
         $name = mb_strtolower($name, 'UTF-8');
         $name = str_replace([' ', '/', '(', ')'], '-', $name);
         $name = str_replace(['ä', 'ö', 'ü', 'ß'], ['ae', 'oe', 'ue', 'ss'], $name);
-        $name = preg_replace("/[^a-z-0-9]+/i", "", $name);
+        $name = preg_replace('/[^a-z-0-9]+/i', '', $name);
         while (str_contains($name, '--')) {
             $name = str_replace('--', '-', $name);
         }
@@ -546,7 +541,7 @@ class Database
         $statement->bindParam(':slug', $slug);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result ? (int)$result['id'] : false;
+        return $result ? (int) $result['id'] : false;
     }
 
     public function getSettings(): array

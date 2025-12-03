@@ -14,10 +14,10 @@ use Slim\Interfaces\RouteParserInterface;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Views\Twig;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\Formatter\MessageFormatter;
 use Symfony\Component\Translation\IdentityTranslator;
 use Symfony\Component\Translation\Loader\MoFileLoader;
+use Symfony\Component\Translation\Translator;
 
 return [
     App::class => static function (ContainerInterface $container) {
@@ -51,7 +51,7 @@ return [
 
     Twig::class => static function (ContainerInterface $container) {
         $twig = Twig::create(__DIR__ . '/../resources/html', [
-            'cache' => ( defined('DEBUG') && DEBUG ) ? false : __DIR__ . '/../cache',
+            'cache' => (defined('DEBUG') && DEBUG) ? false : __DIR__ . '/../cache',
         ]);
 
         $translator = $container->get(Translator::class);

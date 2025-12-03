@@ -6,15 +6,12 @@ use KirchenImWeb\Helpers\Database;
 
 /**
  * Utility for checking the availability of the website with the given URL.
- *
- * @package KirchenImWeb\Updaters
  */
 class LinkChecker
 {
+    public const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0';
     private ?int $httpStatusCode;
     private ?string $redirectTarget;
-
-    public const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0';
 
     /**
      * Checks the availability of the website with the given URL.
@@ -45,8 +42,8 @@ class LinkChecker
         curl_setopt($handle, CURLOPT_HEADER, true);
         curl_setopt($handle, CURLOPT_USERAGENT, self::USER_AGENT);
         curl_exec($handle);
-        $this->httpStatusCode = (int)curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
-        $this->redirectTarget = (string)curl_getinfo($handle, CURLINFO_REDIRECT_URL);
+        $this->httpStatusCode = (int) curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
+        $this->redirectTarget = (string) curl_getinfo($handle, CURLINFO_REDIRECT_URL);
         curl_close($handle);
     }
 

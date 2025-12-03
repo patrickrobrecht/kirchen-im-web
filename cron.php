@@ -11,14 +11,14 @@ require __DIR__ . '/src/autoload.php';
 $time = microtime(true);
 
 $socialMediaNetworks = array_keys(Configuration::getWebsiteTypesToCompare());
-$argumentNamesForSocialMedia = array_map(static fn($i) => $i . ':', $socialMediaNetworks);
+$argumentNamesForSocialMedia = array_map(static fn ($i) => $i . ':', $socialMediaNetworks);
 $args = getopt('', array_merge(['links:'], $argumentNamesForSocialMedia));
 
 $database = new Database();
 Exporter::run($database);
 
 if (isset($args['links'])) {
-    $count = (int)$args['links'];
+    $count = (int) $args['links'];
     if ($count > 0) {
         LinkChecker::run($database, $count);
     }
@@ -27,7 +27,7 @@ if (isset($args['links'])) {
 $socialMediaUpdater = new SocialMediaUpdater($database);
 foreach ($socialMediaNetworks as $network) {
     if (isset($args[$network])) {
-        $count = (int)$args[$network];
+        $count = (int) $args[$network];
         if ($count > 0) {
             $socialMediaUpdater->updateNetwork($network, $count);
         }

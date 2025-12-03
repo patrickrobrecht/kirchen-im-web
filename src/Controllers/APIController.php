@@ -6,14 +6,9 @@ use KirchenImWeb\Helpers\Configuration;
 use KirchenImWeb\Helpers\Database;
 use KirchenImWeb\Helpers\Exporter;
 use KirchenImWeb\Helpers\ParameterChecker;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
-/**
- * Class APIController
- *
- * @package KirchenImWeb\Controllers
- */
 class APIController
 {
     public function churches(Request $request, Response $response, array $args)
@@ -46,7 +41,7 @@ class APIController
         $children = Database::getInstance()->getFilteredEntries(
             [
                 'parent' => $args['id'],
-                'options' => ParameterChecker::extractOptions('')
+                'options' => ParameterChecker::extractOptions(''),
             ],
             Configuration::getWebsiteTypes()
         );
