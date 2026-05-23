@@ -1,9 +1,9 @@
 {% macro map(mapId, dataPath, languageSlug, config) %}
-    <script src="{{ base_path() }}{{ '/lib/leaflet.js' | asset_version }}"></script>
-    <script src="{{ base_path() }}{{ '/lib/leaflet.markercluster.js' | asset_version }}"></script>
-    <script src="{{ base_path() }}{{ '/js/map.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}{{ 'node_modules/leaflet/dist/leaflet.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}{{ 'node_modules/leaflet.markercluster/dist/leaflet.markercluster.js' | asset_version }}"></script>
+    <script src="{{ base_path() }}{{ 'resources/js/map.js' | asset_version }}"></script>
     <script>
-        var map = new Map({
+        const map = new window.Map({
             'all': '{{ 'alle' | trans }}',
             'oldCatholic': "{{ 'alt-katholisch' | trans }}",
             'anglican': "{{ 'anglikanisch' | trans }}",

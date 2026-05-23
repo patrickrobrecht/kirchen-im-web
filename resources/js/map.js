@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "Map" }] */
 /* global L, fetch */
-function Map (translations) {
+window.Map = function (translations) {
   this.translations = translations;
   this.load = function (mapId, baseUrl, dataPath, language) {
     const t = this.translations;

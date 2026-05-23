@@ -104,8 +104,7 @@ Returns the follower history for the social networks of the church in csv or JSO
 ### Setup
 * Clone the Git repository.
 * Install the dependencies via `composer install` and `npm install`.
-* Run `npm run watch` to automatically compile `*.scss` to `*.css` 
-    and `*.js` to `*.min.js` whenever the file is changed.
+* Run `npm run build` (to compile `*.scss` to `*.css` and `*.js` to minified `*.js`) whenever the file is changed.
 * Create a database and create the tables with `database-scheme.sql`.
 * Create a `config/config.php` with the database credentials and valid API keys/secrets
     (cp. `config/config.sample.php`).
@@ -137,7 +136,7 @@ To run all checks, use `composer cs`.
     [tablesort](https://github.com/tristen/tablesort)
 
 ## How to deploy
-- Run `npm run production`.
+- Run `npm run build`.
 - Run `composer install --optimize-autoloader --no-dev`.
 - Upload the following to the production server: 
     - the directories `config`, `public`, `src`, `resources`, `vendor`, and

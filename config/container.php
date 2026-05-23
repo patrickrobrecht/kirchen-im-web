@@ -4,7 +4,7 @@ use KirchenImWeb\Controllers\APIController;
 use KirchenImWeb\Controllers\FileController;
 use KirchenImWeb\Controllers\PageController;
 use KirchenImWeb\Helpers\Configuration;
-use KirchenImWeb\Twig\TwigAssetVersionExtension;
+use KirchenImWeb\Twig\TwigViteAssetExtension;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -57,7 +57,7 @@ return [
         $translator = $container->get(Translator::class);
         $twig->addExtension(new TranslationExtension($translator));
 
-        $twig->addExtension(new TwigAssetVersionExtension(__DIR__ . '/../public/assets/mix-manifest.json'));
+        $twig->addExtension(new TwigViteAssetExtension(__DIR__ . '/../public/assets/.vite/manifest.json'));
 
         $twig->offsetSet('domain', $_SERVER['HTTP_HOST']);
         $twig->offsetSet('host', ($_SERVER['REQUEST_SCHEME'] ?? 'http') . '://' . $_SERVER['HTTP_HOST']);

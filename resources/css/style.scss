@@ -1,4 +1,7 @@
 @charset "UTF-8";
+@use '@fortawesome/fontawesome-free/scss/variables' with (
+   $font-path: "@fortawesome/fontawesome-free/webfonts",
+);
 
 /* Import necessary Bootstrap modules. */
 $link-decoration: none !default;
@@ -36,12 +39,12 @@ $link-decoration: none !default;
 /* Import necessary tablesort styles. */
 @import "../../node_modules/tablesort/tablesort.css";
 
-/* Import Font Awesome icons */
-$fa-font-path: "/assets/webfonts";
-
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/brands";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+/**
+ * Icons via Font Awesome.
+ */
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/solid';
 
 /* Icons for links and social networks */
 a[href^="http://"]::after {

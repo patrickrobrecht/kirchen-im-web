@@ -16,7 +16,7 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ base_path() }}{{ '/lib/leaflet-bundle.css' | asset_version }}">
+    <link rel="stylesheet" href="{{ base_path() }}{{ 'resources/css/leaflet-bundle.scss' | asset_version }}">
 {% endblock %}
 
 {% block main %}
@@ -160,7 +160,7 @@
 {% block footer_scripts %}
     {{ parent() }}
     {% if hasFollowerHistory %}
-        <script src="{{ base_path() }}{{ '/lib/highcharts.js' | asset_version }}"></script>
+        <script src="{{ base_path() }}{{ 'node_modules/highcharts/highcharts.js' | asset_version }}"></script>
         <script>
             {% if languageSlug == 'de' %}
             {% set dateformat = '%A, %d.%m.%Y' %}
