@@ -96,7 +96,7 @@ Returns the follower history for the social networks of the church in csv or JSO
 
 ### Requirements
 * [Apache](https://httpd.apache.org/) 2.4+
-* [PHP](https://secure.php.net/) 8.4
+* [PHP](https://secure.php.net/) 8.5
 * [MySQL](https://dev.mysql.com/downloads/) database
 * [npm](https://www.npmjs.com/) 11+
 * [Composer](https://getcomposer.org/) 2+
