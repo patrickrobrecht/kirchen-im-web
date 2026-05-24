@@ -172,5 +172,5 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script src="{{ base_path() }}{{ 'resources/js/add.js' | asset_version }}"></script>
+    {{ vite_js('resources/js/add.js') }}
 {% endblock %}

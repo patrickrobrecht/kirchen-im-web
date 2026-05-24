@@ -104,10 +104,10 @@ Returns the follower history for the social networks of the church in csv or JSO
 ### Setup
 * Clone the Git repository.
 * Install the dependencies via `composer install` and `npm install`.
-* Run `npm run build` (to compile `*.scss` to `*.css` and `*.js` to minified `*.js`) whenever the file is changed.
+* Run `npm run build` compiling `*.scss` and minifying `*.js` whenever one of the files is changed.
 * Create a database and create the tables with `database-scheme.sql`.
 * Create a `config/config.php` with the database credentials and valid API keys/secrets
-    (cp. `config/config.sample.php`).
+  (cp. `config/config.sample.php`).
 
 ### Code Style Guidelines
 - CSS: recommended configuration for [stylelint](https://stylelint.io/)
@@ -123,22 +123,24 @@ Returns the follower history for the social networks of the church in csv or JSO
 To run all checks, use `composer cs`.
 
 ## Used programming languages and libraries
-* [HTML and CSS](https://www.w3.org/standards/webdesign/htmlcss),
-    based on [Bootstrap](https://getbootstrap.com/)
-* [PHP](https://secure.php.net/) with libraries
-    [OpenCage API](https://github.com/OpenCageData/php-opencage-geocode),
-    [Slim](https://www.slimframework.com/),
-    [Symphony Translations](https://symfony.com/doc/current/translation.html),
-    [Twig](https://twig.symfony.com/)
-* JavaScript, especially the libraries
-    [Highcharts](https://www.highcharts.com/),
-    [Leaflet](https://leafletjs.com/) and 
-    [tablesort](https://github.com/tristen/tablesort)
+- [HTML and CSS](https://www.w3.org/standards/webdesign/htmlcss),
+  based on [Bootstrap](https://getbootstrap.com/)
+- [PHP](https://secure.php.net/) with libraries
+  [OpenCage API](https://github.com/OpenCageData/php-opencage-geocode),
+  [Slim](https://www.slimframework.com/),
+  [Symphony Translations](https://symfony.com/doc/current/translation.html),
+  [Twig](https://twig.symfony.com/) and
+  [vite-php-twig](https://github.com/userfrosting/vite-php-twig)
+- JavaScript, especially the libraries
+  [Highcharts](https://www.highcharts.com/),
+  [Leaflet](https://leafletjs.com/),
+  [tablesort](https://github.com/tristen/tablesort)
+- [Vite](https://vite.dev/guide/) as build tool
 
 ## How to deploy
 - Run `npm run build`.
 - Run `composer install --optimize-autoloader --no-dev`.
-- Upload the following to the production server: 
+- Upload the following to the production server:
     - the directories `config`, `public`, `src`, `resources`, `vendor`, and
     - the file `cron.php`.
 - Create empty directories `cache` and `data`.

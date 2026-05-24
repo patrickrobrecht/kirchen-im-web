@@ -4,7 +4,6 @@ use KirchenImWeb\Controllers\APIController;
 use KirchenImWeb\Controllers\FileController;
 use KirchenImWeb\Controllers\PageController;
 use KirchenImWeb\Helpers\Configuration;
-use KirchenImWeb\Twig\TwigViteAssetExtension;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -18,6 +17,8 @@ use Symfony\Component\Translation\Formatter\MessageFormatter;
 use Symfony\Component\Translation\IdentityTranslator;
 use Symfony\Component\Translation\Loader\MoFileLoader;
 use Symfony\Component\Translation\Translator;
+use UserFrosting\ViteTwig\ViteManifest;
+use UserFrosting\ViteTwig\ViteTwigExtension;
 
 return [
     App::class => static function (ContainerInterface $container) {
@@ -57,7 +58,11 @@ return [
         $translator = $container->get(Translator::class);
         $twig->addExtension(new TranslationExtension($translator));
 
-        $twig->addExtension(new TwigViteAssetExtension(__DIR__ . '/../public/assets/.vite/manifest.json'));
+        $viteManifest = new ViteManifest(
+            __DIR__ . '/../public/assets/.vite/manifest.json',
+            basePath: '/assets/'
+        );
+        $twig->addExtension(new ViteTwigExtension($viteManifest));
 
         $twig->offsetSet('domain', $_SERVER['HTTP_HOST']);
         $twig->offsetSet('host', ($_SERVER['REQUEST_SCHEME'] ?? 'http') . '://' . $_SERVER['HTTP_HOST']);

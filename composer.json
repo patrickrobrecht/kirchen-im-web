@@ -29,7 +29,8 @@
         "slim/slim": "^4.15",
         "slim/twig-view": "^3.4",
         "symfony/twig-bridge": "^8.0",
-        "symfony/translation": "^8.0"
+        "symfony/translation": "^8.0",
+        "userfrosting/vite-php-twig": "^1.2"
     },
     "require-dev": {
         "portavice/laravel-pint-config": "^3.0"

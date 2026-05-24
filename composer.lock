@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d94d34bbec05f9540762716be5882ec5",
+    "content-hash": "55f924265f815bf03c44691c573a9401",
     "packages": [
         {
             "name": "fig/http-message-util",
@@ -2166,6 +2166,63 @@
                 }
             ],
             "time": "2026-05-20T07:31:59+00:00"
+        },
+        {
+            "name": "userfrosting/vite-php-twig",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/userfrosting/vite-php-twig.git",
+                "reference": "88014606c911bc78ab42e15ab2938cab2f96c870"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/userfrosting/vite-php-twig/zipball/88014606c911bc78ab42e15ab2938cab2f96c870",
+                "reference": "88014606c911bc78ab42e15ab2938cab2f96c870",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "twig/twig": "^3.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "mockery/mockery": "^1.2",
+                "phpstan/phpstan": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-mockery": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpstan/phpstan-strict-rules": "^1.0",
+                "phpunit/phpunit": "^10.5",
+                "slam/phpstan-extensions": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "UserFrosting\\ViteTwig\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Louis Charette",
+                    "homepage": "https://bbqsoftwares.com"
+                }
+            ],
+            "description": "Vite function for Twig templates",
+            "homepage": "https://github.com/userfrosting/vite-php-twig",
+            "keywords": [
+                "twig",
+                "vite"
+            ],
+            "support": {
+                "issues": "https://github.com/userfrosting/vite-php-twig/issues",
+                "source": "https://github.com/userfrosting/vite-php-twig/tree/1.2.0"
+            },
+            "time": "2026-05-15T23:04:48+00:00"
         }
     ],
     "packages-dev": [

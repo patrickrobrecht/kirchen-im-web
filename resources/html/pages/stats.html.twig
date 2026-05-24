@@ -177,160 +177,162 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script src="{{ base_path() }}{{ 'node_modules/highcharts/highcharts.js' | asset_version }}"></script>
+    {{ vite_js('node_modules/highcharts/highcharts.js') }}
     <script>
-        Highcharts.chart('denominations', {
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: '{{ 'Einträge nach Konfessionen' | trans }}'
-            },
-            subtitle: {
-                text: 'kirchen-im-web.de'
-            },
-            legend: {
-                enabled: true
-            },
-            series: [ {
-                name: '{{ 'Anzahl der Einträge' | trans }}',
-                data: [{% for d in statsByDenomination %}
-                    {
-                        name: '{{ d.denomination|trans }}',
-                        y: {{ d.count }},
-                        color: '{{ config.denominationColors[d.denomination] }}'
-                    },
-                {% endfor %}]
-            } ],
-            credits: {
-                href: '',
-                text: ''
-            }
-        });
-
-        Highcharts.chart('countries', {
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: '{{ 'Einträge nach Ländern' | trans }}'
-            },
-            subtitle: {
-                text: 'kirchen-im-web.de'
-            },
-            series: [ {
-                name: '{{ 'Anzahl der Einträge' | trans }}',
-                data: [{% for c in statsByCountry %}{name:'{{ config.countries[c.countryCode]|trans }}',y:{{ c.count }}},{% endfor %}]
-            } ],
-            credits: {
-                href: '',
-                text: ''
-            }
-        });
-
-        Highcharts.chart('types', {
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: '{{ 'Einträge nach Gemeindetypen' | trans }}'
-            },
-            subtitle: {
-                text: 'kirchen-im-web.de'
-            },
-            series: [ {
-                name: '{{ 'Anzahl der Einträge' | trans }}',
-                data: [{% for t in statsByType %}{name:'{{ config.types[t.type]|trans }}',y:{{ t.count }}},{% endfor %}]
-            } ],
-            credits: {
-                href: '',
-                text: ''
-            }
-        });
-
-        Highcharts.chart('websites', {
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: '{{ 'Gemeinden mit Webauftritt/Social-Media-Profilen' | trans }}'
-            },
-            subtitle: {
-                text: 'kirchen-im-web.de'
-            },
-            xAxis: {
-                    categories: [{% for w in statsByWebsite %}'{{ config.websiteTypes[w.type]|trans }}',{% endfor %}],
-                labels: {
-                    rotation: -45
-                }
-            },
-            yAxis: {
+        document.addEventListener('DOMContentLoaded', () => {
+            Highcharts.chart('denominations', {
+                chart: {
+                    type: 'pie'
+                },
                 title: {
-                    text: '{{ 'Anzahl der Einträge' | trans }}'
+                    text: '{{ 'Einträge nach Konfessionen' | trans }}'
+                },
+                subtitle: {
+                    text: 'kirchen-im-web.de'
+                },
+                legend: {
+                    enabled: true
+                },
+                series: [ {
+                    name: '{{ 'Anzahl der Einträge' | trans }}',
+                    data: [{% for d in statsByDenomination %}
+                        {
+                            name: '{{ d.denomination|trans }}',
+                            y: {{ d.count }},
+                            color: '{{ config.denominationColors[d.denomination] }}'
+                        },
+                    {% endfor %}]
+                } ],
+                credits: {
+                    href: '',
+                    text: ''
                 }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            series: [ {
-                name: '{{ 'Anzahl der Einträge' | trans }}',
-                data: [{% for w in statsByWebsite %}{{ w.count }},{% endfor %}]
-            } ],
-            credits: {
-                href: '',
-                text: ''
-            }
-        });
+            });
 
-        Highcharts.chart('https', {
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: '{{ 'Verschlüssung der Webauftritte' | trans }}'
-            },
-            subtitle: {
-                text: 'kirchen-im-web.de'
-            },
-            xAxis: {
-                categories: [{% for h in statsHTTPS %}'{{ config.websiteTypes[h.type]|trans }}',{% endfor %}],
-                labels: {
-                    rotation: -45
-                }
-            },
-            yAxis: {
+            Highcharts.chart('countries', {
+                chart: {
+                    type: 'pie'
+                },
                 title: {
-                    text: '{{ 'Anzahl der Einträge' | trans }}'
+                    text: '{{ 'Einträge nach Ländern' | trans }}'
+                },
+                subtitle: {
+                    text: 'kirchen-im-web.de'
+                },
+                series: [ {
+                    name: '{{ 'Anzahl der Einträge' | trans }}',
+                    data: [{% for c in statsByCountry %}{name:'{{ config.countries[c.countryCode]|trans }}',y:{{ c.count }}},{% endfor %}]
+                } ],
+                credits: {
+                    href: '',
+                    text: ''
                 }
-            },
-            legend: {
-                enabled: true
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
+            });
+
+            Highcharts.chart('types', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: '{{ 'Einträge nach Gemeindetypen' | trans }}'
+                },
+                subtitle: {
+                    text: 'kirchen-im-web.de'
+                },
+                series: [ {
+                    name: '{{ 'Anzahl der Einträge' | trans }}',
+                    data: [{% for t in statsByType %}{name:'{{ config.types[t.type]|trans }}',y:{{ t.count }}},{% endfor %}]
+                } ],
+                credits: {
+                    href: '',
+                    text: ''
+                }
+            });
+
+            Highcharts.chart('websites', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: '{{ 'Gemeinden mit Webauftritt/Social-Media-Profilen' | trans }}'
+                },
+                subtitle: {
+                    text: 'kirchen-im-web.de'
+                },
+                xAxis: {
+                        categories: [{% for w in statsByWebsite %}'{{ config.websiteTypes[w.type]|trans }}',{% endfor %}],
+                    labels: {
+                        rotation: -45
                     }
+                },
+                yAxis: {
+                    title: {
+                        text: '{{ 'Anzahl der Einträge' | trans }}'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                series: [ {
+                    name: '{{ 'Anzahl der Einträge' | trans }}',
+                    data: [{% for w in statsByWebsite %}{{ w.count }},{% endfor %}]
+                } ],
+                credits: {
+                    href: '',
+                    text: ''
                 }
-            },
-            series: [ {
-                name: 'HTTP',
-                data: [{% for h in statsHTTPS %}{{ h.count - h.countHTTPS }},{% endfor %}]
-            }, {
-                name: 'HTTPS',
-                data: [{% for h in statsHTTPS %}{{ h.countHTTPS }},{% endfor %}]
-            }],
-            credits: {
-                href: '',
-                text: ''
-            }
+            });
+
+            Highcharts.chart('https', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: '{{ 'Verschlüssung der Webauftritte' | trans }}'
+                },
+                subtitle: {
+                    text: 'kirchen-im-web.de'
+                },
+                xAxis: {
+                    categories: [{% for h in statsHTTPS %}'{{ config.websiteTypes[h.type]|trans }}',{% endfor %}],
+                    labels: {
+                        rotation: -45
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: '{{ 'Anzahl der Einträge' | trans }}'
+                    }
+                },
+                legend: {
+                    enabled: true
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                series: [ {
+                    name: 'HTTP',
+                    data: [{% for h in statsHTTPS %}{{ h.count - h.countHTTPS }},{% endfor %}]
+                }, {
+                    name: 'HTTPS',
+                    data: [{% for h in statsHTTPS %}{{ h.countHTTPS }},{% endfor %}]
+                }],
+                credits: {
+                    href: '',
+                    text: ''
+                }
+            });
         });
     </script>
 {% endblock %}

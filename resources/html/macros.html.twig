@@ -1,21 +1,23 @@
 {% macro map(mapId, dataPath, languageSlug, config) %}
-    <script src="{{ base_path() }}{{ 'node_modules/leaflet/dist/leaflet.js' | asset_version }}"></script>
-    <script src="{{ base_path() }}{{ 'node_modules/leaflet.markercluster/dist/leaflet.markercluster.js' | asset_version }}"></script>
-    <script src="{{ base_path() }}{{ 'resources/js/map.js' | asset_version }}"></script>
+    {{ vite_js('node_modules/leaflet/dist/leaflet.js') }}
+    {{ vite_js('node_modules/leaflet.markercluster/dist/leaflet.markercluster.js') }}
+    {{ vite_js('resources/js/map.js') }}
     <script>
-        const map = new window.Map({
-            'all': '{{ 'alle' | trans }}',
-            'oldCatholic': "{{ 'alt-katholisch' | trans }}",
-            'anglican': "{{ 'anglikanisch' | trans }}",
-            'protestant': "{{ 'evangelisch' | trans }}",
-            'freeChurches': "{{ 'freikirchlich' | trans }}",
-            'catholic': "{{ 'katholisch' | trans }}",
-            'others': "{{ 'andere Konfession' | trans }}",
-            'web': "{{ config.websiteTypes['web'] }}",
-            'blog': "{{ config.websiteTypes['blog'] }}",
-            'podcast': "{{ config.websiteTypes['podcast'] }}",
-        });
-        map.load('{{ mapId }}', '{{ base_path() }}', '{{ dataPath|raw }}', '{{ languageSlug }}');
+        document.addEventListener('DOMContentLoaded', () => {
+            const map = new window.Map({
+                'all': '{{ 'alle' | trans }}',
+                'oldCatholic': "{{ 'alt-katholisch' | trans }}",
+                'anglican': "{{ 'anglikanisch' | trans }}",
+                'protestant': "{{ 'evangelisch' | trans }}",
+                'freeChurches': "{{ 'freikirchlich' | trans }}",
+                'catholic': "{{ 'katholisch' | trans }}",
+                'others': "{{ 'andere Konfession' | trans }}",
+                'web': "{{ config.websiteTypes['web'] }}",
+                'blog': "{{ config.websiteTypes['blog'] }}",
+                'podcast': "{{ config.websiteTypes['podcast'] }}",
+            });
+            map.load('{{ mapId }}', '{{ base_path() }}', '{{ dataPath|raw }}', '{{ languageSlug }}');
+        })
     </script>
 {% endmacro %}
 
