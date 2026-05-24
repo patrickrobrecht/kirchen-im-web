@@ -16,7 +16,7 @@
 
 {% block head_styles %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ base_path() }}{{ '/lib/leaflet-bundle.css' | asset_version }}">
+    {{ vite_css('resources/css/leaflet-bundle.scss') }}
 {% endblock %}
 
 {% block main %}
@@ -160,69 +160,71 @@
 {% block footer_scripts %}
     {{ parent() }}
     {% if hasFollowerHistory %}
-        <script src="{{ base_path() }}{{ '/lib/highcharts.js' | asset_version }}"></script>
+        {{ vite_js('node_modules/highcharts/highcharts.js') }}</script>
         <script>
-            {% if languageSlug == 'de' %}
-            {% set dateformat = '%A, %d.%m.%Y' %}
-            Highcharts.setOptions({
-                lang: {
-                    weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-                    shortMonths: ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-                }
-            });
-            {% else %}
-                {% set dateformat = '%A, %d/%m/%Y' %}
-            {% endif %}
+            document.addEventListener('DOMContentLoaded', () => {
+                {% if languageSlug == 'de' %}
+                {% set dateformat = '%A, %d.%m.%Y' %}
+                Highcharts.setOptions({
+                    lang: {
+                        weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+                        shortMonths: ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                    }
+                });
+                {% else %}
+                    {% set dateformat = '%A, %d/%m/%Y' %}
+                {% endif %}
 
-            Highcharts.chart('followerHistory', {
-                title: {
-                    text: '{{ 'Followers' | trans }}'
-                },
-                subtitle: {
-                    text: '{{ entry.name }}'
-                },
-                xAxis: {
-                    type: 'datetime'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    min: 0,
+                Highcharts.chart('followerHistory', {
                     title: {
-                        text: '{{ 'Anzahl der Follower' | trans }}'
-                    }
-                },
-                legend: {
-                    enabled: true
-                },
-                plotOptions: {
-                    series: {
-                        marker: {
-                            enabled: true
-                        },
-                        tooltip: {
-                            xDateFormat: '{{ dateformat }}'
+                        text: '{{ 'Followers' | trans }}'
+                    },
+                    subtitle: {
+                        text: '{{ entry.name }}'
+                    },
+                    xAxis: {
+                        type: 'datetime'
+                    },
+                    yAxis: {
+                        allowDecimals: false,
+                        min: 0,
+                        title: {
+                            text: '{{ 'Anzahl der Follower' | trans }}'
                         }
-                    }
-                },
-                series: [
-                    {% for website in entry.websites %}
-                        {% if website.followerHistory %}
-                            {
-                                name: '{{ config.websiteTypes[website.type] }}',
-                                data: [
-                                    {% for date, followers in website.followerHistory %}
-                                    [Date.UTC({{ date|date('Y') }}, {{ date|date('m') - 1 }}, {{ date|date('d') + 0 }}), {{ followers }}],
-                                    {% endfor %}
-                                ],
-                                color: '{{ config.websitesToCompareColors[website.type] }}'
+                    },
+                    legend: {
+                        enabled: true
+                    },
+                    plotOptions: {
+                        series: {
+                            marker: {
+                                enabled: true
                             },
-                        {% endif %}
-                    {% endfor %}
-                ],
-                credits: {
-                    href: '',
-                    text: ''
-                }
+                            tooltip: {
+                                xDateFormat: '{{ dateformat }}'
+                            }
+                        }
+                    },
+                    series: [
+                        {% for website in entry.websites %}
+                            {% if website.followerHistory %}
+                                {
+                                    name: '{{ config.websiteTypes[website.type] }}',
+                                    data: [
+                                        {% for date, followers in website.followerHistory %}
+                                        [Date.UTC({{ date|date('Y') }}, {{ date|date('m') - 1 }}, {{ date|date('d') + 0 }}), {{ followers }}],
+                                        {% endfor %}
+                                    ],
+                                    color: '{{ config.websitesToCompareColors[website.type] }}'
+                                },
+                            {% endif %}
+                        {% endfor %}
+                    ],
+                    credits: {
+                        href: '',
+                        text: ''
+                    }
+                });
             });
         </script>
     {% endif %}

@@ -178,8 +178,8 @@
 
 {% block footer_scripts %}
     {{ parent() }}
-    <script src="{{ base_path() }}{{ '/lib/tablesort.min.js' | asset_version }}"></script>
-    <script src="{{ base_path() }}{{ '/js/table.js' | asset_version }}"></script>
+    {{ vite_js('node_modules/tablesort/dist/tablesort.min.js') }}
+    {{ vite_js('resources/js/table.js') }}
 {% endblock %}
 
 {% block structured_data %}
